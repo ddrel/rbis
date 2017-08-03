@@ -60,15 +60,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 
-app.set("ipaddress",process.env.IPADDRESS || "localhost");
-
-//MONGODB_DEV=mongodb://169.44.127.231:27017/fcc  --Bluemix container
 
 console.log("Mongo Connection");
 console.log(process.env.MONGODB_BLUEMIX || process.env.MONGODB_DEV  || process.env.MONGODB_LOCAL);
 console.log("------------------------------------------------------")
-//expose session store for the socketIO
-/*
+
 var SessionStore = new MongoStore({
     url:  process.env.MONGODB_DEV  || process.env.MONGODB_LOCAL,
     autoReconnect: true
@@ -78,18 +74,18 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET,
-  key:'fcc.sid',
+  key:'rbis.sid',
   store: SessionStore
 }));
-*/
+
 app.use(bodyParser.json({limit: '1000024mb'}));
 app.use(bodyParser.urlencoded({limit: '1000024mb', extended: true}));
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(passport.initialize());
-//app.use(passport.session());
+app.use(passport.session());
 app.use(methodOverride());
-//app.use(flash());
+app.use(flash());
 
 
 /**

@@ -2,7 +2,7 @@
 	<div class="page-header-inner sasdadad">
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
-			<a href="default.aspx">
+			<a href="#/dashboard">
 				<img class="logo-default" alt="rbis-logo" src="/common/assets/frontend/pages/img/logo_rbis.png">&nbsp;
 				<span class="logo-name">Road and Bridge Information System</span>
 			</a>
@@ -24,7 +24,15 @@
 
 				<!-- BEGIN USER LOGIN DROPDOWN -->
 				<li class="dropdown dropdown-user">
-                    <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" class="dropdown-toggle" href="#"><img src="/common/images/profile.jpg" class="img-circle hide1" alt=""> &nbsp;&nbsp;<span class="username username-hide-on-mobile"> Darel Valeros &nbsp;&nbsp;<b>(SUPER ADMINISTRATOR)</b></span><i class="fa fa-angle-down"></i></a><ul class="dropdown-menu"><li><a href="javascript:showCustomModalWindow('editprofile.aspx', 550, 480);"><i class="icon-user"></i> My Profile </a></li><li class="divider"></li><li><a href="../logout.aspx"><i class="icon-key"></i> Log Out </a></li></ul>				
+					<a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" class="dropdown-toggle" href="#"><img src="/common/images/profile.jpg" class="img-circle hide1" alt=""> &nbsp;&nbsp;
+						<span class="username username-hide-on-mobile"> <%= user.name %> &nbsp;&nbsp;
+						<b>(<%= user.roles[0] %>)</b></span>
+						<i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="#/user/myprofile"><i class="icon-user"></i> My Profile </a></li>
+						<li class="divider"></li><li><a href="/logout"><i class="icon-key"></i> Log Out </a></li>
+					</ul>				
                 </li>
 				<!-- END USER LOGIN DROPDOWN -->
 			</ul>

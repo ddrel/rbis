@@ -3,7 +3,12 @@
 module.exports = (app)=>{
         //Home Page    
         app.get("/",(req,res)=>{    
-                res.locals.users = (req.user || null);         
-                res.render("index");            
+                if ( !req.user ){
+                        res.redirect('/login');
+                } else {
+                        res.locals.users = (req.user || null);               
+                        res.render("index");       
+                };
+         
         });
 }

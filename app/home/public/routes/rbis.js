@@ -134,7 +134,7 @@
                                   url: '/userlist',
                                   controller: 'userlistCtrl',
                                   templateUrl: '/user/views/userlist.html',
-                                  data : { pageTitle: 'User Management | Road and Bridge Information System' },
+                                  data : { pageTitle: 'User List | Road and Bridge Information System' },
                                   resolve:{                                            
                                             loadfile: function ($ocLazyLoad) {
                                                 return $ocLazyLoad.load([
@@ -152,7 +152,7 @@
                                   url: '/newuser',
                                   controller: 'newuserCtrl',
                                   templateUrl: '/user/views/newuser.html',
-                                  data : { pageTitle: 'My Profile | Road and Bridge Information System' },
+                                  data : { pageTitle: 'User Management | Road and Bridge Information System' },
                                   resolve:{                                            
                                             loadfile: function ($ocLazyLoad) {
                                                 return $ocLazyLoad.load([

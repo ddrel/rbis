@@ -345,7 +345,6 @@ RoadsSchema.statics.getcarriagewaypersurfacelength =  function(qry,cb){
     this.aggregate(_agg,cb)
 }    
  
-
 RoadsSchema.statics.getcarriagewaypersurfacecount =  function(qry,cb){
 
     var _agg = [{$group: { '_id': '$RoadCarriageway.SurfaceTyp', 'SurfaceTyp': { $push: '$RoadCarriageway.SurfaceTyp'}}},

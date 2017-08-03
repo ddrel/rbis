@@ -9,6 +9,9 @@ const  _   = require('lodash');
 const escapeProperty = (value)=> {
   return _.escape(value);
 };
+
+
+
 /**
  * Validations
  */
@@ -59,27 +62,31 @@ var UserSchema = new Schema({
     type: String,
     default: 'local'
   },
+  location: Schema.Types.Mixed,
+  profile: Schema.Types.Mixed,
   salt: String,
   resetPasswordToken: String,
-  resetPasswordExpires: Date,
-  profile: {},
-  facebook: {},
-  twitter: {},
-  github: {},
-  google: {},
-  linkedin: {},
-  ibm:{},
-  jrss:String,
-  profiler_done:{
+  resetPasswordExpires: Date,  
+  activation_code:String,
+  activated:{
     type:Boolean,
     default:false
   },
-  intranet_name:String,
-  devkey: {
-    type: String,
-    default: ''
+  created_by:{
+     type : Schema.Types.ObjectId,
+      ref : 'users'
   }
 });
+
+
+
+UserSchema.statics.genactivationKey =()=>{
+var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < 16; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
+}
 
 /**
  * Virtuals
@@ -96,6 +103,7 @@ UserSchema.virtual('password').set(function(password) {
  * Pre-save hook
  */
 UserSchema.pre('save',function (next) {
+  this.activation_code = genactivationKey();
   if (this.isNew && this.provider === 'local' && this.password && !this.password.length)
     return next(new Error('Invalid password'));
   next();
@@ -178,11 +186,11 @@ UserSchema.methods = {
   hashPassword: function(password) {
     if (!password || !this.salt) return '';
     var salt = new Buffer(this.salt, 'base64');
-    return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
+    return crypto.pbkdf2Sync(password, salt, 10000, 64,'DSA-SHA1').toString('base64');
   },
   cHash: function(password,salt){
-      var salt = new Buffer(salt, 'base64');
-      return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
+      var salt = new Buffer(salt, 'base64');      
+      return crypto.pbkdf2Sync(password, salt, 10000, 64,'DSA-SHA1').toString('base64');
   },
 
   /**

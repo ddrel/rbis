@@ -71,8 +71,7 @@
 	  <a class="center-logo" href="#">
 	  	<div class="half-circle"></div>
 	    <img alt="dilg-seal-logo" src="/common/assets/frontend/pages/img/180px-LOGO.png" style="width: 95px; height: 95px;" />
-      </a>
-		<div class="alert alert-danger animated fadeIn" ng-show="loginError.length>0">{{loginError}}</div>
+      </a>		
         <form style="position: relative;top: -84px;" class="m-t" role="form" ng-submit="login()">
            <h3 class="form-title">Welcome! Please Login.</h3>
             <div class="form-group">
@@ -92,7 +91,8 @@
             <div class="form-actions">				
                 <button type="submit" class="btn btn-primary block full-width m-b blue pull-right">Login<i class="m-icon-swapright m-icon-white"></i></button>
 			</div>                  
-        </form>
+		</form>
+		<div class="alert alert-danger animated fadeIn" ng-show="loginError.length>0">{{loginError}}</div>
 		<!-- END LOGIN FORM -->
 	</div>
 	<div class="bs-docs-header" id="content">
