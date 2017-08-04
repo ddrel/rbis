@@ -1,6 +1,24 @@
 'use strict';
 const mongoose = require('mongoose');
 
+
+const getlocaccess = (req)=>{
+       var user = req.user || {};
+       if(user.roles.indexOf("SUPER ADMINISTRATOR")>-1 || user.roles.indexOf("ROAD BOARD")>-1){
+           return false;
+       }else if(user.roles.indexOf("SUPERVISOR")>-1 || user.roles.indexOf("ENCODER")>-1){
+           if(user.location.municity!="--" && user.location.municity!==""){
+                return {CityMunCod:user.location.municity,R_CLASS:"City"};
+           }else{
+               return {ProvinceCo:user.location.province};               
+           };
+       }; 
+
+       return false;
+
+}
+
+
 exports.getprovroadshortinfo =  (req,res)=>{
     var roads = mongoose.model("Roads");
     var code = req.query.code;
@@ -54,9 +72,28 @@ exports.getroadattr = (req,res)=>{
 
 exports.getroadaggmain = (req,res)=>{
     var roads = mongoose.model("Roads");
-    var qry = req.query.qry;
+    var qryStr = req.query.qry;
     var page= req.query.page || 1;
     var limit= req.query.limit || 10;
+    var fordisplay = req.query.fordisplay || false;
+
+    var rname = new RegExp(qryStr,'i'),rid = new RegExp(qryStr,'i'); 
+    
+    var a_qry = getlocaccess(req);
+    var qry  = false;
+    
+    //terrible condition
+
+    if(!a_qry || fordisplay){            
+                if(qryStr){qry  = {$or:[{"R_NAME":rname},{"R_ID":rid}]};}
+    }else {
+            if(qryStr){
+                    qry = {$or:[{"R_NAME":rname},{"R_ID":rid}],$and:[a_qry]};
+            }else{
+                    qry = a_qry;
+            }
+                
+    }
 
     roads.getroadaggmain(qry,page,limit,function(err,data){
         if(err){res.status(500).json(err);return;};
@@ -67,7 +104,11 @@ exports.getroadaggmain = (req,res)=>{
 
 exports.getroadlengthtotal = (req,res)=>{
     var roads = mongoose.model("Roads");
-    roads.getroadlengthtotal(function(err,data){
+    
+    var qry = getlocaccess(req);
+    if(qry){qry = {'$match':qry};}
+
+    roads.getroadlengthtotal(qry,function(err,data){
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data[0]);
     });
@@ -75,7 +116,11 @@ exports.getroadlengthtotal = (req,res)=>{
 
 exports.getbridgelengthtotal = (req,res)=>{
     var roads = mongoose.model("Roads");
-    roads.getbridgelengthtotal(function(err,data){
+
+    var qry = getlocaccess(req);
+    if(qry){qry = {'$match':qry};}
+    
+    roads.getbridgelengthtotal(qry,function(err,data){
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data[0]);
     });
@@ -85,7 +130,11 @@ exports.getbridgelengthtotal = (req,res)=>{
 exports.getcarriagewayperconcount = (req,res)=>{
     var roads = mongoose.model("Roads");
     var _qry = req.query.qry || false;
-        if(_qry){_qry = {'$match':{R_ID: _qry}};}
+    
+    var a_qry = getlocaccess(req);
+    if(_qry){_qry = {'$match':{R_ID: _qry}};}
+    if(!_qry && a_qry){_qry  = {'$match':a_qry};}
+
     roads.getcarriagewayperconcount(_qry,function(err,data){
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data[0]);
@@ -96,7 +145,11 @@ exports.getcarriagewayperconcount = (req,res)=>{
 exports.getcarriagewayperconlength = (req,res)=>{
     var roads = mongoose.model("Roads");
     var _qry = req.query.qry || false;
+    
+    var a_qry = getlocaccess(req);
     if(_qry){_qry = {'$match':{R_ID: _qry}};}
+    if(!_qry && a_qry){_qry  = {'$match':a_qry};}
+
     roads.getcarriagewayperconlength(_qry,function(err,data){
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data[0]);
@@ -106,7 +159,11 @@ exports.getcarriagewayperconlength = (req,res)=>{
 exports.getcarriagewaypersurfacelength = (req,res)=>{
     var roads = mongoose.model("Roads");
     var _qry = req.query.qry || false;
+    
+    var a_qry = getlocaccess(req);
     if(_qry){_qry = {'$match':{R_ID: _qry}};}
+    if(!_qry && a_qry){_qry  = {'$match':a_qry};}
+
     roads.getcarriagewaypersurfacelength(_qry,function(err,data){
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data[0]);
@@ -117,7 +174,10 @@ exports.getcarriagewaypersurfacecount = (req,res)=>{
     var roads = mongoose.model("Roads");
     var _qry = req.query.qry || false;
 
-    if(_qry){_qry = {'$match':{R_ID:_qry}};}
+    var a_qry = getlocaccess(req);
+    if(_qry){_qry = {'$match':{R_ID: _qry}};}
+    if(!_qry && a_qry){_qry  = {'$match':a_qry};}
+
     roads.getcarriagewaypersurfacecount(_qry,function(err,data){
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data[0]);
@@ -126,7 +186,13 @@ exports.getcarriagewaypersurfacecount = (req,res)=>{
 
 exports.getcarriagewaycount = (req,res)=>{
     var roads = mongoose.model("Roads");
-    var _qry = req.query.qry || [];
+    var _qry = req.query.qry || false;
+
+    var a_qry = getlocaccess(req);
+    if(_qry){_qry = {'$match':{R_ID: _qry}};}
+    if(!_qry && a_qry){_qry  = {'$match':a_qry};}
+
+
     roads.getcarriagewaycount(_qry,function(err,data){
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data[0]);

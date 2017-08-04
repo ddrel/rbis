@@ -76,7 +76,7 @@ $scope.init =  function(){
     });
     
     $http.get("/api/roads/getbridgelengthtotal").success(function(d){
-        $scope.summary.totalbridgelength = utilities.formatToDecimal(Math.ceil(d.totalbridgelength));
+        $scope.summary.totalbridgelength = utilities.formatToDecimal((d.totalbridgelength /1000).toFixed(2));
     });
 
     $http.get("/api/roads/getcarriagewaycount").success(function(d){
@@ -91,17 +91,11 @@ $scope.init =  function(){
           var _total = 0;          
           for(var n in d){
             if(n.indexOf("_id")==-1 && n!="total"){
-                $scope.summary.chart.st.labels.push(n);
-                $scope.summary.chart.st.data.push(d[n]);
-                $scope.summary.surfacetype[n]= Math.round(parseFloat("0" + d[n]));
-                _total+=$scope.summary.surfacetype[n];
-                //console.log(n.toString().substring(0,1).toUpperCase());                
-                var kcl = n.toString().substring(0,1).toUpperCase();
-                var _colorHex = utilities.roads.ST[kcl].color;              
-                $scope.summary.chart.st.colors.push(_colorHex);                
+              _total+=$scope.summary.surfacetype[n];         
+                $scope.summary.surfacetype[n]= (parseFloat("0" + d[n])).toFixed(2);                                
             };
           };
-          $scope.summary.surfacetype.total = _total;
+          $scope.summary.surfacetype.total = _total.toFixed(2);
           //console.log($scope.summary.surfacetype);
     });
     
@@ -112,9 +106,17 @@ $scope.init =  function(){
           for(var n in d){
             if(n.indexOf("_id")==-1 && n!="total"){                
                 $scope.summary.surfacetypeCount[n]= Math.round(parseFloat("0" + d[n]));                                
-                $scope.summary.surfacetypeCount.total+=$scope.summary.surfacetypeCount[n];
+                _total +=$scope.summary.surfacetypeCount[n];
+                
+                $scope.summary.chart.st.labels.push(n);
+                $scope.summary.chart.st.data.push(d[n]);
+                
+                var kcl = n.toString().substring(0,1).toUpperCase();
+                var _colorHex = utilities.roads.ST[kcl].color;              
+                $scope.summary.chart.st.colors.push(_colorHex);
             };
           };
+          $scope.summary.surfacetypeCount.total =_total;
     });
 
    ///api/roads/getcarriagewayperconcount
@@ -123,18 +125,12 @@ $scope.init =  function(){
           var _total = 0;    
           for(var n in d){
             if(n.indexOf("_id")==-1 && n!="total"){
-                $scope.summary.surfacecon[n]= Math.round(parseFloat("0" + d[n]));
-                _total+=$scope.summary.surfacecon[n]; 
-                $scope.summary.chart.sc.labels.push(n);
-                $scope.summary.chart.sc.data.push(d[n]);
-                var kcl = n.toString().substring(0,1).toUpperCase();
-                var _colorHex = utilities.roads.SC[kcl].color;              
-                $scope.summary.chart.sc.colors.push(_colorHex);
+                $scope.summary.surfacecon[n]= (parseFloat("0" + d[n])).toFixed(2);
+                _total+= parseFloat($scope.summary.surfacecon[n]);             
             };
           };
-
-          console.log($scope.summary.surfacecon);
-         $scope.summary.surfacecon.total = _total;
+   
+         $scope.summary.surfacecon.total = _total.toFixed(2);
     });
 
 
@@ -142,11 +138,20 @@ $scope.init =  function(){
         $scope.summary.surfaceconCount = d;
         $scope.summary.surfaceconCount.total = 0;
         for(var n in d){
-            if(n!="_d" && n!="total"){
+          if(n.indexOf("_id")==-1 && n!="total"){
                 $scope.summary.surfaceconCount[n]= Math.round(parseFloat("0" + d[n]));
                 $scope.summary.surfaceconCount.total+=$scope.summary.surfaceconCount[n];
+
+                $scope.summary.chart.sc.data.push($scope.summary.surfaceconCount[n]);
+                var kcl = n.toString().substring(0,1).toUpperCase();                
+                $scope.summary.chart.sc.labels.push(n);    
+                var _colorHex = utilities.roads.SC[kcl].color;              
+                $scope.summary.chart.sc.colors.push(_colorHex);
             };
         };
+
+
+        console.log($scope.summary.chart.sc.data);
     });
 
 

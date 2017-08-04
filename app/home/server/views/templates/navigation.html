@@ -19,15 +19,16 @@
                 <li ng-class="{'start active open':$state.current.url=='reports'}"><a ui-sref="home.reports"><i class="fa fa-bar-chart-o"></i><span class="title">Reports</span><span class="arrow "></span></a></li>
                 <li ng-class="{'start active open':$state.current.url=='roadmaps'}"><a ui-sref="home.roadmaps"><i class="fa fa-map-marker"></i><span class="title">Road Maps</span><span class="arrow "></span></a></li>                
                 <li ng-class="{'start active open':$state.current.url=='geotags'}"><a ui-sref="home.geotags"><i class="fa fa-bookmark-o"></i><span class="title">GeoTags</span><span class="arrow "></span></a></li>
-				<!--<li><a><i class="fa fa-cogs"></i><span class="title">Administration</span><span class="arrow "></span></a></li>-->				
-				<li class="nav-item">
+				<!--<li><a><i class="fa fa-cogs"></i><span class="title">Administration</span><span class="arrow "></span></a></li>-->				                
+                <li class="nav-item">
                                 <a href="javascript:;" class="nav-link nav-toggle">
                                     <i class="fa fa-cogs"></i>
                                     <span class="title">Administration</span>
                                     <span class="arrow"></span>
                                 </a>
                                 <ul class="sub-menu" style="display: block;">
-									<li ng-class="{'start active open':$state.current.url=='/newuser'}" class="nav-item">
+                                    {% if users.roles.indexOf("SUPER ADMINISTRATOR") >-1  %}
+                                    <li ng-class="{'start active open':$state.current.url=='/newuser'}" class="nav-item">
                                         <a ui-sref="user.newuser" class="nav-link ">
                                             <span class="title">Create User</span>
                                         </a>
@@ -36,7 +37,8 @@
                                         <a ui-sref="user.userlist" class="nav-link ">
                                             <span class="title">User List</span>
                                         </a>
-									</li>
+                                    </li>
+                                    {% endif %}
 									<li ng-class="{'start active open':$state.current.url=='/myprofile'}" class="nav-item">
                                         <a ui-sref="user.myprofile" class="nav-link ">
                                             <span class="title">My Profile</span>

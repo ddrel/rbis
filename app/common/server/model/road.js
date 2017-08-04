@@ -92,7 +92,7 @@ RoadsSchema.statics.getprovroadshortinfo =  function(code,cb){
         return cb(null,docs);
     });
 
-}
+};
 
 
 RoadsSchema.statics.getcitymunroadshortinfo =  function(code,cb){
@@ -134,10 +134,7 @@ RoadsSchema.statics.getroadattr =  function(rid,attr,cb){
     })
 }
 
-RoadsSchema.statics.getroadaggmain =  function(qryStr,page,limit,cb){    
-    var rname = new RegExp(qryStr,'i'),rid = new RegExp(qryStr,'i'); 
-    var matchOR = {$match: {$or:[{"R_NAME":rname},{"R_ID":rid}]}};
-    var qry = qryStr==""?{}:matchOR;    
+RoadsSchema.statics.getroadaggmain =  function(qry,page,limit,cb){    
     /*
     var aggregate = [
                 {
@@ -159,7 +156,7 @@ RoadsSchema.statics.getroadaggmain =  function(qryStr,page,limit,cb){
             ];
     */
     var aggregate = this.aggregate();
-       if(qryStr!=""){aggregate.match({$or:[{"R_NAME":rname},{"R_ID":rid}]});}
+       if(qry){aggregate.match(qry);}
         aggregate.project({ 
                         R_ID: 1,
                         SegmentID:1,
@@ -190,14 +187,18 @@ RoadsSchema.statics.getroadaggmain =  function(qryStr,page,limit,cb){
 };
 
 
-RoadsSchema.statics.getroadlengthtotal =  function(cb){
-    this.aggregate([{$group: {_id:'',Roadlengthtotal: { $sum: '$Length' }}},
-                    {$project: {_id: 0,Roadlengthtotal: '$Roadlengthtotal'}}],cb)
+RoadsSchema.statics.getroadlengthtotal =  function(qry,cb){
+    var _agg = [{$group: {_id:'',Roadlengthtotal: { $sum: '$Length' }}},
+                    {$project: {_id: 0,Roadlengthtotal: '$Roadlengthtotal'}}];
+
+    if(qry){_agg.unshift(qry)}                     
+
+    this.aggregate(_agg,cb)
 };
 
 
-RoadsSchema.statics.getbridgelengthtotal = function(cb){
-    this.aggregate([					
+RoadsSchema.statics.getbridgelengthtotal = function(qry,cb){
+    var _agg = [					
 					{
                     '$project': {
                       				_id:{'_id':'$_id'},                         			
@@ -215,7 +216,9 @@ RoadsSchema.statics.getbridgelengthtotal = function(cb){
                 		totalbridgelength: '$totalbridgelength'
                 		}
                 	}	
-                ],cb)
+                ];
+    if(qry){_agg.unshift(qry)}                
+    this.aggregate(_agg,cb)
 }
 
 
@@ -392,7 +395,7 @@ RoadsSchema.statics.getcarriagewaycount =  function(qry,cb){
                     }
             ]
 
-    if(qry){_agg.unshift.qry}                    
+    if(qry){_agg.unshift(qry)}                    
     this.aggregate(_agg,cb)
 };
 

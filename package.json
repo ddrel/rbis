@@ -1,5 +1,5 @@
 {
-  "name": "form_generator",
+  "name": "RBIS",
   "version": "1.0.0",
   "scripts": {
     "start": "node app.js",

@@ -136,7 +136,7 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
 
 
     $scope.getroads = function(qry,cb){
-        $http.get("/api/roads/getroadaggmain" + qry).success(function(data){
+        $http.get("/api/roads/getroadaggmain" + qry + "&fordisplay=true").success(function(data){
                 cb(data);
         });
     }   

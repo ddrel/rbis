@@ -257,7 +257,7 @@ datamodel.RoadCarriageway = {
     "SegmentID"  : {"label":"Segment ID","key":"SegmentID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"}, 
     "LRPStartKm" : {"label":"Start","key":"LRPStartKm","type":"String","options":[],"style":"","ctrl":"select","class":"form-control"}, 
     "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
-    "LRPEndKmPo" : {"label":"End","key":"LRPStartKm","type":"String","options":[],"style":"","ctrl":"select","class":"form-control"}, 
+    "LRPEndKmPo" : {"label":"End","key":"LRPEndKmPo","type":"String","options":[],"style":"","ctrl":"select","class":"form-control"}, 
     "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},   
     "NumLanes"   : {"label":"No. of Lanes","key":"NumLanes","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "LaneWidthL" : {"label":"Lane Width Left","key":"LaneWidthL","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
@@ -647,7 +647,17 @@ datamodel.utils.displayattributestable=  function(n,o,maxheight){
             var m = _model;
                 for(var n in _model){
                    var objdata = _model[n];
-                        table+="<tr><td>"  + objdata.label + "</td><td>" + _getvalue(objdata,o) + "</td>"
+                    if(objdata.key=="LRPStartDi" || objdata.key=="LRPEndDisp"){         
+                    }else if(objdata.key=="LRPStartKm"){
+                            var _tbl = "<table style='width:100%'><tr><td width='30%'>" + objdata.label +":</td><td width='40px'>" +  _getvalue(objdata,o) +"</td><td>" +  _getvalue(_model["LRPStartDi"],o) +" Meters</td></tr></table>"
+                            table+="<tr><td colspan=2>" + _tbl + "</td>"    
+                    }else if(objdata.key=="LRPEndKmPo"){
+                            var _tbl = "<table style='width:100%'><tr><td width='30%'>" + objdata.label +":</td><td width='40px'>" +  _getvalue(objdata,o) +"</td><td>" +  _getvalue(_model["LRPEndDisp"],o) +" Meters</td></tr></table>"
+                            table+="<tr><td colspan=2>" + _tbl + "</td>"
+
+                    }else{
+                        table+="<tr><td>"  + objdata.label + ":</td><td>" + _getvalue(objdata,o) + "</td>"
+                    }   
                 }
              
             table+="</table></div>"

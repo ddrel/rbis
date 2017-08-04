@@ -103,7 +103,7 @@ UserSchema.virtual('password').set(function(password) {
  * Pre-save hook
  */
 UserSchema.pre('save',function (next) {
-  this.activation_code = genactivationKey();
+  this.activation_code = UserSchema.statics.genactivationKey();
   if (this.isNew && this.provider === 'local' && this.password && !this.password.length)
     return next(new Error('Invalid password'));
   next();
