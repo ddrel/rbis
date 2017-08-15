@@ -1,0 +1,26 @@
+.table-list-001{ background-color: White;
+    border-collapse: collapse;
+    border-color: #cccccc;
+    border-style: none;
+    border-width: 1px;
+    font-size: 10pt;
+    width: 100%;
+    border: 1px solid #EBEBEB;}
+.table-list-001 .table-head{color:White;background-color:#428BCA;font-weight:bold;}
+.table-list-001 tbody td:first-child {color:#428bca;}
+.table-list-001 tbody tr:nth-child(even) {background-color:#F5F5F0;}
+.table-list-001 tbody tr:nth-child(odd) {background: #FFF}
+.table-list-001 tbody td.no-wrap{display: inline-block; /* <- Prevent <tr> in a display css */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* end */
+    width: 200px; /* Space size limit */
+    overflow: hidden;
+}    
+
+.table > caption + thead > tr:nth-child(2) > th, .table > colgroup + thead > tr:nth-child(2) > th, .table > thead:nth-child(2) > tr:nth-child(2) > th, .table > caption + thead > tr:nth-child(2) > td, .table > colgroup + thead > tr:nth-child(2) > td, .table > thead:first-child > tr:nth-child(2) > td {
+    border-top: 0 none !important;
+}
+.table-list-001 tfoot tr td ul.pagination,
+.table-list-001 tfoot tr td ul.pagination pagination-sm {margin:0px !important;}
+

@@ -11,4 +11,52 @@
 					    </li>									
                     </ul>
     </div>
+<div class="page-bar" style="margin-bottom:4px;">
+    <div class="col-sm-4" style="margin-top:10px">        
+    </div>
+    <div class="col-sm-8 no-padding">
+        <div class="input-group">
+            <input ng-change="onSearch(searchText)" ng-model="searchText" type="text" class="form-control txt-white" placeholder="Search user" /> <span class="input-group-btn"> 
+            <button class="btn btn-primary2" type="button">Search
+            </button> </span>
+        </div>
+    </div>       
+</div>
+<div>
+    <table class="table table-bordered-2 table-list-001">            
+        <thead>
+            <tr class="table-head">
+                <td align="left">Name</td>
+                <td align="left"> Email</td>
+                <td align="left">Location</td>
+                <td width="110">Access Type</td>
+                <td width="110">Activated</td>                
+                <td align="center">Action</td>
+            </tr>                                                 
+        </thead>
+       <tbody>
+           <tr ng-repeat="user in users.docs">
+               <td align="left">{{ user.name }}</td>
+                <td align="left"> {{ user.email }}</td>
+                <td align="left">{{ user.location.province_text}}, {{ user.location.municity_text}}</td>
+                <td width="110">{{user.roles[0].substring(0,11)}}</td>
+                <td width="110">{{ user.activated }}</td>                
+                <td align="right" style="padding:2px">
+                    <a href="" class="btn btn-primary2 " ng-click="update(user)">Update</a>
+                    <a href="" class="btn btn-danger">Remove</a>
+                </td>
+          </tr>               
+       </tbody>
+       <tfoot>
+           <tr>
+               <td align="left" colspan="8">
+                   <!-- previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" -->
+                   <pagination  ng-show="users.pages>1" ng-change="pageChanged(pagination.CurrentPage)" rotate="false" boundary-link-numbers="false" total-items="(pagination.max * 10)" ng-model="pagination.CurrentPage" max-size="5" class="pagination-sm" boundary-links="true">
+                    </pagination>
+               </td>    
+           </tr>    
+       </tfoot>             
+    </table>    
+</div>    
+</div>
 <div>

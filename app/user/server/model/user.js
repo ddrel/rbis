@@ -5,6 +5,8 @@ const Schema    = mongoose.Schema
 const ObjectId = mongoose.Types.ObjectId;
 const crypto    = require('crypto');
 const  _   = require('lodash');
+const mongooseAggregatePaginate = require('mongoose-aggregate-paginate');
+const mongoosePaginate = require('mongoose-paginate');
 
 const escapeProperty = (value)=> {
   return _.escape(value);
@@ -206,4 +208,7 @@ UserSchema.methods = {
   }
 };
 
+
+UserSchema.plugin(mongooseAggregatePaginate);
+UserSchema.plugin(mongoosePaginate);
 mongoose.model('User', UserSchema);

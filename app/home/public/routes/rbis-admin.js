@@ -150,7 +150,7 @@
                               })
                                .state('user.newuser', {
                                   url: '/newuser',
-                                  controller: 'newuserCtrl',
+                                  controller: 'userCtrlNew',
                                   templateUrl: '/user/views/newuser.html',
                                   data : { pageTitle: 'User Management | Road and Bridge Information System' },
                                   resolve:{                                            
@@ -159,7 +159,24 @@
                                                     {
                                                         cache:true,
                                                         files: ['/user/assets/css/user.css',
-                                                                '/user/controllers/newuser.js'                                                                
+                                                                '/user/controllers/userctrlnew.js'                                                                
+                                                                ]
+                                                    }                                                    
+                                                ]);
+                                            }                                      
+                                  }  
+                              }).state('user.updateuser', {
+                                  url: '/updateuser/:email',
+                                  controller: 'userCtrlUpdate',
+                                  templateUrl: '/user/views/updateuser.html',
+                                  data : { pageTitle: 'User Management | Road and Bridge Information System' },
+                                  resolve:{                                            
+                                            loadfile: function ($ocLazyLoad) {
+                                                return $ocLazyLoad.load([
+                                                    {
+                                                        cache:true,
+                                                        files: ['/user/assets/css/user.css',
+                                                                '/user/controllers/userctrlupdate.js'                                                                
                                                                 ]
                                                     }                                                    
                                                 ]);

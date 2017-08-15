@@ -4,9 +4,8 @@
  * Module dependencies.
  */
 const mongoose = require('mongoose'),
-  User = mongoose.model('User')
-
-const  USER_IS = ["SUPERVISOR","ENCODER"];
+  User = mongoose.model('User'),
+  USER_IS = ["SUPERVISOR","ENCODER"];
 
 /**
  * Create user
@@ -19,15 +18,23 @@ exports.create = (req, res)=> {
   userObj.password = _usr.password; 
   userObj.confirmPassword = _usr.password;
   userObj.location = {};
+  
   userObj.roles = [_usr.accesstype];
   
   if(_usr.province){
     userObj.location.province = _usr.province;
+    userObj.location.province_text = _usr.province_text
   };
 
   if(_usr.municity){
     userObj.location.municity = _usr.municity;
+    userObj.location.municity_text = _usr.municity_text;
   };
+
+ 
+console.log(userObj.location);
+
+
 
   var user = new User(userObj);
   user.provider = 'local';
@@ -127,11 +134,117 @@ exports.activate = (req,res)=>{
                       res.redirect("/login");
                 }
         });
-
       };
   });
 };
 
+exports.getuserbyemail = (req,res)=>{
+  var _email = req.query.email || "";
+  User.findOne({email:_email}).select("_id name location email activated roles").exec(function(err,result){
+      if(err){res.status(500).json({error:"error fetch data"});return;}
+        res.status(200).json(result);
+  })
+};
+
+
+exports.getusersall =  (req, res)=> {
+  var _qry = req.query.qry ||  false;
+  var _limit = req.query.limit || 10;
+  var _page  = req.query.page || 1;
+
+  var qry_stry = new RegExp(_qry,'i')
+  if(req.query.hasOwnProperty("activated")){
+    _qry = {activated:req.query.activated} 
+  }else if(req.query.hasOwnProperty("activated") && _qry){
+        _qry = {$or:[{name:qry_stry},{email:qry_stry},{"location.municity_text":qry_stry},{"location.province_text":qry_stry}],activation:req.query.activated};
+  }else if(_qry){
+      _qry = {$or:[{name:qry_stry},{email:qry_stry},{"location.municity_text":qry_stry},{"location.province_text":qry_stry}]}
+  }else{
+      _qry = {};
+  };
+
+  //console.log(_qry);
+
+  User.paginate(_qry, { page: _page, limit: _limit,select:"name email location roles _id activated" }, function(err, result) {  
+    if(err){res.status(500).json({error:"error fetch data"});return;}
+    res.status(200).json(result);
+    /*
+    var docs = result.docs
+    var provinceArr = docs.filter(function(d){return d.location.province!="--"}).map(function(d){return d.location.province});
+    var municityArr = docs.filter(function(d){return d.location.municity!="--"}).map(function(d){return d.location.municity});
+
+    var modProvinces = mongoose.model("Provinces");
+    var modMunicity  =  mongoose.model("CityMun");
+
+
+    modProvinces.find({"Code":{"$in":provinceArr}}).exec(function(err,prov){
+        modMunicity.find({"Code":{"$in":municityArr}}).exec(function(err,municity){
+          var _userObjArr = [];
+          docs.forEach(function(doc){
+            var _userObj = {};  
+              _userObj.name = doc.name;
+              _userObj.email = doc.email;
+              _userObj.activated = doc.activated;
+              _userObj.roles = doc.roles;
+              _userObj.location = {};
+              _userObj.location.province = doc.location.province;              
+              _userObj.location.municity = doc.location.municity;
+
+              _userObj.location.province_text = "--";              
+              _userObj.location.municity_text = "--";
+
+              var pdx = prov.map(function(d){return d.Code}).indexOf(doc.location.province);
+              if(pdx>-1){_userObj.location.province_text = prov[pdx].Name};
+
+              var mdx = municity.map(function(d){return d.Code}).indexOf(doc.location.municity);
+              if(mdx>-1){_userObj.location.municity_text = municity[mdx].Name}                            
+              _userObjArr.push(_userObj)
+
+          }); 
+
+          //
+          //console.log(result);
+          //console.log(_userObjArr);
+          res.send({docs:_userObjArr,total:docs.total,limit:docs.limit,page:docs.page,pages:docs.pages});
+
+        });    
+    });
+
+  */
+
+    
+    //console.log(province);
+    //console.log(municity);
+
+    
+
+  });
+
+}
+
+exports.updateuseraccess =  (req,res)=>{
+  var _user = (req.body);
+
+  console.log(_user);
+  var usrObj = {};
+      usrObj.location = {};    
+      usrObj.location.province = _user.province;
+      usrObj.location.province_text = _user.province_text;
+      usrObj.location.municity = _user.municity;
+      usrObj.location.municity_text = _user.municity_text;
+      usrObj.roles = [_user.accesstype];
+      usrObj.activated = _user.activated;
+      
+      
+      User.update({email:_user.email},usrObj,{multi:false},function(err,n){
+          if(err){
+                  res.status(500).json(err); 
+              }else{
+
+                  res.status(200).json({status:"saved"});
+            }
+      });
+}
 
 
 exports.updateroles = (req, res)=> {
@@ -140,11 +253,11 @@ exports.updateroles = (req, res)=> {
 
   User.update({_id:_user._id},{roles:[roles]},{multi:false},function(err,n){
      if(err){
-                     res.status(500).json(err); 
-                  }else{
+          res.status(500).json(err); 
+      }else{
 
-                     res.status(200).json({status:"saved"});
-                  }
+          res.status(200).json({status:"saved"});
+      }
 
   });
 

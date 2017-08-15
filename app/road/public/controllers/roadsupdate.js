@@ -17,6 +17,12 @@ angular.module('RBIS').controller("roadsupdateCtrl", function( $scope, $http,$ro
     $scope.currentModel.currentItem = null;
     $scope.currentModel.page_attr_select = [];
 
+
+    $scope.summary = {};
+    $scope.summary.surfacetype = {};    
+    $scope.summary.surfacecondition = {};
+    $scope.summary.road = {}
+
 var _getshapestyle = function(o,name){    
     if(name=="Carriageway"){
         return utilities.roads.STStyle(o.SurfaceTyp); 
@@ -34,6 +40,29 @@ var _getshapestyle = function(o,name){
             };
     };
 
+$scope.getroadSC_ST =  function(rid){
+        $http.get("/api/roads/getcarriagewaypersurfacelength?qry=" + rid).success(function(d){                    
+          for(var n in d){
+            if(n.indexOf("_id")==-1 && n!="total"){
+                d[n] = utilities.formatToDecimal(d[n].toFixed(3));      
+            }
+          }
+          $scope.summary.surfacetype = d;
+          console.log($scope.summary.surfacetype);          
+        });
+        $http.get("/api/roads/getcarriagewayperconlength?qry=" + rid).success(function(d){
+            for(var n in d){
+                if(n.indexOf("_id")==-1 && n!="total"){
+                    d[n] = utilities.formatToDecimal(d[n].toFixed(3));      
+                }
+            }
+            $scope.summary.surfacecondition = d;  
+            console.log($scope.summary.surfacecondition);          
+        });
+
+
+    };
+
 
 $scope.getattribdisplay =  function(attr,key){
     key = key.replace("Road","");
@@ -42,9 +71,8 @@ $scope.getattribdisplay =  function(attr,key){
 
 $scope.loadattrsFeaturesdata =  function(key,data){
     $scope.initModelData(key,data,[]);
-    //console.log($scope.currentModel.currentItem);               
-    
-}
+    //console.log($scope.currentModel.currentItem);                   
+};
 
 
 $scope.init =  function(){
@@ -52,14 +80,19 @@ $scope.init =  function(){
 
             $http.get("/api/roads/getroadshortattrinfo?rid=" + $stateParams.id).success(function(data){
                     $scope.road = data;             
+                    
+                    $scope.summary.road.length = utilities.formatToDecimal(data.Length.toFixed(3));
+                    $scope.summary.road.class = data.R_CLASS;
+                    $scope.summary.road.importance = data.R_Importan;
+                    
                     $scope.currentModel.roadID = data.R_ID;
                     adapter.init(data.R_ID);              
                     $scope.loadAttrAsOptions("RoadLocRefPoints");              
                     $scope.loadRoadMainData();
-                    
             });
-            $("#roadmap").leafletMaps();
 
+            $scope.getroadSC_ST($stateParams.id);
+            $("#roadmap").leafletMaps();
     });
 };
 $scope.loadRoadMainData =  function(){
@@ -122,9 +155,6 @@ $scope.initModelData =  function(key,currentItem,list){
             $scope.currentModel.page_attr_select.push($scope.getattribdisplay(currentItem,key));
         }
     }
-    
-
-
 };
 
 
@@ -146,8 +176,7 @@ $scope.loadattrdata =  function(data,name){
             layer.bindPopup(name + ": "  + tooltiptext);
         });
     $("#roadmap").leafletMaps("zoomToFeature", _geo);
-    
-    
+        
     //console.log(data);
 }
 
@@ -156,16 +185,13 @@ $scope.ondatadirty =  function(a,b,c){
 };
 
 
-
+//Tool bar Action
 $scope.toolbarAction = function(a,e){
     var _oncomplete =  function(d){
         d.forEach(function(a){
             toastr.success("Saved " + a.table + " | Field Count:" + a.count);
             adapter.clear(a.table);                      
-        });
-
-
-        
+        }); 
     };
 
     var action = {save:function(){
@@ -177,5 +203,5 @@ $scope.toolbarAction = function(a,e){
 
 
     action[a]();
-}
+};
 });

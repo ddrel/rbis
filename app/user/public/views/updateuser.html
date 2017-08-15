@@ -1,0 +1,94 @@
+<div class="row" ng-init="init()">
+    <div class="page-bar page-bar-color2">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="/#/dashboard">Home</a>	
+                            <i class="fa fa-angle-right"></i>					
+                        </li>	
+                        <li>
+                            <a href="/#/user/userlist">User List</a>
+                            <i class="fa fa-angle-right"></i>                            						
+                        </li>
+                        <li>
+                            <a href="/#/user/updateuser/{{byselect.email}}">{{ byselect.email }}</a>
+                         </li>        									
+                    </ul>
+    </div>
+<div>
+<div class="portlet box blue-hoki" ng-init="init()">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Update User Access Form  </div>                                                
+    </div>
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form class="form-horizontal" ng-submit="updateuser()">
+        <div ng-show="registerError.length>0">
+            <div ng-repeat="err in registerError">
+                    <div class="alert alert-danger animated fadeIn">{{err.msg}}</div>
+            </div> 
+        </div>
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Access Type</label>
+                    <div class="col-md-4">
+                        <div>
+                            <select class="form-control" ng-model="byselect.accesstype" ng-change="onaccesschange()">
+                                <option value="--" selected>-- Select Access Type --</option>
+                                <option value="SUPER ADMINISTRATOR">SUPER ADMINISTRATOR</option>
+                                <option value="SUPERVISOR">SUPERVISOR</option>
+                                <option value="ENCODER">ENCODER</option>
+                                <option value="ROAD BOARD">ROAD BOARD</option>            
+                            <select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="byselect.accesstype =='SUPERVISOR' || byselect.accesstype =='ENCODER'">
+                    <label class="col-md-3 control-label">Location</label>
+                    <div class="col-md-4">
+                        <div>
+                            <select class="form-control" ng-change="onchange_provinces()" ng-model="byselect.province">
+                                <option value="--" selected>-- Select Province --</option>
+                                <option value="{{prov.code}}" ng-repeat="prov in provinces">{{ prov.prov_name}}</option>                                            
+                            <select>
+                        </div>
+                    </div>
+                </div>
+                 <div class="form-group" ng-show="(byselect.accesstype =='SUPERVISOR' || byselect.accesstype =='ENCODER') && byselect.province!=='--'">                    
+                    <label class="col-md-3 control-label">&nbsp;</label>
+                    <div class="col-md-4">
+                        <div>
+                            <select id="cbomunicity" class="form-control" ng-change="onchange_municity()" ng-model="byselect.municity">
+                                <option value="--">-- Municipality/City --</option>
+                                <option value="{{mun.Code}}" ng-selected="mun.Code==byselect.municity" ng-repeat="mun in municipalities">{{ mun.Name}}</option>                                            
+                            <select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Activated</label>
+                    <div class="col-md-4">
+                         <md-checkbox  style="margin-bottom:0px;" ng-model="byselect.activated"></md-checkbox>                            
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Reason</label>
+                    <div class="col-md-4">
+                        <textarea ng-model="byselect.reason" class="form-control"></textarea>                                                                
+                    </div>
+                </div>                    
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn btn-circle green">Submit</button>
+                        <a  href="/#/user/userlist" class="btn btn-circle grey-salsa btn-outline">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+
+    </div>        
+</div>

@@ -1,0 +1,25 @@
+None Km Post:
+8444
+
+None Km Post and Carriageway
+2348
+
+{"$where":"this.RoadCarriageway.length==0"},
+{"$where":"this.RoadLocRefPoints.length==0"},
+{"$where":"this.RoadCulverts.length==0"},
+{"$where":"this.RoadGuardrails.length==0"},
+{"$where":"this.RoadDitches.length==0"},
+{"$where":"this.RoadHazards.length==0"},
+{"$where":"this.RoadJunctions.length==0"},
+{"$where":"this.RoadLightings.length==0"},
+{"$where":"this.RoadLocRefPoints.length==0"},
+{"$where":"this.RoadMarkings.length==0"},
+{"$where":"this.RoadMedian.length==0"},
+{"$where":"this.RoadPlaceNames.length==0"},
+{"$where":"this.RoadShoulders.length==0"},
+{"$where":"this.RoadSideFriction.length==0"},
+{"$where":"this.RoadSideSlopes.length==0"},
+{"$where":"this.RoadSideWalks.length==0"},
+{"$where":"this.RoadSigns.length==0"},
+{"$where":"this.RoadSpillways.length==0"},
+{"$where":"this.RoadStructures.length==0"},
