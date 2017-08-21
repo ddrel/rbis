@@ -10,7 +10,7 @@ const getlocaccess = (req)=>{
            if(user.location.municity!="--" && user.location.municity!==""){
                 return {CityMunCod:user.location.municity,R_CLASS:"City"};
            }else{
-               return {ProvinceCo:user.location.province};               
+               return {ProvinceCo:user.location.province,R_CLASS:"Provincial"};               
            };
        }; 
 
@@ -18,6 +18,42 @@ const getlocaccess = (req)=>{
 
 }
 
+exports.newRoad =  (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var _roadAttr = req.body;
+    var roadObjData = {};
+    var errors = [];
+    if(_roadAttr.R_NAME==""){
+        errors.push({message:"Road Name Can't be Blank"});
+    }else if( _roadAttr.ProvinceCo =="" && req.user.roles.indexOf("SUPER ADMINISTRATOR")>-1){
+        errors.push({message:"Please specify location"});
+    }else if(req.user.roles.indexOf("SUPERVISOR")>-1 || req.user.roles.indexOf("ROAD BOARD")>-1){
+        errors.push({message:"No Acess"});
+    }
+
+    if(errors.length>0){res.status(500).json(errors);return;}
+    for(var k in _roadAttr){
+        roadObjData[k] = _roadAttr[k];
+    };
+
+    if(req.user.roles.indexOf("ENCODER")>-1){
+        roadObjData.CityMunCod = req.user.location.municity.replace("--","");
+        roadObjData.ProvinceCo = req.user.location.province.replace("--","");
+        roadObjData.R_CLASS = (req.user.location.municity=="--")?"Provincial":"City";
+    };
+
+    roadObjData.RegionCode =  roadObjData.ProvinceCo.toString().substring(0,2) + "0000000";
+    roadObjData.created_by = {
+                               email:req.user.email,
+                               name:req.user.name, 
+    };
+
+    roadObjData.Length  = _roadAttr.Length || 0;
+    roads.newRoad(roadObjData,function(err,data){
+        if(err){res.status(500).json(err);return};
+        res.status(200).json(data);
+    });
+};
 
 exports.getprovroadshortinfo =  (req,res)=>{
     var roads = mongoose.model("Roads");

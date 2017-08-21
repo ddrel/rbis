@@ -63,4 +63,8 @@ app.post("/api/roads/saveroad",(req,res)=>{
     roads.saveroad(req,res);
 });
 
+app.post("/api/roads/newRoad",(req,res)=>{
+    roads.newRoad(req,res);
+});
+
 }

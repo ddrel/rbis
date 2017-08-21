@@ -1,0 +1,104 @@
+<md-dialog aria-label="Create New Road" ng-init="init()">
+    <script type="text/ng-template" id="roadfieldcontrol">
+
+    <label ng-if="roadModel[field].ctrl=='label'">{{ roadObjData[field] }}</label>
+    <input  required type="text" ng-if="roadModel[field].ctrl=='text'"  ng-model="roadObjData[field]" class="{{roadModel[field].class}}"></input>
+    <select  ng-if="roadModel[field].ctrl=='select'" ng-model="roadObjData[field]" class="{{roadModel[field].class}}">
+        <option value="{{opt.key}}"  ng-selected="roadObjData[field]==opt.key" ng-repeat="opt in roadModel[field].options">{{ opt.label }}</option>
+    </select>                                   
+    <div layout-gt-xs="row" ng-if="roadModel[field].ctrl=='date'">
+        <div flex-gt-xs>                                    
+        <md-datepicker  ng-model="roadObjData[field]" md-placeholder="Enter date"></md-datepicker>
+        </div>
+    </div>
+</script>
+    
+    <form ng-cloak ng-submit="action(roadObjData)">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Create New Road</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="cancel()">
+            
+          </md-button>
+        </div>
+      </md-toolbar>
+  
+      <md-dialog-content>
+        <div class="md-dialog-content">
+                <div class="col-md-12">
+                        <table  class="table">
+                            <tr ng-if="userObject.role=='SUPER ADMINISTRATOR'">
+                                <td>Location</td>
+                                <td>
+                                    <select class="form-control" ng-change="onchange_provinces()" ng-model="byselect.province">
+                                            <option value="" selected>-- Select Province --</option>
+                                            <option value="{{prov.code}}" ng-repeat="prov in provinces">{{ prov.prov_name}}</option>                                            
+                                        <select>
+                                </td>
+                            </tr>
+                            <tr ng-if="userObject.role=='SUPER ADMINISTRATOR'">
+                                <td></td>
+                                <td>
+                                        <select class="form-control" ng-change="onchange_municity(byselect.municity)" ng-model="byselect.municity">
+                                                <option value="" selected>-- Municipality/City --</option>
+                                                <option value="{{mun.Code}}" ng-repeat="mun in municipalities">{{ mun.Name}}</option>                                            
+                                            <select>
+                                </td>
+                            </tr>                                                                    
+                            <tr ng-if="userObject.role=='SUPER ADMINISTRATOR'">
+                                <td>{{ roadModel['R_CLASS'].label }}</td>
+                                <td ng-repeat = "field in ['R_CLASS']" ng-include="'roadfieldcontrol'"></td>
+                            </tr>
+                            <tr>
+                            <td>{{ roadModel['R_NAME'].label }}</td>
+                                    <td ng-repeat = "field in ['R_NAME']" ng-include="'roadfieldcontrol'"></td>
+                            </tr>
+                            <tr>
+                                <td>{{ roadModel['R_Importan'].label }}</td>
+                                <td ng-repeat = "field in ['R_Importan']" ng-include="'roadfieldcontrol'"></td>
+                            </tr>
+                            <tr>
+                                <td>{{ roadModel['Environmen'].label }}</td>
+                                <td ng-repeat = "field in ['Environmen']" ng-include="'roadfieldcontrol'"></td>
+                            </tr>
+                            <tr>
+                                <td>{{ roadModel['DirFlow'].label }}</td>
+                                <td ng-repeat = "field in ['DirFlow']" ng-include="'roadfieldcontrol'"></td>
+                            </tr>
+                            <tr>
+                                <td>{{ roadModel['Terrain'].label }}</td>
+                                <td ng-repeat = "field in ['Terrain']" ng-include="'roadfieldcontrol'"></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>{{ roadModel['Length'].label }}</td>
+                                <td ng-repeat = "field in ['Length']" ng-include="'roadfieldcontrol'"></td>
+                            </tr>
+                            <tr>
+                                <td>{{ roadModel['RROW_acq_date'].label }}</td>
+                                <td ng-repeat = "field in ['RROW_acq_date']" ng-include="'roadfieldcontrol'"></td>
+                            </tr>
+                            <tr>
+                                <td>{{ roadModel['RROW_acq_cost'].label }}</td>
+                                <td ng-repeat = "field in ['RROW_acq_cost']" ng-include="'roadfieldcontrol'"></td>
+                            </tr>
+                            <tr>
+                                    <td>{{ roadModel['RROW_usefullife'].label }}</td>
+                                    <td ng-repeat = "field in ['RROW_usefullife']" ng-include="'roadfieldcontrol'"></td>
+                            </tr>    
+                            </table>
+                </div>                                         
+        </div>
+      </md-dialog-content>
+  
+      <md-dialog-actions layout="row">
+        <span flex></span>
+        <input type="submit" value="submit" class="btn btn-primary2">
+        </input>
+        <md-button ng-click="action(null)">
+          Cancel
+        </md-button>
+      </md-dialog-actions>
+    </form>
+  </md-dialog>

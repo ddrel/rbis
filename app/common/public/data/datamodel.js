@@ -6,6 +6,7 @@ var datamodel = {};
 
 /*  Options */
 datamodel.options = {};
+datamodel.options.class = [{"key":"City","label":"City"},{"key":"Provincial","label":"Provincial"}];
 datamodel.options.importance = [{"key":"Core","label":"CORE"},{"key":"Non-Core","label":"NON-CORE"}];
 datamodel.options.environment = [{"key":"U","label":"URBAN (METROPOLITAN)"},{"key":"N","label":"URBAN (NON-METROPOLITAN)"},{"key":"R","label":"RURAL"}];
 datamodel.options.directionflow = [{"key":"One-Way","label":"ONE-WAY"},{"key":"Two-Way","label":"TWO-WAY"}];
@@ -237,7 +238,7 @@ datamodel.road = {
     "CityMunCod"        : {"label":"City Code","key":"CityMunCod","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
     "R_ID"              : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"}, 
     "R_NAME"            : {"label":"Name","key":"R_NAME","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
-    "R_CLASS"           : {"label":"Class","key":"R_CLASS","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+    "R_CLASS"           : {"label":"Class","key":"R_CLASS","type":"string","options":datamodel.options.class,"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
     "R_Importan"        : {"label":"Importance","key":"R_Importan","type":"string","options":datamodel.options.importance,"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
     "Environmen"        : {"label":"Environment","key":"Environmen","type":"string","options":datamodel.options.environment,"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
     "RROW"              : {"label":"RROW","key":"RROW","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 

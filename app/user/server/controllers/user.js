@@ -101,7 +101,14 @@ console.log(userObj.location);
  * Send User
  */
 exports.me = (req, res)=> {
-  res.json(req.user || null);
+  var _user = {};
+  var _ruser = req.user || {};
+  _user.name  = _ruser.name;
+  _user.email  = _ruser.email;
+  _user.location  = _ruser.location;
+  _user.role  = _ruser.roles[0];
+  
+  res.json(_user || null);
 };
 
 exports.signout = (req,res)=>{

@@ -71,10 +71,57 @@ const ROAD_MODEL_STRUC = {
     "RoadSpillways" : [Schema.Types.Mixed], 
     "RoadStructures" : [Schema.Types.Mixed],
     "RoadTraffic": [Schema.Types.Mixed],
-    "geometry" : Schema.Types.Mixed
+    "geometry" : Schema.Types.Mixed,
+    "created_by":Schema.Types.Mixed,
+    "lastupdate_date":{
+                    type:Date,
+                    default:Date.now()
+    },
+    "created_date":{
+        type:Date,
+        default:Date.now()
+    }
 }
 const RoadsSchema = new Schema(ROAD_MODEL_STRUC,{ collection: 'Roads' });
 RoadsSchema.set('toJSON', { getters: true, virtuals: true });
+
+RoadsSchema.statics.generateRoadID =  function(options,cb){
+    var road =  mongoose.model("Roads");
+    var _qry = {};
+    if(options.CityMunCod){
+        _qry.CityMunCod = options.CityMunCod;
+        _qry.R_CLASS = "City"; 
+    }else if(options.ProvinceCo){
+        _qry.ProvinceCo = options.ProvinceCo; 
+        _qry.R_CLASS = "Provincial";
+    }
+
+    console.log(_qry);    
+    road.findOne(_qry)
+    .select({R_ID:1,_id:0})
+    .sort({R_ID:-1})
+    .exec(function(err,doc){
+        var rid = doc.R_ID.toString().substring(9,doc.R_ID.length);
+            rid = parseInt(rid) + 1;
+            var rlen = (4 - rid.toString().length),padStr="";
+            for(var i = 0;i< rlen;i++){padStr+="0";}
+            padStr+=rid.toString(); 
+            padStr= doc.R_ID.toString().substring(0,9) + padStr; 
+        cb(padStr);
+    })
+}
+
+RoadsSchema.statics.newRoad =  function(data,cb){
+    RoadsSchema.statics.generateRoadID(data,function(rid){
+        var road =  mongoose.model("Roads");
+
+        var _road = new road(data);
+            _road.R_ID = rid;
+        _road.save(function(err){
+            cb(err,_road)
+        });
+    });
+};
 
 RoadsSchema.statics.getprovroadshortinfo =  function(code,cb){
     this.find({ProvinceCo:code,R_CLASS:'Provincial'})
@@ -113,6 +160,7 @@ RoadsSchema.statics.getroadattrinfo =  function(rid,cb){
 
 RoadsSchema.statics.getroadshortattrinfo =  function(rid,cb){
     this.findOne({R_ID:rid}).exec(function(err,data){
+            if(data==null) {cb({"error":"no data"},null); return ;}
             var _row = {};
             _row._id = data._id;
             for( var key in ROAD_MODEL_STRUC){
@@ -148,7 +196,7 @@ RoadsSchema.statics.getroadaggmain =  function(qry,page,limit,cb){
                         roadlengths:"$RoadCarriageway.SegmentLen"            
                     }       
                 },{$unwind: "$roadlengths"},
-                    {$group:{
+              )      {$group:{
                             _id:{_id:"$_id",R_ID:"$R_ID",R_NAME:"$R_NAME",R_CLASS:"$R_CLASS",segmentcount:"$segmentcount",SegmentID:"$SegmentID",bridgecount:"$bridgecount",segmentcount:"$segmentcount"},
                             roadlengths: {$sum:"$roadlengths"}
                             }

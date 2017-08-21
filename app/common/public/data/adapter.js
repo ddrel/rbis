@@ -78,6 +78,17 @@ console.log(k);
 
 };
 
+var _user = null;
+adapter.user = function(){
+        if(_user==null){
+                $http.get("/ws/users/me").success(function(user){
+                        _user = user;
+                        return _user;
+                });
+        };
+
+        return _user;
+};
 
 return adapter;
 }]);

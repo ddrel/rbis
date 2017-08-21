@@ -10,8 +10,7 @@
 						<a href="/#/road/list">Roads</a>					
 					</li>					
 				</ul>
-
-<button class="btn btn-warning" type="button" style="position:absolute;right: 5px;top: 4px;">Create New Road
+<button ng-if="user.role=='SUPER ADMINISTRATOR' || user.role=='ENCODER'" ng-click="createNewRoad()" class="btn btn-warning" type="button" style="position:absolute;right: 5px;top: 4px;">Create New Road
 </button> </span>                
 </div>
 <div>

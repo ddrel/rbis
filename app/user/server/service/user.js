@@ -25,6 +25,8 @@ module.exports = (app,passport)=>{
     app.get("/ws/users/generatepw",user.generatepw);
     app.get("/ws/users/getusers",user.getusersall);
     app.get("/ws/users/getuserbyemail",user.getuserbyemail);
+
+    app.get("/ws/users/me",user.me)
     
     
     
