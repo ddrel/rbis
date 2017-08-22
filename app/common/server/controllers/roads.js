@@ -144,6 +144,8 @@ exports.getroadlengthtotal = (req,res)=>{
     var qry = getlocaccess(req);
     if(qry){qry = {'$match':qry};}
 
+    console.log(qry);
+
     roads.getroadlengthtotal(qry,function(err,data){
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data[0]);

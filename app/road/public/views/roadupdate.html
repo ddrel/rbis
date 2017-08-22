@@ -259,7 +259,7 @@
                     </md-menu-bar> 
             </md-toolbar>            
            </div>
-            <div class="content-data-attr">        
+            <div class="content-data-attr" style="overflow-x:hidden !important;">        
                     <div ng-if="currentModel.name =='road'" ng-include="'roadmain'"></div>                    
                     <div  ng-if="currentModel.name!='road' && currentModel.list.length>0" ng-include="'roadattributesList'"></div>
                     <div  ng-if="currentModel.name!='road' && currentModel.currentItem!=null && currentModel.name=='RoadCarriageway'" ng-include="'template_RoadCarriageway'"></div>                    

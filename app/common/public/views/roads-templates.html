@@ -99,7 +99,23 @@
 </script>
 
 <script type="text/ng-template" id="roadattributesList">
-       <div>List time here</div>
+       <div>
+           <table class="table table-bordered-2 table-roadmain">
+               <tbody>
+                <thead>
+                    <tr class="table-head">
+                        <td>Identifier</td>
+                        <td width="40px" align="center">Action</td>
+                    </tr>   
+                </thead>   
+                <tr ng-repeat="row in currentModel.list">
+                    <td>{{getattribdisplay(row,currentModel.name)}}</td>
+                    <td style="padding:0px" align="center"><a href="" ng-click="loadattrsFeaturesdata(currentModel.name,row)" style="width:100%" class="btn btn-primary2 ">Update</a></td>                    
+                </tr>
+                
+            </tbody>
+           </table>
+       </div>
     
 </script>
 <!--KM post-->
