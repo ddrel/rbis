@@ -110,7 +110,7 @@
                 </thead>   
                 <tr ng-repeat="row in currentModel.list">
                     <td>{{getattribdisplay(row,currentModel.name)}}</td>
-                    <td style="padding:0px" align="center"><a href="" ng-click="loadattrsFeaturesdata(currentModel.name,row)" style="width:100%" class="btn btn-primary2 ">Update</a></td>                    
+                    <td style="padding:0px" align="center"><a href="" ng-click="loadattrdata(row,currentModel.name);loadattrsFeaturesdata(currentModel.name,row)" style="width:100%" class="btn btn-primary2 ">Update</a></td>                    
                 </tr>
                 
             </tbody>
@@ -258,11 +258,7 @@
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
                         <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
-                    </tr>
-                     <tr>
-                        <td>{{ currentModel.struct['R_NAME'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_NAME']" ng-include="'roadfieldcontrol'"></div></td>
-                    </tr>
+                    </tr>                     
                      <tr>
                         <td  colspan="4"> <font color = "#4286f4">Location Reference:</font> </td>                        
                     </tr>

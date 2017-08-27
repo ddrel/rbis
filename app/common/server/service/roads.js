@@ -67,4 +67,8 @@ app.post("/api/roads/newRoad",(req,res)=>{
     roads.newRoad(req,res);
 });
 
+
+app.get("/api/roads/getObjectID",(req,res)=>{
+    roads.getObjectID(req,res);
+});
 }

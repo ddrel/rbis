@@ -2,12 +2,33 @@ angular.module('RBIS').service('adapter', ['$window','$rootScope','utilities','$
 
 var adapter = {};
 adapter.data = [];
+adapter.newFeatureObj = [];
 adapter.roadID = "";
 adapter.init =  function(id){
     adapter.data = [];
     adapter.roadID = id;
 };
 
+adapter.addNewtate = false;
+
+var getinitValue =  function(t){
+        return {"string":"","date":null,"float":0.0,"integer":0}[t];
+}
+
+
+adapter.newfeature =  function(model,rid,cb){
+        var _newRow = {};
+        for(var k in model){
+                var mObj = model[k];
+                _newRow[mObj.key] = getinitValue(mObj.type) 
+        }
+        _newRow["R_ID"] = rid;
+        $http.get("/api/roads/getObjectID").success(function(_id){
+                _newRow["_id"] = _id;      
+                adapter.newFeatureObj.push(_newRow);
+                cb(_newRow);
+        });        
+};
 adapter.getdata =  function(){
     return adapter.data;
 };
@@ -71,7 +92,7 @@ console.log(k);
         console.log(adapter.data);
  }
 
-
+/**/
  $http.post("/api/roads/saveroad",{roaddata:_bodydata}).success(function(data){
          if(cb) cb(data);
  })

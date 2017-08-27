@@ -175,7 +175,7 @@
                             <md-menu-content>                            
                                 <md-menu-item ng-hide="currentModel.name=='road'">
                                     <md-button ng-click="toolbarAction('new', $event)">
-                                        <i class="fa fa-file-text" aria-hidden="true">&nbsp;New {{currentModel.name}}</i>
+                                        <i class="fa fa-file-text" aria-hidden="true">&nbsp;New {{getFeaturesLabel(currentModel.name)}}</i>
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-divider></md-menu-divider>
@@ -221,7 +221,7 @@
                             <md-menu-content>                            
                                 <md-menu-item>
                                     <md-button ng-click="toolbarAction('share', $event)">
-                                        <i class="fa fa-file-text" aria-hidden="true">&nbsp;Import(Geojson/KML)</i>
+                                        <i class="fa fa-file-text" aria-hidden="true">&nbsp;Import/Replace(Geojson/KML)</i>
                                     </md-button>
                                 </md-menu-item>
                                <md-menu-divider></md-menu-divider>
@@ -283,6 +283,10 @@
                     <div  ng-if="currentModel.name!='road' && currentModel.currentItem!=null && currentModel.name=='RoadDitches'" ng-include="'template_RoadDitches'"></div>
                     <div  ng-if="currentModel.name!='road' && currentModel.currentItem!=null && currentModel.name=='RoadSpillways'" ng-include="'template_RoadSpillways'"></div>
                     <div  ng-if="currentModel.name!='road' && currentModel.currentItem!=null && currentModel.name=='RoadSpillways'" ng-include="'template_RoadTraffic'"></div>
+
+                    <div  style="width:100%;height:100%;" ng-if="currentModel.name!='road' && currentModel.list.length==0 && !currentModel.isnew">
+                        <a href="" ng-click="" style="left:41%;margin:20% auto;" class="btn btn-primary2 ">Create New {{getFeaturesLabel(currentModel.name)}}</a>
+                    </div>
            </div>   
          </div>
            <div class="col-md-5 no-padding">

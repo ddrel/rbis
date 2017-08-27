@@ -85,6 +85,10 @@ const ROAD_MODEL_STRUC = {
 const RoadsSchema = new Schema(ROAD_MODEL_STRUC,{ collection: 'Roads' });
 RoadsSchema.set('toJSON', { getters: true, virtuals: true });
 
+RoadsSchema.statics.getObjectID = function(){
+    return new mongoose.mongo.ObjectId();
+}
+
 RoadsSchema.statics.generateRoadID =  function(options,cb){
     var road =  mongoose.model("Roads");
     var _qry = {};
@@ -484,17 +488,61 @@ RoadsSchema.statics.save =  function(objdata,cb){
                                 var features = doc[_row.table];
                                 _row.rows.forEach(function(d){                                                                                
                                     var fdx = doc[_row.table].map(function(c){return c._id.toString()}).indexOf(d.id);                                                                                
-                                        if(fdx>-1){                                                
+                                        
+                                    
+                                    if(fdx>-1){ //Update new Features                                                
                                             doc[_row.table][fdx][d.key] = d.value;                                                
-                                            console.log(d.key + " : " +doc[_row.table][fdx][d.key]);    
-                                        };
+                                            //console.log(d.key + " : " +doc[_row.table][fdx][d.key]);    
 
-                                        var _pdx = _dataOnComplete.map(function(d){return d.table}).indexOf(_row.table);
-                                        if(_pdx>-1){
-                                            _dataOnComplete[_pdx].count+=1;     
-                                        }else{
-                                            _dataOnComplete.push({"table":_row.table,count:1});
-                                        }                                                                                    
+                                            //temporary for KM Post Geomety
+                                            if(_row.table=="RoadLocRefPoints"){
+                                                if(d.key=="LONG"){
+                                                    doc[_row.table][fdx].geometry.coordinates[0] = d.value; 
+                                                }else if(d.key=="LAT"){
+                                                    doc[_row.table][fdx].geometry.coordinates[1] = d.value;
+                                                }
+                                            }
+
+
+                                     }else{ // insert new Features
+                                        var _newAttr = {};
+                                        if(_row.table=="RoadCarriageway"){
+                                            var segmentNumber  = objdata.R_ID + "0001";
+                                            if(doc[_row.table].length>0){
+                                                segmentNumber = doc[_row.table].sort() [ doc[_row.table].length -1 ];
+                                                segmentNumber  = segmentNumber.substring(objdata.R_ID.length,segmentNumber.length);
+                                                segmentNumber =  parseInt(segmentNumber)  + 1;
+                                                var padStr = "";
+                                                for(var i = 0;i< segmentNumber.toString().length ;i++){padStr+="0";}
+                                                segmentNumber = objdata.R_ID  + padStr + segmentNumber.toString();  
+                                            }    
+
+                                            _newAttr.SegmentID = segmentNumber;                                            
+                                        }else if(_row.table=="RoadLocRefPoints"){
+                                            _newAttr.geometry = {};
+                                            _newAttr.geometry.type = "Point";
+                                            _newAttr.geometry.coordinates = [];
+                                            _newAttr.geometry.coordinates.push(0.0);;
+                                            _newAttr.geometry.coordinates.push(0.0);;
+                                            if(d.key=="LONG"){
+                                                _newAttr.geometry.coordinates[0] = d.value; 
+                                            }else if(d.key=="LAT"){
+                                                _newAttr.geometry.coordinates[1] = d.value;
+                                            }
+                                        }
+
+                                             _newAttr[d.key] = d.value;
+                                             _newAttr._id =  new mongoose.mongo.ObjectId(d.id);
+                                             _newAttr.R_ID = objdata.R_ID;
+                                             doc[_row.table].push(_newAttr);
+                                     };
+
+                                    var _pdx = _dataOnComplete.map(function(d){return d.table}).indexOf(_row.table);
+                                    if(_pdx>-1){
+                                        _dataOnComplete[_pdx].count+=1;     
+                                    }else{
+                                        _dataOnComplete.push({"table":_row.table,count:1});
+                                    };                                                                                    
                                 });                                    
                                 doc.markModified(_row.table);
                             }

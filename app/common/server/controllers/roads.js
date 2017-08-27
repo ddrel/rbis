@@ -237,6 +237,10 @@ exports.getcarriagewaycount = (req,res)=>{
     });
 }
 
+exports.getObjectID = (req,res)=>{
+    res.send(mongoose.model("Roads").getObjectID());
+}
+
 exports.saveroad = (req,res)=>{
     var roads = mongoose.model("Roads");
     var data = req.body.roaddata;    

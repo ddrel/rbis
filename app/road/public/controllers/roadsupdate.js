@@ -79,8 +79,7 @@ $scope.init =  function(){
     $timeout(function(){
 
             $http.get("/api/roads/getroadshortattrinfo?rid=" + $stateParams.id).success(function(data){
-                    $scope.road = data;             
-                    
+                    $scope.road = data;                             
                     $scope.summary.road.length = utilities.formatToDecimal(data.Length.toFixed(3));
                     $scope.summary.road.class = data.R_CLASS;
                     $scope.summary.road.importance = data.R_Importan;
@@ -89,6 +88,8 @@ $scope.init =  function(){
                     adapter.init(data.R_ID);              
                     $scope.loadAttrAsOptions("RoadLocRefPoints");              
                     $scope.loadRoadMainData();
+            }).error(function(){
+                $window.location.href = "/#/road/list";
             });
 
             $scope.getroadSC_ST($stateParams.id);
@@ -158,9 +159,19 @@ $scope.initModelData =  function(key,currentItem,list){
 };
 
 
+
+
+$scope.getFeaturesLabel =  function(key){
+    if(utilities.roads.attrlabel[key]){
+        return utilities.roads.attrlabel[key].label;
+    }    
+}
+
 $scope.loadattrdata =  function(data,name){
     $("#roadmap").leafletMaps("clear");
-    var geojson =  data.geometry;
+    var geojson =  data.geometry || null;
+    if(!geojson) {return;}
+
     name =  name.replace("Road","");
     var _style = _getshapestyle(data,name);
     var _geo = $("#roadmap").leafletMaps("setGeoJSON", geojson,null,_style);
@@ -187,17 +198,43 @@ $scope.ondatadirty =  function(a,b,c){
 
 //Tool bar Action
 $scope.toolbarAction = function(a,e){
-    var _oncomplete =  function(d){
+    var _oncomplete_save =  function(d){
         d.forEach(function(a){
             toastr.success("Saved " + a.table + " | Field Count:" + a.count);
-            adapter.clear(a.table);                      
+            adapter.clear(a.table);
+            $scope.currentModel.isnew =  false;                      
         }); 
+
+        adapter.addNewtate = false;
     };
 
-    var action = {save:function(){
-                    adapter.save($scope.currentModel,_oncomplete);
+
+    var _onnewFeatureAdded = function(data){
+        console.log(data);
+        $scope.currentModel.list = [];
+        $scope.currentModel.currentItem = data;
+        $scope.currentModel.isnew = true;
+        adapter.addNewtate = true;
+
+        //console.log($scope.road[$scope.currentModel.name]);
+        console.log($scope.currentModel.name);
+        console.log($scope.road);
+        if($scope.road[$scope.currentModel.name]){
+            $scope.road[$scope.currentModel.name].push($scope.currentModel.currentItem);
+            $scope.road[$scope.currentModel.name+"_length"] = $scope.road[$scope.currentModel.name].length;
+        }
+    }
+
+    var action = {new:function(){
+                    adapter.newfeature(datamodel.structure[$scope.currentModel.name],
+                                        $scope.currentModel.roadID,
+                                        _onnewFeatureAdded);
+                },save:function(){
+                    adapter.save($scope.currentModel,_oncomplete_save);
                 },saveall:function(){
-                    adapter.save(null,_oncomplete);
+                    adapter.save(null,_oncomplete_save);
+                },cancel:function(){
+                    adapter.addNewtate = false;
                 }
         };
 
