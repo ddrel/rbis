@@ -244,6 +244,7 @@ exports.getObjectID = (req,res)=>{
 exports.saveroad = (req,res)=>{
     var roads = mongoose.model("Roads");
     var data = req.body.roaddata;    
+        data.user = req.user; 
     roads.save(data,function(err,data){
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data);

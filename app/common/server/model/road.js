@@ -5,7 +5,9 @@
  */
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
-   _ = require('lodash');
+   _ = require('lodash'),
+   moment = require('moment'),
+   RBISModelSchema = require('../schema/road-features').RBISModelSchema;
 
 var mongooseAggregatePaginate = require('mongoose-aggregate-paginate');
 
@@ -50,29 +52,30 @@ const ROAD_MODEL_STRUC = {
     "RROW_acq_cost":Number,
     "RROW_usefullife":Number,
     "remarks":String,
-    "RoadBridges" : [Schema.Types.Mixed], 
-    "RoadCarriageway" : [Schema.Types.Mixed], 
-    "RoadCauseways" : [Schema.Types.Mixed], 
-    "RoadCulverts" : [Schema.Types.Mixed], 
-    "RoadDitches" : [Schema.Types.Mixed], 
-    "RoadGuardrails" : [Schema.Types.Mixed], 
-    "RoadHazards" : [Schema.Types.Mixed], 
-    "RoadJunctions" : [Schema.Types.Mixed], 
-    "RoadLightings" : [Schema.Types.Mixed], 
-    "RoadLocRefPoints" : [Schema.Types.Mixed], 
-    "RoadMarkings" : [Schema.Types.Mixed], 
-    "RoadMedian" : [Schema.Types.Mixed], 
-    "RoadPlaceNames" : [Schema.Types.Mixed], 
-    "RoadShoulders" : [Schema.Types.Mixed], 
+    "RoadBridges" : [RBISModelSchema.RoadBridges], 
+    "RoadCarriageway" : [RBISModelSchema.RoadCarriageway], 
+    "RoadCauseways" : [RBISModelSchema.RoadCauseways], 
+    "RoadCulverts" : [RBISModelSchema.RoadCulverts], 
+    "RoadDitches" : [RBISModelSchema.RoadDitches], 
+    "RoadGuardrails" : [RBISModelSchema.RoadGuardrails], 
+    "RoadHazards" : [RBISModelSchema.RoadHazards], 
+    "RoadJunctions" : [RBISModelSchema.RoadJunctions], 
+    "RoadLightings" : [RBISModelSchema.RoadLightings], 
+    "RoadLocRefPoints" : [RBISModelSchema.RoadLocRefPoints], 
+    "RoadMarkings" : [RBISModelSchema.RoadMarkings], 
+    "RoadMedian" : [RBISModelSchema.RoadMedian], 
+    "RoadPlaceNames" : [RBISModelSchema.RoadPlaceNames], 
+    "RoadShoulders" : [RBISModelSchema.RoadShoulders], 
     "RoadSideFriction" : [Schema.Types.Mixed], 
-    "RoadSideSlopes" : [Schema.Types.Mixed], 
-    "RoadSideWalks" : [Schema.Types.Mixed], 
-    "RoadSigns" : [Schema.Types.Mixed], 
-    "RoadSpillways" : [Schema.Types.Mixed], 
-    "RoadStructures" : [Schema.Types.Mixed],
-    "RoadTraffic": [Schema.Types.Mixed],
+    "RoadSideSlopes" : [RBISModelSchema.RoadSideSlopes], 
+    "RoadSideWalks" : [RBISModelSchema.RoadSideWalks], 
+    "RoadSigns" : [RBISModelSchema.RoadSigns], 
+    "RoadSpillways" : [RBISModelSchema.RoadSpillways], 
+    "RoadStructures" : [RBISModelSchema.RoadStructures],
+    "RoadTraffic": [RBISModelSchema.RoadTraffic],
     "geometry" : Schema.Types.Mixed,
     "created_by":Schema.Types.Mixed,
+    "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
                     type:Date,
                     default:Date.now()
@@ -84,6 +87,19 @@ const ROAD_MODEL_STRUC = {
 }
 const RoadsSchema = new Schema(ROAD_MODEL_STRUC,{ collection: 'Roads' });
 RoadsSchema.set('toJSON', { getters: true, virtuals: true });
+
+
+var _toDataType =  function(v){
+    if(moment(v, "YYYY-MM-DDTHH:mm:ss", false).isValid()){
+        return new Date(v);
+    }else if (!isNaN(Number(v))){
+        return Number(v)
+    }else{
+        return v;
+    };
+}
+
+
 
 RoadsSchema.statics.getObjectID = function(){
     return new mongoose.mongo.ObjectId();
@@ -459,9 +475,14 @@ var _validateData =  function(data,cb){
     cb(true);
 };
 
+
+
+
 RoadsSchema.statics.save =  function(objdata,cb){
     var road = this;
     var _dataOnComplete = [];
+
+    console.log(JSON.stringify(objdata.user));
         
     _validateData(objdata,function(b){
         //console.log(JSON.stringify(objdata));
@@ -473,9 +494,14 @@ RoadsSchema.statics.save =  function(objdata,cb){
                           var _row = objdata.data[i];
                             if(_row.table=="road"){
                                 _row.rows.forEach(function(d){
-                                        doc[d.key] = d.value;                                            
+                                        doc[d.key] =d.value;                                            
                                 });
-
+                                
+                                //update date
+                                doc.updated_by.name = objdata.user.name;
+                                doc.updated_by.email = objdata.user.email; 
+                                doc.lastupdate_date = new Date();
+                                
                                 var _pdx = _dataOnComplete.map(function(d){return d.table}).indexOf("Road");
                                 if(_pdx>-1){
                                     _dataOnComplete[_pdx].count+=1;     
@@ -497,13 +523,18 @@ RoadsSchema.statics.save =  function(objdata,cb){
                                             //temporary for KM Post Geomety
                                             if(_row.table=="RoadLocRefPoints"){
                                                 if(d.key=="LONG"){
-                                                    doc[_row.table][fdx].geometry.coordinates[0] = d.value; 
+                                                    doc[_row.table][fdx].geometry.coordinates[0] =d.value; 
                                                 }else if(d.key=="LAT"){
                                                     doc[_row.table][fdx].geometry.coordinates[1] = d.value;
                                                 }
                                             }
-
-
+                                            
+                                            //Update date
+                                            doc[_row.table][fdx].updated_by = {
+                                                                                email:objdata.user.email,
+                                                                                name:objdata.user.name, 
+                                                                             }; 
+                                            doc[_row.table][fdx].lastupdate_date = new Date();
                                      }else{ // insert new Features
                                         var _newAttr = {};
                                         if(_row.table=="RoadCarriageway"){
@@ -525,15 +556,22 @@ RoadsSchema.statics.save =  function(objdata,cb){
                                             _newAttr.geometry.coordinates.push(0.0);;
                                             _newAttr.geometry.coordinates.push(0.0);;
                                             if(d.key=="LONG"){
-                                                _newAttr.geometry.coordinates[0] = d.value; 
+                                                _newAttr.geometry.coordinates[0] =d.value; 
                                             }else if(d.key=="LAT"){
                                                 _newAttr.geometry.coordinates[1] = d.value;
                                             }
                                         }
 
-                                             _newAttr[d.key] = d.value;
+                                             _newAttr[d.key] =d.value;
                                              _newAttr._id =  new mongoose.mongo.ObjectId(d.id);
                                              _newAttr.R_ID = objdata.R_ID;
+                                             
+                                             //User logs
+                                             _newAttr.created_by = {
+                                                email:objdata.user.email,
+                                                name:objdata.user.name, 
+                                             };
+                                             
                                              doc[_row.table].push(_newAttr);
                                      };
 
