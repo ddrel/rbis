@@ -481,8 +481,6 @@ var _validateData =  function(data,cb){
 RoadsSchema.statics.save =  function(objdata,cb){
     var road = this;
     var _dataOnComplete = [];
-
-    console.log(JSON.stringify(objdata.user));
         
     _validateData(objdata,function(b){
         //console.log(JSON.stringify(objdata));
