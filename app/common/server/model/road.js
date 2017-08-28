@@ -537,12 +537,12 @@ RoadsSchema.statics.save =  function(objdata,cb){
                                         var _newAttr = {};
                                         if(_row.table=="RoadCarriageway"){
                                             var segmentNumber  = objdata.R_ID + "0001";
-                                            if(doc[_row.table].length>0){
-                                                segmentNumber = doc[_row.table].sort() [ doc[_row.table].length -1 ];
+                                            if(doc[_row.table].length>0){                                                
+                                                segmentNumber = doc[_row.table].map(function(d){return d.SegmentID}).sort() [ doc[_row.table].length -1 ];
                                                 segmentNumber  = segmentNumber.substring(objdata.R_ID.length,segmentNumber.length);
                                                 segmentNumber =  parseInt(segmentNumber)  + 1;
                                                 var padStr = "";
-                                                for(var i = 0;i< segmentNumber.toString().length ;i++){padStr+="0";}
+                                                for(var i = 0;i< (4 - segmentNumber.toString().length) ;i++){padStr+="0";}
                                                 segmentNumber = objdata.R_ID  + padStr + segmentNumber.toString();  
                                             }    
 

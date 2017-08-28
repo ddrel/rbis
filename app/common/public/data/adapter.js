@@ -95,6 +95,9 @@ console.log(k);
 /**/
  $http.post("/api/roads/saveroad",{roaddata:_bodydata}).success(function(data){
          if(cb) cb(data);
+ }).error(function(error){
+         console.log(error);
+        if(cb) cb(null,error);
  })
 
 };

@@ -198,19 +198,28 @@ $scope.ondatadirty =  function(a,b,c){
 
 //Tool bar Action
 $scope.toolbarAction = function(a,e){
-    var _oncomplete_save =  function(d){
-        d.forEach(function(a){
-            toastr.success("Saved " + a.table + " | Field Count:" + a.count);
-            adapter.clear(a.table);
-            $scope.currentModel.isnew =  false;                      
-        }); 
+    var _oncomplete_save =  function(d,errors){
+        if(d){
+            d.forEach(function(a){
+                toastr.success("Saved " + a.table + " | Field Count:" + a.count);
+                adapter.clear(a.table);
+                $scope.currentModel.isnew =  false;                      
+            });
+        }
+         
 
-        adapter.addNewtate = false;
+        if(errors){
+            for(var erk in errors.errors){
+                var message  = errors.errors[erk].message; 
+                toastr.error(message);
+            };
+        };
+
+        //adapter.addNewtate = false;
     };
 
 
-    var _onnewFeatureAdded = function(data){
-        console.log(data);
+    var _onnewFeatureAdded = function(data){        
         $scope.currentModel.list = [];
         $scope.currentModel.currentItem = data;
         $scope.currentModel.isnew = true;
