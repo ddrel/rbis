@@ -1,4 +1,4 @@
-angular.module('RBIS').controller("roadsupdateCtrl", function( $scope, $http,$rootScope,$window,$timeout,utilities,$stateParams,datamodel,adapter) {
+angular.module('RBIS').controller("roadsupdateCtrl", function( $scope, $http,$rootScope,$window,$timeout,utilities,$stateParams,datamodel,adapter,uploadroadSvcs,uploadroadSvcsData) {
     $scope.param = $stateParams;    
     $scope.road = {}
     $scope.roadsummarydisplay = 0;    
@@ -145,6 +145,12 @@ $scope.initModelData =  function(key,currentItem,list){
     $scope.currentModel.struct =  datamodel.structure[key];
     $scope.currentModel.list = list;
     $scope.currentModel.currentItem = currentItem;
+    uploadroadSvcsData.set($scope.currentModel);
+    $scope.currentModel.roadImageList = [];
+    if(currentItem){
+        $scope.currentModel.roadImageList = $scope.getCurrentImageList(currentItem);
+    };
+    
     
     
     // breadcrums for the road/attr/features
@@ -219,15 +225,15 @@ $scope.toolbarAction = function(a,e){
     };
 
 
+
     var _onnewFeatureAdded = function(data){        
         $scope.currentModel.list = [];
         $scope.currentModel.currentItem = data;
         $scope.currentModel.isnew = true;
         adapter.addNewtate = true;
 
-        //console.log($scope.road[$scope.currentModel.name]);
-        console.log($scope.currentModel.name);
-        console.log($scope.road);
+        
+        uploadroadSvcsData.set($scope.currentModel);
         if($scope.road[$scope.currentModel.name]){
             $scope.road[$scope.currentModel.name].push($scope.currentModel.currentItem);
             $scope.road[$scope.currentModel.name+"_length"] = $scope.road[$scope.currentModel.name].length;
@@ -244,10 +250,58 @@ $scope.toolbarAction = function(a,e){
                     adapter.save(null,_oncomplete_save);
                 },cancel:function(){
                     adapter.addNewtate = false;
+                },addroadimage:function(){
+                    var roaduploadimages = uploadroadSvcs.images();
+                    roaduploadimages.then(function(data){
+
+                    },function(data){
+
+                    })
                 }
         };
 
 
     action[a]();
 };
+$scope.ondeleteRoad = function(a){
+    var opt = {};    
+    opt.r_id = $scope.currentModel.roadID;
+    opt.attr_id = $scope.currentModel.currentItem._id
+    opt.f_id = a;
+    opt.key_name = $scope.currentModel.name;
+
+    var qry = "r_id=" + opt.r_id +
+              "&attr_id=" + opt.attr_id +
+              "&f_id=" + opt.f_id +
+              "&key_name=" + opt.key_name;
+              
+    console.log(qry);
+    $http.delete("/images/road/delete?" + qry).success(function(){
+        var idx = $scope.currentModel.roadImageList.map(function(d){return d.data}).indexOf(opt.f_id);  
+        if(idx>-1){$scope.currentModel.roadImageList.splice(idx,1);}
+            toastr.success("Image successfully removed ...");
+    }).error(function(){
+            toastr.error("Error removing Image ...");
+    });
+
+};
+
+$scope.getCurrentImageList =  function(roadItem){
+    var imageList = [];
+
+    if(roadItem.file_roadimages && roadItem.file_roadimages.length>0){
+        roadItem.file_roadimages.forEach(function(img){
+            var dataImage = {
+                href: "/images/road?id=" + img.sizes.lowres +"&type=lowres",
+                thumb: "/images/road?id=" + img.sizes.thumb +"&type=thumb",
+                download: "/images/road?id=" + img.sizes.orig,
+                title: img.name,
+                data:img._id
+              };
+              imageList.push(dataImage);
+        });
+        return imageList;
+    };
+};
+
 });

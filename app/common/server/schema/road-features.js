@@ -35,7 +35,11 @@ const RoadCarriageway = {
 "created_date":{
             type:Date,
             default:Date.now()
-            }           
+            },
+file_attachment:[Schema.Types.Mixed], 
+file_roadimages:[Schema.Types.Mixed],
+remarks_trail:[Schema.Types.Mixed],
+status:String           
 }
 
 const RoadBridges = {
@@ -105,7 +109,11 @@ const RoadBridges = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }           
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String           
 }
 
 
@@ -124,7 +132,11 @@ const RoadLocRefPoints = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }           
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                           
 }
 
 const RoadSideFriction={
@@ -146,7 +158,11 @@ const RoadSideFriction={
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }           
+                },
+    file_attachment:[Schema.Types.Mixed],
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                           
 }
 
 const RoadPlaceNames={
@@ -166,7 +182,11 @@ const RoadPlaceNames={
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }           
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                           
 };
 
 
@@ -187,7 +207,11 @@ const RoadJunctions={
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }           
+                },
+    file_attachment:[Schema.Types.Mixed],
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                           
 };
 
 const RoadMedian={
@@ -208,7 +232,11 @@ const RoadMedian={
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }               
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                               
 };
 
 
@@ -236,7 +264,11 @@ const RoadGuardrails = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }               
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                               
 };
 
 const RoadHazards = {
@@ -258,7 +290,11 @@ const RoadHazards = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }                         
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                                         
 };
 
 
@@ -285,7 +321,11 @@ const RoadLightings = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }            
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                            
 };
 
 
@@ -313,7 +353,11 @@ const RoadMarkings = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }            
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                             
 };
 
 
@@ -341,7 +385,11 @@ const RoadSigns = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }           
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                           
 };
 
 
@@ -369,7 +417,11 @@ const RoadShoulders = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }                   
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                                   
 };
 
 
@@ -399,7 +451,11 @@ const RoadSideSlopes = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }                       
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                                       
 };
 
 
@@ -425,7 +481,11 @@ const RoadStructures = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }           
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                             
 };
 
 const RoadSideWalks = {
@@ -451,7 +511,11 @@ const RoadSideWalks = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }               
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                               
 };
 
 
@@ -477,7 +541,11 @@ const RoadCauseways = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }                       
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                                       
 };
 
 const RoadCulverts = {
@@ -509,7 +577,11 @@ const RoadCulverts = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }           
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                           
 };
 
 
@@ -538,7 +610,11 @@ const RoadDitches = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }               
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                               
 };
 
 const RoadSpillways = {
@@ -563,7 +639,11 @@ const RoadSpillways = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }                   
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                                   
 };
 
 
@@ -592,7 +672,11 @@ const RoadTraffic = {
     "created_date":{
                 type:Date,
                 default:Date.now()
-                }                   
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                                   
             
 };
 

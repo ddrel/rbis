@@ -23,8 +23,11 @@ angular.module('RBIS').controller("roadsCtrl", function( $scope, $http,$rootScop
     }
 
     $scope.init = function(){
-        $timeout(function(){
-            $scope.user = adapter.user();    
+        adapter.user(function(_user){
+            $scope.user = _user;
+            console.log($scope.user);
+        });
+        $timeout(function(){    
             $scope.getroads("",function(response){
                         $scope.roadsCollection = response.data;
                         $scope.pagination.max = response.pagecount;
@@ -75,14 +78,13 @@ angular.module('RBIS').controller("roadsCtrl", function( $scope, $http,$rootScop
         .then(function(data) {
           if(data){
             $http.post("/api/roads/newRoad",data).success(function(data){
-                console.log(data);
                 $window.location.href = "/#/road/update/" + data.R_ID;
               }).error(function(err){
-                  console.log(err)
+                toastr.error("Error Saving Roads ...");
               })// [post]
           }          
-        }, function() {
-          
+        }, function(error) {
+            
         });
       };
 
@@ -93,8 +95,6 @@ angular.module('RBIS').controller("roadsCtrl", function( $scope, $http,$rootScop
         $scope.byselect = {};
         $scope.provinces = []
         $scope.municipalities = [];
-        console.log($scope.roadModel);
-
         $scope.hide = function() {
           $mdDialog.hide();
         };
@@ -124,7 +124,7 @@ angular.module('RBIS').controller("roadsCtrl", function( $scope, $http,$rootScop
                     $scope.roadObjData.R_CLASS=(a!=="")?"City":"Provincial";
         };
         $scope.userObject = {};
-        $scope.init =  function(){
+        $scope.init =  function(){            
             $timeout(function(){
                 $http.get("/ws/users/me").success(function(user){
                     $scope.userObject = user;                    

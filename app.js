@@ -29,6 +29,7 @@ const app = express();
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_BLUEMIX || process.env.MONGODB_DEV  || process.env.MONGODB_LOCAL);
+//mongoose.createConnection(process.env.MONGODB_BLUEMIX || process.env.MONGODB_DEV  || process.env.MONGODB_LOCAL);
 mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
   process.exit(1);
@@ -167,6 +168,11 @@ if (cluster.isMaster){
  */
 
 /**/      
+
+//handle upload of files
+require('./utils/filemanagement')(app);
+
+
 app.listen(app.get('port'), ()=> {
     console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
 });

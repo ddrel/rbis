@@ -1,0 +1,47 @@
+<md-dialog aria-label="Upload Road Images" ng-init="init()" style="width:50%">        
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>Upload Road Images</h2>
+              <span flex></span>
+              <md-button class="md-icon-button" ng-click="cancel()"> 
+                  <i class="fa fa-times" aria-hidden="true"></i>                  
+              </md-button>
+            </div>
+          </md-toolbar>          
+          <form ng-cloak name="uploadform" layout="column">
+          <md-dialog-content>
+            <div class="uploading-wrapper" ng-show="progressFiles.length>0">
+                <table class="table">
+                    <tr ng-repeat="fileItem in progressFiles">
+                        <td width="30px">{{fileItem.file.name}}</td>
+                        <td>
+                                <progressbar ng-hide="fileItem.pv==0" type="success" value="fileItem.pv" >
+                                        <span ng-show="fileItem.pv==100">Complete ...</span>
+                                        <span ng-show="fileItem.pv>20 && fileItem.pv<=99"> Uploading: {{fileItem.pv}}%</span>
+                                        <span ng-show="fileItem.pv<=20">{{fileItem.pv}}%</span>
+                                </progressbar>
+                        </td>
+                    </tr>
+                </table>
+            </div>            
+            <div class="md-dialog-content col-md-12">
+                <div ng-messages="uploadform.files00.$error" style="color:red;">                                
+                    <div ng-if="uploadform.files00.$error.required">This is required.</div>
+                    <div ng-if="uploadform.files00.$error.maxcount">Maximum of 10 files.</div>
+                    <div ng-if="uploadform.files00.$error.filesize">File size too large.</div>
+                    <div ng-if="uploadform.files00.$error.totalsize">Total size too large.</div>
+                    <div ng-if="uploadform.files00.$error.mimetype">Mimetype error.</div>
+                </div>
+                <lf-ng-md-file-input name="files00" lf-files="files" lf-api="api09" lf-required lf-maxcount="10" lf-filesize="50MB" lf-totalsize="500MB" lf-mimetype="image/*" multiple drag preview
+                lf-on-file-click="onFileClick" lf-on-file-remove="onFileRemove" ></lf-ng-md-file-input>    
+            </div>                                                 
+          </md-dialog-content>
+          <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button type="button"  ng-disabled="uploadform.$invalid" class="md-raised md-primary" ng-click="submitfiles(files)">Submit</md-button>        
+                <md-button ng-click="action(null)">
+                  Cancel
+                </md-button>
+              </md-dialog-actions>            
+        </form>
+      </md-dialog>

@@ -1,5 +1,6 @@
 'use strict';
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'),
+    moment = require('moment')
 
 
 const getlocaccess = (req)=>{
@@ -25,11 +26,11 @@ exports.newRoad =  (req,res)=>{
     var errors = [];
     if(_roadAttr.R_NAME==""){
         errors.push({message:"Road Name Can't be Blank"});
-    }else if( _roadAttr.ProvinceCo =="" && req.user.roles.indexOf("SUPER ADMINISTRATOR")>-1){
+    }else if(!_roadAttr.ProvinceCo ||_roadAttr.ProvinceCo =="" && req.user.roles.indexOf("SUPER ADMINISTRATOR")>-1){
         errors.push({message:"Please specify location"});
     }else if(req.user.roles.indexOf("SUPERVISOR")>-1 || req.user.roles.indexOf("ROAD BOARD")>-1){
         errors.push({message:"No Acess"});
-    }
+    };
 
     if(errors.length>0){res.status(500).json(errors);return;}
     for(var k in _roadAttr){
@@ -251,7 +252,55 @@ exports.saveroad = (req,res)=>{
     });
 }
 
+exports.clenupdata = (req,res)=>{
+    console.log("---------------------------------");
+    var roads = mongoose.model("Roads");
+    roads.find({"$where":"this.RoadCarriageway.length>0"}, '_id', function(err, docs){ //find({}).select("_id").exec(function(err,docs){
+        var i=0;
+        //console.log("Length: " + docs.length)
+        var ddcs = docs;
+        var _recursiveSave =  function(ddf,index){
+            //console.log(ddf.length);
+            if(index > ddf.length-1) return;
+            var dd = ddf[index];
+            //console.log(dd._id);
+            roads.findOne({_id:dd._id}).exec(function(err,docsRD){
+                //console.log(docsRD.RoadCarriageway.length);
+                if(err){
+                    console.log(err);
+                };
+                if(docsRD.RoadCarriageway.length>0){
+                        docsRD.RoadCarriageway.forEach(function(rd){
 
+                                                        
+                            if(!moment(rd.DateOfLast, "YYYY-MM-DDTHH:mm:ss", false).isValid()){
+                                 rd.DateOfLast=undefined;                                 
+                            }else{
+                                rd.DateOfLast=new Date(rd.DateOfLast);
+                            };
+
+                            if(!isNaN(rd.YearOfReco)){
+                                 rd.YearOfReco=undefined;
+                            }else{
+                                rd.YearOfReco = isNaN(parseInt(rd.YearOfReco))?undefined: parseInt(rd.YearOfReco);
+                            };
+
+                        });
+
+                        docsRD.markModified("RoadCarriageway");
+                        docsRD.save(function(err){
+                             console.log("Save >>>> " + dd._id + "    "+ index + "   count: " + docsRD.RoadCarriageway.length);                                                        
+                            _recursiveSave(ddf, (index + 1) );
+
+                        });
+                    };                                    
+            });
+        }
+
+        _recursiveSave(ddcs,0);
+    });
+    res.send("done");    
+}
 
 
 

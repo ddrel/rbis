@@ -42,7 +42,9 @@
     "angular-moment-picker": "moment-picker#^0.9.10",
     "google-maps": "^3.2.1",
     "Leaflet.GridLayer.GoogleMutant": "https://gitlab.com/IvanSanchez/Leaflet.GridLayer.GoogleMutant.git",
-    "angular-timeline": "^1.7.0"
+    "angular-timeline": "^1.7.0",
+    "lf-ng-md-file-input": "^1.5.2",
+    "ng-blueimp-gallery": "^1.0.1"
   },
   "resolutions": {
     "angular-ticker": "1.0.0",

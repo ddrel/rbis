@@ -103,14 +103,16 @@ console.log(k);
 };
 
 var _user = null;
-adapter.user = function(){
-        if(_user==null){
+adapter.user = function(cb){
+        if(_user==null && cb){
                 $http.get("/ws/users/me").success(function(user){
                         _user = user;
+                        if(cb)cb(_user);
                         return _user;
                 });
         };
 
+        if(cb)cb(_user);
         return _user;
 };
 

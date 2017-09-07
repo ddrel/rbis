@@ -1,6 +1,18 @@
 'use strict';
 (function(){
-    var RBIS = angular.module('RBIS', ['ui.router','uiRouterStyles','ngSanitize','oc.lazyLoad','ui.bootstrap','ui.sortable','chart.js','moment-picker','ngMaterial','angular-timeline']);            
+    var RBIS = angular.module('RBIS', ['ui.router','uiRouterStyles','ngSanitize','oc.lazyLoad','ui.bootstrap','ui.sortable','chart.js','moment-picker','ngMaterial','angular-timeline','lfNgMdFileInput','ui.blueimp.gallery']);            
+    RBIS.config([
+        function() {
+            XMLHttpRequest.prototype.setRequestHeader = (function(sup) {
+                return function(header, value) {
+                    if ((header === "__XHR__") && angular.isFunction(value))
+                        value(this);
+                    else
+                        sup.apply(this, arguments);
+                };
+            })(XMLHttpRequest.prototype.setRequestHeader);
+        }
+    ])
     RBIS.config(['$stateProvider','$urlRouterProvider', '$httpProvider', '$ocLazyLoadProvider',function($stateProvider, $urlRouterProvider, $httpProvider,$ocLazyLoadProvider) {
                 $ocLazyLoadProvider.config({
                     // Set to true if you want to see what and when is dynamically loaded
@@ -65,13 +77,14 @@
                                                 return $ocLazyLoad.load([
                                                     {
                                                         serie: true,
-                                                        cache:true,
+                                                        cache:false,
                                                         files: ['/common/plugins/leaflet/leaflet.js',
                                                                 '/common/plugins/leaflet/leaflet.css',
                                                                 '/bower_components/leaflet-draw/dist/leaflet.draw.js',
                                                                 '/bower_components/leaflet-draw/dist/leaflet.draw.css',                                                                
                                                                 '/common/js/leaflet.maps.jquery.js',
-                                                                '/road/assets/css/roads.css',
+                                                                '/road/service/uploadroadimage.js',
+                                                                '/road/assets/css/roads.css',                                                                
                                                                 '/road/controllers/roadsupdate.js'                                                                
                                                                 ]
                                                     }                                                    

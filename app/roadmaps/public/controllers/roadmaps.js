@@ -371,7 +371,9 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
                         //name + ": "  +
                         layer.bindPopup(tooltiptext);
                     });
-                $("#roadmap").leafletMaps("zoomToFeature", _geo);
+                
+                    if( data){$("#roadmap").leafletMaps("zoomToFeature", _geo);}
+                
                 $scope.currentAttr = o;
                 $scope.toggleattributepane(true);
 

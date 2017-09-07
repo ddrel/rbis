@@ -53,7 +53,7 @@ const ROAD_MODEL_STRUC = {
     "RROW_usefullife":Number,
     "remarks":String,
     "RoadBridges" : [RBISModelSchema.RoadBridges], 
-    "RoadCarriageway" : [RBISModelSchema.RoadCarriageway], 
+    "RoadCarriageway" : [RBISModelSchema.RoadCarriageway], //Schema.Types.Mixed 
     "RoadCauseways" : [RBISModelSchema.RoadCauseways], 
     "RoadCulverts" : [RBISModelSchema.RoadCulverts], 
     "RoadDitches" : [RBISModelSchema.RoadDitches], 
@@ -83,7 +83,11 @@ const ROAD_MODEL_STRUC = {
     "created_date":{
         type:Date,
         default:Date.now()
-    }
+    },
+    file_attachment:[Schema.Types.Mixed],
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String
 }
 const RoadsSchema = new Schema(ROAD_MODEL_STRUC,{ collection: 'Roads' });
 RoadsSchema.set('toJSON', { getters: true, virtuals: true });
@@ -99,6 +103,84 @@ var _toDataType =  function(v){
     };
 }
 
+RoadsSchema.statics.removeRoadImage =  function(opt,cb){
+    console.log(opt);
+    this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
+        var _dataImage = {};
+            if(opt.key_name=="road"){
+                var idx = doc.file_roadimages.map(function(d){return d._id.toString()}).indexOf(opt.f_id);
+                 console.log(idx);
+                if(idx>-1){
+                    _dataImage.thumb = doc.file_roadimages[idx].sizes.thumb;
+                    _dataImage.lowres = doc.file_roadimages[idx].sizes.lowres;
+                    _dataImage.orig = doc.file_roadimages[idx].sizes.orig;
+
+                    doc.file_roadimages.splice(idx,1);
+                }
+            }else{
+                var idx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt.attr_id);
+                    if(idx>-1){
+                        var fdx = doc[opt.key_name][idx].file_roadimages.map(function(d){return d._id.toString()}).indexOf(opt.f_id);
+                        if(fdx>-1){
+
+                            console.log(fdx);
+                            console.log(doc[opt.key_name][idx].file_roadimages[fdx]);
+                            _dataImage.thumb = doc[opt.key_name][idx].file_roadimages[fdx].sizes.thumb;
+                            _dataImage.lowres = doc[opt.key_name][idx].file_roadimages[fdx].sizes.lowres;
+                            _dataImage.orig = doc[opt.key_name][idx].file_roadimages[fdx].sizes.orig;
+    
+                            doc[opt.key_name][idx].file_roadimages.splice(fdx,1);
+                            doc.markModified(opt.key_name);
+                        }
+                    }
+            }
+
+
+            doc.save(function(err){
+                console.log(err)
+                console.log(_dataImage)
+                    cb(err,_dataImage);
+            })
+    });
+}
+RoadsSchema.statics.addRoadImage =  function(opt,cb){
+    console.log(opt.r_id + "  " + opt._id);
+    this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
+        if(err){cb(err,null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};
+        var _file_attr = {};
+        _file_attr._id = new mongoose.mongo.ObjectId();
+        _file_attr.name = opt.name;
+        _file_attr.sizes = opt.sizes;
+        _file_attr.mime = opt.mime;
+
+        _file_attr.created_by = opt.created_by;
+        _file_attr.updated_by = opt.updated_by;
+        _file_attr.created_date = new Date();
+        if(opt.key_name=="road"){            
+            if(!doc.file_roadimages){doc.file_roadimages = []};
+            if(doc.file_roadimages){                                            
+                    doc.file_roadimages.push(_file_attr);            
+            };
+        }else{
+            //Road Features
+            var fdx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt._id);
+            console.log(fdx + " ---- "  + opt.key_name );
+
+            if(fdx>-1){
+                var roadFeatItem =  doc[opt.key_name][fdx];
+                    if(!roadFeatItem.file_roadimages){roadFeatItem.file_roadimages=[]};
+                    roadFeatItem.file_roadimages.push(_file_attr);
+                    //doc.markModified(opt.key_name);
+            };
+        };
+
+        doc.save(function(err){
+            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            console.log(err)
+            cb(err);
+        });        
+    });
+}
 
 
 RoadsSchema.statics.getObjectID = function(){

@@ -71,4 +71,8 @@ app.post("/api/roads/newRoad",(req,res)=>{
 app.get("/api/roads/getObjectID",(req,res)=>{
     roads.getObjectID(req,res);
 });
+
+app.get("/clenupdata",(req,res)=>{
+    roads.clenupdata(req,res);
+});
 }

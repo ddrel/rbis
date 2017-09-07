@@ -1,8 +1,7 @@
 <md-dialog aria-label="Create New Road" ng-init="init()">
     <script type="text/ng-template" id="roadfieldcontrol">
-
     <label ng-if="roadModel[field].ctrl=='label'">{{ roadObjData[field] }}</label>
-    <input  required type="text" ng-if="roadModel[field].ctrl=='text'"  ng-model="roadObjData[field]" class="{{roadModel[field].class}}"></input>
+    <input  filter-input  datatype="{{roadModel[field].type}}" type="text" ng-if="roadModel[field].ctrl=='text'"  ng-model="roadObjData[field]" class="{{roadModel[field].class}}"></input>
     <select  ng-if="roadModel[field].ctrl=='select'" ng-model="roadObjData[field]" class="{{roadModel[field].class}}">
         <option value="{{opt.key}}"  ng-selected="roadObjData[field]==opt.key" ng-repeat="opt in roadModel[field].options">{{ opt.label }}</option>
     </select>                                   
@@ -19,7 +18,7 @@
           <h2>Create New Road</h2>
           <span flex></span>
           <md-button class="md-icon-button" ng-click="cancel()">
-            
+                <i class="fa fa-times" aria-hidden="true"></i>                
           </md-button>
         </div>
       </md-toolbar>

@@ -70,7 +70,6 @@ $scope.formatToDecimal =  function(d){
   return utilities.formatToDecimal(parseFloat("0" + d));
 }
 $scope.init =  function(){
-    adapter.user();
     $http.get("/api/roads/getroadlengthtotal").success(function(d){
       console.log(utilities.formatToDecimal(Math.ceil(d.Roadlengthtotal)));
         $scope.summary.roadlengthtotal = utilities.formatToDecimal(Math.ceil(d.Roadlengthtotal));

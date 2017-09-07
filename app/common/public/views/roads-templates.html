@@ -2,7 +2,7 @@
 <script type="text/ng-template" id="roadfieldcontrol">
 
     <label ng-if="currentModel.struct[field].ctrl=='label'">{{ currentModel.currentItem[field] }}</label>
-    <input ng-blur="ondatadirty(currentModel,field,currentModel.currentItem[field])" type="text" ng-if="currentModel.struct[field].ctrl=='text'"  ng-model="currentModel.currentItem[field]" class="{{currentModel.struct[field].class}}"></input>
+    <input filter-input  datatype="{{currentModel.struct[field].type}}" ng-blur="ondatadirty(currentModel,field,currentModel.currentItem[field])" type="text" ng-if="currentModel.struct[field].ctrl=='text'"  ng-model="currentModel.currentItem[field]" class="{{currentModel.struct[field].class}}"></input>
     <select ng-blur="ondatadirty(currentModel,field,currentModel.currentItem[field])" ng-if="currentModel.struct[field].ctrl=='select'" ng-model="currentModel.currentItem[field]" class="{{currentModel.struct[field].class}}">
         <option value="{{opt.key}}"  ng-selected="currentModel.currentItem[field]==opt.key" ng-repeat="opt in currentModel.struct[field].options">{{ opt.label }}</option>
     </select>                                   
@@ -93,7 +93,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -149,7 +154,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -246,7 +256,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -496,7 +511,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -538,7 +558,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -583,7 +608,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -628,7 +658,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -673,7 +708,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -735,7 +775,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -784,7 +829,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -850,7 +900,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -911,7 +966,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -980,7 +1040,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -1055,7 +1120,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -1124,7 +1194,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -1186,7 +1261,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -1251,7 +1331,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -1317,7 +1402,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -1406,7 +1496,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -1471,7 +1566,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -1536,7 +1636,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>
@@ -1594,7 +1699,12 @@
                     </textarea>
         </md-tab>
         <md-tab label="Attachment"> 
-        <md-tab>
+        </md-tab>
+        <md-tab label="Road Images"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery list="currentModel.roadImageList"  options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
      </md-tabs>   
     
 </script>

@@ -214,7 +214,7 @@
                                 </md-menu-item>
                             </md-menu-content>
                         </md-menu>
-                        <md-menu>
+                        <md-menu ng-show="currentModel.currentItem!=null">
                             <button ng-click="$mdMenu.open()">
                             Shapes
                             </button>  
@@ -237,14 +237,14 @@
                                 </md-menu-item> 
                             </md-menu-content>
                         </md-menu>
-                        <md-menu>
+                        <md-menu ng-show="currentModel.currentItem!=null">
                             <button ng-click="$mdMenu.open()">
                             Media Files
                             </button>  
                             <md-menu-content>                            
                                 <md-menu-item>
-                                    <md-button ng-click="toolbarAction('share', $event)">
-                                        <i class="fa fa-file-image-o" aria-hidden="true">&nbsp;Add Images</i>
+                                    <md-button ng-click="toolbarAction('addroadimage', $event)">
+                                        <i class="fa fa-file-image-o" aria-hidden="true">&nbsp;Add Road Images</i>
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-divider></md-menu-divider>
@@ -298,6 +298,15 @@
 </div>
 </div>    
 
+</div>
+<div id="blueimp-gallery-1" class="blueimp-gallery blueimp-gallery-controls blueimp-gallery-display" style="display:none;">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
 </div>
 
 
