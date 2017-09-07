@@ -48,7 +48,8 @@
     "swig": "^1.4.2",
     "walk": "^2.3.9",
     "websocket": "^1.0.23",
-    "ws": "^1.1.1"
+    "ws": "^1.1.1",
+    "lwip":"^0.0.9"
   },
   "devDependencies": {
     "blessed": "^0.1.81",
