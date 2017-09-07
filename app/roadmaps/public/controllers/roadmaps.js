@@ -440,13 +440,17 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
         console.log(name);
         console.log(o)
 
-        //load road images
-        var rid = (typeof o._id=="object")?o._id.R_ID:o.R_ID;        
-        var opt_rimage = {};
-        opt_rimage.roadID = rid;
-        opt_rimage.name = name=="road"?"road":"Road" + name;
-        opt_rimage._id = o._id;
-        $scope.getRoadImages(opt_rimage)
+
+        if(o instanceof Array == false){
+            //load road images
+            var rid = (typeof o._id=="object")?o._id.R_ID:o.R_ID;        
+            var opt_rimage = {};
+            opt_rimage.roadID = rid;
+            opt_rimage.name = name=="road"?"road":"Road" + name;
+            opt_rimage._id = o._id;
+            $scope.getRoadImages(opt_rimage);
+        }
+        
         //console.log($scope.summary.roadsummarydisplay);
         //work around reload current map
         $scope.onmapselect($scope._currentlayer.index);
