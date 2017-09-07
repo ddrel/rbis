@@ -19,11 +19,11 @@ angular.module('RBIS')
                     pv:0,
                     uid:utilities.uuid()}
                 $scope.progressFiles.push(_objFile);
-                
-                /**/ 
                 utilities.file.upload("/upload/roads/uploadimages",_objFile,
                                     function(data){
-                                        console.log(data);
+                                        $timeout(function(){
+                                            $mdDialog.hide(data);
+                                        },500);                                        
                                     },
                                     function(progress,file){
                                         var fdx = $scope.progressFiles.map(function(d){return d.uid}).indexOf(file.uid);                                                
@@ -34,38 +34,6 @@ angular.module('RBIS')
                 }
         });
         
-        
-        
-
-        /*
-        $http.post('/upload/roads/uploadimages', formData,{            
-            headers: {
-                transformRequest: angular.identity,
-                __XHR__: function() {
-                    return function(xhr) {
-                        xhr.upload.addEventListener("progress", function(event) {
-                            console.log("uploaded " + ((event.loaded/event.total) * 100) + "%");
-                        });
-                    };
-                },
-            },
-        }).success(function(data){
-                console.log(data);
-        });
-
-        
-        $http.post('/upload/roads/images', formData, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
-        }).then(function(result){
-            // do sometingh
-            console.log(result);                   
-        },function(err){
-            // do sometingh
-        });
-    */
-
-
 
     };
 
@@ -88,7 +56,7 @@ angular.module('RBIS')
         $mdDialog.cancel();
       };
   
-      $scope.answer = function(answer) {
+      $scope.action = function(answer) {
         $mdDialog.hide(answer);
       };    
 })

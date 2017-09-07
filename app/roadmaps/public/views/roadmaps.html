@@ -43,7 +43,7 @@
                                                 <font class="tree-branch">|--</font>
                                                 <a class="toggle-list">
                                                     <i  ng-click="ontoggle_loc('road_attr',road,$event)" class="fa fa-plus-square toggle-ctrl" aria-hidden="true"></i>
-                                                     <font ng-click="onclickattr(road,road.R_NAME)">{{ road.R_NAME }}</font>
+                                                     <font ng-click="onclickattr(road,'road')">{{ road.R_NAME }}</font>
                                                 </a>            
                                                 <ul class="location-list" id="road_attr{{road.R_ID}}" style="display:none;">                                            
                                                             <li ng-repeat="attr in road.attr.attrs" ng-include="'roadsattribute'"></li>
@@ -70,7 +70,7 @@
                                                         <font class="tree-branch">|--</font>
                                                         <a class="toggle-list">
                                                             <i  ng-click="ontoggle_loc('road_attr',road,$event)" class="fa fa-plus-square toggle-ctrl" aria-hidden="true"></i>
-                                                            <font ng-click="onclickattr(road,road.R_NAME)">{{ road.R_NAME }}</font> 
+                                                            <font ng-click="onclickattr(road,'road')">{{ road.R_NAME }}</font> 
                                                         </a>
                                                         <ul class="location-list"id="road_attr{{road.R_ID}}" style="display:none;">                                            
                                                             <li ng-repeat="attr in road.attr.attrs" ng-include="'roadsattribute'"></li>
@@ -149,7 +149,7 @@
                                             <font class="tree-branch">|--</font>                        
                                             <a class="toggle-list">
                                                 <i  ng-click="ontoggle_loc('road_attr_searched',road._id,$event)" class="fa fa-plus-square toggle-ctrl" aria-hidden="true"></i>
-                                                <font ng-click="onclickattr(road,road._id.R_NAME)">{{ road._id.R_NAME }}</font> 
+                                                <font ng-click="onclickattr(road,'road')">{{ road._id.R_NAME }}</font> 
                                             </a>
                                             <ul class="location-list"id="road_attr_searched{{road._id.R_ID}}" style="display:none;margin-left:21px;">                                            
                                                 <li ng-repeat="attr in road.attr.attrs" ng-include="'roadsattribute'"></li>
@@ -202,13 +202,24 @@
                     <h4><font color="#fff">Road Attributes</font></h4>
                     <i ng-click="toggleattributepane(false)" class="fa fa-window-close attr-close" aria-hidden="true"></i>                    
              </div>
-             <div id="roadattrttable">
-             </div>         
+             <tabset>
+                <tab>
+                    <tab-heading><i class="fa fa-road"></i></tab-heading>
+                    <div id="roadattrttable"></div>
+                </tab>
+                <tab>
+                    <tab-heading> <i class="fa fa-file-image-o"></i></tab-heading>
+                    <div class="lightBoxGallery">
+                            <ui-gallery list="currentroadImageList" options="{container:'#blueimp-gallery-2'}"></ui-gallery>                 
+                    </div>
+                    </tab>                           
+             </tabset>    
+                      
         </div> 
         <div id ="roadmap_map" class="roadmap-map">
             <select  style="position:absolute;z-index:9999;left:2px;" ng-change="onmapselect(selectedmap)" ng-model="selectedmap">
                 <option value="-1">NAMRIA Basemap</option> 
-                <option value="0">OSM Bright</option>
+                <option value="0">Mapbox</option>
                 <option value="5">Esri World Map</option>
                 <option value="6">Esri Gray Map</option>
                 <option value="1">Google Street Map</option>
@@ -219,4 +230,13 @@
             <div id="roadmap"> </div>                
         </div>    
     </div>
+</div>
+<div id="blueimp-gallery-2" class="blueimp-gallery blueimp-gallery-controls blueimp-gallery-display" style="display:none;">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
 </div>

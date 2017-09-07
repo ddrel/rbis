@@ -46,7 +46,10 @@
                 }
 
             });            
-            
+
+            scope.isondelete = false;            
+            scope.isondelete = element.context.attributes.getNamedItem("ondelete")!=null;
+
             scope.deleteClick= function(evt){
                 //console.log(evt.currentTarget.dataset.dataobject);                
                 if (evt.stopPropagation)    evt.stopPropagation();
@@ -55,14 +58,11 @@
             }
 
             scope.onclickdownload =  function(evt){
-                console.log(evt);
                 var ddata = evt.currentTarget.dataset.downloaddata;
                 if (evt.stopPropagation)    evt.stopPropagation();
                 if (evt.cancelBubble!=null) evt.cancelBubble = true;
                 var link = $window.document.createElement("a");    
-                console.log(ddata);
                 link.href = ddata;
-                console.log(link);
                 link.style = "visibility:hidden";
                 $window.document.body.appendChild(link);
                     link.click();
@@ -80,7 +80,7 @@
     uiGalleryTemplate.$inject = ['$templateCache'];
 
     function uiGalleryTemplate($templateCache){
-        $templateCache.put("gallery.html","<div id=\"blueimp-gallery\" class=\"blueimp-gallery blueimp-gallery-controls\">\n <div class=\"slides\"></div>\n <h3 class=\"title\"></h3>\n <a class=\"prev\">‹</a>\n <a class=\"next\">›</a>\n <a class=\"close\">×</a>\n <a class=\"play-pause\"></a>\n <ol class=\"indicator\">\n <li ng-repeat=\"slide in slides\" title=\"{{slide.title}}\" data-index=\"{{$index}}\" style=\"background-image: url({{slide.thumb}})\"></li>\n </ol>\n </div>\n\n <div id=\"links\" class=\"links blueimp-gallery-inner\">\n  <div class=\"property-image\" ng-repeat=\"slide in slides\"><a id=\"a-image\" class=\"a-image\" href=\"{{slide.href}}\" title=\"{{slide.title}}\" data-index=\"{{$index}}\">\n    <img ng-src=\"{{slide.thumb}}\" alt=\"{{slide.title}}\">\n</a>\n <input id=\"image-delete\" type=\"button\" value=\"Delete\" style=\"display:block\" class=\"btn btn-danger delete-confirm-ajax\"  data-dataObject={{slide.data}} ng-click=\"deleteClick($event)\"></input>\n<input style=\"display:block\" class=\"btn btn-primary2 donwload-button-slide\" value=\"Download\" data-downloaddata={{slide.download}} ng-click=\"onclickdownload($event)\" ></input>\n</div></div>\n");
+        $templateCache.put("gallery.html","<div id=\"blueimp-gallery\" class=\"blueimp-gallery blueimp-gallery-controls\">\n <div class=\"slides\"></div>\n <h3 class=\"title\"></h3>\n <a class=\"prev\">‹</a>\n <a class=\"next\">›</a>\n <a class=\"close\">×</a>\n <a class=\"play-pause\"></a>\n <ol class=\"indicator\">\n <li ng-repeat=\"slide in slides\" title=\"{{slide.title}}\" data-index=\"{{$index}}\" style=\"background-image: url({{slide.thumb}})\"></li>\n </ol>\n </div>\n\n <div id=\"links\" class=\"links blueimp-gallery-inner\">\n  <div class=\"property-image\" ng-repeat=\"slide in slides\"><a id=\"a-image\" class=\"a-image\" href=\"{{slide.href}}\" title=\"{{slide.title}}\" data-index=\"{{$index}}\">\n    <img ng-src=\"{{slide.thumb}}\" alt=\"{{slide.title}}\">\n</a>\n <input ng-if=\"isondelete\" id=\"image-delete\" type=\"button\" value=\"Delete\" style=\"display:block\" class=\"btn btn-danger delete-confirm-ajax\"  data-dataObject={{slide.data}} ng-click=\"deleteClick($event)\"></input>\n<input style=\"display:block\" class=\"btn btn-primary2 donwload-button-slide\" value=\"Download\" data-downloaddata={{slide.download}} ng-click=\"onclickdownload($event)\" ></input>\n</div></div>\n");
     }
 
 })();

@@ -388,6 +388,24 @@ PlaceNames
 
 
    utilities.file = {};
+   utilities.file.getCurrentImageList =  function(roadItem){
+    var imageList = [];
+
+    console.log(roadItem);
+    if(roadItem.file_roadimages && roadItem.file_roadimages.length>0){
+        roadItem.file_roadimages.forEach(function(img){
+            var dataImage = {
+                href: "/images/road?id=" + img.sizes.lowres +"&type=lowres&rnd=" + utilities.uuid(),
+                thumb: "/images/road?id=" + img.sizes.thumb +"&type=thumb&rnd="+ utilities.uuid(),
+                download: "/images/road?id=" + img.sizes.orig + "&rnd="+ utilities.uuid(),
+                title: img.name,
+                data:img._id
+              };
+              imageList.push(dataImage);
+        });
+        return imageList;
+    };
+};
 
    utilities.file.upload = function(url,data,onsucess,onprogress){
     var formData = new FormData();

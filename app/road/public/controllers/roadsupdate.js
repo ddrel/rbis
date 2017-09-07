@@ -252,8 +252,26 @@ $scope.toolbarAction = function(a,e){
                     adapter.addNewtate = false;
                 },addroadimage:function(){
                     var roaduploadimages = uploadroadSvcs.images();
-                    roaduploadimages.then(function(data){
+                    roaduploadimages.then(function(data){                            
+                            if(data!=="cancel"){
+                                //Load images
+                                $http.get("/api/roads/getRoadImages?r_id=" + $scope.currentModel.roadID + 
+                                         "&key_name=" + $scope.currentModel.name +
+                                         "&attr_id="  + $scope.currentModel.currentItem._id)
+                                         .success(function(data){ 
+                                             $timeout(function(){
 
+                                                if($scope.currentModel.currentItem.file_roadimages){
+                                                    $scope.currentModel.currentItem.file_roadimages = data;
+                                                }
+                                                $scope.currentModel.roadImageList = [];
+                                                $scope.currentModel.roadImageList = $scope.getCurrentImageList({file_roadimages:data});                                 
+                                             }) ;                                                                                      
+                                        }).error(function(){
+                                            toastr.error("Error loading Images");
+                                        });
+
+                            }
                     },function(data){
 
                     })
@@ -275,7 +293,6 @@ $scope.ondeleteRoad = function(a){
               "&f_id=" + opt.f_id +
               "&key_name=" + opt.key_name;
               
-    console.log(qry);
     $http.delete("/images/road/delete?" + qry).success(function(){
         var idx = $scope.currentModel.roadImageList.map(function(d){return d.data}).indexOf(opt.f_id);  
         if(idx>-1){$scope.currentModel.roadImageList.splice(idx,1);}
@@ -287,21 +304,7 @@ $scope.ondeleteRoad = function(a){
 };
 
 $scope.getCurrentImageList =  function(roadItem){
-    var imageList = [];
-
-    if(roadItem.file_roadimages && roadItem.file_roadimages.length>0){
-        roadItem.file_roadimages.forEach(function(img){
-            var dataImage = {
-                href: "/images/road?id=" + img.sizes.lowres +"&type=lowres",
-                thumb: "/images/road?id=" + img.sizes.thumb +"&type=thumb",
-                download: "/images/road?id=" + img.sizes.orig,
-                title: img.name,
-                data:img._id
-              };
-              imageList.push(dataImage);
-        });
-        return imageList;
-    };
+    return utilities.file.getCurrentImageList(roadItem);
 };
 
 });

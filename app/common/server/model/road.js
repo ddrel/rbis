@@ -101,7 +101,27 @@ var _toDataType =  function(v){
     }else{
         return v;
     };
+};
+
+RoadsSchema.statics.getRoadImages = function(opt,cb){
+    this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
+        if(!doc || err){cb(err,[]);};
+        if(opt.key_name=="road"){
+                var dd = doc || {}
+                    dd = dd.file_roadimages || []
+                cb(err,dd);
+        }else if(ROAD_ATTR_DET.indexOf(opt.key_name)>-1 ){ 
+            var mdx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt.attr_id);
+               var item = [];
+               
+               if(mdx >-1){item = doc[opt.key_name][mdx].file_roadimages;} 
+                cb(err,item);
+        }else{
+            cb(err,[]);
+        }
+    });
 }
+
 
 RoadsSchema.statics.removeRoadImage =  function(opt,cb){
     console.log(opt);

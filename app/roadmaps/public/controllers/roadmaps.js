@@ -14,6 +14,7 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
     $scope.searchItems = [];
     $scope.selectedmap = -1;
     $scope.currentAttr = null;
+    $scope.currentroadImageList = [];
 
 
     $scope.regionprovince = [];
@@ -325,13 +326,29 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
 
     };
 
+    $scope.getCurrentImageList = function(roadItem){
+        return utilities.file.getCurrentImageList(roadItem); 
+    }
+    
+
+    $scope.getRoadImages =  function(opt){        
+        $http.get("/api/roads/getRoadImages?r_id=" + opt.roadID + 
+        "&key_name=" + opt.name +
+        "&attr_id="  + opt._id)
+        .success(function(data){ 
+            $timeout(function(){
+                $scope.currentroadImageList = [];
+                $scope.currentroadImageList = $scope.getCurrentImageList({file_roadimages:data});                                 
+            }) ;                                                                                      
+       }).error(function(){
+           toastr.error("Error loading Images");
+       });
+    }
+
     //*** Search Functionality ****************************************************************
 
     $scope.onclickattr =  function(o,name){
         $("#roadmap").leafletMaps("clear");
-
-        //console.log(name);
-
         var draw_geo =  function(o,name){
             var data =  o.geometry;        
             if(o instanceof Array){
@@ -418,8 +435,19 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
             //$scope.summary.roadsummarydisplay =  true;
             $scope.summary.displaytoggle =  true;
         };
-                
-                console.log($scope.summary.roadsummarydisplay);
+          
+        
+        console.log(name);
+        console.log(o)
+
+        //load road images
+        var rid = (typeof o._id=="object")?o._id.R_ID:o.R_ID;        
+        var opt_rimage = {};
+        opt_rimage.roadID = rid;
+        opt_rimage.name = name=="road"?"road":"Road" + name;
+        opt_rimage._id = o._id;
+        $scope.getRoadImages(opt_rimage)
+        //console.log($scope.summary.roadsummarydisplay);
         //work around reload current map
         $scope.onmapselect($scope._currentlayer.index);
         

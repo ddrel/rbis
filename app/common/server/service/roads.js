@@ -72,7 +72,14 @@ app.get("/api/roads/getObjectID",(req,res)=>{
     roads.getObjectID(req,res);
 });
 
+app.get("/api/roads/getRoadImages",(req,res)=>{
+    roads.getRoadImages(req,res);
+});
+
+
+/*
 app.get("/clenupdata",(req,res)=>{
     roads.clenupdata(req,res);
 });
+*/
 }
