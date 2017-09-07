@@ -437,10 +437,6 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
         };
           
         
-        console.log(name);
-        console.log(o)
-
-
         if(o instanceof Array == false){
             //load road images
             var rid = (typeof o._id=="object")?o._id.R_ID:o.R_ID;        

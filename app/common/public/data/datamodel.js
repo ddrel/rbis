@@ -345,7 +345,7 @@ datamodel.RoadBridges = {
 datamodel.RoadLocRefPoints = {
         "R_ID"      : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},
         "KMPostNo"  : {"label":"KM Post No.","key":"KMPostNo","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
-        "LAT"       : {"label":"Latitude","key":"Lat","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+        "LAT"       : {"label":"Latitude","key":"LAT","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
         "LONG"      : {"label":"Longitude","key":"LONG","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
 }
 
@@ -645,6 +645,7 @@ datamodel.utils.displayattributestable=  function(n,o,maxheight){
             };
 
             var m = _model;
+            console.log(m);
                 for(var n in _model){
                    var objdata = _model[n];
                     if(objdata.key=="LRPStartDi" || objdata.key=="LRPEndDisp"){         
