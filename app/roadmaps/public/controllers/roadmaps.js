@@ -33,9 +33,9 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
             $("#roadmap").leafletMaps({mutilplebasemap:true});
             
             var ih = $(".page-content").innerHeight();
-            $(".road-map-left").css("height",ih - 50 + "px");
-            $(".road-map-right").css("height",ih -50 + "px");
-            $("#roadmap").css("height",ih -50 + "px")    
+            $(".road-map-left").css("height",ih - 57 + "px");
+            $(".road-map-right").css("height",ih -57 + "px");
+            $("#roadmap").css("height",ih -57 + "px")    
             $("#roadmap").leafletMaps("refresh");
 
             var sidebarMenu = $('.page-sidebar-menu');

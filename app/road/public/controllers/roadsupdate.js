@@ -77,6 +77,14 @@ $scope.loadattrsFeaturesdata =  function(key,data){
 
 $scope.init =  function(){
     $timeout(function(){
+        var ih = $(".page-content").innerHeight();
+        $(".panel-body").css("margin-bottom","0px");
+        $(".panel-default").css("margin-bottom","0px");
+        $(".roads-tree-attr-main").css({"height":ih - 162 + "px","margin-bottom":"0px"});
+        $("#roadmap").css({"height":ih -158 + "px","margin-bottom":"0px"});
+        $(".content-data-attr").css({"height":ih - 189 + "px","margin-bottom":"0px"}); 
+
+
 
             $http.get("/api/roads/getroadshortattrinfo?rid=" + $stateParams.id).success(function(data){
                     $scope.road = data;                             
