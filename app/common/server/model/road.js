@@ -594,12 +594,11 @@ RoadsSchema.statics.save =  function(objdata,cb){
                           var _row = objdata.data[i];
                             if(_row.table=="road"){
                                 _row.rows.forEach(function(d){
-                                        doc[d.key] =d.value;                                            
+                                        doc[d.key] = d.value;                                            
                                 });
                                 
                                 //update date
-                                doc.updated_by.name = objdata.user.name;
-                                doc.updated_by.email = objdata.user.email; 
+                                doc.updated_by = {name : objdata.user.name,email:objdata.user.email};
                                 doc.lastupdate_date = new Date();
                                 
                                 var _pdx = _dataOnComplete.map(function(d){return d.table}).indexOf("Road");

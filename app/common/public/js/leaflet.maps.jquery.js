@@ -68,8 +68,8 @@ var sevdetails = {"sev1":{"text":"Severity level 1","from":0,"to":0},
 					if(_default.mutilplebasemap){
 						//Mapsmain.attr("id")
 						//mapbox.satellite
-						var map = L.map(this,{ zoomControl: false }).setView([12.80, 122.27], 5) 
-						var mapbox = L.tileLayer("https://{s}.tiles.mapbox.com/v4/feelcreative.llm8dpdk/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZmVlbGNyZWF0aXZlIiwiYSI6Ik1Gak9FXzAifQ.9eB142zVCM4JMg7btDDaZQ");
+						var map = L.map(this,{ zoomControl: false }).setView([12.80, 122.27], 5)//pk.eyJ1IjoiZmVlbGNyZWF0aXZlIiwiYSI6Ik1Gak9FXzAifQ.9eB142zVCM4JMg7btDDaZQ
+						var mapbox = L.tileLayer("https://{s}.tiles.mapbox.com/v4/feelcreative.llm8dpdk/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZHJlbCIsImEiOiJjajdibG4waDkwdHd3MzJxbWwzcmhzbHZnIn0.f-q8EG-3W_AEPk8P1h62pA");
 							/**/
 						
 							/*
