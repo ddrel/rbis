@@ -18,6 +18,7 @@
     "express": "^4.13.4",
     "express-flash": "^0.0.2",
     "express-session": "^1.13.0",
+    "express-status-monitor": "^1.0.0",
     "express-validator": "^2.19.1",
     "filestorage": "^1.5.0",
     "formidable": "^1.1.1",
@@ -25,6 +26,7 @@
     "jimp": "^0.2.28",
     "leaflet-draw": "^0.4.9",
     "lodash": "^4.2.1",
+    "lwip": "^0.0.9",
     "method-override": "^2.3.5",
     "moment": "^2.18.1",
     "mongoose": "^4.3.3",
@@ -48,8 +50,7 @@
     "swig": "^1.4.2",
     "walk": "^2.3.9",
     "websocket": "^1.0.23",
-    "ws": "^1.1.1",
-    "lwip":"^0.0.9"
+    "ws": "^1.1.1"
   },
   "devDependencies": {
     "blessed": "^0.1.81",

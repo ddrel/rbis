@@ -16,6 +16,7 @@ const methodOverride = require('method-override');
 const fs=require("fs");
 const walk    = require('walk');
 const flash = require('express-flash');
+const expressStatusMonitor = require('express-status-monitor');
 
 const cluster = require('cluster')
 const numCPUs = require('os').cpus().length
@@ -60,7 +61,7 @@ app.set('port', process.env.VCAP_APP_PORT || 9090);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-
+app.use(expressStatusMonitor());
 
 console.log("Mongo Connection");
 console.log(process.env.MONGODB_BLUEMIX || process.env.MONGODB_DEV  || process.env.MONGODB_LOCAL);
