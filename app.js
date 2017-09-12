@@ -61,7 +61,7 @@ app.set('port', process.env.VCAP_APP_PORT || 9090);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-//app.use(expressStatusMonitor());
+app.use(expressStatusMonitor());
 
 console.log("Mongo Connection");
 console.log(process.env.MONGODB_BLUEMIX || process.env.MONGODB_DEV  || process.env.MONGODB_LOCAL);
