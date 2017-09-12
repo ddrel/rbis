@@ -64,26 +64,6 @@
                          <td ng-repeat = "field in ['RROW_usefullife']" ng-include="'roadfieldcontrol'"></td>
                     </tr>    
                 </table>    
-                <!--
-                <table>
-                                    <tr ng-if="currentModel.struct[field].visible" ng-repeat = "field in currentModel.structfields">
-                                        <td >{{ currentModel.struct[field].label }} : </td>
-                                        <td>
-                                            <label ng-if="currentModel.struct[field].ctrl=='label'">{{ road[field] }}</label>
-                                            <input type="text" ng-if="currentModel.struct[field].ctrl=='text'"  ng-model="road[field]" class="{{currentModel.struct[field].class}}"></input>
-                                            <select ng-if="currentModel.struct[field].ctrl=='select'" ng-model="road[field]" class="{{currentModel.struct[field].class}}">
-                                                <option value="{{opt.key}}"  ng-selected="road[field]==opt.key" ng-repeat="opt in currentModel.struct[field].options">{{ opt.label }}</option>
-                                            </select>                                   
-                                            <div layout-gt-xs="row" ng-if="currentModel.struct[field].ctrl=='date'">
-                                                <div flex-gt-xs>                                    
-                                                <md-datepicker ng-model="road[field]" md-placeholder="Enter date"></md-datepicker>
-                                                </div>
-                                            </div>
-                                            
-                                        </td>    
-                                    </tr>
-                    </table>
-                    -->
                </md-tab>
           <md-tab label="Remarks/Status"> 
                 {{ currentModel.struct['remarks'].label }}         
@@ -92,11 +72,12 @@
                               style="currentModel.struct['remarks'].style">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment">
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab label="Road Images"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoadImage(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   

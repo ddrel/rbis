@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('RBIS').directive("filterInput",function(){
+angular.module('RBIS')
+.directive("filterInput",function(){
 
     return {
         scope:{
@@ -9,7 +10,7 @@ angular.module('RBIS').directive("filterInput",function(){
             element.on("keypress",function(e){
                 var _type =  scope.datatype.toLowerCase();
 
-                console.log(["integer","int"].indexOf(_type));
+                //console.log(["integer","int"].indexOf(_type));
 
                 var charCode = (e.which) ? e.which : e.keyCode;                
                 if(["float","decimal","double","number"].indexOf(_type)>-1){                    
@@ -24,5 +25,84 @@ angular.module('RBIS').directive("filterInput",function(){
             });
         }
     }
+})
+.directive("fileList",function($window){
+    var directive = {
+        template:_templateFileList(),   
+        scope: {
+            list: '=',
+            ondelete:'&'
+        },
+        link: link,
+        controller: function($scope){
+            $scope.value = 'directive scope value';
+          }
+    };
 
+
+    function link(scope, element, attr) {
+        scope.items = scope.list;
+        scope.$watch('list', function(newVal, oldVal){
+            scope.items = newVal;
+        });
+
+        scope.deleteClickFile= function(evt){                                        
+            if (evt.stopPropagation)    evt.stopPropagation();
+            if (evt.cancelBubble!=null) evt.cancelBubble = true;
+            scope.ondelete({b:evt});
+            return false;
+        }
+
+        scope.converttomb =  function(b){
+                if(!b){return "N/A"};
+                if(b.toString().length<=3){
+                    return b + "Kb"
+                }else{
+                    return (Math.round(Number(b) / 1024) /1024) .toFixed(3) + "Mb";
+                }
+                
+        }
+
+        scope.limitstring =  function(a){
+            return a.length>=35?a.substring(0,35) + " ...":a;
+        }
+
+        scope.formatdate = function(d){
+            if(d){
+                var date = new Date(d);
+                return (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() + " " + date.toLocaleTimeString();
+            };
+            return "";
+        }
+
+        
+        scope.onclickdownload =  function(id){
+            var link = $window.document.createElement("a");    
+            link.href = "/media/road?id=" + id;
+            link.style = "visibility:hidden";
+            $window.document.body.appendChild(link);
+            link.click();
+            $window.document.body.removeChild(link);
+
+        }
+
+    }
+    
+    function _templateFileList(){
+        return "<table class='table table-bordered table-hover'>" +
+                "<thead><tr><td>File name</td><td>Size</td><td>Upload Date</td><td width='70px' colspan='2'></td></tr></thead>" + 
+                "<tbody>" + 
+                "<tr ng-repeat='row in items'>" + 
+                "<td title='{{ (row.name) }}'>{{ limitstring(row.name) }}</td>" +
+                "<td>{{ converttomb(row.size) }}</td>" + 
+                "<td>{{ formatdate(row.created_date) }}</td>" + 
+                "<td width='35px'><a href='' ng-click='onclickdownload(row.doc_id)'><i class='fa fa-cloud-download' aria-hidden='true'>&nbsp;Download</i></a></td>" + 
+                "<td width='35px'><a href='' ng-click='deleteClickFile(row)'><i class='fa fa-trash' aria-hidden='true'>&nbsp;Delete</i></a></td>" +
+                "</tr>" +
+                "</tbody>"  
+        "</table>"
+    } 
+    
+    return directive;
+    
 })

@@ -1,16 +1,20 @@
 'use strict';
 angular.module('RBIS')
-.controller("uploadroadimagesCtrl", function( $scope,$http,$rootScope,$window,$timeout,utilities,$mdDialog,uploadroadSvcsData) {        
+.controller("uploadCtrl", function( $scope,$http,$rootScope,$window,$timeout,utilities,$mdDialog,uploadroadSvcsData) {        
    
    $scope.progressFiles = [];
+   var _rdData = {};
+   
     $scope.init =  function(){
-        
+        _rdData = uploadroadSvcsData.get();
+        $scope.headertitle = _rdData.headertitle;
     }
-
-    $scope.progressvalue = 80;
+    $scope.headertitle = "";
+    $scope.progressvalue = 0;
     
     $scope.submitfiles = function(files){
-        var _rdData = uploadroadSvcsData.get();
+        
+        
         angular.forEach(files,function(obj){
             if(!obj.isRemote){
                 var _roadAttr = {key_name:_rdData.name,r_id:_rdData.currentItem.R_ID,"_id":_rdData.currentItem._id}                    
@@ -19,19 +23,26 @@ angular.module('RBIS')
                     pv:0,
                     uid:utilities.uuid()}
                 $scope.progressFiles.push(_objFile);
-                utilities.file.upload("/upload/roads/uploadimages",_objFile,
-                                    function(data){
-                                        $timeout(function(){
-                                            $mdDialog.hide(data);
-                                        },500);                                        
-                                    },
-                                    function(progress,file){
-                                        var fdx = $scope.progressFiles.map(function(d){return d.uid}).indexOf(file.uid);                                                
-                                        $scope.progressFiles[fdx].pv = progress;
-                                        $scope.$apply();
-                                    });               
-                                                   
-                }
+                 
+                var _urlpath = "";
+                if(_rdData.filetype=="image"){_urlpath = "/upload/roads/uploadimages"}
+                else if(_rdData.filetype=="file"){_urlpath = "/upload/roads/uploadfiles"}
+
+                if(_urlpath){
+                    utilities.file.upload(_urlpath,_objFile,
+                        function(data){
+                            $timeout(function(){
+                                $mdDialog.hide(data);
+                            },500);                                        
+                        },
+                        function(progress,file){
+                            var fdx = $scope.progressFiles.map(function(d){return d.uid}).indexOf(file.uid);                                                
+                            $scope.progressFiles[fdx].pv = progress;
+                            $scope.$apply();
+                    });
+                };
+                                   
+            }
         });
         
 
@@ -64,8 +75,19 @@ angular.module('RBIS')
 var uploadroadSvcs = {};
 uploadroadSvcs.images =  function(ev){
     return $mdDialog.show({
-        controller: 'uploadroadimagesCtrl',
+        controller: 'uploadCtrl',
         templateUrl: '/road/views/uploadroadimages.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:false,
+        fullscreen: true
+      });        
+}
+
+uploadroadSvcs.files =  function(ev){
+    return $mdDialog.show({
+        controller: 'uploadCtrl',
+        templateUrl: '/road/views/uploadroadfiles.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:false,
@@ -75,6 +97,7 @@ uploadroadSvcs.images =  function(ev){
 
 return uploadroadSvcs;
 }])
+
 .service('uploadroadSvcsData', ['utilities',function (utilities){
     var uploadroadSvcsData = {};
     var _data = null;

@@ -260,6 +260,10 @@ $scope.toolbarAction = function(a,e){
                     adapter.addNewtate = false;
                 },addroadimage:function(){
                     var roaduploadimages = uploadroadSvcs.images();
+                    var _dd = uploadroadSvcsData.get();
+                        _dd.filetype = "image";
+                        _dd.headertitle = "Upload Road Images";
+                        uploadroadSvcsData.set(_dd);
                     roaduploadimages.then(function(data){                            
                             if(data!=="cancel"){
                                 //Load images
@@ -283,33 +287,70 @@ $scope.toolbarAction = function(a,e){
                     },function(data){
 
                     })
+                },addroadfile:function(){
+                    var roaduploadfiles = uploadroadSvcs.files();
+                    var _dd = uploadroadSvcsData.get();
+                        _dd.filetype = "file";
+                        _dd.headertitle = "Upload Road Documents";
+                        uploadroadSvcsData.set(_dd);                        
+                        roaduploadfiles.then(function(data){
+                            $http.get("/api/roads/getRoadFile?r_id=" + $scope.currentModel.roadID + 
+                            "&key_name=" + $scope.currentModel.name +
+                            "&attr_id="  + $scope.currentModel.currentItem._id)
+                            .success(function(data){ 
+                                $timeout(function(){
+                                       $scope.currentModel.currentItem.file_attachment = data;                                   
+                                }) ;                                                                                      
+                           }).error(function(){
+                               toastr.error("Error loading Images");
+                           });
+
+                        });
                 }
         };
 
 
     action[a]();
 };
-$scope.ondeleteRoad = function(a){
+
+$scope.ondeleteFile =  function(b){    
+    $scope.deleteMedia(b._id,"file_attachment").success(function(){
+        var idx = $scope.currentModel.currentItem.file_attachment.map(function(d){return d._id}).indexOf(b._id);  
+        if(idx>-1){$scope.currentModel.currentItem.file_attachment.splice(idx,1);}
+            toastr.success("File successfully removed ...");
+    }).error(function(){
+            toastr.error("Error removing File ...");
+    }); 
+};
+
+$scope.ondeleteRoadImage = function(a){              
+    console.log(a);
+    $scope.deleteMedia(a,"file_roadimages").success(function(){
+        var idx = $scope.currentModel.roadImageList.map(function(d){return d.data}).indexOf(a);  
+        if(idx>-1){$scope.currentModel.roadImageList.splice(idx,1);}
+            toastr.success("Image successfully removed ...");
+    }).error(function(){
+            toastr.error("Error removing Image ...");
+    });    
+
+};
+
+$scope.deleteMedia =  function(f_id,field_file){
     var opt = {};    
     opt.r_id = $scope.currentModel.roadID;
     opt.attr_id = $scope.currentModel.currentItem._id
-    opt.f_id = a;
+    opt.f_id = f_id;
     opt.key_name = $scope.currentModel.name;
 
     var qry = "r_id=" + opt.r_id +
               "&attr_id=" + opt.attr_id +
               "&f_id=" + opt.f_id +
               "&key_name=" + opt.key_name;
-              
-    $http.delete("/images/road/delete?" + qry).success(function(){
-        var idx = $scope.currentModel.roadImageList.map(function(d){return d.data}).indexOf(opt.f_id);  
-        if(idx>-1){$scope.currentModel.roadImageList.splice(idx,1);}
-            toastr.success("Image successfully removed ...");
-    }).error(function(){
-            toastr.error("Error removing Image ...");
-    });
 
-};
+    console.log("/media/road/delete?" + qry + "&field_file=" + field_file);              
+    return $http.delete("/media/road/delete?" + qry + "&field_file=" + field_file)
+}
+
 
 $scope.getCurrentImageList =  function(roadItem){
     return utilities.file.getCurrentImageList(roadItem);

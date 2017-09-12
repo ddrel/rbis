@@ -11,6 +11,7 @@ const storage_roads_lowres = require('filestorage').create(path.join(appRoot.pat
 const storage_roads_orig = require('filestorage').create(path.join(appRoot.path, '/data_file/') + "/roads_images/orig");
 const reducedSizedefault = 60 //60kb
 const storage_users = require('filestorage').create(path.join(appRoot.path, '/data_file/') + "/users_images/");
+const storage_roads_media = require('filestorage').create(path.join(appRoot.path, '/data_file/') + "/roads_attachment/");
 
 const mongoose = require('mongoose');
 
@@ -96,7 +97,6 @@ const uploadRoadImage =  (req,res,target,cb)=>{
                     _opt.mime = file.type;
             
                     _opt.created_by = {name:req.user.name,email:req.user.email};
-                    _opt.updated_by = {name:req.user.name,email:req.user.email};
                     _opt.sizes = {};
                     _opt.sizes.thumb = -1
                     _opt.sizes.lowres = -1
@@ -167,9 +167,9 @@ const uploadRoadImage =  (req,res,target,cb)=>{
             });// end promise
 
             //Add Image details to Db
-            promise.then(function(opt){
-                //console.log("222222222222222222222222222222222"); 
-                mongoose.model("Roads").addRoadImage(opt,function(err,doc){
+            promise.then(function(opt){    
+                opt.fieldtype = "file_roadimages";            
+                mongoose.model("Roads").addRoadMedia(opt,function(err,doc){
                             return cb(err,doc);                        
                     });
             }).catch(function(err){
@@ -181,6 +181,7 @@ const uploadRoadImage =  (req,res,target,cb)=>{
             
         });//end rename;
     });
+
   
     // log any errors that occur
     form.on('error', function(err) {
@@ -197,9 +198,82 @@ const uploadRoadImage =  (req,res,target,cb)=>{
     // parse the incoming request containing the form data
     form.parse(req);
 }
+
+
+const uploadRoadFile =  (req,res,target,cb)=>{
+    var roads = mongoose.model("Roads");
+    var form = new formidableObj.IncomingForm(); 
+      form.multiples = true;
+    
+      // store all uploads in the /uploads directory    
+      var _rpath = path.join(appRoot.path, dirupload);   
+      var _uploadDir = fileObj.createDirectory(_rpath);    
+      form.uploadDir = _uploadDir;  
+    
+      var _roadData = false;
+      form.on('field', function (name, field) {
+          if(name=="roadattr"){_roadData = fileObj.isJSON(field);};
+      });
+      form.on('file', function(field, file) { 
+          var _uidFilename =   new mongoose.mongo.ObjectId().toString() + "_" + file.name;                             
+          fs.rename(file.path,path.join(form.uploadDir, _uidFilename) ,function(err){      
+            var promise =  new Promise(function(resolve,reject){
+                var _opt = {};
+                _opt.key_name = _roadData.key_name;     
+                _opt.r_id = _roadData.r_id;
+                _opt._id = _roadData._id;
+                _opt.name = file.name;
+                _opt.size = file.size;
+                _opt.mime = file.type;                
+                _opt.created_by = {name:req.user.name,email:req.user.email};
+                
+                
+                storage_roads_media.insert(file.name, path.join(form.uploadDir, _uidFilename), _opt, function(err, id, stat) {            
+                    if(!err){                        
+                        _opt.doc_id = id;                                        
+                            fileObj.removeFile(path.join(form.uploadDir, _uidFilename),function(err){return reject(err);return;});
+                            if(err){return reject(err);return;}
+                            resolve(_opt);
+                    };                    
+                });
+            });
+            
+            promise.then(function(opt){    
+                opt.fieldtype = "file_attachment";            
+                mongoose.model("Roads").addRoadMedia(opt,function(err,doc){
+                            return cb(err,doc);                        
+                    });
+            }).catch(function(err){                                
+                console.log(err);
+                cb(err,null);
+                return;
+            });
+        
+          });//end rename;
+      });
+      
+    
+      form.on('error', function(err) {return cb(err,null);});
+      form.on('end', function(a,b) {});
+      form.parse(req);
+  };
+
 module.exports = (app)=>{
     app.post("/upload/roads/uploadimages",(req,res)=>{
         uploadRoadImage(req,res,"",(err)=>{
+            if(err){
+                res.send("error");
+                return;
+            }else{
+                res.send("success");
+                return;
+            }
+        });
+    });
+
+
+    app.post("/upload/roads/uploadfiles",(req,res)=>{
+        uploadRoadFile(req,res,"",(err)=>{
             if(err){
                 res.send("error");
                 return;
@@ -225,13 +299,18 @@ module.exports = (app)=>{
         };        
     });
 
+    app.get("/media/road",(req,res)=>{
+        var _id = req.query.id || -1;    
+        return  storage_roads_media.pipe(_id, req, res, true);
+    });
 
-    app.delete("/images/road/delete",(req,res)=>{
+    app.delete("/media/road/delete",(req,res)=>{
         var opt = {};
             opt.r_id = req.query.r_id;
             opt.attr_id = req.query.attr_id;
             opt.f_id = req.query.f_id;
             opt.key_name = req.query.key_name;
+            opt.field_file = req.query.field_file;
 
             if(opt.key_name!=="road" && !opt.attr_id && !opt.r_id && !opt.f_id){
                 res.status(500).send("error");
@@ -239,14 +318,22 @@ module.exports = (app)=>{
             }else if(opt.key_name=="road" && !opt.f_id && !opt.r_id){
                 res.status(500).send("error");
                 return;
+            }else if(["file_roadimages","file_attachment"].indexOf(opt.field_file)==-1){
+                res.status(500).send("error");
+                return;
             }
 
 
-        mongoose.model("Roads").removeRoadImage(opt,function(err,data){
+        mongoose.model("Roads").removeRoadMedia(opt,function(err,data){
                 if(!err){
-                    storage_roads_thumb.remove(data.thumb);
-                    storage_roads_lowres.remove(data.lowres);
-                    storage_roads_orig.remove(data.orig);
+                    if(opt.field_file=="file_roadimages"){
+                        storage_roads_thumb.remove(data.thumb,function(err){});
+                        storage_roads_lowres.remove(data.lowres,function(err){});
+                        storage_roads_orig.remove(data.orig,function(err){});
+                    }else if(opt.field_file=="file_attachment"){
+                        storage_roads_media.remove(data.doc_id,function(err){});
+                    }
+                    
                     res.status(200).send("success");
                 }else{
                     res.status(500).send("error");

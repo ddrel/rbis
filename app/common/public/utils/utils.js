@@ -390,8 +390,6 @@ PlaceNames
    utilities.file = {};
    utilities.file.getCurrentImageList =  function(roadItem){
     var imageList = [];
-
-    console.log(roadItem);
     if(roadItem.file_roadimages && roadItem.file_roadimages.length>0){
         roadItem.file_roadimages.forEach(function(img){
             var dataImage = {

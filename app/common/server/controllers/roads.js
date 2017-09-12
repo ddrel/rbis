@@ -265,6 +265,18 @@ exports.getRoadImages =  (req,res)=>{
     });
 }
 
+
+exports.getRoadFile =  (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var opt = {};
+        opt.r_id = req.query.r_id;
+        opt.key_name = req.query.key_name;
+        opt.attr_id = req.query.attr_id;
+    roads.getRoadFile(opt,function(err,data){
+        if(err){res.status(500).json(err);return;};
+        res.status(200).json(data);
+    });
+}
 /*
 exports.clenupdata = (req,res)=>{
     console.log("---------------------------------");

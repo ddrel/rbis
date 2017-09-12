@@ -1,4 +1,4 @@
-<md-dialog aria-label="Upload Road Images" ng-init="init()" style="width:50%">        
+<md-dialog aria-label="{{ headertitle }}" ng-init="init()" style="width:50%">        
           <md-toolbar>
             <div class="md-toolbar-tools">
               <h2>{{ headertitle }}</h2>
@@ -32,7 +32,10 @@
                     <div ng-if="uploadform.files00.$error.totalsize">Total size too large.</div>
                     <div ng-if="uploadform.files00.$error.mimetype">Mimetype error.</div>
                 </div>
-                <lf-ng-md-file-input name="files00" lf-files="files" lf-api="api09" lf-required lf-maxcount="15" lf-filesize="5MB" lf-totalsize="75MB" accept="image/*" lf-mimetype="image/*" multiple drag preview
+                <!-- lf-mimetype="image/*" -->
+                <lf-ng-md-file-input accept="application/pdf,application/vnd.ms-excel,.csv,text/csv,application/csv,application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*,application/vnd.openxmlformats-officedocument.wordprocessing‌​ml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.‌​sheet, application/vnd.openxmlformats-officedocument.presentationml‌​.slideshow" 
+                    lf-mimetype="application/pdf,application/vnd.ms-excel,csv,text/csv,application/csv,application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*,application/vnd.openxmlformats-officedocument.wordprocessing‌​ml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.‌​sheet, application/vnd.openxmlformats-officedocument.presentationml‌​.slideshow" 
+                    name="files00" lf-files="files" lf-api="api09" lf-required lf-maxcount="15" lf-filesize="10MB" lf-totalsize="150MB"  multiple drag preview
                 lf-on-file-click="onFileClick" lf-on-file-remove="onFileRemove" ></lf-ng-md-file-input>    
             </div>                                                 
           </md-dialog-content>

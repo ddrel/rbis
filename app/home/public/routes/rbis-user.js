@@ -71,6 +71,7 @@
                                                                 '/bower_components/leaflet-draw/dist/leaflet.draw.js',
                                                                 '/bower_components/leaflet-draw/dist/leaflet.draw.css',                                                                
                                                                 '/common/js/leaflet.maps.jquery.js',
+                                                                '/road/service/uploadroadfile.js',
                                                                 '/road/assets/css/roads.css',
                                                                 '/road/controllers/roadsupdate.js'                                                                
                                                                 ]

@@ -83,7 +83,7 @@
                                                                 '/bower_components/leaflet-draw/dist/leaflet.draw.js',
                                                                 '/bower_components/leaflet-draw/dist/leaflet.draw.css',                                                                
                                                                 '/common/js/leaflet.maps.jquery.js',
-                                                                '/road/service/uploadroadimage.js',
+                                                                '/road/service/uploadroadfile.js',
                                                                 '/road/assets/css/roads.css',                                                                
                                                                 '/road/controllers/roadsupdate.js'                                                                
                                                                 ]
@@ -216,7 +216,7 @@
                               })                             
 
          }])
-         .run(function($rootScope, $state, $urlMatcherFactory) {
+         .run(function($rootScope, $state, $urlMatcherFactory,$templateCache,$http) {
                 $rootScope.$state = $state;
                 function message(to, toP, from, fromP) { return from.name  + angular.toJson(fromP) + " -> " + to.name + angular.toJson(toP); }
                 $rootScope.$on("$stateChangeStart", function(evt, to, toP, from, fromP) { console.log("Start:   " + message(to, toP, from, fromP)); });

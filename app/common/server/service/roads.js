@@ -76,6 +76,11 @@ app.get("/api/roads/getRoadImages",(req,res)=>{
     roads.getRoadImages(req,res);
 });
 
+app.get("/api/roads/getRoadFile",(req,res)=>{
+    roads.getRoadFile(req,res);
+});
+
+
 
 /*
 app.get("/clenupdata",(req,res)=>{
