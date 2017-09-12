@@ -313,6 +313,15 @@ $scope.toolbarAction = function(a,e){
     action[a]();
 };
 
+
+$scope.tabselected = "details";
+
+$scope.ismediatabactive =  function(){
+    return ['images','attachment'].indexOf($scope.tabselected)>-1;
+};
+$scope.ontabselected = function(a){
+    $scope.tabselected = a;
+};
 $scope.ondeleteFile =  function(b){    
     $scope.deleteMedia(b._id,"file_attachment").success(function(){
         var idx = $scope.currentModel.currentItem.file_attachment.map(function(d){return d._id}).indexOf(b._id);  

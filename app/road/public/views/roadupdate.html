@@ -237,18 +237,17 @@
                                 </md-menu-item> 
                             </md-menu-content>
                         </md-menu>
-                        <md-menu ng-show="currentModel.currentItem!=null">
+                        <md-menu ng-show="currentModel.currentItem!=null && ismediatabactive()">
                             <button ng-click="$mdMenu.open()">
                             Media Files
                             </button>  
                             <md-menu-content>                            
-                                <md-menu-item>
+                                <md-menu-item ng-show="tabselected=='images'">
                                     <md-button ng-click="toolbarAction('addroadimage', $event)">
                                         <i class="fa fa-file-image-o" aria-hidden="true">&nbsp;Add Road Images</i>
                                     </md-button>
                                 </md-menu-item>
-                                <md-menu-divider></md-menu-divider>
-                                <md-menu-item>
+                                <md-menu-item ng-show="tabselected=='attachment'">
                                     <md-button ng-click="toolbarAction('addroadfile', $event)">
                                         <i class="fa fa-file-text" aria-hidden="true">&nbsp;Attached Document</i>
                                     </md-button>

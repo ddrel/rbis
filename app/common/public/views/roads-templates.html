@@ -16,7 +16,7 @@
 
 <script type="text/ng-template" id="roadmain">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table  class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -65,17 +65,17 @@
                     </tr>    
                 </table>    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="currentModel.struct['remarks'].style">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment">
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')">
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoadImage(a)"></ui-gallery>                 
                 </div>                                       
@@ -107,7 +107,7 @@
 <!--KM post-->
 <script type="text/ng-template" id="template_RoadLocRefPoints">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -127,16 +127,17 @@
                     </tr>
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -148,7 +149,7 @@
 <!--Carriageway-->
 <script type="text/ng-template" id="template_RoadCarriageway">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['SegmentID'].label }}</td>
@@ -229,16 +230,17 @@
 
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -249,7 +251,7 @@
 <!--Bridge-->
 <script type="text/ng-template" id="template_RoadBridges">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -484,16 +486,17 @@
                     </tr>
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -506,7 +509,7 @@
 <!--RoadSideFriction-->
 <script type="text/ng-template" id="template_RoadSideFriction">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -531,16 +534,17 @@
                     </tr>                                      
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -552,7 +556,7 @@
 <!--RoadPlaceNames-->
 <script type="text/ng-template" id="template_RoadPlaceNames">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -581,16 +585,17 @@
                     </tr>                                       
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -602,7 +607,7 @@
 <!--RoadJunctions-->
 <script type="text/ng-template" id="template_RoadJunctions">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -631,16 +636,17 @@
                     </tr>                                       
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -652,7 +658,7 @@
 <!--RoadMedian-->
 <script type="text/ng-template" id="template_RoadMedian">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -681,16 +687,17 @@
                     </tr>                                       
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -703,7 +710,7 @@
 <!--RoadGuardrails-->
 <script type="text/ng-template" id="template_RoadGuardrails">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -748,16 +755,17 @@
                     </tr>                                     
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -769,7 +777,7 @@
 <!--RoadHazards-->
 <script type="text/ng-template" id="template_RoadHazards">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -802,16 +810,17 @@
                     </tr>                                      
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -824,7 +833,7 @@
 <!--RoadLightings-->
 <script type="text/ng-template" id="template_RoadLightings">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -873,16 +882,17 @@
                     </tr>                                           
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -894,7 +904,7 @@
 <!--RoadMarkings-->
 <script type="text/ng-template" id="template_RoadMarkings">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -939,16 +949,17 @@
                     </tr>                                              
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -960,7 +971,7 @@
 <!--RoadSigns-->
 <script type="text/ng-template" id="template_RoadSigns">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -1013,16 +1024,17 @@
                     </tr>                                               
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1035,7 +1047,7 @@
 <!--RoadShoulders-->
 <script type="text/ng-template" id="template_RoadShoulders">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -1093,16 +1105,17 @@
                                                            
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1114,7 +1127,7 @@
 <!--RoadSideSlopes-->
 <script type="text/ng-template" id="template_RoadSideSlopes">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -1167,16 +1180,17 @@
                     </tr>                                                
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1188,7 +1202,7 @@
 <!--RoadStructures-->
 <script type="text/ng-template" id="template_RoadStructures">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -1233,7 +1247,7 @@
                     </tr>                                                  
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
@@ -1241,9 +1255,10 @@
 
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')">
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list>  
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1255,7 +1270,7 @@
 <!--RoadSideWalks-->
 <script type="text/ng-template" id="template_RoadSideWalks">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -1304,16 +1319,17 @@
                     </tr>                                                       
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1326,7 +1342,7 @@
 <!--RoadCauseways-->
 <script type="text/ng-template" id="template_RoadCauseways">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -1375,16 +1391,17 @@
                     </tr>                                                   
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1396,7 +1413,7 @@
 <!--RoadCulverts-->
 <script type="text/ng-template" id="template_RoadCulverts">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -1469,16 +1486,17 @@
                     </tr>                                         
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1490,7 +1508,7 @@
 <!--RoadDitches-->
 <script type="text/ng-template" id="template_RoadDitches">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -1539,16 +1557,17 @@
                     </tr>                        
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1560,7 +1579,7 @@
 <!--RoadSpillways-->
 <script type="text/ng-template" id="template_RoadSpillways">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -1609,16 +1628,17 @@
                     </tr>                                                  
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1629,7 +1649,7 @@
 <!--Traffic-->
 <script type="text/ng-template" id="template_RoadTraffic">
     <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Details">
+            <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
@@ -1672,16 +1692,17 @@
                     <tr>
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status"> 
+          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
                 {{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="{{currentModel.struct['remarks'].style}}">
                     </textarea>
         </md-tab>
-        <md-tab label="Attachment"> 
+        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images"> 
+        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList"  options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
