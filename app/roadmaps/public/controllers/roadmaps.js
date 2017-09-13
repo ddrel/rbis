@@ -417,7 +417,7 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
         //from tree 
         if(o.R_NAME){
             $scope.getroadSC_ST(o.R_ID);
-            console.log(o);
+            //console.log(o);
             $scope.summary.road.length = utilities.formatToDecimal(parseFloat("0" + o.Length).toFixed(3));
             $scope.summary.road.class = o.R_CLASS;
             $scope.summary.road.importance = o.R_Importan;

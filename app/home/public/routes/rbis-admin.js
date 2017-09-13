@@ -117,7 +117,7 @@
                                                 return $ocLazyLoad.load([
                                                     {
                                                         serie: true,
-                                                        cache:true,
+                                                        cache:false,
                                                         files: ['/common/plugins/leaflet/leaflet.js',
                                                                 '/common/plugins/leaflet/leaflet.css',
                                                                 '/bower_components/leaflet-draw/dist/leaflet.draw.js',

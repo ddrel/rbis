@@ -105,4 +105,45 @@ angular.module('RBIS')
     
     return directive;
     
+}).directive("formField",function($compile){
+
+    var directive = {
+        template:_templateCtrl(),   
+        scope: {
+            field: '@',
+            currentmodel: '=',
+            ondatadirty:'&'
+        },
+        link: link,
+        controller: function($scope){
+            $scope.value = 'directive scope value';
+          }
+    };
+
+    var _gettemplates = function(field,currentmodel){
+            //on progress
+            if(currentmodel.struct[field].ctrl=='label'){
+                console.log("<label ng-click=ondatadirtyForm(field,currentmodel,null)>" + currentmodel.currentItem[field] +"</label>");
+                return "<label ng-click=ondatadirtyForm(field,currentmodel,null)>" + currentmodel.currentItem[field] +"</label>";
+            }
+    }
+
+
+    function link(scope, element, attr) {
+        element.html(_gettemplates(scope.field,scope.currentmodel));
+        $compile(element.contents())(scope);
+
+        scope.ondatadirtyForm =  function(a,b,c){
+            console.log(a);
+            console.log(b);
+            scope.ondatadirty(a,b,c);
+        }
+    }
+
+
+    function _templateCtrl(){
+        return ""
+    }
+
+    return directive;
 })

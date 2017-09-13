@@ -256,27 +256,28 @@ datamodel.road = {
 datamodel.RoadCarriageway = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"}, 
     "SegmentID"  : {"label":"Segment ID","key":"SegmentID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"}, 
-    "LRPStartKm" : {"label":"Start","key":"LRPStartKm","type":"string","options":[],"style":"","ctrl":"select","class":"form-control"}, 
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
-    "LRPEndKmPo" : {"label":"End","key":"LRPEndKmPo","type":"string","options":[],"style":"","ctrl":"select","class":"form-control"}, 
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},   
+    "LRPStartKm" : {"label":"Start","key":"LRPStartKm","type":"integer","options":[],"style":"","ctrl":"select","class":"form-control"}, 
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
+    "LRPEndKmPo" : {"label":"End","key":"LRPEndKmPo","type":"integer","options":[],"style":"","ctrl":"select","class":"form-control"}, 
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},   
     "NumLanes"   : {"label":"No. of Lanes","key":"NumLanes","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
-    "LaneWidthL" : {"label":"Lane Width Left","key":"LaneWidthL","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
-    "LaneWidthR" : {"label":"Lane Width Right","key":"LaneWidthR","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
-    "SegmentLen" : {"label":"Segment Length","key":"SegmentLen","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+    "LaneWidthL" : {"label":"Lane Width Left","key":"LaneWidthL","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+    "LaneWidthR" : {"label":"Lane Width Right","key":"LaneWidthR","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+    "SegmentLen" : {"label":"Segment Length","key":"SegmentLen","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
     "SurfaceTyp" : {"label":"Surface Type","key":"SurfaceTyp","type":"string","options":datamodel.options.surfacetype,"style":"","ctrl":"select","class":"form-control"},  
     "PavementTy" : {"label":"Pavement Type","key":"PavementTy","type":"string","options":datamodel.options.pavementtype,"style":"","ctrl":"select","class":"form-control"},  
     "DateOfLast" : {"label":"Date of Last Resurfacing","key":"DateOfLast","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},      
-    "YearOfReco" : {"label":"Year of Reconstruction","key":"YearOfReco","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
+    "RROW_usefullife"   : {"label":"RROW Useful Life","key":"RROW_usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "YearOfReco" : {"label":"Year of Reconstruction","key":"YearOfReco","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
     "SegmentCon" : {"label":"Condition","key":"SegmentCon","type":"string","options":datamodel.options.roadcondition,"style":"","ctrl":"select","class":"form-control"},  
-    "PavementThickness"  : {"label":"Pavement Thickness","key":"PavementThickness","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+    "PavementThickness"  : {"label":"Pavement Thickness","key":"PavementThickness","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
     "PavementStrength"  : {"label":"Pavement Strength","key":"PavementStrength","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
     "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},  
-    "Lifeyears"  : {"label":"Useful Life Year(s)","key":"Lifeyears","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
-    "carriagewayWidth":{"label":"Carriageway Width","key":"carriagewayWidth","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+    "Lifeyears"  : {"label":"Useful Life Year(s)","key":"Lifeyears","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+    "carriagewayWidth":{"label":"Carriageway Width","key":"carriagewayWidth","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
     "remarks"    : {"label":"Remarks","key":"remarks","type":"string","options":[],"visible":true,"style":"","ctrl":"textarea","class":"form-control"},
     //added options
-     "ConstructionValue":{"label":"Construction Value (PHP)","key":"ConstructionValue","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+     "ConstructionValue":{"label":"Construction Value (PHP)","key":"ConstructionValue","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
 
 }
 
@@ -284,20 +285,20 @@ datamodel.RoadCarriageway = {
 datamodel.RoadBridges = {
             "R_ID"          :{"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},             
             "Name"          :{"label":"Name","key":"Name","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-            "Length"        :{"label":"Length(m)","key":"Length","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+            "Length"        :{"label":"Length(m)","key":"Length","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
             "TypeID"        :{"label":"Type Id","key":"TypeID","type":"string","options":datamodel.options.superstructuretype,"style":"","ctrl":"select","class":"form-control"}, 
-            "LRPStartKm"    :{"label":"Km Post Start","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-            "LRPStartDi"    :{"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
-            "LRPEndKmPo"    :{"label":"Km Post End","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
-            "LRPEndDisp"    :{"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
-            "YearBuilt"     :{"label":"Year Built","key":"YearBuilt","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
-            "LoadLimit"     :{"label":"Load Limit","key":"LoadLimit","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},   
+            "LRPStartKm"    :{"label":"Km Post Start","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+            "LRPStartDi"    :{"label":"","key":"LRPStartDi","type":"string","float":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+            "LRPEndKmPo"    :{"label":"Km Post End","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
+            "LRPEndDisp"    :{"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
+            "YearBuilt"     :{"label":"Year Built","key":"YearBuilt","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
+            "LoadLimit"     :{"label":"Load Limit","key":"LoadLimit","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},   
             "SuperStruc"    :{"label":"Super Structure Type","key":"SuperStruc","type":"string","options":datamodel.options.superstructuretype,"style":"","ctrl":"select","class":"form-control"},  
-            "NumGirders"    :{"label":"No. Of Girders","key":"NumGirders","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,}, 
-            "DeckDimens"    :{"label":"Deck Dimens","key":"DeckDimens","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,}, 
-            "DeckDime_1"    :{"label":"Deck Dime 1","key":"DeckDime_1","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,}, 
-            "DeckDime_2"    :{"label":"Deck Dime 2","key":"DeckDime_2","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,},  
-            "DeckDime_3"    :{"label":"Deck Dime 3","key":"DeckDime_3","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,},   
+            "NumGirders"    :{"label":"No. Of Girders","key":"NumGirders","type":"integer","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,}, 
+            "DeckDimens"    :{"label":"Deck Dimens","key":"DeckDimens","type":"float","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,}, 
+            "DeckDime_1"    :{"label":"Deck Dime 1","key":"DeckDime_1","type":"float","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,}, 
+            "DeckDime_2"    :{"label":"Deck Dime 2","key":"DeckDime_2","type":"float","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,},  
+            "DeckDime_3"    :{"label":"Deck Dime 3","key":"DeckDime_3","type":"float","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,},   
             "ExpansionJ"    :{"label":"Expansion Joint","key":"ExpansionJ","type":"string","options":datamodel.options.expansionjoint,"style":"","ctrl":"select","class":"form-control","visible":true,},   
             "Surfacing"     :{"label":"Surfacing","key":"ExpansionJ","type":"string","options":datamodel.options.bridgesurfacing,"style":"","ctrl":"select","class":"form-control","visible":true,},   
             "RailingTyp"    :{"label":"Railing Type","key":"RailingTyp","type":"string","options":datamodel.options.railingtype,"style":"","ctrl":"select","class":"form-control","visible":true,}, 
@@ -309,11 +310,11 @@ datamodel.RoadBridges = {
             "RiverName"     :{"label":"River Name","key":"RiverName","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,},      
             "MaximumFlo"    :{"label":"Maximum Flood Level","key":"MaximumFlo","type":"string","options":datamodel.options.maximumfloodlevel,"style":"","ctrl":"select","class":"form-control","visible":true,},
             "Navigation"    :{"label":"Navigation Clearance","key":"Navigation","type":"string","options":datamodel.options.navigationclearance,"style":"","ctrl":"select","class":"form-control","visible":true,}, 
-            "Constructi"    :{"label":"Construction Cost","key":"Constructi","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,},       
+            "Constructi"    :{"label":"Construction Cost","key":"Constructi","type":"float","options":[],"style":"","ctrl":"text","class":"form-control","visible":true,},       
             "AbtProtect"    :{"label":"Abutment Protection","key":"MaximumFlo","type":"string","options":datamodel.options.abutmentprotect,"style":"","ctrl":"select","class":"form-control","visible":true,}, 
-            "NoOfPier"      :{"label":"No. Of Pier","key":"NoOfPier","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true},       
-            "NoOfSpan"      :{"label":"No. Of Span","key":"NoOfSpan","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true},       
-            "SpanLength"    :{"label":"Span Length","key":"SpanLength","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true}, 
+            "NoOfPier"      :{"label":"No. Of Pier","key":"NoOfPier","type":"integer","options":[],"style":"","ctrl":"text","class":"form-control","visible":true},       
+            "NoOfSpan"      :{"label":"No. Of Span","key":"NoOfSpan","type":"integer","options":[],"style":"","ctrl":"text","class":"form-control","visible":true},       
+            "SpanLength"    :{"label":"Span Length","key":"SpanLength","type":"float","options":[],"style":"","ctrl":"text","class":"form-control","visible":true}, 
             "From_"         :{"label":"From_","key":"From_","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true},  
             "To_"           :{"label":"To_","key":"To_","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true},
             "remarks"       : {"label":"Remarks","key":"remarks","type":"string","options":[],"visible":true,"style":"border:solid 1px red;","ctrl":"textarea","class":"form-control"},
@@ -323,13 +324,13 @@ datamodel.RoadBridges = {
             "StructuresROW"      : {"label":"Structures/Houses on ROW?","key":"StructuresROW","type":"string","options":datamodel.options.structurerow,"style":"","ctrl":"select","class":"form-control"},
             "LandUse"            : {"label":"Land Use","key":"LandUse","type":"string","options":datamodel.options.landuse,"style":"","ctrl":"select","class":"form-control"},
             "BridgeUtil"         : {"label":"Bridge Utilities","key":"BridgeUtil","type":"string","options":datamodel.options.bridgeutilities,"style":"","ctrl":"select","class":"form-control"},
-            "NoOfLanes"          : {"label":"No. Of Lanes","key":"NoOfLanes","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-            "TotalWidth"         : {"label":"Total Width (m)","key":"TotalWidth","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-            "SideWalkWidth"      : {"label":"SideWalk Width (m)","key":"SideWalkWidth","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-            "CarriageWidth"      : {"label":"Carriage Width (m)","key":"CarriageWidth","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-            "SkewDeg"            : {"label":"Skew Angle (degrees)","key":"TotalWidth","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+            "NoOfLanes"          : {"label":"No. Of Lanes","key":"NoOfLanes","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+            "TotalWidth"         : {"label":"Total Width (m)","key":"TotalWidth","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+            "SideWalkWidth"      : {"label":"SideWalk Width (m)","key":"SideWalkWidth","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+            "CarriageWidth"      : {"label":"Carriage Width (m)","key":"CarriageWidth","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+            "SkewDeg"            : {"label":"Skew Angle (degrees)","key":"TotalWidth","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
             "BearingType"        : {"label":"Bearing Type","key":"BearingType","type":"string","options":datamodel.options.bearingtype,"style":"","ctrl":"select","class":"form-control"},
-            "RiverWidth"         : {"label":"River Width","key":"RiverWidth","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+            "RiverWidth"         : {"label":"River Width","key":"RiverWidth","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
             "RiverAlignment"     : {"label":"River Alignment","key":"RiverAlignment","type":"string","options":datamodel.options.riveralignment,"style":"","ctrl":"select","class":"form-control"},
             "DebrisFlow"         : {"label":"Debris Flow","key":"DebrisFlow","type":"string","options":datamodel.options.debrisflow,"style":"","ctrl":"select","class":"form-control"},
             "Deck"               : {"label":"Deck","key":"Deck","type":"string","options":datamodel.options.deck,"style":"","ctrl":"select","class":"form-control"},
@@ -344,70 +345,70 @@ datamodel.RoadBridges = {
 //Road KM Post
 datamodel.RoadLocRefPoints = {
         "R_ID"      : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},
-        "KMPostNo"  : {"label":"KM Post No.","key":"KMPostNo","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
-        "LAT"       : {"label":"Latitude","key":"LAT","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-        "LONG"      : {"label":"Longitude","key":"LONG","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+        "KMPostNo"  : {"label":"KM Post No.","key":"KMPostNo","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+        "LAT"       : {"label":"Latitude","key":"LAT","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+        "LONG"      : {"label":"Longitude","key":"LONG","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
 }
 
 //Road Other Features
 datamodel.RoadSideFriction={
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.ofeaturetype,"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "From_"      : {"label":"From_","key":"From_","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "To_"        : {"label":"To_","key":"To_","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
 }
 datamodel.RoadPlaceNames={
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},    
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},    
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},    
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},    
     "Name"       : {"label":"Name","key":"Name","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
 };
 datamodel.RoadJunctions={
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.junctiontype,"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","float":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","float":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
 }
 datamodel.RoadMedian={
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.mediantype,"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Width"      : {"label":"Width(m)","key":"Width","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","float":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","float":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Width"      : {"label":"Width(m)","key":"Width","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
 }
 
 //Road Safety Features
 datamodel.RoadGuardrails = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","float":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","float":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "Position"   : {"label":"Position","key":"Position","type":"string","options":datamodel.options.position,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.safetyfeaturetype,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
     "From_"      : {"label":"From_","key":"From_","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "To_"        : {"label":"To_","key":"To_","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"}
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"}
 };
 datamodel.RoadHazards = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "Position"   : {"label":"Position","key":"Position","type":"string","options":datamodel.options.position,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.hazardtype,"visible":true,"style":"","ctrl":"select","class":"form-control"},
     "Severity"     : {"label":"Type","key":"Severity","type":"string","options":datamodel.options.hazardseverity,"visible":true,"style":"","ctrl":"select","class":"form-control"}          
@@ -415,44 +416,44 @@ datamodel.RoadHazards = {
 
 datamodel.RoadLightings = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "Position"   : {"label":"Position","key":"Position","type":"string","options":datamodel.options.position,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
     "Exist"      : {"label":"Exist","key":"Exist","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
     "NoOfLightings" : {"label":"No. of Lightings","key":"NoOfLightings","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}
 };
 datamodel.RoadMarkings = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "Position"   : {"label":"Position","key":"Position","type":"string","options":datamodel.options.position,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
     "Exist"      : {"label":"Exist","key":"Exist","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
     "MarkingType"  : {"label":"Type","key":"MarkingType","type":"string","options":datamodel.options.markingtype,"visible":true,"style":"","ctrl":"select","class":"form-control"}
 };
 datamodel.RoadSigns = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "Position"   : {"label":"Position","key":"Position","type":"string","options":datamodel.options.position,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
     "Exist"      : {"label":"Exist","key":"Exist","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
     "SignageType"   : {"label":"Type","key":"SignageType","type":"string","options":datamodel.options.signagetype,"visible":true,"style":"","ctrl":"select","class":"form-control"},
     "SignageSize"   : {"label":"Size","key":"SignageSize","type":"string","options":datamodel.options.signagesize,"visible":true,"style":"","ctrl":"select","class":"form-control"}
 };
@@ -460,137 +461,137 @@ datamodel.RoadSigns = {
 //Road Side Features
 datamodel.RoadShoulders = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.shouldertype,"visible":true,"style":"","ctrl":"select","class":"form-control"},
     "Position"   : {"label":"Position","key":"Position","type":"string","options":datamodel.options.position,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
     "Exist"      : {"label":"Exist","key":"Exist","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
-    "Width" : {"label":"Width","key":"Width","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}    
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
+    "Width" : {"label":"Width","key":"Width","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}    
 };
 datamodel.RoadSideSlopes = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.sideslopetype,"visible":true,"style":"","ctrl":"select","class":"form-control"},
     "Position"   : {"label":"Position","key":"Position","type":"string","options":datamodel.options.position,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
-    "Angle"      : {"label":"Angle","key":"Angle","type":"string","options":datamodel.options.angle,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
+    "Angle"      : {"label":"Angle","key":"Angle","type":"float","options":datamodel.options.angle,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
     "Protection"   : {"label":"Protection","key":"Protection","type":"string","options":datamodel.options.protection,"visible":true,"style":"","ctrl":"select","class":"form-control"},    
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"}    
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"}    
 };
 datamodel.RoadStructures = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.structuretype,"visible":true,"style":"","ctrl":"select","class":"form-control"},
     "Position"   : {"label":"Position","key":"Position","type":"string","options":datamodel.options.position,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"}
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"}
 };
 datamodel.RoadSideWalks = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.surfacetype,"visible":true,"style":"","ctrl":"select","class":"form-control"},
     "Position"   : {"label":"Position","key":"Position","type":"string","options":datamodel.options.position,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
-    "Width" : {"label":"Width","key":"Width","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}    
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
+    "Width" : {"label":"Width","key":"Width","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}    
 };
 
 // Road Drainage
 datamodel.RoadCauseways = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},        
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},        
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
-    "Width" : {"label":"Width","key":"Width","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Length" : {"label":"Length(m)","key":"length","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}        
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
+    "Width" : {"label":"Width","key":"Width","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Length" : {"label":"Length(m)","key":"length","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}        
 };
 
 datamodel.RoadCulverts = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.culverttype,"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "Width" :    {"label":"Width","key":"Width","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Width" :    {"label":"Width","key":"Width","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "NumBarrels" : {"label":"No. Of Barrels","key":"NumBarrels","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Length"     : {"label":"Length(m)","key":"length","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},            
+    "Length"     : {"label":"Length(m)","key":"length","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},            
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.culvertcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},      
     "BarrelMaterialType"  : {"label":"Barrel Material Type","key":"BarrelMaterialType","type":"string","options":datamodel.options.culvertmaterialtype,"visible":true,"style":"","ctrl":"select","class":"form-control"},              
     "HeadwayMaterial"  : {"label":"Headway Material Type","key":"HeadwayMaterial","type":"string","options":datamodel.options.culvertmaterialtype,"visible":true,"style":"","ctrl":"select","class":"form-control"},
     "ApronType"  : {"label":"Apron Type","key":"ApronType","type":"string","options":datamodel.options.culvertaprontype,"visible":true,"style":"","ctrl":"select","class":"form-control"},                        
-    "InvertType"  : {"label":"Invert Type","key":"InvertType","type":"string","options":datamodel.options.culvertaprontype,"visible":true,"style":"","ctrl":"select","class":"form-control"},                        
-    "Slope"  : {"label":"Slope","key":"Slope","type":"string","options":datamodel.options.culvertslope,"visible":true,"style":"","ctrl":"select","class":"form-control"},                        
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"}        
+    "InvertType" : {"label":"Invert Type","key":"InvertType","type":"string","options":datamodel.options.culvertaprontype,"visible":true,"style":"","ctrl":"select","class":"form-control"},                        
+    "Slope"      : {"label":"Slope","key":"Slope","type":"string","options":datamodel.options.culvertslope,"visible":true,"style":"","ctrl":"select","class":"form-control"},                        
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"}        
 };
 datamodel.RoadDitches = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},    
     "TypeID"     : {"label":"Type","key":"TypeID","type":"string","options":datamodel.options.ditchestype,"visible":true,"style":"","ctrl":"select","class":"form-control"},
     "Position"   : {"label":"Position","key":"Position","type":"string","options":datamodel.options.position,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "Size"   :   {"label":"Size","key":"Size","type":"string","options":datamodel.options.ditchessize,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
+    "Size"       : {"label":"Size","key":"Size","type":"string","options":datamodel.options.ditchessize,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
     "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
-    "Width" : {"label":"Width","key":"Width","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}    
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
+    "Width" : {"label":"Width","key":"Width","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}    
 };
 datamodel.RoadSpillways = {
     "R_ID"       : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},        
-    "Cost"       : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPStartKm" : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi" : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo" : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp" : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},        
+    "Cost"       : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife" : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "Condition"  : {"label":"Condition","key":"Condition","type":"string","options":datamodel.options.roadcondition,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
-    "Width" : {"label":"Width","key":"Width","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Length" : {"label":"Length(m)","key":"length","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}        
+    "ConstructionDate" : {"label":"Construction Date","key":"ConstructionDate","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
+    "Width" : {"label":"Width","key":"Width","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Length" : {"label":"Length(m)","key":"length","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}        
 };
 
  //Traffic
 datamodel.RoadTraffic = {
     "R_ID"         : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
-    "LRPStartKm"   : {"label":"Start(Km)","key":"LRPStartKm","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPStartDi"   : {"label":"","key":"LRPStartDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "LRPEndKmPo"   : {"label":"End(Km)","key":"LRPEndKmPo","type":"string","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-    "LRPEndDisp"   : {"label":"","key":"LRPEndDisp","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},        
-    "Cost"         : {"label":"Cost","key":"Cost","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
-    "Usefullife"   : {"label":"Useful Life","key":"Usefullife","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPStartKm"   : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPStartDi"   : {"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "LRPEndKmPo"   : {"label":"End(Km)","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
+    "LRPEndDisp"   : {"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},        
+    "Cost"         : {"label":"Cost","key":"Cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "Usefullife"   : {"label":"Useful Life","key":"Usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "VehicleType"  : {"label":"Vehicle Type","key":"VehicleType","type":"string","options":datamodel.options.vehicletype,"visible":true,"style":"","ctrl":"select","class":"form-control"},        
-    "Date"         : {"label":"Date","key":"Date","type":"string","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
+    "Date"         : {"label":"Date","key":"Date","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
     "From"         : {"label":"From","key":"From","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "To"           : {"label":"To","key":"To","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
     "FromDi"       : {"label":"","key":"FromDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
@@ -636,7 +637,7 @@ datamodel.utils.displayattributestable=  function(n,o,maxheight){
             var table = "<div style='max-height:" +  (maxheight || 400) +"px;overflow-y:auto;overflow-x:hidden;'><table style='color:#555;font-size:12px;' class='table'>";
             var _model =!datamodel.structure[n]?datamodel.structure["road"]:datamodel.structure[n];
             var _getvalue = function(model,o){
-                if(model.ctrl="select" && model.options.length>0 && model.visible){
+                if(model.ctrl=="select" && model.options.length>0 && model.visible){
                             var idx  = model.options.map(function(d){return d.key.toUpperCase}).indexOf((o[model.key] || "") .toUpperCase);
                             return idx>-1?model.options[idx].label :"";
                 }else{
@@ -645,6 +646,7 @@ datamodel.utils.displayattributestable=  function(n,o,maxheight){
             };
 
             var m = _model;
+            console.log(m);
                 for(var n in _model){
                    var objdata = _model[n];
                     if(objdata.key=="LRPStartDi" || objdata.key=="LRPEndDisp"){         
@@ -663,6 +665,10 @@ datamodel.utils.displayattributestable=  function(n,o,maxheight){
             table+="</table></div>"
             return table;
     }; 
+
+
+
+
 
 return datamodel;
 }]);    
