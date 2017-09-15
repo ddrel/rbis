@@ -119,11 +119,9 @@ var _toDataType =  function(v){
 
 RoadsSchema.statics.getRoadKml =  function(opt,cb){
     mongoose.model("Roads").getRoadgeojson(opt,function(err,data){
-           // console.log(JSON.parse(JSON.stringify(data)));                       
-           var kmlObj = tokml(JSON.parse(JSON.stringify(data)));
-           //kmlObj = libxmljs.parseXml(kmlObj);
-           //console.log(kmlObj.toString());
-           cb(null, kmlObj) ;
+            if(err){cb(err, null);return;}
+            var kmlObj = tokml(JSON.parse(JSON.stringify(data)));
+            cb(null, kmlObj) ;
         
     })    
 }
@@ -131,7 +129,8 @@ RoadsSchema.statics.getRoadKml =  function(opt,cb){
 RoadsSchema.statics.getRoadgeojson = function(opt,cb){
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
         if(err){cb(err,null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};                                     
-        if(!doc || doc.geometry){if(err){cb("No shapes available",null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};}
+        if(!doc || typeof doc.geometry=="undefined"){cb("No shapes available",null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;}
+        if(!doc || doc.geometry.type){cb("No shapes available",null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};
 
         var _data = {};
         
