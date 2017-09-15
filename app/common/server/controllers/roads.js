@@ -236,11 +236,11 @@ exports.getcarriagewaycount = (req,res)=>{
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data[0]);
     });
-}
+};
 
 exports.getObjectID = (req,res)=>{
     res.send(mongoose.model("Roads").getObjectID());
-}
+};
 
 exports.saveroad = (req,res)=>{
     var roads = mongoose.model("Roads");
@@ -250,8 +250,46 @@ exports.saveroad = (req,res)=>{
         if(err){res.status(500).json(err);return;};
         res.status(200).json(data);
     });
-}
+};
 
+
+
+exports.addRoadRemarks = (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var opt = {};
+        opt.r_id = req.body.r_id;
+        opt.attr_id = req.body.attr_id;
+        opt.key_name = req.body.key_name;
+        opt.status = req.body.status || 'inprogress';
+        opt.message = req.body.message || ""
+
+        if(!opt.r_id && opt.key_name && opt._id && !req.user && opt.message!=""){res.status(500).send("Error Saving Remarks");return;};
+        opt.remark_by = req.user.name;
+        opt.remark_by_email = req.user.email;
+        opt.message = opt.message.substring(0,300);
+
+    roads.addRoadRemarks(opt,function(err,data){
+        if(err){res.status(500).json(err);return;};
+        res.status(200).json(data);
+    });
+};
+
+
+exports.getRoadRemarks = (req,res)=>{
+
+    var roads = mongoose.model("Roads");
+    var opt = {};
+        opt.r_id = req.query.r_id;
+        opt.key_name = req.query.key_name;
+        opt.attr_id = req.query.attr_id;
+        if(!opt.r_id && !opt.key_name && !attr_id){res.status(500).send("Error Saving Remarks");return;};
+
+
+        roads.getRoadRemarks(opt,function(err,data){
+            if(err){res.status(500).json(err);return;};
+            res.status(200).json(data);
+        });
+};
 
 exports.getRoadImages =  (req,res)=>{
     var roads = mongoose.model("Roads");

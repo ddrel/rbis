@@ -76,6 +76,8 @@ $scope.loadattrsFeaturesdata =  function(key,data){
 
 
 $scope.init =  function(){
+    utilities.hidenavigation();
+
     $timeout(function(){
         var ih = $(".page-content").innerHeight();
         $(".panel-body").css("margin-bottom","0px");
@@ -84,7 +86,7 @@ $scope.init =  function(){
         $("#roadmap").css({"height":ih -158 + "px","margin-bottom":"0px"});
         $(".content-data-attr").css({"height":ih - 189 + "px","margin-bottom":"0px"}); 
 
-
+        
 
             $http.get("/api/roads/getroadshortattrinfo?rid=" + $stateParams.id).success(function(data){
                     $scope.road = data;                             
@@ -102,6 +104,7 @@ $scope.init =  function(){
 
             $scope.getroadSC_ST($stateParams.id);
             $("#roadmap").leafletMaps();
+
     });
 };
 $scope.loadRoadMainData =  function(){
@@ -306,6 +309,16 @@ $scope.toolbarAction = function(a,e){
                            });
 
                         });
+                },exportgeojson:function(){
+                    var url = "/api/shapes/download/geojson?r_id=" + $scope.currentModel.roadID + 
+                              "&key_name=" + $scope.currentModel.name +
+                              "&attr_id="  + $scope.currentModel.currentItem._id; 
+                    utilities.download(url)
+                },exportkml:function(){
+                    var url = "/api/shapes/download/kml?r_id=" + $scope.currentModel.roadID + 
+                    "&key_name=" + $scope.currentModel.name +
+                    "&attr_id="  + $scope.currentModel.currentItem._id;
+                    utilities.download(url)
                 }
         };
 
@@ -315,7 +328,6 @@ $scope.toolbarAction = function(a,e){
 
 
 $scope.tabselected = "details";
-
 $scope.ismediatabactive =  function(){
     return ['images','attachment'].indexOf($scope.tabselected)>-1;
 };
@@ -333,7 +345,6 @@ $scope.ondeleteFile =  function(b){
 };
 
 $scope.ondeleteRoadImage = function(a){              
-    console.log(a);
     $scope.deleteMedia(a,"file_roadimages").success(function(){
         var idx = $scope.currentModel.roadImageList.map(function(d){return d.data}).indexOf(a);  
         if(idx>-1){$scope.currentModel.roadImageList.splice(idx,1);}
@@ -360,6 +371,34 @@ $scope.deleteMedia =  function(f_id,field_file){
     return $http.delete("/media/road/delete?" + qry + "&field_file=" + field_file)
 }
 
+
+$scope.onRemarksSubmit =  function(a,b){
+    var opt = {};
+    var opt = {};    
+    opt.r_id = $scope.currentModel.roadID;
+    opt.attr_id = $scope.currentModel.currentItem._id
+    opt.key_name = $scope.currentModel.name;
+    opt.message = a;
+    opt.status = b;
+    
+    $http.post("/api/roads/addRoadRemarks",opt).success(function(){
+            toastr.success("Successfully add remark ...");
+            $http.get("/api/roads/getRoadRemarks?r_id=" + $scope.currentModel.roadID + 
+            "&key_name=" + $scope.currentModel.name +
+            "&attr_id="  + $scope.currentModel.currentItem._id)
+            .success(function(data){ 
+                $timeout(function(){
+                    $scope.currentModel.currentItem.remarks_trail = [];
+                    $scope.currentModel.currentItem.remarks_trail = data;                                   
+                }) ;                                                                                      
+       }).error(function(){
+           toastr.error("Error loading remarks");
+       });
+
+    }).error(function(err){
+            toastr.error("Error saving remarks");
+    });
+}
 
 $scope.getCurrentImageList =  function(roadItem){
     return utilities.file.getCurrentImageList(roadItem);

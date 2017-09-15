@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-    var RBIS = angular.module('RBIS', ['ui.router','uiRouterStyles','ngSanitize','oc.lazyLoad','ui.bootstrap','ui.sortable','chart.js','moment-picker','ngMaterial','angular-timeline','lfNgMdFileInput','ui.blueimp.gallery']);            
+    var RBIS = angular.module('RBIS', ['ui.router','uiRouterStyles','ngSanitize','oc.lazyLoad','ui.bootstrap','ui.sortable','chart.js','moment-picker','ngMaterial','angular-timeline','lfNgMdFileInput','ui.blueimp.gallery','ui.layout']);            
     RBIS.config([
         function() {
             XMLHttpRequest.prototype.setRequestHeader = (function(sup) {

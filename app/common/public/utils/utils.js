@@ -78,6 +78,27 @@ angular.module('RBIS').factory('utilities', ['$window','$rootScope',function ($w
 
 
 
+      utilities.hidenavigation =  function(){
+        var sidebarMenu = $('.page-sidebar-menu');
+        var body = $('body');
+            body.addClass("page-sidebar-closed");
+            sidebarMenu.addClass("page-sidebar-menu-closed");
+            if (body.hasClass("page-sidebar-fixed")) {
+                sidebarMenu.trigger("mouseleave");
+            }
+            if ($.cookie) {
+                $.cookie('sidebar_closed', '1');
+            }            
+      }
+
+      utilities.download =  function(url){
+        var link = $window.document.createElement("a");    
+        link.href = url;
+        link.style = "visibility:hidden";
+        $window.document.body.appendChild(link);
+        link.click();
+        $window.document.body.removeChild(link);
+      }
 
       utilities.road = {};
       utilities.road.attrkeys = ["RoadBridges", 

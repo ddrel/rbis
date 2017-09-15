@@ -66,11 +66,12 @@
                 </table>    
                </md-tab>
           <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-                {{ currentModel.struct['remarks'].label }}         
+                <!--{{ currentModel.struct['remarks'].label }}         
                     <textarea ng-model="road['remarks']" 
                               class="{{currentModel.struct['remarks'].class}}" 
                               style="currentModel.struct['remarks'].style">
-                    </textarea>
+                    </textarea>-->
+                    <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab label="Attachment" md-on-select="ontabselected('attachment')">
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
@@ -128,11 +129,7 @@
                 </table>                    
                </md-tab>
           <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-                {{ currentModel.struct['remarks'].label }}         
-                    <textarea ng-model="road['remarks']" 
-                              class="{{currentModel.struct['remarks'].class}}" 
-                              style="{{currentModel.struct['remarks'].style}}">
-                    </textarea>
+            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 

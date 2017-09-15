@@ -38,18 +38,8 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
             $("#roadmap").css("height",ih -57 + "px")    
             $("#roadmap").leafletMaps("refresh");
 
-            var sidebarMenu = $('.page-sidebar-menu');
-            var body = $('body');
-                body.addClass("page-sidebar-closed");
-                sidebarMenu.addClass("page-sidebar-menu-closed");
-                if (body.hasClass("page-sidebar-fixed")) {
-                    sidebarMenu.trigger("mouseleave");
-                }
-                if ($.cookie) {
-                    $.cookie('sidebar_closed', '1');
-                }
-
-                $scope.onmapselect(-1);
+            utilities.hidenavigation();
+            $scope.onmapselect(-1);
 
         });
         $http.get("/api/location/getregionprovince").success(function(data){

@@ -63,8 +63,8 @@
             </table>
         </div>
     </div>
-    <div>
-        <div class="col-md-3 attr-tree-main" style="margin:0px;padding:0px">
+<div>
+        <div class="col-md-2 attr-tree-main" style="margin:0px;padding:0px">
          <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="Main Info">
                 <md-content class="md-padding">
@@ -149,8 +149,9 @@
             </li>
         </script>                   
         </div>
-        <div class="col-md-9 no-padding">
-            <div class="page-bar page-bar-color2">
+    <div class="col-md-10 no-padding"><!-- cont-111111 -->
+        <section>   
+        <div class="page-bar page-bar-color2">
             <ul class="page-breadcrumb">
                 <li>
                     <i aria-hidden="true" class="fa fa-road road-information-list"></i>
@@ -164,7 +165,10 @@
                 </li>                                    
             </ul>
         </div>
-        <div class="col-md-7 no-padding"><!--- Content fields -->
+    </section> 
+    <section style="clear:both;display:block;position:relative;"><!-- content 12-->  
+        <div style="height:600px"ui-layout="{flow : 'column'}"> <!-- ui layout -->      
+        <div  ui-layout-container size="65%" class="no-padding"><!--- Content fields -->
            <div class="content-data-action">               
             <md-toolbar class="md-menu-toolbar">
                     <md-menu-bar>
@@ -226,12 +230,12 @@
                                 </md-menu-item>
                                <md-menu-divider></md-menu-divider>
                                 <md-menu-item>
-                                    <md-button ng-click="toolbarAction('share', $event)">
+                                    <md-button ng-click="toolbarAction('exportgeojson', $event)">
                                         <i class="fa fa-download" aria-hidden="true">&nbsp;Export to GeoJSON</i>
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-item>
-                                    <md-button ng-click="toolbarAction('share', $event)">
+                                    <md-button ng-click="toolbarAction('exportkml', $event)">
                                         <i class="fa fa-download" aria-hidden="true">&nbsp;Export to KML</i>
                                     </md-button>
                                 </md-menu-item> 
@@ -283,16 +287,21 @@
                     <div  ng-if="currentModel.name!='road' && currentModel.currentItem!=null && currentModel.name=='RoadSpillways'" ng-include="'template_RoadSpillways'"></div>
                     <div  ng-if="currentModel.name!='road' && currentModel.currentItem!=null && currentModel.name=='RoadSpillways'" ng-include="'template_RoadTraffic'"></div>
 
+                    <!--
                     <div  style="width:100%;height:100%;" ng-if="currentModel.name!='road' && currentModel.list.length==0 && !currentModel.isnew">
                         <a href="" ng-click="" style="left:41%;margin:20% auto;" class="btn btn-primary2 ">Create New {{getFeaturesLabel(currentModel.name)}}</a>
                     </div>
+                    -->
            </div>   
-         </div>
-           <div class="col-md-5 no-padding">
+        </div>
+
+        <div  ui-layout-container size="35%" max-size="50%"class="no-padding">
                 <div id="roadmap" style=" display: block;outline: medium none;position: relative;z-index: 0;"> </div>
-           </div>        
+        </div>
+        </div><!-- ui layout -->
+    </section><!-- end content 12-->
+    </div><!-- cont-111111 -->    
    
-        </div>      
     </div>                    
 </div>
 </div>    

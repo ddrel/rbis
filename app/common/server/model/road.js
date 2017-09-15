@@ -7,7 +7,9 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
    _ = require('lodash'),
    moment = require('moment'),
-   RBISModelSchema = require('../schema/road-features').RBISModelSchema;
+   RBISModelSchema = require('../schema/road-features').RBISModelSchema,
+   GeoJSON = require('geojson'),
+   tokml = require('tokml')
 
 var mongooseAggregatePaginate = require('mongoose-aggregate-paginate');
 
@@ -32,6 +34,17 @@ const ROAD_ATTR_DET = ["RoadBridges",
                     "RoadSpillways", 
                     "RoadStructures",
                     "RoadTraffic"]
+
+
+const EXCLUDED_CONVERT_SHAPES = [
+                "lastupdate_date",
+                "updated_by",
+                "created_by",
+                "created_date",
+                "file_attachment",
+                "file_roadimages",
+                "remarks_trail",
+                ]                     
 
 const ROAD_MODEL_STRUC = {      
     "RegionCode" : String, 
@@ -102,6 +115,71 @@ var _toDataType =  function(v){
         return v;
     };
 };
+
+
+RoadsSchema.statics.getRoadKml =  function(opt,cb){
+    mongoose.model("Roads").getRoadgeojson(opt,function(err,data){
+           // console.log(JSON.parse(JSON.stringify(data)));                       
+           var kmlObj = tokml(JSON.parse(JSON.stringify(data)));
+           //kmlObj = libxmljs.parseXml(kmlObj);
+           //console.log(kmlObj.toString());
+           cb(null, kmlObj) ;
+        
+    })    
+}
+
+RoadsSchema.statics.getRoadgeojson = function(opt,cb){
+    this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
+        if(err){cb(err,null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};                                     
+        if(!doc || doc.geometry){if(err){cb("No shapes available",null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};}
+
+        var _data = {};
+        
+    var _isvalidfield = function(k){
+        var vk =false;
+        if(ROAD_ATTR_DET.indexOf(k)>-1){}
+        else if(EXCLUDED_CONVERT_SHAPES.indexOf(k)>-1){}
+        else if(k=="geometry"){}
+        else{
+            vk  = true 
+        }
+
+        return vk;
+    }
+
+        if(opt.key_name=="road"){      
+            for(var k in ROAD_MODEL_STRUC){                
+                    if(_isvalidfield(k)){_data[k] = doc[k];}
+            }
+
+            var stype = doc.geometry.type;
+            var coord =    doc.geometry.coordinates;
+            
+            _data.geometry = doc.geometry.coordinates;
+            var _options = {};
+            _options[stype] = "geometry";
+           cb(null,GeoJSON.parse(_data, _options));
+            
+            
+        }else{
+            var fdx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt.attr_id);            
+            if(fdx>-1  ){
+                for(var k in RBISModelSchema[opt.key_name]){
+                    if(_isvalidfield(k)){_data[k] = doc[opt.key_name][fdx][k];}
+                };
+
+                var stype = doc[opt.key_name][fdx].geometry.type;
+                var coord =    doc[opt.key_name][fdx].geometry.coordinates;
+                _data.geometry = doc.geometry.coordinates;
+                var _options = {};
+                _options[stype] = "geometry";
+               cb(null,GeoJSON.parse(_data, _options));
+            }else{
+                cb("Error",null);
+            };            
+        };        
+    });
+}
 
 RoadsSchema.statics.getRoadImages = function(opt,cb){
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
@@ -185,11 +263,55 @@ RoadsSchema.statics.removeRoadMedia =  function(opt,cb){
                     cb(err,_dataMedia);
             })
     });
-}
-RoadsSchema.statics.addRoadMedia =  function(opt,cb){
-    console.log(opt.r_id + "  " + opt._id);
+};
+
+RoadsSchema.statics.getRoadRemarks =  function(opt,cb){
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
-        if(err){cb(err,null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};
+        if(err){cb(err,null);console.log("errrorrrr addRoadRemarks<<<<<<<<<<<<<<<<<<<<<");return;};                             
+        if(opt.key_name=="road"){                            
+            cb(null,doc.remarks_trail.sort(function(a,b){return new Date(b.remark_date) - new Date(a.remark_date);}));
+        }else{
+            var fdx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt.attr_id);            
+            if(fdx>-1){
+                cb(null,doc[opt.key_name][fdx].remarks_trail.sort(function(a,b){return new Date(b.remark_date) - new Date(a.remark_date);}));
+            }else{
+                cb("Error",null);
+            };            
+        };        
+    });
+};
+
+RoadsSchema.statics.addRoadRemarks =  function(opt,cb){
+    this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
+        if(err){cb(err,null);console.log("errrorrrr addRoadRemarks<<<<<<<<<<<<<<<<<<<<<");return;};                     
+        var _dataremarks = {};
+            _dataremarks._id = new mongoose.mongo.ObjectId();
+            _dataremarks.remark_date =  new Date();
+            _dataremarks.status = opt.status;
+            _dataremarks.remark_by = opt.remark_by;
+            _dataremarks.remark_by_email = opt.remark_by_email;
+            _dataremarks.message = opt.message;
+        if(opt.key_name=="road"){            
+            doc.remarks_trail.push(_dataremarks);
+        }else{
+            var fdx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt.attr_id);            
+            if(fdx>-1){
+                doc[opt.key_name][fdx].remarks_trail.push(_dataremarks);
+            }
+
+
+        };
+
+        doc.save(function(err){
+            console.log("Road Remarks .....")
+            console.log(err)
+            cb(err);
+        });        
+    });
+}
+RoadsSchema.statics.addRoadMedia =  function(opt,cb){    
+    this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
+        if(err){cb(err,null);console.log("errrorrrr addRoadMedia<<<<<<<<<<<<<<<<<<<<<");return;};
         var _file_attr = {};
         _file_attr._id = new mongoose.mongo.ObjectId();
         _file_attr.name = opt.name;
@@ -224,7 +346,7 @@ RoadsSchema.statics.addRoadMedia =  function(opt,cb){
         };
 
         doc.save(function(err){
-            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            console.log("Add Road Media ......")
             console.log(err)
             cb(err);
         });        

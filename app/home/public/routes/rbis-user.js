@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-    var RBIS = angular.module('RBIS', ['ui.router','uiRouterStyles','ngSanitize','oc.lazyLoad','ui.bootstrap','ui.sortable','chart.js','moment-picker','ngMaterial','angular-timeline','lfNgMdFileInput','ui.blueimp.gallery']);            
+    var RBIS = angular.module('RBIS', ['ui.router','uiRouterStyles','ngSanitize','oc.lazyLoad','ui.bootstrap','ui.sortable','chart.js','moment-picker','ngMaterial','angular-timeline','lfNgMdFileInput','ui.blueimp.gallery','ui.layout']);            
     RBIS.config(['$stateProvider','$urlRouterProvider', '$httpProvider', '$ocLazyLoadProvider',function($stateProvider, $urlRouterProvider, $httpProvider,$ocLazyLoadProvider) {
                 $ocLazyLoadProvider.config({
                     // Set to true if you want to see what and when is dynamically loaded

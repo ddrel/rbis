@@ -67,6 +67,13 @@ app.post("/api/roads/newRoad",(req,res)=>{
     roads.newRoad(req,res);
 });
 
+app.post("/api/roads/addRoadRemarks",(req,res)=>{
+    roads.addRoadRemarks(req,res);
+});
+
+app.get("/api/roads/getRoadRemarks",(req,res)=>{
+    roads.getRoadRemarks(req,res);
+});
 
 app.get("/api/roads/getObjectID",(req,res)=>{
     roads.getObjectID(req,res);
