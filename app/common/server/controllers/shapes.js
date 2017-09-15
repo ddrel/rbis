@@ -16,6 +16,7 @@ exports.getRoadgeojson =  (req,res)=>{
     }
 
     roads.getRoadgeojson(opt,function(err,data){
+        console.log(err);
         if(err){res.redirect("/");return;}     
         var _fn =  opt.key_name + "-" + opt.r_id + "-" + opt.attr_id  + ".geojson";
         res.writeHead(200, {'Content-Type': 'application/json',

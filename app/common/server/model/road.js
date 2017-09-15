@@ -130,7 +130,7 @@ RoadsSchema.statics.getRoadgeojson = function(opt,cb){
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
         if(err){cb(err,null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};                                     
         if(!doc || typeof doc.geometry=="undefined"){cb("No shapes available",null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;}
-        if(!doc || doc.geometry.type){cb("No shapes available",null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};
+        if(!doc || !doc.geometry.type){cb("No shapes available",null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};
 
         var _data = {};
         
