@@ -85,6 +85,8 @@ $scope.init =  function(){
         $(".roads-tree-attr-main").css({"height":ih - 162 + "px","margin-bottom":"0px"});
         $("#roadmap").css({"height":ih -158 + "px","margin-bottom":"0px"});
         $(".content-data-attr").css({"height":ih - 189 + "px","margin-bottom":"0px"}); 
+        $("#contaier_layout_uilayout").css({"height":ih - 142 + "px","margin-bottom":"0px"});
+
 
         
 
