@@ -167,6 +167,12 @@ angular.module('RBIS')
             scope.$watch('list', function(newVal, oldVal){
                 scope.items = newVal;
             });
+
+
+            if(scope.items && scope.items.length>1){
+                scope.items.sort(function(a,b){return new Date(b.remark_date) - new Date(a.remark_date);})    
+            }
+            
             
             scope.isnewremarks = true;
             scope.status = scope.status || '';

@@ -29,6 +29,11 @@ adapter.newfeature =  function(model,rid,cb){
                 cb(_newRow);
         });        
 };
+
+adapter.removenewfeature = function(id){
+        var mdx = adapter.newFeatureObj.map(function(d){return d._id}).indexOf(id);
+        adapter.newFeatureObj.splice(mdx,1);
+}
 adapter.getdata =  function(){
     return adapter.data;
 };
@@ -82,23 +87,32 @@ adapter.save = function(k,cb){
 var _bodydata = {};
 _bodydata.R_ID=adapter.roadID;
 _bodydata.data = adapter.data
-console.log(k);
+
  if(k && k.name!='road'){
         var dx = adapter.data.map(function(d){return d.table}).indexOf(k.name);
         var row =  adapter.data[dx];
-        console.log(row);
         _bodydata.data = [row];
  }else{
-        console.log(adapter.data);
+        //console.log(adapter.data);
  }
 
-/**/
+//console.log(_bodydata);
+//console.log(adapter.newFeatureObj)
+
+/* */
  $http.post("/api/roads/saveroad",{roaddata:_bodydata}).success(function(data){
-         if(cb) cb(data);
+         if(cb) {                
+                _bodydata.data.forEach(function(d){
+                        d.rows.forEach(function(o){
+                                adapter.removenewfeature(o.id);
+                        });
+                });
+                cb(data)
+                };
  }).error(function(error){
          console.log(error);
         if(cb) cb(null,error);
- })
+ });
 
 };
 

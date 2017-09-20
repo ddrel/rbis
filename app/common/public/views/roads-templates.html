@@ -123,13 +123,13 @@
                     </tr>
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -222,13 +222,13 @@
 
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -474,13 +474,13 @@
                     </tr>
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -518,13 +518,13 @@
                     </tr>                                      
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -565,13 +565,13 @@
                     </tr>                                       
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -612,13 +612,13 @@
                     </tr>                                       
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -659,13 +659,13 @@
                     </tr>                                       
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -723,13 +723,13 @@
                     </tr>                                     
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -774,13 +774,13 @@
                     </tr>                                      
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -842,13 +842,13 @@
                     </tr>                                           
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -905,13 +905,13 @@
                     </tr>                                              
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -976,13 +976,13 @@
                     </tr>                                               
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1053,13 +1053,13 @@
                                                            
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1124,13 +1124,13 @@
                     </tr>                                                
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1187,13 +1187,13 @@
                     </tr>                                                  
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')">
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')">
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list>  
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1254,13 +1254,13 @@
                     </tr>                                                       
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1322,13 +1322,13 @@
                     </tr>                                                   
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1413,13 +1413,13 @@
                     </tr>                                         
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1480,13 +1480,13 @@
                     </tr>                        
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1547,13 +1547,13 @@
                     </tr>                                                  
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
@@ -1607,13 +1607,13 @@
                     <tr>
                 </table>                    
                </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
             <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
-        <md-tab label="Attachment" md-on-select="ontabselected('attachment')"> 
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
-        <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
                     <ui-gallery list="currentModel.roadImageList"  options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       

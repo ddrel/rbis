@@ -193,20 +193,26 @@
                                         <i class="fa fa-floppy-o" aria-hidden="true">&nbsp;Save All</i>
                                     </md-button>
                                 </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ng-click="toolbarAction('share', $event)">
+                                <md-menu-divider></md-menu-divider>
+                                <md-menu-item ng-hide="currentModel.name=='road'">
+                                    <md-button ng-click="toolbarAction('cancel', $event)">
                                         Cancel
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item ng-hide="currentModel.name!='road'">
+                                    <md-button ng-click="toolbarAction('cancelAll', $event)">
+                                        Cancel All
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-divider></md-menu-divider>
                                 <md-menu-item>
-                                    <md-button ng-click="toolbarAction('share', $event)">
+                                    <md-button ng-click="toolbarAction('delete', $event)">
                                         <i class="fa fa-times" aria-hidden="true">&nbsp;Delete</i>
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-divider></md-menu-divider>
                                 <md-menu-item>
-                                    <md-button ng-click="toolbarAction('share', $event)">
+                                    <md-button ng-click="toolbarAction('refreshwindow', $event)">
                                         <i class="fa fa-refresh" aria-hidden="true">&nbsp;Refresh window</i>
                                     </md-button>
                                 </md-menu-item>
@@ -218,13 +224,13 @@
                                 </md-menu-item>
                             </md-menu-content>
                         </md-menu>
-                        <md-menu ng-show="currentModel.currentItem!=null">
+                        <md-menu ng-show="currentModel.currentItem!=null && !isnewRow()">
                             <button ng-click="$mdMenu.open()">
                             Shapes
                             </button>  
                             <md-menu-content>                            
                                 <md-menu-item>
-                                    <md-button ng-click="toolbarAction('share', $event)">
+                                    <md-button ng-click="toolbarAction('importshapes', $event)">
                                         <i class="fa fa-file-text" aria-hidden="true">&nbsp;Import/Replace(Geojson/KML)</i>
                                     </md-button>
                                 </md-menu-item>
@@ -241,7 +247,7 @@
                                 </md-menu-item> 
                             </md-menu-content>
                         </md-menu>
-                        <md-menu ng-show="currentModel.currentItem!=null && ismediatabactive()">
+                        <md-menu ng-show="currentModel.currentItem!=null && ismediatabactive()  && !isnewRow()">
                             <button ng-click="$mdMenu.open()">
                             Media Files
                             </button>  

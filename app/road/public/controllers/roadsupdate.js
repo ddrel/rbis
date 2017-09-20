@@ -92,7 +92,7 @@ $scope.init =  function(){
 
             $http.get("/api/roads/getroadshortattrinfo?rid=" + $stateParams.id).success(function(data){
                     $scope.road = data;                             
-                    $scope.summary.road.length = utilities.formatToDecimal(data.Length.toFixed(3));
+                    $scope.summary.road.length = utilities.formatToDecimal((data.Length || 0) .toFixed(3));
                     $scope.summary.road.class = data.R_CLASS;
                     $scope.summary.road.importance = data.R_Importan;
                     
@@ -140,7 +140,7 @@ $scope.loadAttrAsOptions =  function(attr,toattr,cb){
 $scope.getattrdata = function(key,cb){        
     $scope.currentModel.currentItem = null;
     if(!$scope.road.hasOwnProperty(key)){
-        $http.get("/api/roads/getroadattr?rid=" + $scope.road.R_ID + "&attr=" + key).success(function(data){
+        $http.get("/api/roads/getroadattr?rid=" + $scope.road.R_ID + "&attr=" + key).success(function(data){                            
                     $scope.road[key] = data;                                        
                     $scope.initModelData(key,null,$scope.road[key]);
                     if(cb) cb(response.data);                             
@@ -159,6 +159,7 @@ $scope.initModelData =  function(key,currentItem,list){
     $scope.currentModel.list = list;
     $scope.currentModel.currentItem = currentItem;
     uploadroadSvcsData.set($scope.currentModel);
+    
     $scope.currentModel.roadImageList = [];
     if(currentItem){
         $scope.currentModel.roadImageList = $scope.getCurrentImageList(currentItem);
@@ -215,24 +216,40 @@ $scope.ondatadirty =  function(a,b,c){
 };
 
 
+$scope.isnewRow =  function(){
+    if(!$scope.currentModel.currentItem) return false;
+    var mdx = adapter.newFeatureObj.map(function(d){return d._id}).indexOf($scope.currentModel.currentItem._id);    
+    return (mdx >-1);
+}
+
+$scope.reloadAttrFeature =  function(){
+    $http.get("/api/roads/getroadattr?rid=" + $scope.road.R_ID + "&attr=" +$scope.currentModel.name).success(function(data){
+        adapter.removenewfeature($scope.currentModel.currentItem._id);
+        $scope.road[$scope.currentModel.name] = data || [];                                     
+        $scope.initModelData($scope.currentModel.name,null,$scope.road[$scope.currentModel.name]);
+        $scope.road[$scope.currentModel.name+"_length"] = $scope.road[$scope.currentModel.name].length;                        
+    });
+}
+
 //Tool bar Action
 $scope.toolbarAction = function(a,e){
     var _oncomplete_save =  function(d,errors){
         if(d){
             d.forEach(function(a){
                 toastr.success("Saved " + a.table + " | Field Count:" + a.count);
-                adapter.clear(a.table);
-                $scope.currentModel.isnew =  false;                      
+                adapter.clear(a.table);                                      
             });
         }
          
-
         if(errors){
             for(var erk in errors.errors){
                 var message  = errors.errors[erk].message; 
                 toastr.error(message);
             };
         };
+
+
+        if($scope.currentModel.name=="RoadLocRefPoints"){$scope.loadAttrAsOptions("RoadLocRefPoints");};
 
         //adapter.addNewtate = false;
     };
@@ -242,7 +259,6 @@ $scope.toolbarAction = function(a,e){
     var _onnewFeatureAdded = function(data){        
         $scope.currentModel.list = [];
         $scope.currentModel.currentItem = data;
-        $scope.currentModel.isnew = true;
         adapter.addNewtate = true;
 
         
@@ -321,6 +337,12 @@ $scope.toolbarAction = function(a,e){
                     "&key_name=" + $scope.currentModel.name +
                     "&attr_id="  + $scope.currentModel.currentItem._id;
                     utilities.download(url)
+                },cancel:function(){                    
+                    $scope.reloadAttrFeature();
+                },cancelAll:function(){
+                    $window.location.reload();
+                },refreshwindow:function(){
+                    $window.location.reload();
                 }
         };
 
