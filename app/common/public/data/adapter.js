@@ -1,4 +1,4 @@
-angular.module('RBIS').service('adapter', ['$window','$rootScope','utilities','$http',function ($window, $rootScope,utilities,$http){
+angular.module('RBIS').service('adapter', ['$window','$rootScope','utilities','$http','datamodel',function ($window, $rootScope,utilities,$http,datamodel){
 
 var adapter = {};
 adapter.data = [];
@@ -116,11 +116,15 @@ _bodydata.data = adapter.data
 
 };
 
+adapter.readonlyModel = false;
+
+
 var _user = null;
 adapter.user = function(cb){
         if(_user==null && cb){
-                $http.get("/ws/users/me").success(function(user){
+                $http.get("/ws/users/me").success(function(user){                        
                         _user = user;
+                        adapter.readonlyModel = datamodel.optionReadOnly.indexOf(user.role) >-1;
                         if(cb)cb(_user);
                         return _user;
                 });

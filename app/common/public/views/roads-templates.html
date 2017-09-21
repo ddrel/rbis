@@ -20,61 +20,61 @@
                 <table  class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['R_NAME'].label }}</td>
-                        <td ng-repeat = "field in ['R_NAME']" ng-include="'roadfieldcontrol'"></td>
+                        <td><form-field field="R_NAME" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['R_CLASS'].label }}</td>
-                        <td ng-repeat = "field in ['R_CLASS']" ng-include="'roadfieldcontrol'"></td>
+                        <td><form-field field="R_CLASS" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['R_Importan'].label }}</td>
-                        <td ng-repeat = "field in ['R_Importan']" ng-include="'roadfieldcontrol'"></td>
+                        <td><form-field field="R_Importan" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Environmen'].label }}</td>
-                        <td ng-repeat = "field in ['Environmen']" ng-include="'roadfieldcontrol'"></td>
+                        <td><form-field field="Environmen" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['DirFlow'].label }}</td>
-                        <td ng-repeat = "field in ['DirFlow']" ng-include="'roadfieldcontrol'"></td>
+                        <td><form-field field="DirFlow" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Terrain'].label }}</td>
-                        <td ng-repeat = "field in ['Terrain']" ng-include="'roadfieldcontrol'"></td>
+                        <td><form-field field="Terrain" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     
                     <tr>
                         <td>{{ currentModel.struct['Length'].label }}</td>
-                        <td ng-repeat = "field in ['Length']" ng-include="'roadfieldcontrol'"></td>
+                        <td><form-field field="Length" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['RROW_acq_date'].label }}</td>
-                        <td ng-repeat = "field in ['RROW_acq_date']" ng-include="'roadfieldcontrol'"></td>
+                        <td><form-field field="RROW_acq_date" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['RROW_acq_cost'].label }}</td>
-                        <td ng-repeat = "field in ['RROW_acq_cost']" ng-include="'roadfieldcontrol'"></td>
+                        <td><form-field field="RROW_acq_cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                          <td>{{ currentModel.struct['RROW_usefullife'].label }}</td>
-                         <td ng-repeat = "field in ['RROW_usefullife']" ng-include="'roadfieldcontrol'"></td>
+                         <td><form-field field="RROW_usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>    
                 </table>    
-               </md-tab>
-          <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-                    <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>         
         <md-tab label="Attachment" md-on-select="ontabselected('attachment')">
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoadImage(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoadImage(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -107,32 +107,32 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['KMPostNo'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['KMPostNo']" ng-include="'roadfieldcontrol'"></div></td>                                               
-                    </tr>
+                        <td><form-field field="KMPostNo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                                               
+                    </tr>                    
                     <tr>
                         <td>{{ currentModel.struct['LAT'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['LAT']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td><form-field field="LAT" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LONG'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['LONG']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td><form-field field="LONG" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                                              
                     </tr>
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -145,93 +145,92 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['SegmentID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['SegmentID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="SegmentID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td colspan="2"><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td> 
+                        <td colspan="2"><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                         
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['SegmentLen'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['SegmentLen']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="SegmentLen" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['carriagewayWidth'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['carriagewayWidth']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="carriagewayWidth" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['NumLanes'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['NumLanes']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="NumLanes" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LaneWidthL'].label }}</td>
-                        <td><div ng-repeat = "field in ['LaneWidthL']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LaneWidthL" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                         <td>{{ currentModel.struct['LaneWidthR'].label }}</td>
-                        <td><div ng-repeat = "field in ['LaneWidthR']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td><form-field field="LaneWidthR" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['SurfaceTyp'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['SurfaceTyp']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="SurfaceTyp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['PavementTy'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['PavementTy']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="PavementTy" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                         
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['PavementThickness'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['PavementThickness']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="PavementThickness" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['PavementStrength'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['PavementStrength']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="PavementStrength" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['DateOfLast'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['DateOfLast']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="DateOfLast" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                                               
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['ConstructionValue'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionValue']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="ConstructionValue" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['YearOfReco'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['YearOfReco']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="YearOfReco" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['SegmentCon'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['SegmentCon']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="SegmentCon" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Lifeyears'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Lifeyears']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="Lifeyears" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                                               
                     </tr>
-
 
                 </table>                    
                </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -475,14 +474,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -519,14 +518,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -566,14 +565,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -613,14 +612,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -660,14 +659,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -724,14 +723,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -775,14 +774,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -843,14 +842,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -906,14 +905,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -977,14 +976,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -1054,14 +1053,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -1125,14 +1124,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -1188,14 +1187,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')">
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list>  
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list>  
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -1255,14 +1254,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -1323,14 +1322,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -1414,14 +1413,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -1481,14 +1480,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -1548,14 +1547,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   
@@ -1608,14 +1607,14 @@
                 </table>                    
                </md-tab>
           <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
-                <file-list list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
         <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
                 <div class="lightBoxGallery">
-                    <ui-gallery list="currentModel.roadImageList"  options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList"  options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
      </md-tabs>   

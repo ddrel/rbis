@@ -128,7 +128,7 @@ angular.module('RBIS').controller("roadsCtrl", function( $scope, $http,$rootScop
             $timeout(function(){
                 $http.get("/ws/users/me").success(function(user){
                     $scope.userObject = user;                    
-                    console.log($scope.userObject);
+                    //console.log($scope.userObject);
                     if(user.role=="SUPER ADMINISTRATOR"){
                         $http.get("/api/location/getregionprovince").success(function(data){
                             utilities.sort(data,"Code");                                

@@ -172,7 +172,7 @@
            <div class="content-data-action">               
             <md-toolbar class="md-menu-toolbar">
                     <md-menu-bar>
-                        <md-menu>
+                        <md-menu ng-if="!currentModel.currentItemReadonly && !currentModel.readonly  ||  currentModel.list.length>0">
                             <button ng-click="$mdMenu.open()">
                             Action
                             </button>  
@@ -229,7 +229,7 @@
                             Shapes
                             </button>  
                             <md-menu-content>                            
-                                <md-menu-item>
+                                <md-menu-item ng-show="!currentModel.currentItemReadonly && !currentModel.readonly && currentModel.currentItem!=null">
                                     <md-button ng-click="toolbarAction('importshapes', $event)">
                                         <i class="fa fa-file-text" aria-hidden="true">&nbsp;Import/Replace(Geojson/KML)</i>
                                     </md-button>
@@ -247,7 +247,7 @@
                                 </md-menu-item> 
                             </md-menu-content>
                         </md-menu>
-                        <md-menu ng-show="currentModel.currentItem!=null && ismediatabactive()  && !isnewRow()">
+                        <md-menu ng-show="currentModel.currentItem!=null && ismediatabactive()  && !isnewRow() && !currentModel.currentItemReadonly && !currentModel.readonly">
                             <button ng-click="$mdMenu.open()">
                             Media Files
                             </button>  

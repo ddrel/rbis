@@ -290,10 +290,12 @@ RoadsSchema.statics.addRoadRemarks =  function(opt,cb){
             _dataremarks.remark_by_email = opt.remark_by_email;
             _dataremarks.message = opt.message;
         if(opt.key_name=="road"){            
+            doc.status = _dataremarks.status; //set current status;
             doc.remarks_trail.push(_dataremarks);
         }else{
             var fdx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt.attr_id);            
             if(fdx>-1){
+                doc[opt.key_name][fdx].status = _dataremarks.status; //set current status; 
                 doc[opt.key_name][fdx].remarks_trail.push(_dataremarks);
             }
 

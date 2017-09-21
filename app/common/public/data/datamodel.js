@@ -4,6 +4,10 @@ angular.module('RBIS').factory('datamodel', ['$window','$rootScope','utilities',
 
 var datamodel = {};
 
+
+datamodel.ROAD_FEATURE_STATUS = {"forreview":"For Review","inprogress":"In Progress","pending":"Pending","validated":"Validated","rejected":"Rejected","returned":"Returned","forupdate":"For Update"};
+datamodel.optionReadOnly = ["forreview","validated","ROAD BOARD","SUPERVISOR","COA"];
+
 /*  Options */
 datamodel.options = {};
 datamodel.options.class = [{"key":"City","label":"City"},{"key":"Provincial","label":"Provincial"}];
@@ -245,7 +249,7 @@ datamodel.road = {
     "RROWAcquir"        : {"label":"RROW Aquired","key":"RROWAcquir","type":"String","options":datamodel.options.roadaquired,"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
     "DirFlow"           : {"label":"Direction Flow","key":"DirFlow","type":"String","options":datamodel.options.directionflow,"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
     "Terrain"           : {"label":"Terrain","key":"Terrain","type":"String","options":datamodel.options.terrain,"style":"","ctrl":"select","class":"form-control"}, 
-    "Length"            : {"label":"Length","key":"Length","type":"float","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},
+    "Length"            : {"label":"Length","key":"Length","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "RROW_acq_date"     : {"label":"RROW Acquisition Date","key":"RROW_acq_date","type":"date","options":[],"visible":true,"style":"","ctrl":"date","class":"form-control"},
     "RROW_acq_cost"     : {"label":"RROW Acquisition Cost","key":"RROW_acq_cost","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "RROW_usefullife"   : {"label":"RROW Useful Life","key":"RROW_usefullife","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},

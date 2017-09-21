@@ -31,7 +31,8 @@ angular.module('RBIS')
         template:_templateFileList(),   
         scope: {
             list: '=',
-            ondelete:'&'
+            ondelete:'&',
+            readonly: '=', 
         },
         link: link,
         controller: function($scope){
@@ -45,6 +46,11 @@ angular.module('RBIS')
         scope.$watch('list', function(newVal, oldVal){
             scope.items = newVal;
         });
+
+        scope.$watch('readonly', function(newVal, oldVal){
+            scope.readonly = newVal;
+        });
+        
 
         scope.deleteClickFile= function(evt){                                        
             if (evt.stopPropagation)    evt.stopPropagation();
@@ -97,7 +103,7 @@ angular.module('RBIS')
                 "<td>{{ converttomb(row.size) }}</td>" + 
                 "<td>{{ formatdate(row.created_date) }}</td>" + 
                 "<td width='35px'><a href='' ng-click='onclickdownload(row.doc_id)'><i class='fa fa-cloud-download' aria-hidden='true'>&nbsp;Download</i></a></td>" + 
-                "<td width='35px'><a href='' ng-click='deleteClickFile(row)'><i class='fa fa-trash' aria-hidden='true'>&nbsp;Delete</i></a></td>" +
+                "<td width='35px'><a ng-if='!readonly' href='' ng-click='deleteClickFile(row)'><i class='fa fa-trash' aria-hidden='true'>&nbsp;Delete</i></a></td>" +
                 "</tr>" +
                 "</tbody>"  
         "</table>"
@@ -107,12 +113,12 @@ angular.module('RBIS')
     
 }).directive("formField",function($compile){
 
-    var directive = {
-        template:_templateCtrl(),   
+    var directive = {           
         scope: {
             field: '@',
             currentmodel: '=',
-            ondatadirty:'&'
+            ondatadirty:'&',
+            readonly:'='
         },
         link: link,
         controller: function($scope){
@@ -120,28 +126,88 @@ angular.module('RBIS')
           }
     };
 
-    var _gettemplates = function(field,currentmodel){
-            //on progress
-            if(currentmodel.struct[field].ctrl=='label'){
-                console.log("<label ng-click=ondatadirtyForm(field,currentmodel,null)>" + currentmodel.currentItem[field] +"</label>");
-                return "<label ng-click=ondatadirtyForm(field,currentmodel,null)>" + currentmodel.currentItem[field] +"</label>";
+    var _parseValue = function(v){
+        return (typeof v=="undefined" || v =="NaN" || v == "Null" || v=="undefined")?"":v;
+    }
+    var _getoptionsvalue = function(options,value){
+        var mdx = options.map(function(d){return d.key}).indexOf(value);
+            return _parseValue(mdx>-1?options[mdx].label:"");
+    };
+
+
+    var _formatdate =  function(d){
+        if(d){
+            var date = new Date(d);
+            return _parseValue((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() + " ");
+        }else{
+            return "";
+        };
+    }
+
+
+    
+
+    var _gettemplates = function(scope){
+            var field = scope.field,currentmodel = scope.currentmodel;
+        
+            if(!currentmodel || !currentmodel.currentItem){
+                return "---";
+            }//----------------------------------------------------------------------------------------
+            else if(scope.readonly  &&  currentmodel.struct[field].ctrl=='text'){
+                return "<label>" + _parseValue(currentmodel.currentItem[field]) +"</label>";                
             }
+            else if(scope.readonly  &&  currentmodel.struct[field].ctrl=='select'){
+                return "<label>" + _getoptionsvalue(currentmodel.struct[field].options, currentmodel.currentItem[field]) +"</label>";
+            }
+            else if(scope.readonly  && currentmodel.struct[field].ctrl=='date'){
+                return "<label>" + _formatdate(currentmodel.currentItem[field]) +"</label>";
+            } //----------------------------------------------------------------------------------------
+            else if(currentmodel.currentItem.status && ["forreview","validated"].indexOf(currentmodel.currentItem.status)>-1 && currentmodel.struct[field].ctrl=='text'){
+                return "<label>" + currentmodel.currentItem[field] +"</label>";
+            }else if(currentmodel.currentItem.status && ["forreview","validated"].indexOf(currentmodel.currentItem.status)>-1 && currentmodel.struct[field].ctrl=='select'){
+                return "<label>" + _getoptionsvalue(currentmodel.struct[field].options, currentmodel.currentItem[field]) +"</label>";
+            }else if(currentmodel.currentItem.status && ["forreview","validated"].indexOf(currentmodel.currentItem.status)>-1 && currentmodel.struct[field].ctrl=='date'){
+                return "<label>" + _formatdate(currentmodel.currentItem[field]) +"</label>";
+            }//----------------------------------------------------------------------------------------
+            else if(currentmodel.struct[field].ctrl=='label'){                
+                return "<label>" + currentmodel.currentItem[field] +"</label>";
+            }else if(currentmodel.struct[field].ctrl=='text'){
+                return "<input filter-input  datatype='{{currentmodel.struct[field].type}}' ng-blur='ondatadirtyForm(currentmodel,field,currentmodel.currentItem[field])' type='text'  ng-model='currentmodel.currentItem[field]' class='{{currentmodel.struct[field].class}}'></input>";
+            }else if(currentmodel.struct[field].ctrl=='select'){
+                    return "<select ng-blur='ondatadirtyForm(currentmodel,field,currentmodel.currentItem[field])' ng-model='currentmodel.currentItem[field]' class='{{currentmodel.struct[field].class}}'>" + 
+                            "<option value='{{opt.key}}'  ng-selected='currentmodel.currentItem[field]==opt.key' ng-repeat='opt in currentmodel.struct[field].options'>{{ opt.label }}</option>" +
+                            "</select>";
+            }else if(currentmodel.struct[field].ctrl=='date'){
+                return "<div layout-gt-xs='row'>" + 
+                       "<div flex-gt-xs>" +                                     
+                        "<md-datepicker ng-blur='ondatadirtyForm(currentmodel,field,currentmodel.currentItem[field])' ng-model='currentmodel.currentItem[field]' md-placeholder='Enter date'></md-datepicker>" + 
+                        "</div>" + 
+                        "</div>";
+            }                                             
     }
 
 
     function link(scope, element, attr) {
-        element.html(_gettemplates(scope.field,scope.currentmodel));
+        scope.$watch('currentmodel.currentItem', function(newVal, oldVal){                
+                element.html(_gettemplates(scope));
+                $compile(element.contents())(scope);
+         }); 
+ 
+         scope.$watch('readonly', function(newVal, oldVal){
+            element.html(_gettemplates(scope));
+            $compile(element.contents())(scope);
+          });
+
+
+
+        element.html(_gettemplates(scope));
         $compile(element.contents())(scope);
 
         scope.ondatadirtyForm =  function(a,b,c){
-            scope.ondatadirty(a,b,c);
+            scope.ondatadirty({a:a,b:b,c:c});
         }
     }
 
-
-    function _templateCtrl(){
-        return ""
-    }
 
     return directive;
 }).directive("formRemarks",function($window,$compile){
@@ -151,6 +217,7 @@ angular.module('RBIS')
             scope: {
                 list: '=',
                 status: '=',
+                readonly: '=',
                 onsumbit:'&'
             },
             link: link,
@@ -168,6 +235,19 @@ angular.module('RBIS')
                 scope.items = newVal;
             });
 
+            scope.$watch('status', function(newVal, oldVal){
+                scope.status = newVal || '';
+                scope.selectstatus = scope.status==''?"inprogress":scope.status;
+                scope.messageremarks = '';
+
+                if(scope.items && scope.items.length>1){
+                    scope.items.sort(function(a,b){return new Date(b.remark_date) - new Date(a.remark_date);})    
+                };
+            });
+
+            scope.$watch('readonly',function(newVal,oldVal){
+
+            });
 
             if(scope.items && scope.items.length>1){
                 scope.items.sort(function(a,b){return new Date(b.remark_date) - new Date(a.remark_date);})    
@@ -218,6 +298,11 @@ angular.module('RBIS')
                 return "";
             }
 
+
+            scope.readonlystate =  function(){
+                return !(["forreview","validated"].indexOf(scope.status)>-1 || scope.readonly);
+            }
+
         }
 
         function _templateremarks(){
@@ -233,16 +318,16 @@ angular.module('RBIS')
 
             var _status =   "<md-input-container style='margin:0px;padding:0px;width:130px;'><md-select ng-model='selectstatus' style='margin:0px;padding:0px'>"+
                             "<md-option value='inprogress'><em>In Progress</em></md-option>" +
-                            "<md-option value='forreview'><em>For Review</em></md-option>" +
+                            "<md-option value='forreview'><em>For Review (<font color='#ff6347'>This will locked the current data.</font>)</em></md-option>" +
                             "<md-option value='pending'><em>Pending</em></md-option>" +                                                         
                             "</md-select></md-input-container";                                             
 
             return "<table class='table table-bordered'>" + 
-                     "<thead><tr><td ng-show='isnewremarks' colspan='2' style='padding: 0 0 0 5px !important;'>&nbsp;<label>Status:</label> &nbsp;" + _status + "</td></tr></thead>"  + 
+                     "<thead ng-if='readonlystate()' ><tr><td ng-show='isnewremarks' colspan='2' style='padding: 0 0 0 5px !important;'>&nbsp;<label>Status:</label> &nbsp;" + _status + "</td></tr></thead>"  + 
                      "<tbody>" + 
-                     "<tr><td colspan='2' style='padding:0px !important;'><textarea class='form-control' ng-disabled ='!isnewremarks' ng-model='messageremarks' maxlength='{{maxlenght}}' ng-keyup='ontextchange($event)' style='width:100%;height:80px;font-size:1.2em'></textarea></td></tr>"+
-                     "<tr><td style='8px  0 0 6px !important' align='left'><label style='margin:0px !important'>Remaining Character(s) : <font color='red'>{{ charlenght}}</font></label></td>" + 
-                     "<td colspan='2' align='right' style='padding:2px !important'>" + 
+                     "<tr><td colspan='2' style='padding:0px !important;'><textarea class='form-control' ng-disabled ='!isnewremarks || !readonlystate()' ng-model='messageremarks' maxlength='{{maxlenght}}' ng-keyup='ontextchange($event)' style='width:100%;height:80px;font-size:1.2em'></textarea></td></tr>"+
+                     "<tr ng-if='readonlystate()' ><td style='8px  0 0 6px !important' align='left'><label style='margin:0px !important'>Remaining Character(s) : <font color='red'>{{ charlenght}}</font></label></td>" + 
+                     "<td ng-if='readonlystate()' colspan='2' align='right' style='padding:2px !important'>" + 
                      "<input type='button' ng-show='!isnewremarks' ng-click='onclickaddremark($event)' class='btn btn-primary2' value='Add Remarks'></input>"+
                      "<input type='button' ng-show='isnewremarks' ng-click='onclicksumbit($event)' class='btn btn-primary2' value='Submit'></input>"+
                      "<input type='button' ng-show='isnewremarks' ng-click='onclearmessage($event)' class='btn' value='Clear'></input>"+

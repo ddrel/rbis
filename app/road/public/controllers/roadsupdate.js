@@ -47,8 +47,7 @@ $scope.getroadSC_ST =  function(rid){
                 d[n] = utilities.formatToDecimal(d[n].toFixed(3));      
             }
           }
-          $scope.summary.surfacetype = d;
-          console.log($scope.summary.surfacetype);          
+          $scope.summary.surfacetype = d;       
         });
         $http.get("/api/roads/getcarriagewayperconlength?qry=" + rid).success(function(d){
             for(var n in d){
@@ -56,8 +55,7 @@ $scope.getroadSC_ST =  function(rid){
                     d[n] = utilities.formatToDecimal(d[n].toFixed(3));      
                 }
             }
-            $scope.summary.surfacecondition = d;  
-            console.log($scope.summary.surfacecondition);          
+            $scope.summary.surfacecondition = d;      
         });
 
 
@@ -78,6 +76,12 @@ $scope.loadattrsFeaturesdata =  function(key,data){
 $scope.init =  function(){
     utilities.hidenavigation();
 
+    adapter.user(function(){
+        $scope.currentModel.readonly = adapter.readonlyModel;
+    })
+    
+
+
     $timeout(function(){
         var ih = $(".page-content").innerHeight();
         $(".panel-body").css("margin-bottom","0px");
@@ -97,6 +101,7 @@ $scope.init =  function(){
                     $scope.summary.road.importance = data.R_Importan;
                     
                     $scope.currentModel.roadID = data.R_ID;
+                    //$scope.currentModel.readonly = true;
                     adapter.init(data.R_ID);              
                     $scope.loadAttrAsOptions("RoadLocRefPoints");              
                     $scope.loadRoadMainData();
@@ -158,6 +163,7 @@ $scope.initModelData =  function(key,currentItem,list){
     $scope.currentModel.struct =  datamodel.structure[key];
     $scope.currentModel.list = list;
     $scope.currentModel.currentItem = currentItem;
+    $scope.currentModel.currentItemReadonly = (datamodel.optionReadOnly.indexOf(currentItem.status) >-1);
     uploadroadSvcsData.set($scope.currentModel);
     
     $scope.currentModel.roadImageList = [];
@@ -256,9 +262,11 @@ $scope.toolbarAction = function(a,e){
 
 
 
-    var _onnewFeatureAdded = function(data){        
+    var _onnewFeatureAdded = function(data){  
+        console.log(data);      
         $scope.currentModel.list = [];
         $scope.currentModel.currentItem = data;
+        $scope.currentModel.currentItemReadonly =false;
         adapter.addNewtate = true;
 
         
