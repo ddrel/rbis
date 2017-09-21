@@ -236,10 +236,8 @@ angular.module('RBIS')
             });
 
             scope.$watch('status', function(newVal, oldVal){
-                scope.status = newVal || '';
-                scope.selectstatus = scope.status==''?"inprogress":scope.status;
+                //scope.status = newVal || '';                
                 scope.messageremarks = '';
-
                 if(scope.items && scope.items.length>1){
                     scope.items.sort(function(a,b){return new Date(b.remark_date) - new Date(a.remark_date);})    
                 };
@@ -259,14 +257,14 @@ angular.module('RBIS')
             
 
             scope.messageremarks = '';
-            scope.selectstatus = scope.status==''?"inprogress":scope.status;
+            scope.selectstatus = (scope.status && scope.status== '')?"inprogress":scope.status;
 
             scope.ontextchange =  function(e){
                 scope.charlenght = scope.maxlenght - e.currentTarget.value.length;
             }
 
             scope.onclicksumbit =  function(e){                
-                if(scope.messageremarks!==''){
+                if(scope.messageremarks!==''){                    
                     scope.onsumbit({a:scope.messageremarks,b:scope.selectstatus});
                     scope.messageremarks = "";
                 }
@@ -303,6 +301,11 @@ angular.module('RBIS')
                 return !(["forreview","validated"].indexOf(scope.status)>-1 || scope.readonly);
             }
 
+
+           scope.onstatuschange =  function(b){
+            scope.selectstatus = b;
+           }; 
+
         }
 
         function _templateremarks(){
@@ -316,7 +319,7 @@ angular.module('RBIS')
                              "</tr></tbody>" +               
                              "</table>";
 
-            var _status =   "<md-input-container style='margin:0px;padding:0px;width:130px;'><md-select ng-model='selectstatus' style='margin:0px;padding:0px'>"+
+            var _status =   "<md-input-container style='margin:0px;padding:0px;width:130px;'><md-select ng-model='selectstatus' ng-change='onstatuschange(selectstatus)' style='margin:0px;padding:0px'>"+
                             "<md-option value='inprogress'><em>In Progress</em></md-option>" +
                             "<md-option value='forreview'><em>For Review (<font color='#ff6347'>This will locked the current data.</font>)</em></md-option>" +
                             "<md-option value='pending'><em>Pending</em></md-option>" +                                                         
@@ -332,8 +335,7 @@ angular.module('RBIS')
                      "<input type='button' ng-show='isnewremarks' ng-click='onclicksumbit($event)' class='btn btn-primary2' value='Submit'></input>"+
                      "<input type='button' ng-show='isnewremarks' ng-click='onclearmessage($event)' class='btn' value='Clear'></input>"+
                      "</td></tr>"+
-                     "<tr><td colspan='2' style='padding:0px !important;'>" + _listtable +"</td></tr>"
-                     "<tr><td>{{selectstatus}}</td></tr>"
+                     "<tr><td colspan='2' style='padding:0px !important;'>" + _listtable +"</td></tr>"+                     
                      "</tbody>" + 
                      "</table>";
         };

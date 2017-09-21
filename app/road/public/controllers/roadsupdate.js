@@ -163,7 +163,10 @@ $scope.initModelData =  function(key,currentItem,list){
     $scope.currentModel.struct =  datamodel.structure[key];
     $scope.currentModel.list = list;
     $scope.currentModel.currentItem = currentItem;
-    $scope.currentModel.currentItemReadonly = (datamodel.optionReadOnly.indexOf(currentItem.status) >-1);
+    if( currentItem){
+        $scope.currentModel.currentItemReadonly = (datamodel.optionReadOnly.indexOf(currentItem.status || "inprogress") >-1);
+    };
+    
     uploadroadSvcsData.set($scope.currentModel);
     
     $scope.currentModel.roadImageList = [];
@@ -421,7 +424,8 @@ $scope.onRemarksSubmit =  function(a,b){
             .success(function(data){ 
                 $timeout(function(){
                     $scope.currentModel.currentItem.remarks_trail = [];
-                    $scope.currentModel.currentItem.remarks_trail = data;                                   
+                    $scope.currentModel.currentItem.remarks_trail = data;
+                    $scope.currentModel.currentItem.status = opt.status;                                   
                 }) ;                                                                                      
        }).error(function(){
            toastr.error("Error loading remarks");
