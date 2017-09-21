@@ -192,6 +192,11 @@ angular.module('RBIS')
                 element.html(_gettemplates(scope));
                 $compile(element.contents())(scope);
          }); 
+
+         scope.$watch('currentmodel.currentItem.status', function(newVal, oldVal){                
+            element.html(_gettemplates(scope));
+            $compile(element.contents())(scope);
+        }); 
  
          scope.$watch('readonly', function(newVal, oldVal){
             element.html(_gettemplates(scope));
@@ -257,7 +262,7 @@ angular.module('RBIS')
             
 
             scope.messageremarks = '';
-            scope.selectstatus = (scope.status && scope.status== '')?"inprogress":scope.status;
+            scope.selectstatus = (!scope.status ||  scope.status== '')?"inprogress":scope.status;
 
             scope.ontextchange =  function(e){
                 scope.charlenght = scope.maxlenght - e.currentTarget.value.length;

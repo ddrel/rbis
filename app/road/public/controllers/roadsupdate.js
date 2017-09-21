@@ -418,14 +418,16 @@ $scope.onRemarksSubmit =  function(a,b){
     
     $http.post("/api/roads/addRoadRemarks",opt).success(function(){
             toastr.success("Successfully add remark ...");
+            $scope.currentModel.currentItemReadonly = (datamodel.optionReadOnly.indexOf(opt.status) >-1);
+            $scope.currentModel.currentItem.status = opt.status;
+            
             $http.get("/api/roads/getRoadRemarks?r_id=" + $scope.currentModel.roadID + 
             "&key_name=" + $scope.currentModel.name +
             "&attr_id="  + $scope.currentModel.currentItem._id)
             .success(function(data){ 
                 $timeout(function(){
                     $scope.currentModel.currentItem.remarks_trail = [];
-                    $scope.currentModel.currentItem.remarks_trail = data;
-                    $scope.currentModel.currentItem.status = opt.status;                                   
+                    $scope.currentModel.currentItem.remarks_trail = data;                                                       
                 }) ;                                                                                      
        }).error(function(){
            toastr.error("Error loading remarks");
