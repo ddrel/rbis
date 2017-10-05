@@ -1,43 +1,28 @@
-angular.module('RBIS').controller("dashboardCtrl", function( $scope, $http,$rootScope,$window,$timeout,utilities,adapter) {
+angular.module('RBIS').controller("dashboardCtrl", function( $scope, $http,$rootScope,$window,$timeout,utilities,adapter,datamodel,$mdSidenav) {
 
 
-  $scope.events = [{
+  $scope.events = 
+[
+{
     badgeClass: 'info',
     badgeIconClass: 'glyphicon-check',
     title: 'Road Update 11100000',
     content: 'Some awesome content.'
-  }, {
+},
+{
     badgeClass: 'warning',
     badgeIconClass: 'glyphicon-credit-card',
     title: 'Line segment update 111100000000',
     content: 'Content .'
-  }
-  , {
-    badgeClass: 'warning',
-    badgeIconClass: 'glyphicon-credit-card',
-    title: 'Line segment update 111100000000',
-    content: 'Content .'
-  }
-  , {
-    badgeClass: 'info',
-    badgeIconClass: 'glyphicon-check',
-    title: 'Line segment update 111100000000',
-    content: 'Content .'
-  }
-  , {
-    badgeClass: 'info',
-    badgeIconClass: 'glyphicon-check',
-    title: 'Line segment update 111100000000',
-    content: 'Content .'
-  }
-  , {
-    badgeClass: 'info',
-    badgeIconClass: 'glyphicon-credit-card',
-    title: 'Line segment update 111100000000',
-    content: 'Content .'
-  }
-  ];
+}
+];
 
+
+$scope.modelData = {};
+$scope.modelData.review = {};
+$scope.modelData.review.pagination = {};
+$scope.modelData.validated = {}
+$scope.modelData.validated.pagination = {};
 
 
 $scope.summary = {};
@@ -69,9 +54,30 @@ $scope.getpercent = function(a,b){
 $scope.formatToDecimal =  function(d){
   return utilities.formatToDecimal(parseFloat("0" + d));
 }
+
+
+
+
+var _getRoadStatus =  function(){
+  $http.get("/api/road_forreview/getforreview").success(function(d){
+    $scope.modelData.review.List = d;
+    if($scope.modelData.review.List.length>0){$("#roadmapdashboard").leafletMaps();}      
+  });
+};
+
+var _getValidatedStatus =  function(){
+  $http.get("/api/road_validated/getroadvalidated").success(function(d){
+    $scope.modelData.validated.List = d;
+    if($scope.modelData.validated.List.length>0){$("#roadmapdashboard").leafletMaps();}          
+  });
+}
+
 $scope.init =  function(){
-    $http.get("/api/roads/getroadlengthtotal").success(function(d){
-      console.log(utilities.formatToDecimal(Math.ceil(d.Roadlengthtotal)));
+    adapter.user(function(_user){
+      $scope.user = _user;     
+    });
+
+    $http.get("/api/roads/getroadlengthtotal").success(function(d){      
         $scope.summary.roadlengthtotal = utilities.formatToDecimal(Math.ceil(d.Roadlengthtotal));
     });
     
@@ -149,13 +155,126 @@ $scope.init =  function(){
                 $scope.summary.chart.sc.colors.push(_colorHex);
             };
         };
-
-
-        console.log($scope.summary.chart.sc.data);
     });
 
 
+    //load review and validated    
+    _getRoadStatus(); 
+    _getValidatedStatus();  
 };
 
+
+
+
+
+/**paging */
+
+$scope.pageChangedReview =  function(i){
+
+}
+
+$scope.pageChangedValidated =  function(i){
+  
+}
+
+/******************************* FOR Review **************************/
+
+
+
+$scope.onRemarksSubmit = function(a,b){
+
+  var opt = {};
+  opt.r_id =    $scope.modelData.selectedItem.r_id;   
+  opt.attr_id = $scope.modelData.selectedItem.ref_id
+  opt.key_name = $scope.modelData.selectedItem.attr_type;
+  opt.message = a;
+  opt.status = b;
+  opt.id = $scope.modelData.selectedItem._id;
+
+  //console.log($scope.modelData.currentItem);
+  //console.log(opt);
+
+  console.log(opt);
+  $http.post("/api/roads/addRoadRemarks",opt).success(function(){
+          toastr.success("Successfully add remark ...");          
+          $scope.modelData.currentItem.status = opt.status;          
+          _getRoadStatus();
+
+          
+  }).error(function(err){
+          toastr.error("Error saving remarks");
+  });
+
+};
+
+
+var _getshapestyle = function(o,name){    
+  if(name=="Carriageway"){
+      return utilities.roads.STStyle(o.SurfaceTyp); 
+  }else{
+              return {
+                                      style: function(f){
+                                      return {weight: 4,
+                                              opacity: 1,
+                                              color: '#ff6666',
+                                              dashArray: '4',
+                                              fillOpacity: 0.7
+                                          }											
+                                      }
+                      }
+          };
+  };
+
+var shapemap =  function(data,name){
+  $("#roadmapdashboard").leafletMaps("clear");
+  var geojson =  data.geometry || null;
+  if(!geojson) {return;}
+
+  name =  name.replace("Road","");
+  var _style = _getshapestyle(data,name);
+  var _geo = $("#roadmapdashboard").leafletMaps("setGeoJSON", geojson,null,_style);
+  _geo.on({
+      mouseover: function (e) {_geo.openPopup(); },
+      click: function (e) {
+          $("#roadmapdashboard").leafletMaps("zoomToFeature", e.target);
+      }
+  });
+  
+  var tooltiptext = utilities.roads.getattribdisplay(data,name);
+  _geo.eachLayer(function (layer) {                        
+          layer.bindPopup(name + ": "  + tooltiptext);
+      });
+  $("#roadmapdashboard").leafletMaps("zoomToFeature", _geo);
+};
+
+$scope.optionStatus = [{"key":"validated","label":"Validated"},{"key":"returned","label":"Return"}];
+
+$scope.onmaptabclick =  function(){
+  $("#roadmapdashboard").leafletMaps("refresh");
+}
+
+
+//$scope.optionStatus = [];
+$scope.ontabselected = function(status){
+  var thestatus = status=="review"?[{"key":"validated","label":"Validated"},{"key":"returned","label":"Return"}]:[{"key":"returned","label":"Return"}];
+  $scope.optionStatus = thestatus; 
+}
+
+$scope.onloaddata =  function(item,status){
+  
+
+$http.get("/api/roads/getroadattrbyid?r_id="+ item.r_id +"&attr=" + item.attr_type + "&attr_id=" + item.ref_id).success(function(data){
+  $mdSidenav("left").toggle();  
+  $("#roadattrttabledashboard").html("");                        
+
+ $scope.modelData.selectedItem = item;
+ $scope.modelData.currentItem =  data;
+ $scope.modelData.roadImageList = utilities.file.getCurrentImageList(data);
+ $("#roadattrttabledashboard").html(datamodel.utils.displayattributestable(item.attr_type,data));
+ shapemap(data,item.attr_type);
+
+})
+
+}
 
 });

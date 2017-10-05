@@ -3,3 +3,13 @@
 .percent-value{color:#777;font-size:10px;}
 .table-legend td{border-bottom:solid 1px #888;border-right:solid 1px #888}
 .st-chart-legend{width:15px;height:15px;border:solid 1px #fff;float:left;}
+
+
+
+@media (min-width: 600px) {
+    md-sidenav {
+      max-width: 90%!important;
+    
+    } }
+
+md-sidenav{max-width:90% !important;width:70% !important}

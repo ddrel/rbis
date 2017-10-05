@@ -4,7 +4,6 @@ angular.module('RBIS').factory('datamodel', ['$window','$rootScope','utilities',
 
 var datamodel = {};
 
-
 datamodel.ROAD_FEATURE_STATUS = {"forreview":"For Review","inprogress":"In Progress","pending":"Pending","validated":"Validated","rejected":"Rejected","returned":"Returned","forupdate":"For Update"};
 datamodel.optionReadOnly = ["forreview","validated","ROAD BOARD","SUPERVISOR","COA"];
 
@@ -635,14 +634,13 @@ datamodel.structure = {
 
 
 datamodel.utils = {};
-
 datamodel.utils.displayattributestable=  function(n,o,maxheight){    
-            n="Road" + n;
-            var table = "<div style='max-height:" +  (maxheight || 400) +"px;overflow-y:auto;overflow-x:hidden;'><table style='color:#555;font-size:12px;' class='table'>";
+            n=  n.indexOf("Road") >-1?n :"Road"+ n;
+            var table = "<div style='max-height:" +  (maxheight || 900) +"px;overflow-y:auto;overflow-x:hidden;'><table style='color:#555;font-size:12px;' class='table'>";
             var _model =!datamodel.structure[n]?datamodel.structure["road"]:datamodel.structure[n];
-            var _getvalue = function(model,o){
-                if(model.ctrl=="select" && model.options.length>0 && model.visible){
-                            var idx  = model.options.map(function(d){return d.key.toUpperCase}).indexOf((o[model.key] || "") .toUpperCase);
+            var _getvalue = function(model,o){                
+                if(model.ctrl=="select" && model.options.length>0){ //&& model.visible
+                            var idx  = model.options.map(function(d){return d.key.toUpperCase}).indexOf((o[model.key] || "").toUpperCase);
                             return idx>-1?model.options[idx].label :"";
                 }else{
                     return o[model.key] || "";
@@ -650,15 +648,15 @@ datamodel.utils.displayattributestable=  function(n,o,maxheight){
             };
 
             var m = _model;
-            console.log(m);
+            //console.log(m);
                 for(var n in _model){
                    var objdata = _model[n];
-                    if(objdata.key=="LRPStartDi" || objdata.key=="LRPEndDisp"){         
+                    if(objdata.key=="LRPStartDi" || objdata.key=="LRPEndDisp" || objdata.key=="Remarks"){         
                     }else if(objdata.key=="LRPStartKm"){
-                            var _tbl = "<table style='width:100%'><tr><td width='30%'>" + objdata.label +":</td><td width='40px'>" +  _getvalue(objdata,o) +"</td><td>" +  _getvalue(_model["LRPStartDi"],o) +" Meters</td></tr></table>"
+                            var _tbl = "<table style='width:100%'><tr><td width='50%'>" + objdata.label +":</td><td width='25%'>Km Post: " +  _getvalue(objdata,o) +"</td><td width='25%'>" +  _getvalue(_model["LRPStartDi"],o) +" Meters</td></tr></table>"
                             table+="<tr><td colspan=2>" + _tbl + "</td>"    
                     }else if(objdata.key=="LRPEndKmPo"){
-                            var _tbl = "<table style='width:100%'><tr><td width='30%'>" + objdata.label +":</td><td width='40px'>" +  _getvalue(objdata,o) +"</td><td>" +  _getvalue(_model["LRPEndDisp"],o) +" Meters</td></tr></table>"
+                            var _tbl = "<table style='width:100%'><tr><td width='50%'>" + objdata.label +":</td><td width='25%'>Km Post: " +  _getvalue(objdata,o) +"</td><td width='25%'>" +  _getvalue(_model["LRPEndDisp"],o) +" Meters</td></tr></table>"
                             table+="<tr><td colspan=2>" + _tbl + "</td>"
 
                     }else{
@@ -673,6 +671,9 @@ datamodel.utils.displayattributestable=  function(n,o,maxheight){
 
 
 
+datamodel.load = function(data){
+
+};
 
 return datamodel;
 }]);    

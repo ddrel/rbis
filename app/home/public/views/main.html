@@ -9,6 +9,57 @@
     </div>
 <div>
 <div class="">
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">            
+<md-content layout-margin>                                    
+    <div class="portlet box blue-madison">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-info"></i>&nbsp; Information Details
+                </div>
+            </div>
+            <div class="portlet-body">
+                <tabset>
+                    <tab><tab-heading><i class="fa fa-road"></i></tab-heading><div id="roadattrttabledashboard"></div>
+                    </tab>
+                    <tab ng-click="onmaptabclick()"><tab-heading><i class="fa fa-map" aria-hidden="true"></i></tab-heading>
+                        <div id="roadmapdashboard" style=" display: block;outline: medium none;position: relative;z-index: 0;width:100%;height:400px;"> </div>
+                    </tab>                           
+                </tabset>
+            </div>
+    </div>                                    
+            
+    <div class="portlet box blue-madison">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-file"></i>&nbsp; Media
+                </div>
+            </div>
+            <div class="portlet-body">
+                <md-tabs md-dynamic-height md-border-bottom>    
+                    <md-tab label="Attachment"> 
+                                <file-list style="max-height:200px;overflow-y:auto" readonly="true" list="modelData.currentItem.file_attachment"></file-list> 
+                        </md-tab>
+                        <md-tab  label="Road Images"> 
+                                <div class="lightBoxGallery" style="max-height:200px;overflow-y:auto">
+                                    <ui-gallery readonly ="true" list="modelData.roadImageList" options="{container:'#blueimp-gallery-dashboard'}"></ui-gallery>                 
+                                </div>                                       
+                        </md-tab>
+                </md-tabs>
+            </div>
+    </div>
+
+    <div class="portlet box blue-madison">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-flag"></i>&nbsp; Remarks/Status
+                </div>
+            </div>
+            <div class="portlet-body">
+                    <form-remarks options="optionStatus" readonly="false" status="" list="modelData.currentItem.remarks_trail"  onsumbit="onRemarksSubmit(a,b)"></form-remarks>                            
+            </div>
+    </div>                                            
+</md-content>            
+</md-sidenav>
 <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="Summary">
                 <md-content class="md-padding">
@@ -178,9 +229,104 @@
                                     </div>
                                 </div>					
                             </div>
-			        </div><!-- End row chart-->                                    
+			            </div><!-- End row chart-->                                    
                 </md-content>
              </md-tab>
+             <md-tab md-on-select="ontabselected('review')" ng-if="(user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR') && modelData.review.List.length>0" label="For Review ({{ modelData.review.List.length}})">
+                <md-content class="md-padding">                    
+                <div class="row" style="min-height:600px;">
+                    <div class="col-md-12">
+                    <table class="table table-bordered-2 table-roadmain">            
+                        <thead>
+                            <tr class="table-head">
+                                <td>Identifier</td>
+                                <td>Type</td>
+                                <td>Road ID</td>
+                                <td>Road</td>
+                                <td>Class</td>
+                                <td>Status</td>
+                                <td>Submitted By</td>
+                                <td>Submitted Date</td>
+                                <td width="157px" align="center">Action</td>
+                            </tr>
+                        </thead>   
+                        <tbody>
+                            <tr ng-repeat="fr_item in modelData.review.List"> 
+                                <td>{{ fr_item.identifier }}</td>
+                                <td>{{ fr_item.attr_type }}</td>
+                                <td>{{ fr_item.r_id }}</td>
+                                <td>{{ fr_item.road_name }}</td>
+                                <td>{{ fr_item.road_class }}</td>
+                                <td>{{ fr_item.status }}</td>
+                                <td title="{{ fr_item.submit_by.name }}({{ fr_item.submit_by.email }})">{{ fr_item.submit_by.name }}</td>
+                                <td>{{ fr_item.submit_date }}</td>
+                                <td align="center" style="padding:2px;">
+                                        <a href="" class="btn btn-primary2 " ng-click="onloaddata(fr_item,'review')">Review</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td align="left" colspan="9">
+                                    <!-- previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" -->                            
+                                    <pagination  ng-show="modelData.review.List.length>0" ng-change="pageChangedReview(modelData.pagination.CurrentPage)" rotate="false" boundary-link-numbers="false" total-items="(modelData.pagination.max * 10)" ng-model="modelData.pagination.CurrentPage" max-size="10" class="pagination-sm" boundary-links="true">
+                                    </pagination>
+                                </td>    
+                            </tr>    
+                        </tfoot>
+                     </table>             
+                    </div>
+                </div>                                                            
+                </md-content>
+             </md-tab>
+            <md-tab label="Validated" md-on-select="ontabselected('validated')" ng-if="(user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR') && modelData.validated.List.length>0">
+                <md-content>
+                <md-content class="md-padding">                                
+                    <div class="row" style="min-height:600px;">
+                        <div class="col-md-12">
+                            <table class="table table-bordered-2 table-roadmain">            
+                                <thead>
+                                    <tr class="table-head">
+                                        <td>Identifier</td>
+                                        <td>Type</td>
+                                        <td>Road ID</td>
+                                        <td>Road</td>
+                                        <td>Class</td>
+                                        <td>Status</td>
+                                        <td>Validated By</td>
+                                        <td>Validated Date</td>
+                                        <td width="157px" align="center">Action</td>
+                                    </tr>
+                                </thead>   
+                                <tbody>
+                                    <tr ng-repeat="fr_item in modelData.validated.List"> 
+                                        <td>{{ fr_item.identifier }}</td>
+                                        <td>{{ fr_item.attr_type }}</td>
+                                        <td>{{ fr_item.r_id }}</td>
+                                        <td>{{ fr_item.road_name }}</td>
+                                        <td>{{ fr_item.road_class }}</td>
+                                        <td>{{ fr_item.status }}</td>
+                                        <td title="{{ fr_item.validated_by.name }}({{ fr_item.validated_by.email }})">{{ fr_item.validated_by.name }}</td>
+                                        <td>{{ fr_item.validated_dated }}</td>
+                                        <td align="center" style="padding:2px;">
+                                                <a href="" class="btn btn-primary2 " ng-click="onloaddata(fr_item,'validated')">Change Status</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td align="left" colspan="9">
+                                            <!-- previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" -->
+                                            <pagination  ng-show="modelData.validated.list.length>0" ng-change="pageChangedValidated(modelData.validated.pagination.CurrentPage)" rotate="false" boundary-link-numbers="false" total-items="(modelData.validated.pagination.max * 10)" ng-model="modelData.validated.pagination.CurrentPage" max-size="10" class="pagination-sm" boundary-links="true">
+                                            </pagination>
+                                        </td>    
+                                    </tr>    
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>        
+                </md-content>
+            </md-tab>                  
             <md-tab label="Timeline">
                 <md-content>
                      <timeline>
@@ -202,5 +348,14 @@
                 <iframe frameborder="0" style="overflow:hidden;height:800px;width:100%" height="800px" width="100%" src="/status"></iframe>  
             </md-tab>                                  
 </md-tabs>
+</div>
+<div id="blueimp-gallery-dashboard" class="blueimp-gallery blueimp-gallery-controls blueimp-gallery-display" style="display:none;">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
 </div>
     

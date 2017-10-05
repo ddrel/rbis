@@ -24,6 +24,10 @@ app.get("/api/roads/getroadattr",(req,res)=>{
     roads.getroadattr(req,res);
 });
 
+app.get("/api/roads/getroadattrbyid",(req,res)=>{
+    roads.getroadattrbyid(req,res);
+});
+
 
 app.get("/api/roads/getroadaggmain",(req,res)=>{
     roads.getroadaggmain(req,res);

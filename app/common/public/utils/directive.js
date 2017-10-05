@@ -223,6 +223,7 @@ angular.module('RBIS')
                 list: '=',
                 status: '=',
                 readonly: '=',
+                options: '=',
                 onsumbit:'&'
             },
             link: link,
@@ -239,12 +240,18 @@ angular.module('RBIS')
             scope.$watch('list', function(newVal, oldVal){
                 scope.items = newVal;
             });
+            //<font color='#ff6347'></font>
+            var _defaultOptions = [{"key":"inprogress","label":"In Progress"},
+                                    {"key":"forreview","label":"For Review (This will locked the current data.)"},
+                                    {"key":"pending","label":"Pending"}];
 
+            scope.optionsitem = scope.options || _defaultOptions;                                         
+    
             scope.$watch('status', function(newVal, oldVal){
                 //scope.status = newVal || '';                
                 scope.messageremarks = '';
                 if(scope.items && scope.items.length>1){
-                    scope.items.sort(function(a,b){return new Date(b.remark_date) - new Date(a.remark_date);})    
+                    scope.items = scope.items.sort(function(a,b){return (new Date(b.remark_date) - new Date(a.remark_date));})    
                 };
             });
 
@@ -252,9 +259,17 @@ angular.module('RBIS')
 
             });
 
-            if(scope.items && scope.items.length>1){
-                scope.items.sort(function(a,b){return new Date(b.remark_date) - new Date(a.remark_date);})    
-            }
+            scope.$watch('options',function(newVal,oldVal){
+                scope.optionsitem = newVal || _defaultOptions;
+                //console.log("optionsssssssssssss");
+            });
+            scope.$watch('items',function(newVal,oldVal){
+                if(scope.items && scope.items.length>1){
+                    scope.items = scope.items.sort(function(a,b){return (new Date(b.remark_date) - new Date(a.remark_date));})    
+                }    
+            });
+
+            
             
             
             scope.isnewremarks = true;
@@ -262,14 +277,14 @@ angular.module('RBIS')
             
 
             scope.messageremarks = '';
-            scope.selectstatus = (!scope.status ||  scope.status== '')?"inprogress":scope.status;
+            scope.selectstatus = (!scope.status ||  scope.status== '')?scope.optionsitem[0].key:scope.status;
 
             scope.ontextchange =  function(e){
                 scope.charlenght = scope.maxlenght - e.currentTarget.value.length;
             }
 
             scope.onclicksumbit =  function(e){                
-                if(scope.messageremarks!==''){                    
+                if(scope.messageremarks!=='' && scope.selectstatus!==''){                    
                     scope.onsumbit({a:scope.messageremarks,b:scope.selectstatus});
                     scope.messageremarks = "";
                 }
@@ -291,7 +306,7 @@ angular.module('RBIS')
             };
 
             scope.statustext = function(s){
-                return {"inprogress":"In Progress","forreview":"For Review","pending":"Pending"}[s]; 
+                return {"inprogress":"In Progress","forreview":"For Review","pending":"Pending","validated":"Validated","reopen":"Reopen","returned":"Return"}[s]; 
             };
             scope.formatdate = function(d){
                 if(d){
@@ -325,9 +340,7 @@ angular.module('RBIS')
                              "</table>";
 
             var _status =   "<md-input-container style='margin:0px;padding:0px;width:130px;'><md-select ng-model='selectstatus' ng-change='onstatuschange(selectstatus)' style='margin:0px;padding:0px'>"+
-                            "<md-option value='inprogress'><em>In Progress</em></md-option>" +
-                            "<md-option value='forreview'><em>For Review (<font color='#ff6347'>This will locked the current data.</font>)</em></md-option>" +
-                            "<md-option value='pending'><em>Pending</em></md-option>" +                                                         
+                            "<md-option ng-repeat='opt in optionsitem' value='{{opt.key}}'><em>{{opt.label}}<em></md-option>" +                                                                                     
                             "</md-select></md-input-container";                                             
 
             return "<table class='table table-bordered'>" + 

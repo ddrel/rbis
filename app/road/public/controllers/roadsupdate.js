@@ -75,12 +75,7 @@ $scope.loadattrsFeaturesdata =  function(key,data){
 
 $scope.init =  function(){
     utilities.hidenavigation();
-
-    adapter.user(function(){
-        $scope.currentModel.readonly = adapter.readonlyModel;
-    })
-    
-
+    adapter.user(function(){$scope.currentModel.readonly = adapter.readonlyModel;});
 
     $timeout(function(){
         var ih = $(".page-content").innerHeight();
@@ -409,13 +404,17 @@ $scope.deleteMedia =  function(f_id,field_file){
 
 $scope.onRemarksSubmit =  function(a,b){
     var opt = {};
-    var opt = {};    
     opt.r_id = $scope.currentModel.roadID;
+    opt.r_name = $scope.road.R_NAME;
+    opt.r_class = $scope.road.R_CLASS; 
     opt.attr_id = $scope.currentModel.currentItem._id
     opt.key_name = $scope.currentModel.name;
     opt.message = a;
     opt.status = b;
-    
+    opt.identifier = $scope.getattribdisplay($scope.currentModel.currentItem,$scope.currentModel.name);
+
+    console.log(opt);
+
     $http.post("/api/roads/addRoadRemarks",opt).success(function(){
             toastr.success("Successfully add remark ...");
             $scope.currentModel.currentItemReadonly = (datamodel.optionReadOnly.indexOf(opt.status) >-1);

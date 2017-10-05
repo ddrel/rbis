@@ -23,9 +23,14 @@
                                             loadfile: function ($ocLazyLoad) {
                                                 return $ocLazyLoad.load([
                                                     {
+                                                        serie:true,
                                                         cache:true,
-                                                        files: ['/home/assets/css/dashboard.css',
-                                                                '/home/controllers/dashboard.js'                                                                
+                                                        files: ['/common/plugins/leaflet/leaflet.js',
+                                                                '/common/plugins/leaflet/leaflet.css',
+                                                                '/common/js/leaflet.maps.jquery.js',
+                                                                '/home/assets/css/dashboard.css',
+                                                                '/home/controllers/dashboard.js',
+                                                                '/road/assets/css/roads.css'                                                                
                                                                 ]
                                                     }                                                    
                                                 ]);
@@ -150,29 +155,5 @@
                                   }  
                               })                             
 
-         }])
-         .run(function($rootScope, $state, $urlMatcherFactory) {
-                $rootScope.$state = $state;
-                function message(to, toP, from, fromP) { return from.name  + angular.toJson(fromP) + " -> " + to.name + angular.toJson(toP); }
-                $rootScope.$on("$stateChangeStart", function(evt, to, toP, from, fromP) { console.log("Start:   " + message(to, toP, from, fromP)); });
-                $rootScope.$on("$stateChangeSuccess", function(evt, to, toP, from, fromP) { console.log("Success: " + message(to, toP, from, fromP)); });
-                $rootScope.$on("$stateChangeError", function(evt, to, toP, from, fromP, err) { console.log("Error:   " + message(to, toP, from, fromP), err); });
-            })
-            .directive('ngIncludeTemplate', function() {  
-                return {  
-                    templateUrl: function(elem, attrs) { return attrs.ngIncludeTemplate; },  
-                    restrict: 'A',  
-                    scope: {  
-                    'ngIncludeVariables': '&'  
-                    },  
-                    link: function(scope, elem, attrs) {  
-                    var vars = scope.ngIncludeVariables();  
-                    if(typeof vars!="undefined"){
-                        Object.keys(vars).forEach(function(key) {  
-                            scope[key] = vars[key];  
-                        });  
-                    }                    
-                    }  
-                }  
-        });
+         }]);         
 })();

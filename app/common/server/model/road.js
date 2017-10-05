@@ -117,6 +117,41 @@ var _toDataType =  function(v){
 };
 
 
+RoadsSchema.statics.getRoadDataOnly =  function(opt,cb){
+    this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
+        if(err || !doc){cb(err,null);console.log("errrorrrr getRoadDataOnly <<<<<<<<<<<<<<<<<<<<<");return;};                                             
+
+        var _data = {};        
+        var _isvalidfield = function(k){
+            var vk =false;
+            if(ROAD_ATTR_DET.indexOf(k)>-1){}
+            else if(EXCLUDED_CONVERT_SHAPES.indexOf(k)>-1){}        
+            else{
+                vk  = true 
+            }
+            return vk;
+        }
+
+        if(opt.key_name=="road"){      
+            for(var k in ROAD_MODEL_STRUC){                
+                    if(_isvalidfield(k)){_data[k] = doc[k];}
+            }
+           cb(null,_data);            
+            
+        }else{
+            var fdx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt.attr_id);            
+            if(fdx>-1  ){
+                for(var k in RBISModelSchema[opt.key_name]){
+                    if(_isvalidfield(k)){_data[k] = doc[opt.key_name][fdx][k];}
+                };
+               cb(null,_data);
+            }else{
+                cb("Error",null);
+            };            
+        };        
+    });    
+};
+
 RoadsSchema.statics.getRoadKml =  function(opt,cb){
     mongoose.model("Roads").getRoadgeojson(opt,function(err,data){
             if(err){cb(err, null);return;}
@@ -279,6 +314,22 @@ RoadsSchema.statics.getRoadRemarks =  function(opt,cb){
     });
 };
 
+
+RoadsSchema.statics.updateStatus =  function(opt,cb){
+    this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
+        if(err){cb(err,null);console.log("errrorrrr Update Status<<<<<<<<<<<<<<<<<<<<<");return;};        
+        if(opt.key_name=="road"){            
+            doc.status = opt.status; //set current status;            
+        }else{
+            var fdx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt.attr_id);            
+            if(fdx>-1){
+                doc[opt.key_name][fdx].status = opt.status; //set current status; 
+            }
+        };
+        doc.save(function(err){cb(err);});        
+    });
+};
+
 RoadsSchema.statics.addRoadRemarks =  function(opt,cb){
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
         if(err){cb(err,null);console.log("errrorrrr addRoadRemarks<<<<<<<<<<<<<<<<<<<<<");return;};                     
@@ -305,7 +356,7 @@ RoadsSchema.statics.addRoadRemarks =  function(opt,cb){
         doc.save(function(err){
             console.log("Road Remarks .....")
             console.log(err)
-            cb(err);
+            cb(err,doc);
         });        
     });
 }
@@ -453,6 +504,33 @@ RoadsSchema.statics.getroadattr =  function(rid,attr,cb){
     this.findOne({R_ID:rid}).exec(function(err,data){
         cb(err,data[attr]);
     })
+}
+
+
+RoadsSchema.statics.getroadattrbyid =  function(opt,cb){
+    this.findOne({R_ID:opt.r_id}).exec(function(err,data){        
+        if(opt.attr!="road"){
+            var _items = data[opt.attr];
+            var idx = _items.map(function(d){return d._id.toString()}).indexOf(opt.id);
+                if(idx>-1){
+                    cb(err,_items[idx]);
+                }else{
+                    cb({err0r:"No record"},null);
+                }
+        }else{
+            var _dtr = {};
+            for(var k in data){
+                if(ROAD_ATTR_DET.indexOf(k)>-1){}
+                else if(EXCLUDED_CONVERT_SHAPES.indexOf(k)>-1){}
+                else{
+                    _dtr[k] =data[k];
+                }
+            }
+            
+            cb(err,_dtr);
+        }
+                
+    });
 }
 
 RoadsSchema.statics.getroadaggmain =  function(qry,page,limit,cb){    

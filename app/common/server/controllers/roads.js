@@ -29,7 +29,7 @@ exports.newRoad =  (req,res)=>{
     }else if(!_roadAttr.ProvinceCo ||_roadAttr.ProvinceCo =="" && req.user.roles.indexOf("SUPER ADMINISTRATOR")>-1){
         errors.push({message:"Please specify location"});
     }else if(req.user.roles.indexOf("SUPERVISOR")>-1 || req.user.roles.indexOf("ROAD BOARD")>-1){
-        errors.push({message:"No Acess"});
+        errors.push({message:"No Access"});
     };
 
     if(errors.length>0){res.status(500).json(errors);return;}
@@ -106,6 +106,24 @@ exports.getroadattr = (req,res)=>{
         res.status(200).json(docs);
     })
 };
+
+exports.getroadattrbyid = (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var opt = {};
+        opt.r_id = req.query.r_id || "";
+        opt.attr = req.query.attr || "";
+        opt.id = req.query.attr_id || "";
+
+    if(opt.r_id=="") {res.status(500).json({"error":"no road id supplied"});return}
+    if(opt.attr=="") {res.status(500).json({"error":"no attribute supplied"});return} 
+    if(opt.id=="") {res.status(500).json({"error":"no id supplied"});return} 
+    roads.getroadattrbyid(opt,function(err,docs){
+        if(err){res.status(500).json(err);return};
+        res.status(200).json(docs);
+    })
+};
+
+
 
 exports.getroadaggmain = (req,res)=>{
     var roads = mongoose.model("Roads");
@@ -260,18 +278,88 @@ exports.addRoadRemarks = (req,res)=>{
         opt.r_id = req.body.r_id;
         opt.attr_id = req.body.attr_id;
         opt.key_name = req.body.key_name;
-        opt.status = req.body.status || 'inprogress';
-        opt.message = req.body.message || ""
+        
+        opt.status = req.body.status || "";
+        opt.message = req.body.message || "";
+        if(!opt.r_id && opt.key_name   && !opt.attr_id && !req.user && opt.message!=""){res.status(500).send("Error Saving Remarks");return;};
+        if(req.user.roles.indexOf("ROAD BOARD")>-1 || req.user.roles.indexOf("COA")>-1){
+            res.status(500).send("Error Saving Access");return;
+        };
 
-        if(!opt.r_id && opt.key_name && opt._id && !req.user && opt.message!=""){res.status(500).send("Error Saving Remarks");return;};
+        if(req.user.roles.indexOf("SUPERVISOR")>-1 && (opt.status.toLowerCase()=="forreview" || opt.status.toLowerCase()=="inprogress")){
+            res.status(500).send("Error Saving Access");return;
+        }
+
+        if(opt.status==""){res.status(500).send("Error Status Value");return;};
+
+
         opt.remark_by = req.user.name;
         opt.remark_by_email = req.user.email;
         opt.message = opt.message.substring(0,300);
 
-    roads.addRoadRemarks(opt,function(err,data){
-        if(err){res.status(500).json(err);return;};
-        res.status(200).json(data);
-    });
+        roads.addRoadRemarks(opt,function(err,data){
+            if(err){res.status(500).json(err);return;};
+            //res.status(200).json(data);
+            //set for review   
+            if(opt.status.toLowerCase()=="forreview"  || opt.status.toLowerCase()=="inprogress"){
+                var optreview = {};
+                optreview.identifier = req.body.identifier;
+                optreview.r_id = opt.r_id;
+                optreview.road_name = req.body.r_name;
+                optreview.road_class= req.body.r_class;
+                optreview.ref_id = opt.attr_id;
+                optreview.attr_type = opt.key_name;
+                optreview.submit_by = {name:req.user.name,email:req.user.email};    
+                optreview.status = opt.status;
+                
+                mongoose.model("Roads_ForReview").saveforreview(optreview,function(err,data){
+                    if(err){res.status(500).send(err);return;}
+                    //Save remarks
+                    roads.addRoadRemarks(opt,function(err,data){
+                        if(err){res.status(500).json(err);return;};
+                        res.status(200).json(data);
+                    });
+                });
+            }else if(opt.status.toLowerCase()=="validated"){            
+                        var optvalidated = {};
+                        optvalidated.id = req.body.id;
+                        optvalidated.validated_by = {name:req.user.name,email:req.user.email};   
+                        mongoose.model("Roads_Validated").savevalidated(optvalidated,function(err,data){
+                            if(err){res.status(500).json(err);return;};
+                            res.status(200).json(data);
+                        });
+            }else if(opt.status.toLowerCase()=="returned"){
+                var prm =  new Promise(function(res,rej){
+                                        var _err = [],a=false,b=false;
+                                        mongoose.model("Roads_ForReview").findOneAndRemove({ref_id:opt.attr_id},function(err,docs){
+                                            if(err){ _err.push(err)};
+                                            a=true;
+                                            if(_err.length==2){rej({error:_err})}
+                                            if(a && b) res({err:_err,status:true});
+                                        });            
+                                        mongoose.model("Roads_Validated").removeroadvalidated({ref_id:opt.attr_id},function(err,data){
+                                            if(err){ _err.push(err)};
+                                            b=true;    
+                                            if(_err.length==2){rej({error:_err})};
+                                            if(a && b) res({err:_err,status:true});
+                                        });
+                                });
+
+                    prm.then(function(a,b){
+                        res.status(200).json({err:a,data:data});
+                    }).catch(function(a){
+                        res.status(500).json({err:a});
+                    })                                
+            };
+        });
+
+
+
+
+
+        
+
+    
 };
 
 
