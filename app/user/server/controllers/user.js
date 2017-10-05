@@ -5,11 +5,29 @@
  */
 const mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  USER_IS = ["SUPERVISOR","ENCODER"];
+  USER_IS = ["SUPERVISOR","ENCODER"],
+  appRoot = require('app-root-path'),
+  mailsender = require(appRoot.path + "/utils/mailsender")
 
 /**
  * Create user
  */
+
+var sendmailaccess = function(opt){
+  var _opt = {};
+  _opt.email = opt.email;
+  var _urlactivate = process.env.HOST_DOMAIN + "/activate?email="+ opt.email + "?code=" + opt.code;
+  _opt.html = "<b>Username:</b>&nbsp;" +  opt.email +"<br/>" + 
+              "<b>Temporary Password:</b>&nbsp;" +  opt.password +"<br/>" +
+              "<b>Activation Link:</b>&nbsp;<a target='_blank' href='" + _urlactivate +"'>" + _urlactivate+ "</a><br/>"+
+              "<i>To activate your account, please click the link or copy and paste to browser address bar.</>" + 
+              "<br/><br/>" + 
+              "-<b><i>RBIS OPDS TEAM</i></b>";
+
+  mailsender.sendMailAccess(_opt);
+} 
+
+
 exports.create = (req, res)=> {  
   var _usr = req.body;
   var userObj = {};
@@ -32,7 +50,7 @@ exports.create = (req, res)=> {
   };
 
  
-console.log(userObj.location);
+//console.log(userObj.location);
 
 
 
@@ -63,7 +81,8 @@ console.log(userObj.location);
   var modelErrors = [];
   
   user.email = user.email.toLowerCase();
-   
+  user.activation_code = User.genactivationKey();
+
    user.save(function(err) {
     if (err) {
       switch (err.code) {
@@ -91,6 +110,7 @@ console.log(userObj.location);
 
     }else{      
       res.status(200).json(user);
+      sendmailaccess({name:user.name,email:user.email,password:_usr.password,code:user.activation_code});
       return;
     }
       
@@ -175,56 +195,6 @@ exports.getusersall =  (req, res)=> {
   User.paginate(_qry, { page: _page, limit: _limit,select:"name email location roles _id activated" }, function(err, result) {  
     if(err){res.status(500).json({error:"error fetch data"});return;}
     res.status(200).json(result);
-    /*
-    var docs = result.docs
-    var provinceArr = docs.filter(function(d){return d.location.province!="--"}).map(function(d){return d.location.province});
-    var municityArr = docs.filter(function(d){return d.location.municity!="--"}).map(function(d){return d.location.municity});
-
-    var modProvinces = mongoose.model("Provinces");
-    var modMunicity  =  mongoose.model("CityMun");
-
-
-    modProvinces.find({"Code":{"$in":provinceArr}}).exec(function(err,prov){
-        modMunicity.find({"Code":{"$in":municityArr}}).exec(function(err,municity){
-          var _userObjArr = [];
-          docs.forEach(function(doc){
-            var _userObj = {};  
-              _userObj.name = doc.name;
-              _userObj.email = doc.email;
-              _userObj.activated = doc.activated;
-              _userObj.roles = doc.roles;
-              _userObj.location = {};
-              _userObj.location.province = doc.location.province;              
-              _userObj.location.municity = doc.location.municity;
-
-              _userObj.location.province_text = "--";              
-              _userObj.location.municity_text = "--";
-
-              var pdx = prov.map(function(d){return d.Code}).indexOf(doc.location.province);
-              if(pdx>-1){_userObj.location.province_text = prov[pdx].Name};
-
-              var mdx = municity.map(function(d){return d.Code}).indexOf(doc.location.municity);
-              if(mdx>-1){_userObj.location.municity_text = municity[mdx].Name}                            
-              _userObjArr.push(_userObj)
-
-          }); 
-
-          //
-          //console.log(result);
-          //console.log(_userObjArr);
-          res.send({docs:_userObjArr,total:docs.total,limit:docs.limit,page:docs.page,pages:docs.pages});
-
-        });    
-    });
-
-  */
-
-    
-    //console.log(province);
-    //console.log(municity);
-
-    
-
   });
 
 }
