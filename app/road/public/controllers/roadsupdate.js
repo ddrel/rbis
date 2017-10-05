@@ -75,7 +75,10 @@ $scope.loadattrsFeaturesdata =  function(key,data){
 
 $scope.init =  function(){
     utilities.hidenavigation();
-    adapter.user(function(){$scope.currentModel.readonly = adapter.readonlyModel;});
+    adapter.user(function(user){
+        $scope.user;
+        $scope.currentModel.readonly = adapter.readonlyModel;
+    });
 
     $timeout(function(){
         var ih = $(".page-content").innerHeight();

@@ -18,12 +18,6 @@ angular.module('RBIS').controller("dashboardCtrl", function( $scope, $http,$root
 ];
 
 
-$scope.modelData = {};
-$scope.modelData.review = {};
-$scope.modelData.review.pagination = {};
-$scope.modelData.validated = {}
-$scope.modelData.validated.pagination = {};
-
 
 $scope.summary = {};
 $scope.summary.chart = {};
@@ -58,16 +52,22 @@ $scope.formatToDecimal =  function(d){
 
 
 
-var _getRoadStatus =  function(){
-  $http.get("/api/road_forreview/getforreview").success(function(d){
-    $scope.modelData.review.List = d;
+var _getRoadStatus =  function(page){
+  var page = page || 1;
+  $http.get("/api/road_forreview/getforreview?page="+page).success(function(d){
+    $scope.modelData.review.List = d.docs;
+    $scope.modelData.review.pagination.max=d.pages;
+    $scope.modelData.review.rowcount=d.total;
     if($scope.modelData.review.List.length>0){$("#roadmapdashboard").leafletMaps();}      
   });
 };
 
-var _getValidatedStatus =  function(){
-  $http.get("/api/road_validated/getroadvalidated").success(function(d){
-    $scope.modelData.validated.List = d;
+var _getValidatedStatus =  function(page){
+  var page = page || 1;
+  $http.get("/api/road_validated/getroadvalidated?page="+ page).success(function(d){
+    $scope.modelData.validated.List = d.docs;
+    $scope.modelData.validated.pagination.max=d.pages;
+    $scope.modelData.validated.rowcount=d.total;
     if($scope.modelData.validated.List.length>0){$("#roadmapdashboard").leafletMaps();}          
   });
 }
@@ -168,15 +168,25 @@ $scope.init =  function(){
 
 
 /**paging */
-
+$scope.modelData = {};
+$scope.modelData.review = {};
+$scope.modelData.review.pagination = {};
+$scope.modelData.review.pagination.max=1;
+$scope.modelData.validated = {};
+$scope.modelData.validated.pagination = {};
+$scope.modelData.validated.pagination.max=1;
 $scope.pageChangedReview =  function(i){
-
+  _getRoadStatus(i); 
 }
 
 $scope.pageChangedValidated =  function(i){
-  
+  _getValidatedStatus(i);  
 }
 
+
+$scope.formatDate =  function(d){
+  return utilities.formatDate3(d);
+}
 /******************************* FOR Review **************************/
 
 
@@ -191,14 +201,11 @@ $scope.onRemarksSubmit = function(a,b){
   opt.status = b;
   opt.id = $scope.modelData.selectedItem._id;
 
-  //console.log($scope.modelData.currentItem);
-  //console.log(opt);
-
-  console.log(opt);
   $http.post("/api/roads/addRoadRemarks",opt).success(function(){
           toastr.success("Successfully add remark ...");          
           $scope.modelData.currentItem.status = opt.status;          
           _getRoadStatus();
+          _getValidatedStatus();
 
           
   }).error(function(err){
@@ -261,7 +268,6 @@ $scope.ontabselected = function(status){
 }
 
 $scope.onloaddata =  function(item,status){
-  
 
 $http.get("/api/roads/getroadattrbyid?r_id="+ item.r_id +"&attr=" + item.attr_type + "&attr_id=" + item.ref_id).success(function(data){
   $mdSidenav("left").toggle();  

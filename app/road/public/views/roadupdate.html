@@ -169,7 +169,7 @@
     <section style="clear:both;display:block;position:relative;"><!-- content 12-->  
         <div id="contaier_layout_uilayout" style="height:600px"ui-layout="{flow : 'column'}"> <!-- ui layout -->      
         <div  ui-layout-container size="65%" class="no-padding"><!--- Content fields -->
-           <div class="content-data-action">               
+           <div class="content-data-action" ng-if="(user.role=='ENCODER' || user.role=='SUPER ADMINISTRATOR')>               
             <md-toolbar class="md-menu-toolbar">
                     <md-menu-bar>
                         <md-menu ng-if="!currentModel.currentItemReadonly && !currentModel.readonly  ||  currentModel.list.length>0">
@@ -204,12 +204,14 @@
                                         Cancel All
                                     </md-button>
                                 </md-menu-item>
+                                <!--
                                 <md-menu-divider></md-menu-divider>
                                 <md-menu-item>
                                     <md-button ng-click="toolbarAction('delete', $event)">
                                         <i class="fa fa-times" aria-hidden="true">&nbsp;Delete</i>
                                     </md-button>
                                 </md-menu-item>
+                                -->
                                 <md-menu-divider></md-menu-divider>
                                 <md-menu-item>
                                     <md-button ng-click="toolbarAction('refreshwindow', $event)">

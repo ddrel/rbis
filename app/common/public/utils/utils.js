@@ -39,6 +39,14 @@ angular.module('RBIS').factory('utilities', ['$window','$rootScope',function ($w
         return (date.getMonth() + 1) + '/' + date.getDate();
       };
 
+      utilities.formatDate3 =  function(d){        
+            if(d){
+                var date = new Date(d);
+                return (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() + " " + date.toLocaleTimeString();
+            };
+            return "";
+      }
+
       utilities.formatBoolToString = function(b){
           return b?'Yes':'No';
       }

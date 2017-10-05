@@ -33,8 +33,8 @@ exports.removefromvalidated = (req,res)=>{
 exports.getroadvalidated = (req,res)=>{
     var qry = {};
     var opt = {};   
-    opt.page = req.query.page || 1;
-    opt.limit = req.query.limit || 10;
+    opt.page = parseInt(req.query.page || 1);
+    opt.limit = parseInt(req.query.limit ||  10);
 
     if(req.user.roles.indexOf("ENCODER")>-1 || req.user.roles.indexOf("ROAD BOARD")>-1 || req.user.roles.indexOf("COA")>-1){
         res.status(500).send("Error Access");return;
@@ -51,6 +51,6 @@ exports.getroadvalidated = (req,res)=>{
 
     mongoose.model("Roads_Validated").getroadvalidated(qry,opt,function(err,data){
         if(err){res.status(500).send(err);return;}
-        res.status(200).json(data.docs);
+        res.status(200).json(data);
     });   
 }
