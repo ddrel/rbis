@@ -283,11 +283,13 @@ angular.module('RBIS')
                 scope.charlenght = scope.maxlenght - e.currentTarget.value.length;
             }
 
-            scope.onclicksumbit =  function(e){                
+            scope.onclicksumbit =  function(e){
                 if(scope.messageremarks!=='' && scope.selectstatus!==''){                    
                     scope.onsumbit({a:scope.messageremarks,b:scope.selectstatus});
                     scope.messageremarks = "";
                 }
+
+                return;
             };
 
             scope.onrowclick =  function(rmk){

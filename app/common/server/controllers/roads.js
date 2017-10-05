@@ -314,11 +314,8 @@ exports.addRoadRemarks = (req,res)=>{
                 
                 mongoose.model("Roads_ForReview").saveforreview(optreview,function(err,data){
                     if(err){res.status(500).send(err);return;}
-                    //Save remarks
-                    roads.addRoadRemarks(opt,function(err,data){
-                        if(err){res.status(500).json(err);return;};
-                        res.status(200).json(data);
-                    });
+                    //Save remarks                    
+                    res.status(200).json(data);                    
                 });
             }else if(opt.status.toLowerCase()=="validated"){            
                         var optvalidated = {};

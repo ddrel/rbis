@@ -413,7 +413,7 @@ $scope.onRemarksSubmit =  function(a,b){
     opt.status = b;
     opt.identifier = $scope.getattribdisplay($scope.currentModel.currentItem,$scope.currentModel.name);
 
-    console.log(opt);
+    //console.log(opt);
 
     $http.post("/api/roads/addRoadRemarks",opt).success(function(){
             toastr.success("Successfully add remark ...");
