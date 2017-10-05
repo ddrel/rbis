@@ -20,7 +20,7 @@ var sendmailaccess = function(opt){
   _opt.html = "<b>Username:</b>&nbsp;" +  opt.email +"<br/>" + 
               "<b>Temporary Password:</b>&nbsp;" +  opt.password +"<br/>" +
               "<b>Activation Link:</b>&nbsp;<a target='_blank' href='" + _urlactivate +"'>" + _urlactivate+ "</a><br/>"+
-              "<i>To activate your account, please click the link or copy and paste to browser address bar.</>" + 
+              "<i>To activate your account, please click the link or copy then paste to browser address bar.</>" + 
               "<br/><br/>" + 
               "-<b><i>RBIS OPDS TEAM</i></b>";
 

@@ -1,6 +1,7 @@
 'use strict';
 const Worker = require('webworker-threads').Worker;
 const nodemailer = require('nodemailer');
+/*
 let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -13,6 +14,15 @@ let transporter = nodemailer.createTransport({
         refreshToken: process.env.MAILER_refreshToken,
         accessToken: process.env.MAILER_accessToken,
         expires: 1484314697598
+    }
+});
+*/
+let transporter = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    auth: {
+        user: process.env.MAILER_USER,
+        pass: process.env.MAILER_PASSWORD
     }
 });
 
