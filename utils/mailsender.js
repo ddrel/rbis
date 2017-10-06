@@ -16,7 +16,7 @@ let transporter = nodemailer.createTransport({
         expires: 1484314697598
     }
 });
-*/
+
 let transporter = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -25,7 +25,14 @@ let transporter = nodemailer.createTransport({
         pass: process.env.MAILER_PASSWORD
     }
 });
+*/
 
+let transporter = nodemailer.createTransport({
+    host: 'smtpout.asia.secureserver.net',
+    port: 465,
+    auth: {user: process.env.MAILER_USER,pass: process.env.MAILER_PASSWORD},
+    secure: true
+});
 
 
 const mailer = {

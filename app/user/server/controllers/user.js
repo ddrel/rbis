@@ -19,8 +19,8 @@ var sendmailaccess = function(opt){
   var _urlactivate = process.env.HOST_DOMAIN + "/activate?email="+ opt.email + "?code=" + opt.code;
   _opt.html = "<b>Username:</b>&nbsp;" +  opt.email +"<br/>" + 
               "<b>Temporary Password:</b>&nbsp;" +  opt.password +"<br/>" +
-              "<b>Activation Link:</b>&nbsp;<a target='_blank' href='" + _urlactivate +"'>" + _urlactivate+ "</a><br/>"+
-              "<i>To activate your account, please click the link or copy then paste to browser address bar.</>" + 
+              "<b>Activation Link:</b>&nbsp;<a rel='nofollow' style='text-decoration:none;' target='_blank' href='" + _urlactivate +"'>" + _urlactivate+ "</a><br/><br/>"+
+              "<i>To activate your account, please click the link or copy then paste to browser address bar.<i/>" + 
               "<br/><br/>" + 
               "-<b><i>RBIS OPDS TEAM</i></b>";
 
