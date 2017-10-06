@@ -16,7 +16,7 @@ const mongoose = require('mongoose'),
 var sendmailaccess = function(opt){
   var _opt = {};
   _opt.email = opt.email;
-  var _urlactivate = process.env.HOST_DOMAIN + "/activate?email="+ opt.email + "?code=" + opt.code;
+  var _urlactivate = process.env.HOST_DOMAIN + "/activate?email="+ opt.email + "&code=" + opt.code;
   _opt.html = "<b>Username:</b>&nbsp;" +  opt.email +"<br/>" + 
               "<b>Temporary Password:</b>&nbsp;" +  opt.password +"<br/>" +
               "<b>Activation Link:</b>&nbsp;<a rel='nofollow' style='text-decoration:none;' target='_blank' href='" + _urlactivate +"'>" + _urlactivate+ "</a><br/><br/>"+
