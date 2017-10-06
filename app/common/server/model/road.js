@@ -91,11 +91,11 @@ const ROAD_MODEL_STRUC = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
                     type:Date,
-                    default:Date.now()
+                    default:new Date()
     },
     "created_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     file_attachment:[Schema.Types.Mixed],
     file_roadimages:[Schema.Types.Mixed],

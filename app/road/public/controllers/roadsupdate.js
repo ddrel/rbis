@@ -76,7 +76,7 @@ $scope.loadattrsFeaturesdata =  function(key,data){
 $scope.init =  function(){
     utilities.hidenavigation();
     adapter.user(function(user){
-        $scope.user;
+        $scope.user=user;
         $scope.currentModel.readonly = adapter.readonlyModel;
     });
 

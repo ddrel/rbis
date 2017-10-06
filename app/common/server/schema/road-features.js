@@ -30,11 +30,11 @@ const RoadCarriageway = {
 "updated_by":Schema.Types.Mixed,
 "lastupdate_date":{
     type:Date,
-    default:Date.now()
+    default:new Date()
 },
 "created_date":{
             type:Date,
-            default:Date.now()
+            default:new Date()
             },
 file_attachment:[Schema.Types.Mixed], 
 file_roadimages:[Schema.Types.Mixed],
@@ -104,11 +104,11 @@ const RoadBridges = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -127,11 +127,11 @@ const RoadLocRefPoints = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -153,11 +153,11 @@ const RoadSideFriction={
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed],
     file_roadimages:[Schema.Types.Mixed],
@@ -177,11 +177,11 @@ const RoadPlaceNames={
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -202,11 +202,11 @@ const RoadJunctions={
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed],
     file_roadimages:[Schema.Types.Mixed],
@@ -227,11 +227,11 @@ const RoadMedian={
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -259,11 +259,11 @@ const RoadGuardrails = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -285,11 +285,11 @@ const RoadHazards = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -316,11 +316,11 @@ const RoadLightings = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -348,11 +348,11 @@ const RoadMarkings = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -380,11 +380,11 @@ const RoadSigns = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -412,11 +412,11 @@ const RoadShoulders = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -446,11 +446,11 @@ const RoadSideSlopes = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -476,11 +476,11 @@ const RoadStructures = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -506,11 +506,11 @@ const RoadSideWalks = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -536,11 +536,11 @@ const RoadCauseways = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -572,11 +572,11 @@ const RoadCulverts = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -605,11 +605,11 @@ const RoadDitches = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -634,11 +634,11 @@ const RoadSpillways = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],
@@ -667,11 +667,11 @@ const RoadTraffic = {
     "updated_by":Schema.Types.Mixed,
     "lastupdate_date":{
         type:Date,
-        default:Date.now()
+        default:new Date()
     },
     "created_date":{
                 type:Date,
-                default:Date.now()
+                default:new Date()
                 },
     file_attachment:[Schema.Types.Mixed], 
     file_roadimages:[Schema.Types.Mixed],

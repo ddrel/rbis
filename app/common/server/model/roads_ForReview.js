@@ -17,7 +17,7 @@ var mongoose = require('mongoose'),
     submit_by:{},    
     status:String,
     submit_date:{type:Date,          
-            default:Date.now() 
+            default: new Date() 
           }
   }
 

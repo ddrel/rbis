@@ -169,7 +169,7 @@
     <section style="clear:both;display:block;position:relative;"><!-- content 12-->  
         <div id="contaier_layout_uilayout" style="height:600px"ui-layout="{flow : 'column'}"> <!-- ui layout -->      
         <div  ui-layout-container size="65%" class="no-padding"><!--- Content fields -->
-           <div class="content-data-action" ng-if="(user.role=='ENCODER' || user.role=='SUPER ADMINISTRATOR')>               
+            <div class="content-data-action" ng-if="['ENCODER','SUPER ADMINISTRATOR'].indexOf(user.role)>-1">               
             <md-toolbar class="md-menu-toolbar">
                     <md-menu-bar>
                         <md-menu ng-if="!currentModel.currentItemReadonly && !currentModel.readonly  ||  currentModel.list.length>0">

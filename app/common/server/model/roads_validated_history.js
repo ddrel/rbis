@@ -16,7 +16,7 @@ var mongoose = require('mongoose'),
     location:{},
     submit_by:{},
     validated_by:{},        
-    validated_date:{type:Date,default:Date.now()},
+    validated_date:{type:Date,default:new Date() },
     data_value:Schema.Types.Mixed
   }
 
