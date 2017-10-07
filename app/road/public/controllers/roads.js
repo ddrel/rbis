@@ -16,7 +16,7 @@ angular.module('RBIS').controller("roadsCtrl", function( $scope, $http,$rootScop
     }
     
 
-    $scope.getroads = function(qry,cb){
+    $scope.getroads = function(qry,cb){        
         $http.get("/api/roads/getroadaggmain" + qry).success(function(data){
                 cb(data);
         });

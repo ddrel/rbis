@@ -1,11 +1,11 @@
-<div class="modal-header navy-bg">
-    <button type="button" class="close" ng-click="no()">&times;</button>
-    <h3 class="modal-title">Please confirm</h3>
+<div class="modal-header navy-bg" style="padding:7px !important;">
+    <button style="margin:7px 6px 0 0 !important;" type="button" class="close" ng-click="cancel()">&times;</button>
+    <label class="modal-title">Please confirm</label>
 </div>
 <div class="modal-body">
     {{msg}}
 </div>
-<div class="modal-footer">
+<div class="modal-footer"></div>
     <button class="btn btn-primary" ng-click="yes()">YES</button>
     <button class="btn btn-white" ng-click="no()">NO</button>
 </div>

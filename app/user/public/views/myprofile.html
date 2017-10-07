@@ -12,14 +12,132 @@
                     </ul>
     </div>
 <div>
-<div class="portlet box blue-hoki">
+<div class="portlet box blue-hoki" ng-init="init()">
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-user"></i>&nbsp; My Information
             </div>
         </div>
         <div class="portlet-body">
-            
+                <form name="userForm" class="form-horizontal" ng-submit="updateprofile()">
+                        <div ng-show="errors.user.length>0">
+                            <div ng-repeat="err in errors.user">
+                                    <div class="alert alert-danger animated fadeIn">{{err.msg}}</div>
+                            </div> 
+                        </div>
+                        <div class="form-body">                                    
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Name:</label>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <label>{{ user.name }}</label>
+                                    </div>                                        
+                                </div>
+                            </div>                
+                        </div>
+                        <div class="form-body">                                    
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Designation</label>
+                                <div class="col-md-4">                                
+                                       <label>{{ user.location.province_text}}, {{ user.location.municity_text}}</label>                                        
+                                </div>
+                            </div>                
+                        </div>
+                        <div class="form-body">                                    
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Position</label>
+                                <div class="col-md-4">
+                                        <md-input-container class="md-block" flex-gt-sm style="margin-top:2px !important;margin-bottom:2px !important;">
+                                        <label>Position</label>
+                                        <md-icon><i class="fa fa-user" aria-hidden="true"></i></md-icon>
+                                        <input ng-model="user.profile.position">
+                                        </md-input-container>                                        
+                                </div>
+                            </div>                
+                        </div>
+                        <div class="form-body">                                    
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Department</label>
+                                <div class="col-md-4">
+                                        <md-input-container class="md-block" flex-gt-sm style="margin-top:2px !important;margin-bottom:2px !important;">
+                                        <label>Department</label>
+                                        <md-icon><i class="fa fa-industry" aria-hidden="true"></i></md-icon>                                                                                
+                                        <input ng-model="user.profile.department">
+                                        </md-input-container>                                                                                
+                                </div>
+                            </div>                
+                        </div>
+                        <div class="form-body">                                    
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Primary Mobile</label>
+                                <div class="col-md-4">
+                                        <md-input-container class="md-block" flex-gt-sm style="margin-top:2px !important;margin-bottom:2px !important;">
+                                        <label>Primary Mobile Number</label>
+                                        <md-icon><i class="fa fa-mobile" aria-hidden="true"></i></md-icon>
+                                        <input required  name="mobile1" ng-model="user.profile.mobile1" ng-pattern="/^[0-9]{4} [0-9]{3}-[0-9]{4}$/" />
+                                        <div class="hint" ng-show="true">#### ###-#### Ex.0917 000-0000</div>
+                                        <div ng-messages="userForm.mobile1.$error" ng-hide="!userForm.mobile1.$error.pattern">
+                                            <div ng-message="pattern">#### ###-#### - Please enter a valid mobile number.</div>
+                                        </div>
+                                        </md-input-container>                                        
+                                </div>
+                            </div>                
+                        </div>
+                        <div class="form-body">                                    
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Secondary Mobile</label>
+                                <div class="col-md-4">
+                                    <md-input-container class="md-block" flex-gt-sm style="margin-top:2px !important;margin-bottom:2px !important;">
+                                    <label>Mobile Number</label>
+                                    <md-icon><i class="fa fa-mobile" aria-hidden="true"></i></md-icon>
+                                    <input class ="md-input" name="mobile2" ng-model="user.profile.mobile2" ng-pattern="/^[0-9]{4} [0-9]{3}-[0-9]{4}$/" />
+                                    <div ng-messages="userForm.mobile2.$error" ng-hide="!userForm.mobile2.$error.pattern">
+                                        <div ng-message="pattern">#### ###-#### - Please enter a valid mobile number.</div>
+                                    </div>
+                                    </md-input-container>                                        
+                                </div>
+                            </div>                
+                        </div>
+                        <div class="form-body">                                    
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Primary Landline</label>
+                                <div class="col-md-4">
+                                        <md-input-container layout-gt-xs='row' class="md-block" style="margin-top:2px !important;margin-bottom:2px !important;">
+                                        <label>Phone Number</label>
+                                        <md-icon><i class="fa fa-phone" aria-hidden="true"></i></md-icon>
+                                        <input name="phone1" ng-model="user.profile.phone1" ng-pattern="/^[0-9]{3}-[0-9]{4}$/" />
+                                        <div class="hint" ng-show="true">###-#### Ex.292-0000</div>
+                                        <div ng-messages="userForm.phone1.$error" ng-hide="!userForm.phone1.$error.pattern">
+                                            <div ng-message="pattern">###-#### - Please enter a valid phone number.</div>
+                                        </div>
+                                        </md-input-container>                                        
+                                </div>
+                            </div>                
+                        </div>                    
+                        <div class="form-body">                                    
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Secondary Landline</label>
+                                <div class="col-md-4">
+                                    <md-input-container class="md-block" flex-gt-sm style="margin-top:2px !important;">
+                                    <label>Phone Number</label>
+                                     <md-icon><i class="fa fa-phone" aria-hidden="true"></i></md-icon>
+                                    <input name="phone2" ng-model="user.profile.phone2" ng-pattern="/^[0-9]{3}-[0-9]{4}$/" />                                    
+                                    <div ng-messages="userForm.phone2.$error" ng-hide="!userForm.phone2.$error.pattern">
+                                        <div ng-message="pattern">###-#### - Please enter a valid phone number.</div>
+                                    </div>
+                                    </md-input-container>
+                                </div>
+                            </div>                
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn btn-circle green">Submit</button>
+                                    <button type="button" class="btn btn-circle grey-salsa btn-outline" ng-click="useraccesscancel()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
         </div>
 </div>   
 <div class="portlet box blue-hoki">

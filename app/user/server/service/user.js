@@ -24,6 +24,8 @@ module.exports = (app,passport)=>{
     app.post("/ws/users/updateuseraccess",_checkaccess,user.updateuseraccess);
     app.post("/ws/users/changepassowrd",_checkaccess,user.changepassword);
     app.post("/ws/users/forgotpassword",user.forgotpassword);
+    app.post("/ws/users/updateprofile",user.updateprofile);
+    
 
     app.get("/activate",user.activate);
     app.get('/logout',user.signout);

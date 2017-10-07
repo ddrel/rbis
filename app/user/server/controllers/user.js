@@ -17,14 +17,15 @@ var sendmailaccess = function(opt){
   var _opt = {};
   _opt.email = opt.email;
   var _urlactivate = process.env.HOST_DOMAIN + "/activate?email="+ opt.email + "&code=" + opt.code;
-  _opt.html = "<b>Username:</b>&nbsp;" +  opt.email +"<br/>" + 
+  _opt.html = "<b>Here's your user Access Credential</b><br/><br/>" + 
+              "<b>Username:</b>&nbsp;" +  opt.email +"<br/>" + 
               "<b>Temporary Password:</b>&nbsp;" +  opt.password +"<br/>" +
               "<b>Activation Link:</b>&nbsp;<a rel='nofollow' style='text-decoration:none;' target='_blank' href='" + _urlactivate +"'>" + _urlactivate+ "</a><br/><br/>"+
               "<i>To activate your account, please click the link or copy then paste to browser address bar.<i/>" + 
               "<br/><br/>" + 
               "-<b><i>RBIS OPDS TEAM</i></b>";
 
-  _opt.subject = "User Access Credential";                
+  _opt.subject = "Welcome to RBIS " + opt.name + "!";                
   mailsender.sendMailGeneral(_opt);
 } 
 
@@ -157,7 +158,7 @@ exports.me = (req, res)=> {
   _user.email  = _ruser.email;
   _user.location  = _ruser.location;
   _user.role  = _ruser.roles[0];
-  
+  _user.profile = _ruser.profile; 
   res.json(_user || null);
 };
 
@@ -193,6 +194,68 @@ exports.activate = (req,res)=>{
         });
       };
   });
+};
+
+exports.updateprofile =  function(req,res){
+  var body =  req.body;
+  var _id = req.user._id;
+  var profile = {};
+
+
+  var reg_Mobile = new RegExp("^[0-9]{4} [0-9]{3}-[0-9]{4}$");
+  var reg_Phone = new RegExp("^[0-9]{3}-[0-9]{4}$");
+
+  var errors = [];
+
+  if(body.profile.mobile1  && body.profile.mobile1!=""){
+    if (!reg_Mobile.test(body.profile.mobile1)){
+      errors.push({msg:"Invalid primary mobile number format"});      
+    }
+  } 
+   
+  if(body.profile.mobile2  && body.profile.mobile2==""){
+    if (!reg_Mobile.test(body.profile.mobile2)){
+      errors.push({msg:"Invalid secondary mobile number format"});      
+    }
+  } 
+
+  if(!body.profile.mobile1){
+    errors.push({msg:"Primary mobile number is required"});
+  }
+
+
+  if(body.profile.phone1  && body.profile.phone1==""){
+    if (!reg_Phone.test(body.profile.phone1)){
+      errors.push({msg:"Invalid primary phone number format"});      
+    }
+  }
+
+
+  if(body.profile.phone2  && body.profile.phone2==""){
+    if (!reg_Phone.test(body.profile.phone2)){
+      errors.push({msg:"Invalid secondary phone number format"});      
+    }
+  }
+
+ if(errors.length>0){
+   res.status(500).json(errors);return;
+ }
+
+ for(var p in body.profile){
+  profile[p] = body.profile[p];
+ }
+
+
+
+  User.update({_id:_id},{profile:profile},function(err,data){    
+    if(err){
+        res.status(500).json([{msg:"Error saving profile!"}]);
+    }else{
+        res.status(200).json(data);
+    }
+});
+
+
 };
 
 exports.forgotpassword =  function(req,res){
@@ -319,22 +382,20 @@ exports.updateroles = (req, res)=> {
 
 //delete event
 exports.delete = (req,res)=>{
-	var _id = req.query._id;
-    User.findOne({
-        _id : _id
-        }).exec((err, docs)=> {
-            if (err) {
-                return res.status(500).json({
-                    msg: 'Failed to delete users.',
-                    err : err
-                });
-            }
-            docs.remove(function(){			     	   
-                res.status(200).json({
-                    msg: 'Successfully deleted users.'
-                });
-            })
+	var _email = req.query.email || req.body.email  || "";
+  
+  User.findOneAndRemove({email:_email},function(err,docs){
+    if (err)  {
+      return res.status(500).json({
+          msg: 'Failed to delete users.',
+          err : err
         });
+    }else{
+      res.status(200).json({
+        msg: 'Successfully deleted users.'
+    }); 
+    }
+  });
 };
 
 

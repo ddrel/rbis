@@ -65,8 +65,8 @@ var UserSchema = new Schema({
     default: 'local'
   },
   location: Schema.Types.Mixed,
-  profile: Schema.Types.Mixed,
-  salt: String,
+  profile: {},
+  salt: Schema.Types.Mixed,
   resetPasswordToken: String,
   resetPasswordExpires: Date,  
   activation_code:String,
@@ -123,6 +123,7 @@ UserSchema.statics.generatepw=  function(){
 
     return text;
 };
+
 UserSchema.statics.forgotpassword =  function(userId,newpassword,cb){
   var self = this;
   self.findOne({
