@@ -171,8 +171,8 @@
         <div  ui-layout-container size="65%" class="no-padding"><!--- Content fields -->
             <div class="content-data-action" ng-if="['ENCODER','SUPER ADMINISTRATOR'].indexOf(user.role)>-1">               
             <md-toolbar class="md-menu-toolbar">
-                    <md-menu-bar>
-                        <md-menu ng-if="!currentModel.currentItemReadonly && !currentModel.readonly  ||  currentModel.list.length>0">
+                    <md-menu-bar>                            
+                        <md-menu ng-if="(!currentModel.currentItemReadonly && !currentModel.readonly)  ||  currentModel.isfeaturesParent">
                             <button ng-click="$mdMenu.open()">
                             Action
                             </button>  

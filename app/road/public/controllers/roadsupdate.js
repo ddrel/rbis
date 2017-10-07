@@ -68,7 +68,7 @@ $scope.getattribdisplay =  function(attr,key){
 }
 
 $scope.loadattrsFeaturesdata =  function(key,data){
-    $scope.initModelData(key,data,[]);
+    $scope.initModelData(key,data,null);
     //console.log($scope.currentModel.currentItem);                   
 };
 
@@ -113,7 +113,7 @@ $scope.init =  function(){
     });
 };
 $scope.loadRoadMainData =  function(){
-    $scope.initModelData("road",$scope.road,[]);
+    $scope.initModelData("road",$scope.road,null);
 };
 
 $scope.loadAttrAsOptions =  function(attr,toattr,cb){
@@ -159,7 +159,8 @@ $scope.initModelData =  function(key,currentItem,list){
     $scope.currentloadatafields = Object.keys(datamodel.structure[key])
     $scope.currentModel.name = key;
     $scope.currentModel.struct =  datamodel.structure[key];
-    $scope.currentModel.list = list;
+    $scope.currentModel.list = list || [];
+    $scope.currentModel.isfeaturesParent = list?true:false;
     $scope.currentModel.currentItem = currentItem;
     if( currentItem){
         $scope.currentModel.currentItemReadonly = (datamodel.optionReadOnly.indexOf(currentItem.status || "inprogress") >-1);
