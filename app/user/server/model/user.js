@@ -105,7 +105,7 @@ UserSchema.virtual('password').set(function(password) {
  * Pre-save hook
  */
 UserSchema.pre('save',function (next) {
-  this.activation_code = UserSchema.statics.genactivationKey();
+  //this.activation_code = UserSchema.statics.genactivationKey();
   if (this.isNew && this.provider === 'local' && this.password && !this.password.length)
     return next(new Error('Invalid password'));
   next();
@@ -114,20 +114,49 @@ UserSchema.pre('save',function (next) {
 /**
  * Methods
  */
+UserSchema.statics.generatepw=  function(){
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-UserSchema.statics.changePassword = function(userId, currentpassword,newpassword,cb){
-  this.findOne({
+  for (var i = 0; i < 8; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+};
+UserSchema.statics.forgotpassword =  function(userId,newpassword,cb){
+  var self = this;
+  self.findOne({
       _id: userId
     }).exec((err,result)=>{
       if(err){
-        cb(false,new Error('Failed to load User'));
+        cb('Failed to load User',null);
+      }else{        
+          var salt = UserSchema.methods.makeSalt();
+          var newhash = UserSchema.methods.cHash(newpassword,salt);
+          self.update({ _id: result._id }, { $set: { "hashed_password": newhash,salt:salt }}, function(err,data){
+          cb(false,data);              
+          });    
+      }
+    });
+}
+UserSchema.statics.changePassword = function(userId, currentpassword,newpassword,cb){
+  var self = this;
+  self.findOne({
+      _id: userId
+    }).exec((err,result)=>{
+      if(err){
+        cb('Failed to load User',null);
       }else{
         if(result.hashed_password!=UserSchema.methods.cHash(currentpassword,result.salt)){
-          cb(false,new Error('Invalid Password'));
+          cb('Invalid Password',null);
         }else{
           var salt = UserSchema.methods.makeSalt();
           var newhash = UserSchema.methods.cHash(newpassword,salt);
-          cb(true,result,newhash,salt);
+          self.update({ _id: result._id }, { $set: { "hashed_password": newhash,salt:salt }}, function(err,data){
+              cb(false,data);  
+            //cb(false,result,newhash,salt);
+          });    
+          
         }
       }
     });

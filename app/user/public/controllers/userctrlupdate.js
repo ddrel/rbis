@@ -71,7 +71,7 @@ var _parseLocation = function(prov,municity){
                 var pname = "--";        
                 var mdx = $scope.municipalities.map(function(d){return d.Code}).indexOf(municity);
                 
-                console.log($scope.municipalities[mdx]);
+                //console.log($scope.municipalities[mdx]);
                 if(mdx>-1){pname = $scope.municipalities[mdx].Name};    
                        return pname; 
                 }

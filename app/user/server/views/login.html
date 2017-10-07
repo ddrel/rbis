@@ -35,13 +35,14 @@
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="/common/assets/frontend/pages/img/favicon.ico"/>
 
-<!-- Angular -->
-<script src="/bower_components/angular/angular.min.js"></script>
-<script src="/user/controllers/login.js"></script>
+
 
 <!-- Mainly scripts -->
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="/user/controllers/login.js"></script>
 </head>
 <!-- BEGIN BODY -->
 <!-- DOC: Apply "page-header-fixed-mobile" and "page-footer-fixed-mobile" class to body element to force fixed header or footer in mobile devices -->
@@ -86,7 +87,8 @@
 				<div class="input-icon">
 					<i class="fa fa-lock"></i>
                     <input type="password" class="form-control" ng-model="user.password" placeholder="Password" required="">
-                </div>
+				</div>
+				<span class="help-block"> <a style="font-size:10px;cursor:pointer;" ng-click="forgotpassword()">Forgot Password</a> </span>
             </div>
             <div class="form-actions">				
                 <button type="submit" class="btn btn-primary block full-width m-b blue pull-right">Login<i class="m-icon-swapright m-icon-white"></i></button>
@@ -120,6 +122,7 @@
 	    </div>
 	  </div>
 	</div>    
+
 	<!-- END JAVASCRIPTS -->
 	</body>
 	<!-- END BODY -->

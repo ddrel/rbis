@@ -36,7 +36,7 @@ let transporter = nodemailer.createTransport({
 
 
 const mailer = {
-                sendMailAccess:function(opt){  
+                sendMailGeneral:function(opt){  
                     /*                                      
                     let worker = new Worker(function(){                                            
                         this.onmessage = function (event) {
@@ -49,12 +49,11 @@ const mailer = {
                     };
                     worker.postMessage(opt);
                     */
-
                     let mailOptions = {
-                        from: '"RBIS Team" <rbis.opds@gmail.com>', 
-                        to: opt.email, 
-                        subject: "User Access Credential", // Subject line                            
-                        html: opt.html 
+                        from: '"RBIS Team" <rbis.opds@gmail.com>',
+                        subject: opt.subject || "Message from RBIS Team",
+                        to: opt.email,                                                     
+                        html: opt.html     
                     };
 
                     transporter.sendMail(mailOptions, (error, info) => {

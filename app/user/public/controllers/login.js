@@ -1,6 +1,40 @@
-(function(){
-var app = angular.module("LoginModule",[]);
-  app.controller("LoginController", function( $scope, $http,$rootScope) {
+//(function(){
+  angular.module("LoginModule",['ui.bootstrap'])
+  .service('forgotpaswordService',function($modal) {
+  var _forgotpaswordDialog = {};
+  var _fctrl =  function($scope,$http,$modalInstance){
+    $scope.forgotpasswordError = '';
+  
+    $scope.cancel =  function() {
+      $modalInstance.dismiss('Dismiss forgot password dialog instance.');
+    };
+
+    $scope.send =  function(){
+      console.log($scope.forgotpassword.email);
+      $http.post("/ws/users/forgotpassword",$scope.forgotpassword).success(function(){
+        $modalInstance.dismiss('Dismiss forgot password dialog instance.');  
+      }).error(function(err){
+        $scope.forgotpasswordError = err.error;
+      })
+    }
+
+    $scope.close = function(){
+      $modalInstance.dismiss('Dismiss forgot password dialog instance.');
+    }
+  }
+
+  _forgotpaswordDialog.loadDialog = function(){
+    return $modal.open({
+        animation: true,
+        templateUrl: "/user/views/dialog/forgotpassword.html",
+        controller: _fctrl,
+        backdrop: "static"
+      });
+  };
+
+  return _forgotpaswordDialog;
+})
+.controller("LoginController",['$scope', '$http','$rootScope','forgotpaswordService', function( $scope, $http,$rootScope,forgotpaswordService) {
       $scope.user= {}      
       $scope.user.email = "";
       $scope.user.password = "";
@@ -14,13 +48,8 @@ var app = angular.module("LoginModule",[]);
           email: $scope.user.email,
           password: $scope.user.password
         })
-        .success(function(response) {
-            // authentication OK
-            $scope.loginError = "";
-            $rootScope.user = response.user;
-           // $cookieStore.put('user',response.user);
-           // UserSession.setUser( response.user );
-            $rootScope.$emit('loggedin');
+        .success(function(response) {           
+            $scope.loginError = "";           
             if (response.redirect) {
               if (window.location.href === response.redirect) {
                 //This is so an admin user will get full admin page
@@ -37,6 +66,18 @@ var app = angular.module("LoginModule",[]);
             //console.log($scope.loginError);
           });
        }
+
+
+       $scope.forgotpassword = function(){
+         var _forgotpaswordService = forgotpaswordService.loadDialog();
+         _forgotpaswordService.result.then(function(){
+
+         });
+       } 
+     
+
+      
+  }]);
   
-  });
-})();
+//})();
+

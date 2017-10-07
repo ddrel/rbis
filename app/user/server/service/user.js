@@ -15,8 +15,16 @@ module.exports = (app,passport)=>{
       });
     });
     
-    app.post("/ws/users/updateuseraccess",user.updateuseraccess);
-    
+   var _checkaccess =  function(req,res,next){
+      //console.log(req.user);
+      next();
+   } 
+
+
+    app.post("/ws/users/updateuseraccess",_checkaccess,user.updateuseraccess);
+    app.post("/ws/users/changepassowrd",_checkaccess,user.changepassword);
+    app.post("/ws/users/forgotpassword",user.forgotpassword);
+
     app.get("/activate",user.activate);
     app.get('/logout',user.signout);
     app.get('/ws/users/getall',user.getusers);

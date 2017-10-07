@@ -24,7 +24,8 @@ var sendmailaccess = function(opt){
               "<br/><br/>" + 
               "-<b><i>RBIS OPDS TEAM</i></b>";
 
-  mailsender.sendMailAccess(_opt);
+  _opt.subject = "User Access Credential";                
+  mailsender.sendMailGeneral(_opt);
 } 
 
 
@@ -117,6 +118,35 @@ exports.create = (req, res)=> {
   });
 };
 
+exports.changepassword = function(req,res){
+  if(!req.user){res.redirect("/login");return;};
+  //req.assert('password', 'Password must be between 8-20 characters long').len(8, 20);
+  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  req.assert('newPassword', 'Password must be between 8-20 characters long').len(8, 20);
+
+
+  var errors = req.validationErrors() || [];
+  if(errors.length>0){
+    res.status(500).json(errors);
+    return;    
+  }
+
+  var usraccess = req.body;  
+  User.changePassword(req.user._id,usraccess.password,usraccess.newPassword,function(err,data){
+    if(err){res.status(500).json([{msg:err}]);return;}
+    res.status(200).json(200);
+    if(usraccess.sendtomail){
+      var opt = {};
+      opt.email =  req.user.email;
+      opt.subject = "Your password have been changed";
+      opt.html = "<b>New Password:</b>&nbsp;" + usraccess.newPassword +  "<br/><br/>" +                               
+                  "-<b><i>RBIS OPDS TEAM</i></b>";
+      mailsender.sendMailGeneral(opt);
+    }
+  });
+}
+
+
 /**
  * Send User
  */
@@ -164,6 +194,30 @@ exports.activate = (req,res)=>{
       };
   });
 };
+
+exports.forgotpassword =  function(req,res){
+  var _email = req.body.email || "";
+  console
+  User.findOne({activated:true,email:_email}).select("_id name location email activated roles").exec(function(err,result){    
+    if(err){res.status(500).json({error:"Error fetch data"});return;}
+    if(result.length==0){res.status(500).json({error:"Not yet activated or invalid account"});return;}
+    var newpassword =  User.generatepw();
+    User.forgotpassword(result._id,newpassword,function(err,data){
+      if(err){res.status(500).json({error:"Error change password"});return;}
+      res.status(200).json(result); 
+
+      var opt = {};
+      opt.email =  _email;
+      opt.subject = "Your password have been changed";
+      opt.html = "<b>New Password:</b>&nbsp;" + newpassword +  "<br/><br/>" +                               
+                  "-<b><i>RBIS OPDS TEAM</i></b>";
+      mailsender.sendMailGeneral(opt);
+    });  
+    
+    
+})
+}
+
 
 exports.getuserbyemail = (req,res)=>{
   var _email = req.query.email || "";
@@ -285,11 +339,7 @@ exports.delete = (req,res)=>{
 
 
 exports.generatepw = (req,res)=>{
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (var i = 0; i < 8; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
+    var text = User.generatepw();
     res.status(200).json({password:text});
 }
 

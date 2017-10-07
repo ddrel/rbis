@@ -648,7 +648,6 @@ datamodel.utils.displayattributestable=  function(n,o,maxheight){
             };
 
             var m = _model;
-            //console.log(m);
                 for(var n in _model){
                    var objdata = _model[n];
                     if(objdata.key=="LRPStartDi" || objdata.key=="LRPEndDisp" || objdata.key=="Remarks"){         
@@ -664,10 +663,9 @@ datamodel.utils.displayattributestable=  function(n,o,maxheight){
                     }   
                 }
              
-            table+="</table></div>"
+            table+="</table></div>";
             return table;
     }; 
-
 
 
 
