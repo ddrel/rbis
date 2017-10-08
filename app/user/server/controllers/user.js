@@ -260,10 +260,9 @@ exports.updateprofile =  function(req,res){
 
 exports.forgotpassword =  function(req,res){
   var _email = req.body.email || "";
-  console
   User.findOne({activated:true,email:_email}).select("_id name location email activated roles").exec(function(err,result){    
     if(err){res.status(500).json({error:"Error fetch data"});return;}
-    if(result.length==0){res.status(500).json({error:"Not yet activated or invalid account"});return;}
+    if(!result){res.status(500).json({error:"Not yet activated or invalid account"});return;}
     var newpassword =  User.generatepw();
     User.forgotpassword(result._id,newpassword,function(err,data){
       if(err){res.status(500).json({error:"Error change password"});return;}

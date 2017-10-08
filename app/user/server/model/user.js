@@ -131,6 +131,8 @@ UserSchema.statics.forgotpassword =  function(userId,newpassword,cb){
     }).exec((err,result)=>{
       if(err){
         cb('Failed to load User',null);
+      }else if(!result){
+        cb('User not found',null);
       }else{        
           var salt = UserSchema.methods.makeSalt();
           var newhash = UserSchema.methods.cHash(newpassword,salt);
