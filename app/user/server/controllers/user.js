@@ -308,7 +308,7 @@ exports.getusersall =  (req, res)=> {
 
   //console.log(_qry);
 
-  User.paginate(_qry, { page: _page, limit: _limit,select:"name email location roles _id activated" }, function(err, result) {  
+  User.paginate(_qry, { page: _page, limit: _limit,select:"name email location roles _id activated profile" }, function(err, result) {  
     if(err){res.status(500).json({error:"error fetch data"});return;}
     res.status(200).json(result);
   });

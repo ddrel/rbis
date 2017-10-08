@@ -25,6 +25,31 @@ $scope.init =  function(){
 };
 
 
+
+$scope.viewuserprofile =  function(u){
+ //console.log(u)
+    function DialogController($scope){
+        $scope.cancel = function(){
+            $mdDialog.cancel()
+        }
+          
+        $scope.userProfile = u;    
+    }
+    
+    $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'user_profile',
+        parent: angular.element(document.body),
+        clickOutsideToClose:true,
+        fullscreen: true // Only for -xs, -sm breakpoints.
+      })
+      .then(function(answer) {
+        $scope.status = 'You said the information was "' + answer + '".';
+      }, function() {
+        $scope.status = 'You cancelled the dialog.';
+      });
+};
+
 $scope.deleteuser =  function(u){
     var confirmDialog = DialogService.confirm('Delete Confirm','Are you sure you want to remove  "'+ u.name + "(" + u.email+ ")" + '"?');
     confirmDialog.then(function (m) {
