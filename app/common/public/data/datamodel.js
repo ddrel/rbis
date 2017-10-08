@@ -291,7 +291,7 @@ datamodel.RoadBridges = {
             "Length"        :{"label":"Length(m)","key":"Length","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
             "TypeID"        :{"label":"Type Id","key":"TypeID","type":"string","options":datamodel.options.superstructuretype,"style":"","ctrl":"select","class":"form-control"}, 
             "LRPStartKm"    :{"label":"Km Post Start","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
-            "LRPStartDi"    :{"label":"","key":"LRPStartDi","type":"string","float":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
+            "LRPStartDi"    :{"label":"","key":"LRPStartDi","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}, 
             "LRPEndKmPo"    :{"label":"Km Post End","key":"LRPEndKmPo","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"}, 
             "LRPEndDisp"    :{"label":"","key":"LRPEndDisp","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  
             "YearBuilt"     :{"label":"Year Built","key":"YearBuilt","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},  

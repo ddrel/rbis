@@ -242,230 +242,227 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>                     
                      <tr>
                         <td  colspan="4"> <font color = "#4286f4">Location Reference:</font> </td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr> 
                     <tr>
                         <td  colspan="4"> <font color = "#4286f4">General Info:</font> </td>                        
                     </tr>  
                     <tr>
                         <td>{{ currentModel.struct['Name'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Name']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="Name" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr> 
                      <tr>
                         <td>{{ currentModel.struct['Length'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Length']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="Length" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['YearBuilt'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['YearBuilt']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="YearBuilt" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LoadLimit'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['LoadLimit']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="LoadLimit" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Constructi'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Constructi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="Constructi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td  colspan="4"> <font color = "#4286f4">Environment:</font> </td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Terrain'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Terrain']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="Terrain" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['AlternativeRoute'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['AlternativeRoute']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="AlternativeRoute" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['StructuresROW'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['StructuresROW']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="StructuresROW" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LandUse'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['LandUse']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="LandUse" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['BridgeUtil'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['BridgeUtil']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="BridgeUtil" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td  colspan="4"> <font color = "#4286f4">Super-Structure:</font> </td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['SuperStruc'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['SuperStruc']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="SuperStruc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['NoOfSpan'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['NoOfSpan']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="NoOfSpan" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>  
                      <tr>
                         <td>{{ currentModel.struct['SpanLength'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['SpanLength']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="SpanLength" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['DeckDimens'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['DeckDimens']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="DeckDimens" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['DeckDime_1'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['DeckDime_1']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="DeckDime_1" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>  
                     <tr>
                         <td>{{ currentModel.struct['DeckDime_2'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['DeckDime_2']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="DeckDime_2" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>  
                     <tr>
                         <td>{{ currentModel.struct['DeckDime_3'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['DeckDime_3']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="DeckDime_3" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>  
                     <tr>
                         <td>{{ currentModel.struct['NoOfLanes'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['NoOfLanes']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="NoOfLanes" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr> 
                      <tr>
                         <td>{{ currentModel.struct['BearingType'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['BearingType']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="BearingType" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr> 
                      <tr>
                         <td>{{ currentModel.struct['NumGirders'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['NumGirders']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="NumGirders" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                    <tr>
                         <td>{{ currentModel.struct['CarriageWidth'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['CarriageWidth']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="CarriageWidth" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['SideWalkWidth'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['SideWalkWidth']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="SideWalkWidth" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                    <tr>
                         <td>{{ currentModel.struct['TotalWidth'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TotalWidth']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="TotalWidth" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr> 
                    <tr>
                         <td>{{ currentModel.struct['SkewDeg'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['SkewDeg']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="SkewDeg" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr> 
                    <tr>
                         <td>{{ currentModel.struct['Surfacing'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Surfacing']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="Surfacing" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['ExpansionJ'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ExpansionJ']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="ExpansionJ" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>   
                     <tr>
                         <td>{{ currentModel.struct['RailingTyp'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['RailingTyp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="RailingTyp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td  colspan="4"> <font color = "#4286f4">Sub-Structure:</font> </td>                        
                     </tr>  
                      <tr>
                         <td>{{ currentModel.struct['AbutmentTy'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['AbutmentTy']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="AbutmenTy" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>  
                      <tr>
                         <td>{{ currentModel.struct['AbutmentFo'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['AbutmentFo']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="AbutmentFo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['AbtProtect'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['AbtProtect']" ng-include="'roadfieldcontrol'"></div></td>                    
+                        <td colspan="3"><form-field field="AbtProtect" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                    
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['PierType'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['PierType']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="PierType" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['PierFounda'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['PierFounda']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="PierFounda" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['NoOfPier'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['NoOfPier']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="NoOfPier" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>  
                      <tr>
                         <td>{{ currentModel.struct['PierProtec'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['PierProtec']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="PierProtec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>       
                     <tr>
                         <td  colspan="4"> <font color = "#4286f4">Hydraulic Condition:</font> </td>                        
                     </tr>  
                      <tr>
                         <td>{{ currentModel.struct['RiverName'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['RiverName']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="RiverName" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['RiverWidth'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['RiverWidth']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="RiverWidth" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['RiverAlignment'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['RiverAlignment']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="RiverAlignment" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['DebrisFlow'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['DebrisFlow']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="DebrisFlow" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>    
                      <tr>
                         <td>{{ currentModel.struct['MaximumFlo'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['MaximumFlo']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="MaximumFlo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>  
                      <tr>
                         <td>{{ currentModel.struct['Navigation'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Navigation']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="Navigation" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr> 
                      <tr>
                         <td  colspan="4"> <font color = "#4286f4">Condition:</font> </td>                        
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['Deck'].label }}</td>
-                        <td><div ng-repeat = "field in ['Deck']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="Deck" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>  
                      <tr>
                         <td>{{ currentModel.struct['LeftSideWalk'].label }}</td>
-                        <td><div ng-repeat = "field in ['LeftSideWalk']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LeftSideWalk" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                         <td>{{ currentModel.struct['RightSideWalk'].label }}</td>
-                        <td><div ng-repeat = "field in ['RightSideWalk']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="RightSideWalk" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>  
                      <tr>
                         <td>{{ currentModel.struct['LeftRailing'].label }}</td>
-                        <td><div ng-repeat = "field in ['LeftRailing']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LeftRailing" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                         <td>{{ currentModel.struct['RightRailing'].label }}</td>
-                        <td><div ng-repeat = "field in ['RightRailing']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="RightRailing" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>  
                      <tr>
                         <td>{{ currentModel.struct['FirstAppSlab'].label }}</td>
-                        <td><div ng-repeat = "field in ['FirstAppSlab']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="FirstAppSlab" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                         <td>{{ currentModel.struct['SecondAppSlab'].label }}</td>
-                        <td><div ng-repeat = "field in ['SecondAppSlab']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="SecondAppSlab" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>          
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -473,6 +470,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -486,30 +486,27 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>                                      
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>         
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -518,6 +515,9 @@
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+         </md-tab>
      </md-tabs>   
     
 </script>
@@ -529,34 +529,31 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Name'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Name']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Name" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                       
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>          
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -565,6 +562,9 @@
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+          </md-tab>
      </md-tabs>   
     
 </script>
@@ -576,34 +576,31 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Name'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Name']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Name" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                       
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -611,6 +608,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -623,34 +623,31 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
-                        <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td>LRPStartKm'].label }}</td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Width'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Width']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Width" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                       
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>          
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -658,6 +655,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -671,50 +671,47 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Position'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Position']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Position" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                      <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                      <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                     
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>          
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -722,6 +719,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -734,38 +734,35 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></div></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                       <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Position'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Position']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Position" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['Severity'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Severity']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Severity" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                      
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -786,54 +783,51 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Position'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Position']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Position" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['NoOfLightings'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['NoOfLightings']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="NoOfLightings" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Exist'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Exist']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Exist" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                      <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                      <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                           
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>          
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -842,6 +836,9 @@
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
         </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+         </md-tab>
      </md-tabs>   
     
 </script>
@@ -853,50 +850,47 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['MarkingType'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['MarkingType']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="MarkingType" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Exist'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Exist']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Exist" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                       <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                      <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                              
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>          
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -904,6 +898,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -916,58 +913,55 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Position'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Position']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Position" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Exist'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Exist']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Exist" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['SignageType'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['SignageType']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="SignageType" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['SignageSize'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['SignageSize']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="SignageSize" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstrunctionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                               
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -975,6 +969,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -988,63 +985,60 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['Width'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Width']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Width" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>    
                     <tr>
                         <td>{{ currentModel.struct['Exist'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Exist']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Exist" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Position'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Position']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Position" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                       <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['Width'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Width']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Width" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                       <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>               
                                                            
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -1052,6 +1046,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -1064,58 +1061,55 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Position'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Position']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Position" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Angle'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Angle']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Angle" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                      <tr>
                         <td>{{ currentModel.struct['Protection'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Protection']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Protection" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                                
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -1123,6 +1117,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -1135,50 +1132,47 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Position'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Position']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Position" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                       <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                                  
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')">
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list>  
         </md-tab>
@@ -1186,6 +1180,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -1198,54 +1195,51 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Position'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Position']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Position" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['Width'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Width']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Width" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>   
                       <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                                       
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -1253,6 +1247,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -1266,54 +1263,51 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Width'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Width']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Width" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Length'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Length']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Length" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstrunctionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                                   
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -1321,6 +1315,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -1333,78 +1330,75 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Width'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Width']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Width" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Length'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Length']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Length" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['NumBarrels'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['NumBarrels']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="NumBarrels" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['BarrelMaterialType'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['BarrelMaterialType']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="BarrelMaterialType" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['HeadwayMaterial'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['HeadwayMaterial']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="HeadwayMaterial" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                      <tr>
                         <td>{{ currentModel.struct['ApronType'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ApronType']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ApronType" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['InvertType'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['InvertType']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="InvertType" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Slope'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Slope']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Slope" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>      
                      <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                         
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -1412,6 +1406,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -1424,54 +1421,51 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Position'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Position']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Position" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>  
                     <tr>
                         <td>{{ currentModel.struct['Size'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Size']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Size" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                    </tr>
                    <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                        
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+               </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -1479,6 +1473,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -1491,54 +1488,51 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                       <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['TypeID']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
-                         <tr>
+                    <tr>
                         <td>{{ currentModel.struct['Width'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Width']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Width" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Length'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Length']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Length" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>  
-                    <tr>tra
+                    <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['ConstructionDate']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Cost']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Cost" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['Usefullife'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Usefullife']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Usefullife" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Condition'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Condition']" ng-include="'roadfieldcontrol'"></div></td>                       
+                        <td colspan="3"><form-field field="Condition" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>                                                  
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+        </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -1546,6 +1540,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList" options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
@@ -1557,48 +1554,44 @@
                 <table class="table">
                     <tr>
                         <td>{{ currentModel.struct['R_ID'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['R_ID']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['KMPostNo'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['KMPostNo']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="KMPostNo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                                               
                     </tr>
                     <tr>
                         <td colspan="4">Location Reference:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPStartKm'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPStartKm']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPStartDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPStartKm" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPStartDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['LRPEndKmPo'].label }}</td>
-                        <td><div ng-repeat = "field in ['LRPEndKmPo']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['LRPEndDisp']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Date'].label }}</td>
-                        <td colspan="3"><div ng-repeat = "field in ['Date']" ng-include="'roadfieldcontrol'"></div></td>                                               
+                        <td colspan="3"><form-field field="Date" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                                               
                     </tr>
                    <tr>
                         <td colspan="4">Location:</td>                        
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['From'].label }}</td>
-                        <td><div ng-repeat = "field in ['From']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['FromDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="From" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="FromDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['To'].label }}</td>
-                        <td><div ng-repeat = "field in ['To']" ng-include="'roadfieldcontrol'"></div></td>
-                        <td><div ng-repeat = "field in ['ToDi']" ng-include="'roadfieldcontrol'"></div></td>
+                        <td><form-field field="To" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                        <td><form-field field="ToDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
-                    <tr>
                 </table>                    
-               </md-tab>
-          <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
-            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
-        </md-tab>
+        </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
                 <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
         </md-tab>
@@ -1606,6 +1599,9 @@
                 <div class="lightBoxGallery">
                     <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList"  options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
                 </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
         </md-tab>
      </md-tabs>   
     
