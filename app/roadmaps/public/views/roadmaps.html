@@ -43,7 +43,7 @@
                                                 <font class="tree-branch">|--</font>
                                                 <a class="toggle-list">
                                                     <i  ng-click="ontoggle_loc('road_attr',road,$event)" class="fa fa-plus-square toggle-ctrl" aria-hidden="true"></i>
-                                                     <font ng-click="onclickattr(road,'road')">{{ road.R_NAME }}</font>
+                                                     <font ng-click="onclickattr(road,'road',$event)">{{ road.R_NAME }}</font>
                                                 </a>            
                                                 <ul class="location-list" id="road_attr{{road.R_ID}}" style="display:none;">                                            
                                                             <li ng-repeat="attr in road.attr.attrs" ng-include="'roadsattribute'"></li>
@@ -70,7 +70,7 @@
                                                         <font class="tree-branch">|--</font>
                                                         <a class="toggle-list">
                                                             <i  ng-click="ontoggle_loc('road_attr',road,$event)" class="fa fa-plus-square toggle-ctrl" aria-hidden="true"></i>
-                                                            <font ng-click="onclickattr(road,'road')">{{ road.R_NAME }}</font> 
+                                                            <font ng-click="onclickattr(road,'road',$event)">{{ road.R_NAME }}</font> 
                                                         </a>
                                                         <ul class="location-list"id="road_attr{{road.R_ID}}" style="display:none;">                                            
                                                             <li ng-repeat="attr in road.attr.attrs" ng-include="'roadsattribute'"></li>
@@ -92,13 +92,13 @@
                         <font ng-if="attribsinarr.indexOf(attr.name)>-1" class="tree-branch">|--</font>
                         <a  class="toggle-list" ng-if="attribsinarr.indexOf(attr.name)>-1">
                             <i  ng-click="ontoggle_loc('road_attr_details',attr,$event)" class="fa fa-plus-square toggle-ctrl" aria-hidden="true"></i>
-                            <font ng-click="onclickattr(attr.value,attr.name)">{{ attr.name }}({{attr.count}}) </font>
+                            <font ng-click="onclickattr(attr.value,attr.name,$event)">{{ attr.name }}({{attr.count}}) </font>
                         </a>
-                        <a ng-if="attribsinarr.indexOf(attr.name)==-1" ng-click="onclickattr(attr.value,attr.name)">{{ attr.name }}</a>
+                        <a ng-if="attribsinarr.indexOf(attr.name)==-1" ng-click="onclickattr(attr.value,attr.name,$event)">{{ attr.name }}</a>
                         <ul class="location-list" id="road_attr_details{{attr._id}}" ng-if="attribsinarr.indexOf(attr.name)>-1" style="display:none;">                                            
                             <li ng-repeat="attr_detail in attr.value">
                                 <font class="tree-branch">|--</font>
-                                <a ng-click="onclickattr(attr_detail,attr.name)">{{getattribdisplay(attr_detail,attr.name)}}</a>
+                                <a ng-click="onclickattr(attr_detail,attr.name,$event)">{{getattribdisplay(attr_detail,attr.name)}}</a>
                             </li>
                         </ul>
                 </script>
@@ -149,7 +149,7 @@
                                             <font class="tree-branch">|--</font>                        
                                             <a class="toggle-list">
                                                 <i  ng-click="ontoggle_loc('road_attr_searched',road._id,$event)" class="fa fa-plus-square toggle-ctrl" aria-hidden="true"></i>
-                                                <font ng-click="onclickattr(road,'road')">{{ road._id.R_NAME }}</font> 
+                                                <font ng-click="onclickattr(road,'road',$event)">{{ road._id.R_NAME }}</font> 
                                             </a>
                                             <ul class="location-list"id="road_attr_searched{{road._id.R_ID}}" style="display:none;margin-left:21px;">                                            
                                                 <li ng-repeat="attr in road.attr.attrs" ng-include="'roadsattribute'"></li>

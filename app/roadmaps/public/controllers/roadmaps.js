@@ -337,7 +337,11 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
 
     //*** Search Functionality ****************************************************************
 
-    $scope.onclickattr =  function(o,name){
+    $scope.onclickattr =  function(o,name,event){
+        console.log(event);
+        $(".item-selected-road").removeClass("item-selected-road");
+        $(event.currentTarget || e.target).addClass("item-selected-road");
+        
         $("#roadmap").leafletMaps("clear");
         var draw_geo =  function(o,name){
             var data =  o.geometry;        

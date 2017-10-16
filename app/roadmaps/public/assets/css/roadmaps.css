@@ -31,3 +31,7 @@ background-color:rgb(46, 137, 198) !important
 .regionprovince-list{font-size:12px;padding-left: 8px;}
 
 .clear-search{ cursor: pointer;font-size: 20px;position: absolute;right: 12px;top: 17px;}
+
+
+
+.item-selected-road{color:#ff0000 !important;}
