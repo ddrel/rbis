@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
    moment = require('moment'),
    RBISModelSchema = require('../schema/road-features').RBISModelSchema,
    GeoJSON = require('geojson'),
-   tokml = require('tokml')
+   tokml = require('tokml');
 
 var mongooseAggregatePaginate = require('mongoose-aggregate-paginate');
 
@@ -116,6 +116,20 @@ var _toDataType =  function(v){
     };
 };
 
+RoadsSchema.statics.updateShapes =  function(opt,cb){
+    this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
+        if(err){cb(err,null);console.log("errror Update Shapes<<<<<<<<<<<<<<<<<<<<<");return;};        
+        if(opt.key_name=="road"){            
+            doc.geometry = opt.geometry;             
+        }else{
+            var fdx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt._id);            
+            if(fdx>-1){
+                doc[opt.key_name][fdx].geometry = opt.geometry; //set current status; 
+            }
+        };
+        doc.save(function(err){cb(err);});        
+    });
+};
 
 RoadsSchema.statics.getRoadDataOnly =  function(opt,cb){
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){

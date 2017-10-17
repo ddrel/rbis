@@ -317,6 +317,19 @@ $scope.toolbarAction = function(a,e){
                             }
                     },function(data){
 
+                    });
+                },importshapes:function(){
+                    var roaduploadshapes = uploadroadSvcs.shapes();
+                    var _dd = uploadroadSvcsData.get();
+                        _dd.filetype = "shapes";
+                        _dd.headertitle = "Upload Shape";
+                        uploadroadSvcsData.set(_dd);
+                        roaduploadshapes.then(function(data){                            
+                            if(data!=="cancel"){
+                               
+                            }
+                    },function(data){
+
                     })
                 },addroadfile:function(){
                     var roaduploadfiles = uploadroadSvcs.files();
@@ -335,7 +348,6 @@ $scope.toolbarAction = function(a,e){
                            }).error(function(){
                                toastr.error("Error loading Images");
                            });
-
                         });
                 },exportgeojson:function(){
                     var url = "/api/shapes/download/geojson?r_id=" + $scope.currentModel.roadID + 

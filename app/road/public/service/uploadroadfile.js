@@ -27,7 +27,7 @@ angular.module('RBIS')
                 var _urlpath = "";
                 if(_rdData.filetype=="image"){_urlpath = "/upload/roads/uploadimages"}
                 else if(_rdData.filetype=="file"){_urlpath = "/upload/roads/uploadfiles"}
-
+                else if(_rdData.filetype=="shapes"){_urlpath = "/upload/roads/uploadshapefile"}    
                 if(_urlpath){
                     utilities.file.upload(_urlpath,_objFile,
                         function(data){
@@ -94,7 +94,16 @@ uploadroadSvcs.files =  function(ev){
         fullscreen: true
       });        
 }
-
+uploadroadSvcs.shapes =  function(ev){
+    return $mdDialog.show({
+        controller: 'uploadCtrl',
+        templateUrl: '/road/views/uploadroadshapes.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:false,
+        fullscreen: true
+      });        
+}
 return uploadroadSvcs;
 }])
 

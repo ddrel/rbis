@@ -5,6 +5,8 @@ const dirupload = '/data_file/tmp/';
 const  appRoot = require('app-root-path');
 const Jimp = require("jimp");
 const lwip = require("lwip");
+const tj = require('@mapbox/togeojson');
+const DOMParser = require('xmldom').DOMParser;
 
 const storage_roads_thumb = require('filestorage').create(path.join(appRoot.path, '/data_file/') + "/roads_images/thumb");
 const storage_roads_lowres = require('filestorage').create(path.join(appRoot.path, '/data_file/') + "/roads_images/lowres");
@@ -258,6 +260,83 @@ const uploadRoadFile =  (req,res,target,cb)=>{
       form.parse(req);
   };
 
+
+const shapeUtil = {
+                    parseShapeExtension :  function(f){
+                    f = f.toLowerCase();
+                    var _extenstion = "";
+                    if((f.indexOf(".geojson")>-1 || f.indexOf(".json")>-1) && (f.substring(f.length-7,f.length)=="geojson" || f.substring(f.length-4,f.length)=="json") ){
+                        _extenstion = "json";
+                    }else if(f.indexOf(".kml")>-1 && f.substring(f.length-3,f.length)=="kml"){
+                        _extenstion = "kml";
+                    }
+                    return _extenstion;
+                },
+                parsegeometry : function(f){
+                    var geo = {};
+                    if(f.type=="FeatureCollection"){
+                        geo  = f.features[0].geometry || {};
+                    }else if(f.type=="Feature"){
+                        geo  = f.geometry ||  {};
+                    }
+                    return geo;
+                }
+
+}
+const uploadShapeFile =  (req,res,target,cb)=>{
+    var roads = mongoose.model("Roads");
+    var form = new formidableObj.IncomingForm(); 
+      form.multiples = true;
+    
+      var _rpath = path.join(appRoot.path, dirupload);   
+      var _uploadDir = fileObj.createDirectory(_rpath);    
+      form.uploadDir = _uploadDir;  
+    
+      var _roadData = false;
+      form.on('field', function (name, field) {
+          if(name=="roadattr"){_roadData = fileObj.isJSON(field);};
+      });
+
+      form.on('file', function(field, file) { 
+          var _uidFilename =   new mongoose.mongo.ObjectId().toString() + "_" + file.name;                             
+          var uiname =path.join(form.uploadDir, _uidFilename)
+          fs.rename(file.path,uiname ,function(err){      
+              var ext = shapeUtil.parseShapeExtension(uiname);
+              var opt = {};
+                  opt.r_id = _roadData.r_id
+                  opt._id =  _roadData._id;      
+                  opt.key_name = _roadData.key_name;            
+              if(ext=="kml"){
+                var kml = new DOMParser().parseFromString(fs.readFileSync(uiname, 'utf8'));            
+                var converted = tj.kml(kml);
+                opt.geometry = shapeUtil.parsegeometry(converted)
+              }else if(ext=="json"){
+                  var jsn = fs.readFileSync(uiname, 'utf8');
+                      jsn = JSON.parse(jsn);                     
+                      opt.geometry = shapeUtil.parsegeometry(jsn)                        
+              }else {
+                  res.status(500).send("Invalid shape file supported");
+              }
+            
+
+              roads.updateShapes(opt,function(err,data){
+                if(err){
+                    res.send("error");return;
+                }else{
+                    res.send("success");return;
+                }
+              });
+
+              fs.unlinkSync(uiname,function(err){});
+          });//end rename;
+      });
+      
+    
+      form.on('error', function(err) {return cb(err,null);});
+      form.on('end', function(a,b) {});
+      form.parse(req);
+};
+
 module.exports = (app)=>{
     app.post("/upload/roads/uploadimages",(req,res)=>{
         uploadRoadImage(req,res,"",(err)=>{
@@ -284,6 +363,17 @@ module.exports = (app)=>{
         });
     });
 
+    app.post("/upload/roads/uploadshapefile",(req,res)=>{
+        uploadShapeFile(req,res,"",(err)=>{
+            if(err){
+                res.send("error");
+                return;
+            }else{
+                res.send("success");
+                return;
+            }
+        });
+    });
 
     app.get("/images/road",(req,res)=>{
         var _id = req.query.id;

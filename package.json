@@ -6,6 +6,7 @@
     "test": "test"
   },
   "dependencies": {
+    "@mapbox/togeojson": "^0.16.0",
     "app-root-path": "^2.0.1",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.14.2",
@@ -53,7 +54,8 @@
     "walk": "^2.3.9",
     "websocket": "^1.0.23",
     "webworker-threads": "^0.7.13",
-    "ws": "^1.1.1"
+    "ws": "^1.1.1",
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {
     "blessed": "^0.1.81",
