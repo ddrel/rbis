@@ -640,7 +640,7 @@ datamodel.utils.displayattributestable=  function(n,o,maxheight){
             var _model =!datamodel.structure[n]?datamodel.structure["road"]:datamodel.structure[n];
             var _getvalue = function(model,o){                
                 if(model.ctrl=="select" && model.options.length>0){ //&& model.visible
-                            var idx  = model.options.map(function(d){return d.key.toUpperCase}).indexOf((o[model.key] || "").toUpperCase);
+                            var idx  = model.options.map(function(d){return d.key}).indexOf((o[model.key] || ""));                            
                             return idx>-1?model.options[idx].label :"";
                 }else{
                     return o[model.key] || "";
