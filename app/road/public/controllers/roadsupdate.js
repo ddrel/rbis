@@ -449,6 +449,7 @@ $scope.onRemarksSubmit =  function(a,b){
        });
 
     }).error(function(err){
+            console.log(err);
             toastr.error("Error saving remarks");
     });
 }

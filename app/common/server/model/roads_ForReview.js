@@ -48,7 +48,7 @@ RoadsForReviewSchema.statics.saveforreview =  function(opt,cb){
     var rfr =  mongoose.model("Roads_ForReview");
     var province = mongoose.model('Provinces');
     var municity = mongoose.model('CityMun');
-    var locate = utilities.parseLocation(opt.r_id);
+    var locate = utilities.parseLocation(opt.r_id);    
 
     var loc_promise =  new Promise(function(res,rej){
       var _loc_data = {};
@@ -80,12 +80,20 @@ RoadsForReviewSchema.statics.saveforreview =  function(opt,cb){
         _data.status = "forreview";
 
         _data.location = {};
+        var mcode = ""
+        var mname = ""
+        if( loc.municity){
+          mcode = loc.municity;
+          mname = loc.municity.Name;
+        }
         _data.location.province_code = loc.province.Code;
         _data.location.province_name = loc.province.Name;
-        _data.location.municity_code = loc.municity.Code;
-        _data.location.municity_name = loc.municity.Name;
+        _data.location.municity_code = mcode
+        _data.location.municity_name = mname;
         
+        console.log(_data)
         new rfr(_data).save(function(err){            
+          console.log(err);
           if(err){cb(err,null);return};
           cb(null,rfr);
         });
