@@ -114,6 +114,9 @@ $scope.init =  function(){
 };
 $scope.loadRoadMainData =  function(){
     $scope.initModelData("road",$scope.road,null);
+    $scope.loadattrdata($scope.road,"road")
+    //console.log($scope.road)
+
 };
 
 $scope.loadAttrAsOptions =  function(attr,toattr,cb){

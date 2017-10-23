@@ -408,6 +408,8 @@ PlaceNames
            _value =  attr.Position +"/" + attr.Exist  + " (" +  attr.LRPStartDi + " - " + attr.LRPEndDisp  +")";
        }else if(name=="Junctions" || name=="Median"){
                 _value =  attr.TypeID + "/" +  attr.LRPStartDi;
+       }else if(name=="road"){
+           _value = attr.R_NAME;
        }
 
        return _value;

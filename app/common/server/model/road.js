@@ -180,20 +180,20 @@ RoadsSchema.statics.getRoadgeojson = function(opt,cb){
         if(err){cb(err,null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;};                                     
         if(!doc || typeof doc.geometry=="undefined"){cb("No shapes available",null);console.log("errrorrrr <<<<<<<<<<<<<<<<<<<<<");return;}
 
-        var _data = {};
-        
-    var _isvalidfield = function(k){
-        var vk =false;
-        if(ROAD_ATTR_DET.indexOf(k)>-1){}
-        else if(EXCLUDED_CONVERT_SHAPES.indexOf(k)>-1){}
-        else if(k=="geometry"){}
-        else{
-            vk  = true 
+                
+        var _isvalidfield = function(k){
+            var vk =false;
+            if(ROAD_ATTR_DET.indexOf(k)>-1){}
+            else if(EXCLUDED_CONVERT_SHAPES.indexOf(k)>-1){}
+            else if(k=="geometry"){}
+            else{
+                vk  = true 
+            }
+
+            return vk;
         }
 
-        return vk;
-    }
-
+        var _data = {};
         if(opt.key_name=="road"){      
             for(var k in ROAD_MODEL_STRUC){                
                     if(_isvalidfield(k)){_data[k] = doc[k];}
@@ -217,7 +217,7 @@ RoadsSchema.statics.getRoadgeojson = function(opt,cb){
 
                 var stype = doc[opt.key_name][fdx].geometry.type;
                 var coord =    doc[opt.key_name][fdx].geometry.coordinates;
-                _data.geometry = doc.geometry.coordinates;
+                _data.geometry = coord;
                 var _options = {};
                 _options[stype] = "geometry";
                cb(null,GeoJSON.parse(_data, _options));

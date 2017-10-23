@@ -90,8 +90,7 @@ RoadsForReviewSchema.statics.saveforreview =  function(opt,cb){
         _data.location.province_name = loc.province.Name;
         _data.location.municity_code = mcode
         _data.location.municity_name = mname;
-        
-        console.log(_data)
+            
         new rfr(_data).save(function(err){            
           console.log(err);
           if(err){cb(err,null);return};

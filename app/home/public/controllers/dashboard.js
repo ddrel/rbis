@@ -255,17 +255,26 @@ var shapemap =  function(data,name){
   _geo.eachLayer(function (layer) {                        
           layer.bindPopup(name + ": "  + tooltiptext);
       });
-  $("#roadmapdashboard").leafletMaps("zoomToFeature", _geo);
+  
+  $("#roadmapdashboard").leafletMaps("zoomToFeature", _geo);  
 };
 
 $scope.optionStatus = [{"key":"validated","label":"Validated"},{"key":"returned","label":"Return"}];
 
 $scope.onmaptabclick =  function(){
   $("#roadmapdashboard").leafletMaps("refresh");
+  $timeout(function(){
+    shapemap($scope.currentfr.data,$scope.currentfr.attr_type);
+  },1000);
+ //   
 }
 
 
 //$scope.optionStatus = [];
+$scope.currentfr  = {};
+$scope.currentfr.data = {};
+$scope.currentfr.attr_type = "";
+
 $scope.ontabselected = function(status){
   var thestatus = status=="review"?[{"key":"validated","label":"Validated"},{"key":"returned","label":"Return"}]:[{"key":"returned","label":"Return"}];
   $scope.optionStatus = thestatus; 
@@ -281,9 +290,12 @@ $http.get("/api/roads/getroadattrbyid?r_id="+ item.r_id +"&attr=" + item.attr_ty
  $scope.modelData.currentItem =  data;
  $scope.modelData.roadImageList = utilities.file.getCurrentImageList(data);
  $("#roadattrttabledashboard").html(datamodel.utils.displayattributestable(item.attr_type,data));
+ 
+ $scope.currentfr.data = data;
+ $scope.currentfr.attr_type = item.attr_type;
  shapemap(data,item.attr_type);
 
-})
+});
 
 }
 

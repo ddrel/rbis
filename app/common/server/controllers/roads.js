@@ -292,16 +292,15 @@ exports.addRoadRemarks = (req,res)=>{
 
         if(opt.status==""){res.status(500).send("Error Status Value");return;};
 
-
         opt.remark_by = req.user.name;
         opt.remark_by_email = req.user.email;
         opt.message = opt.message.substring(0,300);
 
         roads.addRoadRemarks(opt,function(err,data){
             if(err){res.status(500).json(err);return;};
-            //res.status(200).json(data);
             //set for review   
-            if(opt.status.toLowerCase()=="forreview"  || opt.status.toLowerCase()=="inprogress"){
+            //  || opt.status.toLowerCase()=="inprogress"
+            if(opt.status.toLowerCase()=="forreview"){
                 var optreview = {};
                 optreview.identifier = req.body.identifier;
                 optreview.r_id = opt.r_id;
@@ -347,18 +346,11 @@ exports.addRoadRemarks = (req,res)=>{
                     }).catch(function(a){
                         res.status(500).json({err:a});
                     })                                
-            };
+            }else{ // inprogress || pending
+                res.status(200).json(data);
+            }; //end if status checking
         });
-
-
-
-
-
-        
-
-    
 };
-
 
 exports.getRoadRemarks = (req,res)=>{
 
