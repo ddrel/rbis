@@ -109,8 +109,19 @@
                               })
                               .state('home.reports', {
                                   url: 'reports',
+                                  controller:'roadReportMainCtrl',
                                   templateUrl: '/reports/views/reports.html',
-                                  data : { pageTitle: 'Reports | Road and Bridge Information System' }
+                                  data : { pageTitle: 'Reports | Road and Bridge Information System' },
+                                  resolve:{                                            
+                                    loadfile: function ($ocLazyLoad) {
+                                        return $ocLazyLoad.load([
+                                            {
+                                                cache:true,
+                                                files: ['/reports/controllers/road-report-main.js']
+                                            }                                                    
+                                        ]);
+                                    }                                      
+                                }
                               })
                               .state('home.roadmaps', {
                                 url: 'roadmaps',

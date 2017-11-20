@@ -116,6 +116,24 @@ var _toDataType =  function(v){
     };
 };
 
+
+RoadsSchema.statics.getRoadByLocation = function(opt,cb){
+var qry = {};
+    var field = (opt.r_class=="Provincial")? "ProvinceCo":"CityMunCod";
+    qry[field] = opt.location;
+    qry.R_CLASS = opt.r_class;
+
+    this.find(qry)
+    .select({R_ID:1,_id:0,R_NAME:1})
+    .exec(function(err,docs){
+        if(err  && !doc){
+            cb(err,null)
+        }else{
+            cb(null,docs)
+        }
+    });
+}
+
 RoadsSchema.statics.updateShapes =  function(opt,cb){
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
         if(err){cb(err,null);console.log("errror Update Shapes<<<<<<<<<<<<<<<<<<<<<");return;};        

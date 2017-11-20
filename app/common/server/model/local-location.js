@@ -38,7 +38,6 @@ const ProvincesSchema = new Schema({
     "RowID" : Number
 },{ collection: 'Provinces' });
 
-mongoose.model('Provinces', ProvincesSchema);
 
 // Region  Schema
 const RegionsSchema = new Schema({
@@ -102,6 +101,9 @@ CityMunSchema.statics.getmunicity = function(code,cb){
         return this.find({"ProvinceCode":code}).sort({"Name":1}).exec(cb);
 }
 
+
+
 mongoose.model('Brgy', BrgySchema);
 mongoose.model('CityMun', CityMunSchema);
+mongoose.model('Provinces', ProvincesSchema);
 mongoose.model('Regions', RegionsSchema);

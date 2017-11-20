@@ -1,0 +1,59 @@
+<md-dialog ng-init="init()">
+    <form ng-cloak ng-submit="action(roadObjData)">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Select Road</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="cancel()">
+                <i class="fa fa-times" aria-hidden="true"></i>                
+          </md-button>
+        </div>
+      </md-toolbar>
+  
+      <md-dialog-content>
+        <div class="md-dialog-content">
+                <div class="col-md-12">
+                        <table  class="table">
+                            <tr ng-if="userObject.role=='SUPER ADMINISTRATOR'">
+                                <td>Location</td>
+                                <td>
+                                    <select class="form-control" ng-change="onchange_provinces()" ng-model="byselect.province">
+                                            <option value="" selected>-- Select Province --</option>
+                                            <option value="{{prov.code}}" ng-repeat="prov in provinces">{{ prov.prov_name}}</option>                                            
+                                        <select>
+                                </td>
+                            </tr>
+                            <tr ng-if="userObject.role=='SUPER ADMINISTRATOR'">
+                                <td></td>
+                                <td>
+                                        <select class="form-control" ng-change="onchange_municity(byselect.municity)" ng-model="byselect.municity">
+                                                <option value="" selected>-- Municipality/City --</option>
+                                                <option value="{{mun.Code}}" ng-repeat="mun in municipalities">{{ mun.Name}}</option>                                            
+                                            <select>
+                                </td>
+                            </tr>
+                            <tr ng-show="roadList.length>0">
+                                <td></td>
+                                <td>
+                                        <select class="form-control" ng-change="onchange_roadlist(byselect.roadId)" ng-model="byselect.roadId">
+                                                <option value="" selected>-- Road Name/Road ID --</option>
+                                                <option value="{{road.R_ID}}" ng-repeat="road in roadList">{{ road.R_ID}}  - {{ road.R_NAME}}</option>                                            
+                                            <select>
+                                </td>
+                            </tr>                                                                    
+                                
+                            </table>
+                </div>                                         
+        </div>
+      </md-dialog-content>
+  
+      <md-dialog-actions layout="row">
+        <span flex></span>
+        <input type="submit" value="Print" class="btn btn-primary2">
+        </input>
+        <md-button ng-click="cancel()">
+          Cancel
+        </md-button>
+      </md-dialog-actions>
+    </form>
+  </md-dialog>

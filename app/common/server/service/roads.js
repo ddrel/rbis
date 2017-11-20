@@ -91,6 +91,9 @@ app.get("/api/roads/getRoadFile",(req,res)=>{
     roads.getRoadFile(req,res);
 });
 
+app.get("/api/roads/getRoadByLocation",(req,res)=>{
+    roads.getRoadByLocation(req,res);
+});
 
 
 /*

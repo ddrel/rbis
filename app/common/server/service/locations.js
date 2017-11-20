@@ -12,4 +12,8 @@ app.get("/api/location/getmunicity",(req,res)=>{
 });
 
 
+app.get("/api/location/getlocfromrid",(req,res)=>{
+    local_locations.getlocfromrid(req,res);
+});
+
 }

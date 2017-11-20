@@ -41,7 +41,7 @@
                 <td width="122px">Segments</td>
                 <td width="110px">Bridges</td>
                 <td >Last Modified</td>
-                <td width="110px" align="center">Action</td>
+                <td width="150px" align="center">Action</td>
             </tr>
             <tr ng-show="advancefilterdisplay">
                 <td width="110px" style="padding:0px;"><input type="text" class="form-control form-control-search-table txt-white"></input></td>
@@ -55,7 +55,7 @@
                 </td>
                 <td width="138px" style="padding:0px;"><input type="text" class="form-control form-control-search-table txt-white"></input></td>
                 <td width="122px" style="padding:0px;"><input type="text" class="form-control form-control-search-table txt-white"></input></td>
-                <td width="110px" style="padding:0px;"><input type="text" class="form-control form-control-search-table txt-white"></td>
+                <td width="150px" style="padding:0px;"><input type="text" class="form-control form-control-search-table txt-white"></td>
                 <td  colspan="2" style="padding:0px;"></td>                        
             </tr>                     
         </thead>
@@ -68,9 +68,9 @@
                     <td align="right">{{ road._id.segmentcount}}</td>
                     <td align="right">{{ road._id.bridgecount}}</td>
                     <td></td>
-                    <td align="right" style="padding:2px;">
+                    <td align="center" style="padding:2px;">
                         <a href="" class="btn btn-primary2 " ng-click="update(road)">Update</a>
-                        <a href="" class="btn btn-primary2" ng-show="false">Print</a>
+                        <a href="/print/road-section-profile?rid={{road._id.R_ID}}" target="_blank" class="btn btn-primary2" ng-show="true">Print</a>
                     </td>
                 </tr>    
        </tbody>

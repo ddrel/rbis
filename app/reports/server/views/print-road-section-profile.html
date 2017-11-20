@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="RBIS">
+<head><title>Road Section Profile</title>
+<link href="/common/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="/common/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+<link href="/common/plugins/leaflet/leaflet.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- Mainly scripts -->
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<script>
+		L_PREFER_CANVAS = true; // experimental
+</script>
+<script type="text/javascript" src="/common/plugins/leaflet/leaflet.js"></script>
+<script type="text/javascript" src="/common/js/leaflet.maps.jquery.js"></script>
+<script type="text/javascript" src='/common/js/leaflet-image.js'></script>
+<script type="text/javascript" src='/common/js/html2canvas.min.js'></script>
+<script src="/reports/controllers/road-section-profile-ctrl.js"></script>
+<script src="/common/utils/utils.js"></script>
+    <style>
+            td {
+                padding:10px;
+                font-size:8pt;
+            }
+            .data {
+                font-weight:bold;
+                font-size:12pt;
+                padding-left:20px;
+            }
+        </style>
+</head>
+<body ng-controller="roadSectionCtrl" ng-init="init()">    
+        <div align="center">
+        
+            <h2>Road Section Profile</h2>
+            <h5>(As of: {{ getDateNow() }})</h5>
+    
+            <table width="96%" border="1">
+                <tr>
+                    <td colspan="2">Road Name: <div class="data">{{ roadAttr.main.R_NAME }}</div></td>
+                    <td colspan="2">Road ID: <div class="data">{{ roadAttr.main.R_ID }}</div></td>
+                    <td>Status: <div class="data">{{ roadAttr.main.status }}</div></td>
+                </tr>
+                <tr>
+                    <td colspan="5">Location</td>
+                </tr>
+                <tr>
+                    <td>Region: <div class="data">{{roadAttr.location.Region.name}}</div></td>
+                    <td>Province: <div class="data">{{roadAttr.location.Province.name}}</div></td>
+                    <td colspan="3">City/Municipality: <div class="data">{{roadAttr.location.CityMun.name}}</div></td>                    
+                </tr>
+                <tr>
+                    <td>Road Classification: <div class="data">{{ roadAttr.main.R_CLASS}}</div></td>
+                    <td>Road Importance: <div class="data">{{ roadAttr.main.R_Importan}}</div></td>
+                    <td>Road Length: <div class="data">{{ roadAttr.main.Length.toFixed(3)}}</div></td>
+                    <td>No. of Segments: <div class="data">{{ roadAttr.main.RoadCarriageway_length}}</div></td>
+                    <td>No. of Bridge: <div class="data">{{ roadAttr.main.RoadBridges_length}}</div></td>
+                </tr>
+                <!--
+                <tr>
+                    <td>Carriageway Width: <div class="data">1.20 m</div></td>
+                    <td>No. of Lanes: <div class="data">2.00</div></td>
+                    <td>No. of Bridge: <div class="data">1</div></td>
+                    <td>Average Daily Traffic: <div class="data">-</div></td>
+                </tr>
+            -->
+                <tr>
+                    <td colspan="5">Surface Type</td>
+                </tr>
+                <tr>
+                    <td>Concrete: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Concrete) }} Km</div></td>
+                    <td>Asphalt: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Asphalt) }} Km</div></td>
+                    <td>Gravel: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Gravel) }} Km</div></td>
+                    <td>Earth: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Earth) }} Km</div></td>
+                    <td>Mixed: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Mixed) }} Km</div></td>
+                </tr>
+                <tr>
+                    <td colspan="5">Average Surface Condition</td>
+                </tr>
+                <tr>
+                    <td>Good: <div class="data">{{ formatToDecimal(roadAttr.surfacecon.Good) }} Km</div></td>
+                    <td>Fair: <div class="data">{{ formatToDecimal(roadAttr.surfacecon.Fair) }} Km</div></td>
+                    <td>Poor: <div class="data">{{ formatToDecimal(roadAttr.surfacecon.Poor) }} Km</div></td>
+                    <td>Bad: <div class="data">{{ formatToDecimal(roadAttr.surfacecon.Bad) }} Km</div></td>
+                    <td>New: <div class="data">{{ formatToDecimal(roadAttr.surfacecon.New) }} Km</div></td>
+                </tr>
+                <!--
+                <tr>
+                    <td colspan="5">Road Appliance</td>
+                </tr>
+                <tr>
+                    <td>Guard Rail:
+                        <div class="data">Left - 0.00 KM</div>
+                        <div class="data">Right - 0.00 KM</div>
+                    </td>
+                    <td>Lighting:
+                        <div class="data">Left - 0.00 KM</div>
+                        <div class="data">Right - 0.00 KM</div>
+                    </td>
+                    <td>Side Drain:
+                        <div class="data">Left - 0.00 KM</div>
+                        <div class="data">Right - 0.00 KM</div>
+                    </td>
+                    <td>Shoulder Width:
+                        <div class="data">Left - 0.00 KM</div>
+                        <div class="data">Right - 0.00 KM</div>
+                    </td>
+                </tr>
+                -->
+                <tr>
+                    <td colspan="5"><div id="map_canvas" style="width:100%; height:500px;"></div></td>
+                </tr>
+            </table><br />
+    
+        </div>
+    </body>
+</html>    
+

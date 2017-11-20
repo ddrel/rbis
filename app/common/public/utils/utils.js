@@ -99,6 +99,17 @@ angular.module('RBIS').factory('utilities', ['$window','$rootScope',function ($w
             }            
       }
 
+
+      utilities.printab =  function(url){
+        var link = $window.document.createElement("a");    
+        link.href = url;
+        link.target="_blank"
+        link.style = "visibility:hidden";
+        $window.document.body.appendChild(link);
+        link.click();
+        $window.document.body.removeChild(link);
+      }
+
       utilities.download =  function(url){
         var link = $window.document.createElement("a");    
         link.href = url;
