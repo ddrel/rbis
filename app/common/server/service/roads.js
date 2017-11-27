@@ -95,6 +95,11 @@ app.get("/api/roads/getRoadByLocation",(req,res)=>{
     roads.getRoadByLocation(req,res);
 });
 
+app.get("/api/roads/summaryroadreport",(req,res)=>{
+    roads.summaryroadreport(req,res);
+});
+
+
 
 /*
 app.get("/clenupdata",(req,res)=>{

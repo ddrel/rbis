@@ -3,11 +3,112 @@ angular.module("RBIS",['ui.bootstrap'])
 .controller("roadReportMainCtrl",['$scope', '$http','$rootScope','utilities','$timeout','$mdDialog', function( $scope, $http,$rootScope,utilities,$timeout,$mdDialog){
 
 $scope.init =  function(){
-    
+
 };
 
 
+/*---------------------------------------- Road Section Report dialog --------------------------------------------------*/
+$scope.loadroadsummarydialog = function(ev) {
+    $http.get("/ws/users/me").success(function(user){
+                    
+        if(user.role!="SUPER ADMINISTRATOR" && (user.role=="SUPERVISOR" || user.role=="ENCODER")){
+            utilities.printab("/print/road-summary");
+            return;
+        }else if(user.role=="SUPER ADMINISTRATOR"){
+            $mdDialog.show({
+                controller: RoadSummaryDialogController,
+                templateUrl: '/reports/views/dialog/road-inventory.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:false,
+                fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+              })
+              .then(function(data) {
+                         
+              }, function(error) {
+                  
+              });
+        }
+    });
+    
+  };
 
+  function RoadSummaryDialogController($scope, $mdDialog,datamodel,$http,adapter) {    
+    $scope.byselect = {};
+    $scope.provinces = []
+    $scope.municipalities = [];
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel(); 
+    };
+
+    $scope.action = function(data) {
+        console.log(data);   
+            var _class = data.class || "";       
+            var f = (_class=="")?"all":_class;
+            console.log(f);
+            var qry = "";
+            if(f=="City" &&  data.municity){
+                qry = "?CityMunCod=" + data.municity;
+            }else{
+                qry = "?location=" + data.province;
+            }
+            
+            qry+="&class=" + f;
+
+            utilities.printab("/print/road-summary" + qry);
+            //$mdDialog.hide(data);
+        
+    };
+
+    
+    $scope.onchange_class = function(c){
+
+    };
+    $scope.onchange_provinces =  function(){
+        $http.get("/api/location/getmunicity?code=" + $scope.byselect.province).success(function(data){                
+                utilities.sort(data,"Name");
+                $scope.municipalities = data;
+        });
+
+    };
+
+    $scope.onchange_municity =  function(a){          
+        var r_class = (a=="")?"Provincial":"City";
+            a = (a=="")? $scope.byselect.province:a;        
+    };
+    
+    $scope.userObject = {};
+    $scope.init =  function(){            
+        $timeout(function(){
+            $http.get("/ws/users/me").success(function(user){
+                $scope.userObject = user;                    
+                //console.log($scope.userObject);
+                if(user.role=="SUPER ADMINISTRATOR"){
+                    $http.get("/api/location/getregionprovince").success(function(data){
+                        utilities.sort(data,"Code");                                
+                        data.forEach(function(region) {
+                               region.provinces.forEach(function(province){
+                                       var _d = {regionCode:province.RegionCode,code:province.Code,prov_name:region.Name + " > " + province.Name,name:province.Name};
+                                       $scope.provinces.push(_d);                
+                               });    
+                       });                       
+       
+                    });
+                }
+                                
+                if(user.role!="SUPER ADMINISTRATOR" && (user.role=="SUPERVISOR" || user.role=="ENCODER")){
+                    var r_class = user.location.municity=="--"?"Provincial":"City"
+                    var location = user.location.municity=="--"? user.location.province:user.location.municity;
+                }
+            });        
+        });
+        
+    }
+  }
 
 
 

@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="RBIS">
+<head><title>Road Summary</title>
+<link href="/common/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="/common/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+<link href="/common/plugins/leaflet/leaflet.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- Mainly scripts -->
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<script type="text/javascript" src="/common/plugins/leaflet/leaflet.js"></script>
+<script type="text/javascript" src="/common/js/leaflet.maps.jquery.js"></script>
+<script type="text/javascript" src='/common/js/leaflet-image.js'></script>
+<script type="text/javascript" src='/common/js/html2canvas.min.js'></script>
+<script src="/reports/controllers/road-summary.js"></script>
+<script src="/common/utils/utils.js"></script>
+<style>
+        td {
+            padding:10px;
+            font-size:9pt;
+        }
+        .data {
+            font-weight:bold;
+            font-size:1pt;
+            padding-left:20px;
+        }
+    </style>
+</head>
+<body ng-controller="roadSummaryCtrl" ng-init="init()">    
+<div id="divReport" style="width:100%; padding:8px;">                        
+<table width="100%">
+<tr>
+<td style="font-size:18pt; font-weight:bold;"><span id="lblTitle">RURAL ROADS INVENTORY</span></td>
+<td align="right">As of {{ getDateNow() }}</td>
+</tr>
+<tr>
+<td style="font-size:14pt;">REGION: <span id="lblRegion" style="font-weight:bold;">{{ location.Region.name }}</span></td>
+<td align="right">&nbsp;</td>
+</tr>
+<tr>
+<td style="font-size:14pt;">PROVINCE: <span id="lblProvince" style="font-weight:bold;">{{ location.Province.name }}</span></td>
+<td align="right">&nbsp;</td>
+</tr>
+<tr>
+<td style="font-size:14pt;">CITY/MUNICIPALITY: <span id="lblProvince" style="font-weight:bold;">{{ location.CityMun.name }}</span></td>
+<td align="right">&nbsp;</td>
+</tr>
+</table><br />                        
+<table class="table table-condensed" border="1">
+<thead>
+<tr><th>Road ID</th>
+<th>Road Name</th>
+<th>Class</th>
+<th>Length (km)</th>
+<th>Asphalt</th>
+<th>Gravel</th>
+<th>Earth</th>
+<th>Concrete</th>
+<th>Mixed</th>
+<th>Road Importance</th>
+<th>Terrain Type</th>
+<th>Length of Culverts</th>
+<th>Number Bridges</th>
+</tr>
+</thead>
+<tbody>
+    <tr ng-repeat="road in summarydata">
+        <td>{{ road.R_ID }}</td>
+        <td>{{ road.R_NAME }}</td>
+        <td>{{ road.R_CLASS }}</td>
+        <td align="right">{{ road.Length }}</td>
+        <td align="right">{{ road.Asphalt }}</td>
+        <td align="right">{{ road.Gravel }}</td>
+        <td align="right">{{ road.Earth }}</td>
+        <td align="right">{{ road.Concrete }}</td>
+        <td align="right">{{ road.Mixed }}</td>
+        <td>{{ road.R_Importan }}</td>
+        <td>{{ getTerrain(road.Terrain) }}</td>
+        <td align="right">{{ road.culvert_length }}</td>
+        <td align="right">{{ road.bridgecount }}</td>
+    </tr>
+
+</tbody>
+</table>
+</table>    
+</div>
+</body>
+</html>    
+

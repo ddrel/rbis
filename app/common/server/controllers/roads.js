@@ -411,6 +411,35 @@ exports.getRoadByLocation =  (req,res)=>{
     });
 }
 
+
+exports.summaryroadreport = (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var _qry = {};
+
+    var a_qry = getlocaccess(req);    
+    if(a_qry){_qry  = {'$match':a_qry};}
+    else{
+            var field = req.query.hasOwnProperty("CityMunCod")?"CityMunCod":"ProvinceCo";                     
+            if(req.query.class==""){res.status(500).send("error query");return;};            
+            
+            var opt = {};
+            var kfieldvalue = field=="ProvinceCo"? req.query.location : req.query[field];
+            opt[field] = kfieldvalue;       
+             if(req.query.class!="all"){
+                opt.R_CLASS = req.query.class;
+             }
+             
+
+            _qry  = {'$match':opt};                   
+    }
+
+    roads.summaryroadreport(_qry,function(err,data){
+        if(err){res.status(500).json(err);return;};
+        res.status(200).json(data);
+    })
+
+}
+
 /*
 exports.clenupdata = (req,res)=>{
     console.log("---------------------------------");
