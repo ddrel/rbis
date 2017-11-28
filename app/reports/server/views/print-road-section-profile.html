@@ -29,6 +29,19 @@
                 font-size:12pt;
                 padding-left:20px;
             }
+
+            .surface-type{width:20px;height:20px;float:right;}
+            @media print {
+                body {
+                    -webkit-print-color-adjust: exact;
+                    }
+                .st-concrete {background-color:#f29626 !important;}
+                .st-asphalt {background-color:#5a6068 !important;}
+                .st-gravel {background-color:#26bff1 !important;}
+                .st-earth {background-color:#876f1b !important;}
+                .st-mixed {background-color:#357c31 !important;}
+                .surface-type{width:10px;height:10px;float:right;}
+            }
         </style>
 </head>
 <body ng-controller="roadSectionCtrl" ng-init="init()">    
@@ -70,11 +83,11 @@
                     <td colspan="5">Surface Type</td>
                 </tr>
                 <tr>
-                    <td>Concrete: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Concrete) }} Km</div></td>
-                    <td>Asphalt: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Asphalt) }} Km</div></td>
-                    <td>Gravel: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Gravel) }} Km</div></td>
-                    <td>Earth: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Earth) }} Km</div></td>
-                    <td>Mixed: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Mixed) }} Km</div></td>
+                    <td>Concrete: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Concrete) }} Km <div style="background-color:#f29626" class="float-right surface-type st-concrete">&nbsp;</div></td>
+                    <td>Asphalt: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Asphalt) }} Km <div style="background-color:#5a6068" class="float-right surface-type st-asphalt">&nbsp;</div></div></td>
+                    <td>Gravel: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Gravel) }} Km <div style="background-color:#26bff1" class="float-right surface-type st-gravel">&nbsp;</div></div></td>
+                    <td>Earth: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Earth) }} Km <div style="background-color:#876f1b" class="float-right surface-type st-earth">&nbsp;</div></div></td>
+                    <td>Mixed: <div class="data">{{ formatToDecimal(roadAttr.surfacetype.Mixed) }} Km <div style="background-color:#357c31" class="float-right surface-type st-mixed">&nbsp;</div></div></td>
                 </tr>
                 <tr>
                     <td colspan="5">Average Surface Condition</td>
