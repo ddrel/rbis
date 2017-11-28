@@ -25,12 +25,13 @@ $scope.roadAttr.surfacecon = {};
 
 $scope.init =  function(){
     var rid = getParameterByName("rid");   
-    var map = L.map("map_canvas",{ zoomControl: false ,preferCanvas: true}).setView([12.80, 122.27], 5)
-    L.tileLayer("https://{s}.tiles.mapbox.com/v4/feelcreative.llm8dpdk/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZHJlbCIsImEiOiJjajdibG4waDkwdHd3MzJxbWwzcmhzbHZnIn0.f-q8EG-3W_AEPk8P1h62pA").addTo(map);
-
+   
 
     if(!rid){return;}
     $http.get("/api/roads/getroadshortattrinfo?rid=" +rid).success(function(data){
+        var map = L.map("map_canvas",{ zoomControl: false ,preferCanvas: true}).setView([12.80, 122.27], 5)
+        L.tileLayer("https://{s}.tiles.mapbox.com/v4/feelcreative.llm8dpdk/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZHJlbCIsImEiOiJjajdibG4waDkwdHd3MzJxbWwzcmhzbHZnIn0.f-q8EG-3W_AEPk8P1h62pA").addTo(map);
+    
         $scope.roadAttr.main =  data;
         var geojson =  data.geometry || null;
         if(!geojson) {return;}
@@ -78,6 +79,22 @@ $scope.init =  function(){
                 document.getElementById('map_canvas').innerHTML = '';
                 document.getElementById('map_canvas').appendChild(img);
             });
+
+
+
+        $http.get("/api/roads/getroadattr?rid=" + rid+ "&attr=RoadCarriageway").success(function(data){
+                $scope.roadAttr.carriageway = data;        
+                if(data.length>0){
+                    data.forEach(function(d){
+                        if(d.geometry){
+                            var _style = utilities.roads.STStyle(d.SurfaceTyp); 
+                            var _geo = L.geoJson(d.geometry,_style).addTo(map);
+                        }
+                    });
+                }
+        
+                
+        });
             
     });
 
@@ -94,19 +111,7 @@ $scope.init =  function(){
     });
 
     
-    $http.get("/api/roads/getroadattr?rid=" + rid+ "&attr=RoadCarriageway").success(function(data){
-        $scope.roadAttr.carriageway = data;        
-        if(data.length>0){
-            data.forEach(function(d){
-                if(d.geometry){
-                    var _style = utilities.roads.STStyle(d.SurfaceTyp); 
-                    var _geo = L.geoJson(d.geometry,_style).addTo(map);
-                }
-            });
-        }
-
-        
-    });
+    
 }
         
 }]);
