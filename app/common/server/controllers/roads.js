@@ -1,6 +1,7 @@
 'use strict';
 const mongoose = require('mongoose'),
-    moment = require('moment')
+    moment = require('moment'),
+    enums = require("../enum/enumarates");
 
 
 const getlocaccess = (req)=>{
@@ -53,6 +54,32 @@ exports.newRoad =  (req,res)=>{
     roads.newRoad(roadObjData,function(err,data){
         if(err){res.status(500).json(err);return};
         res.status(200).json(data);
+        var _datalogs = {};
+            _datalogs.r_id = data.R_ID;
+            _datalogs.road_name = data.R_NAME;
+            _datalogs.road_class = data.R_CLASS;
+            _datalogs.user = {email:req.user.email,location:req.user.location,role: req.user.roles};
+            _datalogs.identifier = "road-" + data.R_ID;
+            _datalogs.table = "road";
+            _datalogs.ref_id = data.R_ID;  
+            _datalogs.tag = "data.new";
+            _datalogs.data =  {"R_ID" : data.R_ID, 
+                                "R_CLASS" : data.R_CLASS, 
+                                "R_NAME" : data.R_NAME, 
+                                "R_Importan" : data.R_Importan, 
+                                "Environmen" : data.Environmen, 
+                                "DirFlow" : data.DirFlow, 
+                                "Terrain" : data.Terrain, 
+                                "Length" : data.Length, 
+                                "RROW_usefullife" : data.RROW_usefullife, 
+                                "CityMunCod" : data.CityMunCod, 
+                                "ProvinceCo" : data.ProvinceCo, 
+                                "RegionCode" : data.RegionCode, 
+                                "created_by" : data.created_by,
+                                "RROW_acq_date": data.RROW_acq_date,
+                                "RROW_acq_cost": data.RROW_acq_cost 
+                                }
+            mongoose.model('Roads_Logs').add(_datalogs);
     });
 };
 
@@ -300,6 +327,18 @@ exports.addRoadRemarks = (req,res)=>{
             if(err){res.status(500).json(err);return;};
             //set for review   
             //  || opt.status.toLowerCase()=="inprogress"
+                    
+            var logopt = {};                
+            logopt.identifier = req.body.identifier;
+            logopt.r_id = opt.r_id;
+            logopt.road_name = req.body.r_name;
+            logopt.road_class = req.body.r_class;
+            logopt.ref_id = opt.attr_id;
+            logopt.table = opt.key_name            
+            logopt.user = {email:req.user.email,location:req.user.location,role: req.user.roles};
+            logopt.data = {message:opt.message};
+            
+        
             if(opt.status.toLowerCase()=="forreview"){
                 var optreview = {};
                 optreview.identifier = req.body.identifier;
@@ -314,7 +353,11 @@ exports.addRoadRemarks = (req,res)=>{
                 mongoose.model("Roads_ForReview").saveforreview(optreview,function(err,data){
                     if(err){res.status(500).send(err);return;}
                     //Save remarks                    
-                    res.status(200).json(data);                    
+                    res.status(200).json(data);       
+        
+                    logopt.tag = enums.logsTag["status.forreview"];
+                    mongoose.model('Roads_Logs').add(logopt);
+
                 });
             }else if(opt.status.toLowerCase()=="validated"){            
                         var optvalidated = {};
@@ -323,6 +366,8 @@ exports.addRoadRemarks = (req,res)=>{
                         mongoose.model("Roads_Validated").savevalidated(optvalidated,function(err,data){
                             if(err){res.status(500).json(err);return;};
                             res.status(200).json(data);
+                            logopt.tag = enums.logsTag["status.validated"];
+                            mongoose.model('Roads_Logs').add(logopt);
                         });
             }else if(opt.status.toLowerCase()=="returned"){
                 var prm =  new Promise(function(res,rej){
@@ -343,11 +388,18 @@ exports.addRoadRemarks = (req,res)=>{
 
                     prm.then(function(a,b){
                         res.status(200).json({err:a,data:data});
+                        //logs
+                        logopt.tag = enums.logsTag["status.returned"];
+                        mongoose.model('Roads_Logs').add(logopt);
                     }).catch(function(a){
                         res.status(500).json({err:a});
                     })                                
             }else{ // inprogress || pending
-                res.status(200).json(data);
+                res.status(200).json(data);                
+
+                logopt.tag = opt.status.toLowerCase()=="pending"?enums.logsTag["status.pending"]:enums.logsTag["status.inprogress"];  
+                mongoose.model('Roads_Logs').add(logopt);
+
             }; //end if status checking
         });
 };

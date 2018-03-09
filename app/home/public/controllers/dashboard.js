@@ -1,21 +1,7 @@
 angular.module('RBIS').controller("dashboardCtrl", function( $scope, $http,$rootScope,$window,$timeout,utilities,adapter,datamodel,$mdSidenav) {
 
 
-  $scope.events = 
-[
-{
-    badgeClass: 'info',
-    badgeIconClass: 'glyphicon-check',
-    title: 'Road Update 11100000',
-    content: 'Some awesome content.'
-},
-{
-    badgeClass: 'warning',
-    badgeIconClass: 'glyphicon-credit-card',
-    title: 'Line segment update 111100000000',
-    content: 'Content .'
-}
-];
+
 
 
 
@@ -161,9 +147,57 @@ $scope.init =  function(){
     //load review and validated    
     _getRoadStatus(); 
     _getValidatedStatus();  
+
+
+
+    $scope.getlogs(1);
+
 };
 
+$scope.roadlogs = {};
+$scope.roadlogs.pagination = {};
+$scope.roadlogs.pagination.max=1;
 
+$scope.pageChangedLogs = function(index){
+  $scope.getlogs(index);
+};
+
+$scope.getlogs =  function(page){
+  $http.get("/api/logs/getlogs?page="  + page || 1).success(function(logs){
+    var roadlogs = []; 
+    logs.docs.forEach(function(d){
+      var dd = {
+        badgeClass: 'info',
+        badgeIconClass: 'glyphicon-check',
+        date: utilities.formatDate3(d.date),
+        email: d.email,
+        text:  d.text,
+        fields: d.data
+      }
+
+      roadlogs.push(dd);
+    });
+    $scope.roadlogs.pagination.max =  logs.pages;
+    $scope.roadlogs.List = roadlogs;
+    /*
+    $scope.roadlogs = 
+    [
+    {
+        badgeClass: 'info',
+        badgeIconClass: 'glyphicon-check',
+        title: 'Road Update 11100000',
+        content: 'Some awesome content.'
+    },
+    {
+        badgeClass: 'warning',
+        badgeIconClass: 'glyphicon-credit-card',
+        title: 'Line segment update 111100000000',
+        content: '<a>Content .</a>'
+    }
+    ];
+    */
+  })
+}
 
 
 

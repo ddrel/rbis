@@ -171,7 +171,7 @@ const uploadRoadImage =  (req,res,target,cb)=>{
             //Add Image details to Db
             promise.then(function(opt){    
                 opt.fieldtype = "file_roadimages";            
-                mongoose.model("Roads").addRoadMedia(opt,function(err,doc){
+                mongoose.model("Roads").addRoadMedia(opt,req.user,function(err,doc){
                             return cb(err,doc);                        
                     });
             }).catch(function(err){
@@ -242,7 +242,7 @@ const uploadRoadFile =  (req,res,target,cb)=>{
             
             promise.then(function(opt){    
                 opt.fieldtype = "file_attachment";            
-                mongoose.model("Roads").addRoadMedia(opt,function(err,doc){
+                mongoose.model("Roads").addRoadMedia(opt,req.user,function(err,doc){
                             return cb(err,doc);                        
                     });
             }).catch(function(err){                                
@@ -319,7 +319,7 @@ const uploadShapeFile =  (req,res,target,cb)=>{
               }
             
 
-              roads.updateShapes(opt,function(err,data){
+              roads.updateShapes(opt,req.user,function(err,data){
                 if(err){
                     res.send("error");return;
                 }else{
@@ -414,7 +414,7 @@ module.exports = (app)=>{
             }
 
 
-        mongoose.model("Roads").removeRoadMedia(opt,function(err,data){
+        mongoose.model("Roads").removeRoadMedia(opt,req.user,function(err,data){
                 if(!err){
                     if(opt.field_file=="file_roadimages"){
                         storage_roads_thumb.remove(data.thumb,function(err){});

@@ -329,19 +329,24 @@
             </md-tab>                  
             <md-tab label="Timeline">
                 <md-content>
+                    <pagination  ng-show="roadlogs.List.length>0" ng-change="pageChangedLogs(roadlogs.pagination.CurrentPage)" rotate="false" boundary-link-numbers="false" total-items="(roadlogs.pagination.max * 10)" ng-model="roadlogs.pagination.CurrentPage" max-size="roadlogs.pagination.max" class="pagination-sm" boundary-links="true">
+                    </pagination>
                      <timeline>
-                        <timeline-event ng-repeat="event in events" side="alternate">
-                        <timeline-badge class="{{event.badgeClass}}">
-                            <i class="glyphicon {{event.badgeIconClass}}"></i>
+                        <timeline-event ng-repeat="roadlog in roadlogs.List" side="alternate">
+                        <timeline-badge class="{{roadlog.badgeClass}}">
+                            <i class="glyphicon {{roadlog.badgeIconClass}}"></i>
                         </timeline-badge>
-                        <timeline-panel class="{{event.badgeClass}}">
+                        <timeline-panel class="{{roadlog.badgeClass}}">
                             <timeline-heading>
-                            <h4>{{event.title}}</h4>
+                            <h4><font color="#f39b40">{{roadlog.date}}</font></h4>                            
                             </timeline-heading>
-                            <p>{{event.content}}</p>
+                            <h4><font color="#2e86d3">{{roadlog.email}}</font> | {{roadlog.text}}</h4>
+                            <div ng-repeat="field in roadlog.fields">{{field.key}} : {{field.value}}</div>
                         </timeline-panel>
                         </timeline-event>
                     </timeline>
+                    <pagination  ng-show="roadlogs.List.length>0" ng-change="pageChangedLogs(roadlogs.pagination.CurrentPage)" rotate="false" boundary-link-numbers="false" total-items="(roadlogs.pagination.max * 10)" ng-model="roadlogs.pagination.CurrentPage" max-size="roadlogs.pagination.max" class="pagination-sm" boundary-links="true">
+                    </pagination>
                 </md-content>    
             </md-tab>   
             <md-tab label="System Status" ng-if="user.role=='SUPER ADMINISTRATOR'">

@@ -9,7 +9,9 @@ var mongoose = require('mongoose'),
    moment = require('moment'),
    RBISModelSchema = require('../schema/road-features').RBISModelSchema,
    GeoJSON = require('geojson'),
-   tokml = require('tokml');
+   tokml = require('tokml'),
+   utilities = require("../utils/utilities"),
+   enums = require("../enum/enumarates")
 
 var mongooseAggregatePaginate = require('mongoose-aggregate-paginate');
 
@@ -134,7 +136,7 @@ var qry = {};
     });
 }
 
-RoadsSchema.statics.updateShapes =  function(opt,cb){
+RoadsSchema.statics.updateShapes =  function(opt,user,cb){
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
         if(err){cb(err,null);console.log("errror Update Shapes<<<<<<<<<<<<<<<<<<<<<");return;};        
         if(opt.key_name=="road"){            
@@ -145,7 +147,27 @@ RoadsSchema.statics.updateShapes =  function(opt,cb){
                 doc[opt.key_name][fdx].geometry = opt.geometry; //set current status; 
             }
         };
-        doc.save(function(err){cb(err);});        
+
+        var doc_data = opt.key_name=="road"?doc:doc[opt.key_name];
+
+        doc.save(function(err){
+            cb(err);
+            if(!err){
+                var logopt = {};                
+                logopt.identifier = utilities.getattribdisplay(doc_data,opt.key_name)
+                logopt.r_id = doc.R_ID;
+                logopt.road_name = doc.R_NAME;
+                logopt.road_class = doc.R_CLASS;
+                logopt.ref_id = doc_data._id;
+                logopt.table = opt.key_name
+                logopt.tag = enums.logsTag["shapes.importupdate"];
+                logopt.user = {email:user.email,location:user.location,role: user.roles};
+                logopt.data = {}               
+
+                mongoose.model('Roads_Logs').add(logopt);  
+            }
+
+        });        
     });
 };
 
@@ -282,7 +304,7 @@ RoadsSchema.statics.getRoadFile = function(opt,cb){
         }
     });
 };
-RoadsSchema.statics.removeRoadMedia =  function(opt,cb){
+RoadsSchema.statics.removeRoadMedia =  function(opt,user,cb){
     console.log(opt);
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
         var _dataMedia = {};
@@ -324,8 +346,21 @@ RoadsSchema.statics.removeRoadMedia =  function(opt,cb){
 
 
             doc.save(function(err){
-                console.log(err)
                     cb(err,_dataMedia);
+                    if(!err){
+                        var doc_data = opt.key_name=="road"?doc:doc[opt.key_name];
+                        var logopt = {};                
+                        logopt.identifier = utilities.getattribdisplay(doc_data,opt.key_name)
+                        logopt.r_id = doc.R_ID;
+                        logopt.road_name = doc.R_NAME;
+                        logopt.road_class = doc.R_CLASS;
+                        logopt.ref_id = doc_data._id;
+                        logopt.table = opt.key_name
+                        logopt.tag = opt.fieldtype=="file_attachment"? enums.logsTag["media.deleteattachment"]:enums.logsTag["media.deleteimage"];
+                        logopt.user = {email:user.email,location:user.location,role: user.roles};
+                        logopt.data = _dataMedia;             
+                        mongoose.model('Roads_Logs').add(logopt);
+                    }
             })
     });
 };
@@ -392,7 +427,7 @@ RoadsSchema.statics.addRoadRemarks =  function(opt,cb){
         });        
     });
 }
-RoadsSchema.statics.addRoadMedia =  function(opt,cb){    
+RoadsSchema.statics.addRoadMedia =  function(opt,user,cb){    
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
         if(err){cb(err,null);console.log("errrorrrr addRoadMedia<<<<<<<<<<<<<<<<<<<<<");return;};
         var _file_attr = {};
@@ -430,7 +465,23 @@ RoadsSchema.statics.addRoadMedia =  function(opt,cb){
 
         doc.save(function(err){
             console.log("Add Road Media ......")
-            console.log(err)
+            //console.log(err);
+            if(!err){
+                var doc_data = opt.key_name=="road"?doc:doc[opt.key_name];
+                var logopt = {};                
+                logopt.identifier = utilities.getattribdisplay(doc_data,opt.key_name)
+                logopt.r_id = doc.R_ID;
+                logopt.road_name = doc.R_NAME;
+                logopt.road_class = doc.R_CLASS;
+                logopt.ref_id = doc_data._id;
+                logopt.table = opt.key_name
+                logopt.tag = opt.fieldtype=="file_attachment"? enums.logsTag["media.uploadattachment"]:enums.logsTag["media.uploadimage"];
+                logopt.user = {email:user.email,location:user.location,role: user.roles};
+                logopt.data = _file_attr;             
+                mongoose.model('Roads_Logs').add(logopt);
+            }
+            
+
             cb(err);
         });        
     });
@@ -473,8 +524,8 @@ RoadsSchema.statics.newRoad =  function(data,cb){
 
         var _road = new road(data);
             _road.R_ID = rid;
-        _road.save(function(err){
-            cb(err,_road)
+        _road.save(function(err){            
+            cb(err,_road); 
         });
     });
 };
@@ -845,7 +896,32 @@ var _validateData =  function(data,cb){
 };
 
 
-
+var _logger =  function(doc){
+    var doc  = doc;
+    var DataCollection = [];
+                                            
+    return {
+            add:function(opt){
+                var idx = DataCollection.map(function(d){return d.id}).indexOf(opt.id);
+                var _kv = {};
+                    _kv[opt.key] = opt.value;
+                if(idx==-1){                                                    
+                        var _dta = [];
+                            _dta.push(_kv);                                                 
+                    var _data = {id:opt.id,table:opt.table,tag:opt.tag,identifier:opt.identifier,data:_dta};
+                    DataCollection.push(_data);
+                }else{
+                    var rowdata = DataCollection[idx];
+                    rowdata.data.push(_kv);
+                    rowdata.identifier = opt.identifier;
+                    rowdata.tag = rowdata.tag=="data.new"?"data.new":"data.update"; 
+                }
+            },getdata:function(){                 
+                //console.log(JSON.stringify(DataCollection));
+                return DataCollection;
+            }
+    }
+};
 
 RoadsSchema.statics.save =  function(objdata,cb){
     var road = this;
@@ -856,14 +932,32 @@ RoadsSchema.statics.save =  function(objdata,cb){
         if(b){
             road.findOne({"R_ID":objdata.R_ID}).exec(function(err,doc){                    
                     var _pp = {};
-
+                    var _datalogs = {};
+                    _datalogs.r_id = doc.R_ID;
+                    _datalogs.road_name = doc.R_NAME;
+                    _datalogs.road_class = doc.R_CLASS;
+                    _datalogs.user = {email:objdata.user.email,location:objdata.user.location,role: objdata.user.roles};
+                    var rlogger =  new _logger(doc);
+                    
+                    //console.log(JSON.stringify(objdata));
                     for(var i=0;i<objdata.data.length;i++){
                           var _row = objdata.data[i];
                             if(_row.table=="road"){
                                 _row.rows.forEach(function(d){
-                                        doc[d.key] = d.value;                                            
+                                    doc[d.key] = d.value;
+                                    if(doc[d.key]){      
+                                        var opt = {};
+                                        opt.id = d.id;
+                                        opt.table = _row.table;
+                                        opt.tag="data.update";
+                                        opt.key = d.key;
+                                        opt.value = d.value;
+                                        opt.identifier = utilities.getattribdisplay(doc,_row.table);                                        
+                                        rlogger.add(opt);
+                                    }    
+                                                                            
                                 });
-                                
+                                         
                                 //update date
                                 doc.updated_by = {name : objdata.user.name,email:objdata.user.email};
                                 doc.lastupdate_date = new Date();
@@ -873,15 +967,15 @@ RoadsSchema.statics.save =  function(objdata,cb){
                                     _dataOnComplete[_pdx].count+=1;     
                                 }else{
                                     _dataOnComplete.push({"table":"road",count:1});
-                                }
-
-
+                                };  
+                                
                             }else{
-                                var features = doc[_row.table];
+                                var features = doc[_row.table];  
+                                                             
                                 _row.rows.forEach(function(d){                                                                                
-                                    var fdx = doc[_row.table].map(function(c){return c._id.toString()}).indexOf(d.id);                                                                                
-                                        
-                                    
+                                    var fdx = doc[_row.table].map(function(c){return c._id.toString()}).indexOf(d.id); 
+                                                                        
+
                                     if(fdx>-1){ //Update new Features                                                
                                             doc[_row.table][fdx][d.key] = d.value;                                                
                                             //console.log(d.key + " : " +doc[_row.table][fdx][d.key]);    
@@ -901,6 +995,15 @@ RoadsSchema.statics.save =  function(objdata,cb){
                                                                                 name:objdata.user.name, 
                                                                              }; 
                                             doc[_row.table][fdx].lastupdate_date = new Date();
+                                            var opt = {};
+                                             opt.id = d.id;
+                                             opt.table = _row.table;
+                                             opt.tag="data.update";
+                                             opt.key = d.key;
+                                             opt.value = d.value;   
+                                             opt.identifier = utilities.getattribdisplay(doc[_row.table][fdx],_row.table);                                     
+                                             rlogger.add(opt);                                             
+
                                      }else{ // insert new Features
                                         var _newAttr = {};
                                         if(_row.table=="RoadCarriageway"){
@@ -928,7 +1031,7 @@ RoadsSchema.statics.save =  function(objdata,cb){
                                             }
                                         }
 
-                                             _newAttr[d.key] =d.value;
+                                             _newAttr[d.key] = d.value;
                                              _newAttr._id =  new mongoose.mongo.ObjectId(d.id);
                                              _newAttr.R_ID = objdata.R_ID;
                                              
@@ -937,25 +1040,50 @@ RoadsSchema.statics.save =  function(objdata,cb){
                                                 email:objdata.user.email,
                                                 name:objdata.user.name, 
                                              };
-                                             
-                                             doc[_row.table].push(_newAttr);
-                                     };
 
+                                             var opt = {};
+                                             opt.id = d.id;
+                                             opt.table = _row.table;
+                                             opt.tag="data.new";
+                                             opt.key = d.key;
+                                             opt.value = d.value;                                        
+                                             rlogger.add(opt);
+
+                                             doc[_row.table].push(_newAttr);                                     
+                                     }; //end for;
+
+                                     
                                     var _pdx = _dataOnComplete.map(function(d){return d.table}).indexOf(_row.table);
                                     if(_pdx>-1){
                                         _dataOnComplete[_pdx].count+=1;     
                                     }else{
                                         _dataOnComplete.push({"table":_row.table,count:1});
-                                    };                                                                                    
+                                    };
+                                    
+                                    
+
+                                    
                                 });                                    
                                 doc.markModified(_row.table);
                             }
+
+
+                            
 
                             
                     };
                     
                     doc.save(function(err){
                         cb(err,_dataOnComplete);
+                        //add to logs
+                        rlogger.getdata().forEach(function(data){
+                            _datalogs.identifier = data.identifier;
+                            _datalogs.table = data.table;
+                            _datalogs.ref_id = data.id;  
+                            _datalogs.tag = data.tag;
+                            _datalogs.data =  data.data;
+                            mongoose.model('Roads_Logs').add(_datalogs);                
+                        })
                     }) //findone
             }); //validate       
         }//end if
