@@ -148,10 +148,7 @@ $scope.init =  function(){
     _getRoadStatus(); 
     _getValidatedStatus();  
 
-
-
     $scope.getlogs(1);
-
 };
 
 $scope.roadlogs = {};

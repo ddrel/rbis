@@ -37,7 +37,18 @@ var utilities = {
                         };
                     };              
                     return false;
-             },modelgetvalue : function(model,o){                
+             },getlocaccesslogs:function(user){                    
+                if(user.roles.indexOf("SUPER ADMINISTRATOR")>-1 || user.roles.indexOf("ROAD BOARD")>-1){
+                    return false;
+                }else if(user.roles.indexOf("SUPERVISOR")>-1 || user.roles.indexOf("ENCODER")>-1){
+                    if(user.location.municity!="--" && user.location.municity!==""){
+                         return {"user.location.municity":user.location.municity};
+                    }else{
+                        return {"user.location.province":user.location.province};               
+                    };
+                };              
+                return false;
+            },modelgetvalue : function(model,o){                
                 if(model.ctrl=="select" && model.options.length>0){
                             var idx  = model.options.map(function(d){return d.key}).indexOf((o[model.key] || ""));                            
                             return idx>-1?model.options[idx].label :"";
