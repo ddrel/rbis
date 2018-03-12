@@ -455,7 +455,7 @@ var _postRemarks =  function(){
 
 
     if(adapter.getdata().length>0){
-        var confirmDialog = DialogService.confirm('Saving Confirm','You Still have an unsaved data. Do you want to save and continue to post remarks?');
+        var confirmDialog = DialogService.confirm('Saving Confirm','You still have an unsaved data. Do you want to save and continue saving remarks and status?');
             confirmDialog.then(function (m) {
                 adapter.save(null,_oncomplete_save);      
                 _postRemarks();              
