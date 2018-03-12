@@ -1,4 +1,4 @@
-angular.module('RBIS').controller("roadsupdateCtrl", function( $scope, $http,$rootScope,$window,$timeout,utilities,$stateParams,datamodel,adapter,uploadroadSvcs,uploadroadSvcsData) {
+angular.module('RBIS').controller("roadsupdateCtrl", function( $scope, $http,$rootScope,$window,$timeout,utilities,$stateParams,datamodel,adapter,uploadroadSvcs,uploadroadSvcsData,DialogService) {
     $scope.param = $stateParams;    
     $scope.road = {}
     $scope.roadsummarydisplay = 0;    
@@ -243,30 +243,27 @@ $scope.reloadAttrFeature =  function(){
 }
 
 //Tool bar Action
-$scope.toolbarAction = function(a,e){
-    var _oncomplete_save =  function(d,errors){
-        if(d){
-            d.forEach(function(a){
-                toastr.success("Saved " + a.table + " | Field Count:" + a.count);
-                adapter.clear(a.table);                                      
-            });
-        }
-         
-        if(errors){
-            for(var erk in errors.errors){
-                var message  = errors.errors[erk].message; 
-                toastr.error(message);
-            };
+var _oncomplete_save =  function(d,errors){
+    if(d){
+        d.forEach(function(a){
+            toastr.success("Saved " + a.table + " | Field Count:" + a.count);
+            adapter.clear(a.table);                                      
+        });
+    }
+     
+    if(errors){
+        for(var erk in errors.errors){
+            var message  = errors.errors[erk].message; 
+            toastr.error(message);
         };
-
-
-        if($scope.currentModel.name=="RoadLocRefPoints"){$scope.loadAttrAsOptions("RoadLocRefPoints");};
-
-        //adapter.addNewtate = false;
     };
 
 
+    if($scope.currentModel.name=="RoadLocRefPoints"){$scope.loadAttrAsOptions("RoadLocRefPoints");};
 
+    //adapter.addNewtate = false;
+};
+$scope.toolbarAction = function(a,e){
     var _onnewFeatureAdded = function(data){  
         console.log(data);      
         $scope.currentModel.list = [];
@@ -433,12 +430,11 @@ $scope.onRemarksSubmit =  function(a,b){
     opt.identifier = $scope.getattribdisplay($scope.currentModel.currentItem,$scope.currentModel.name);
 
     //console.log(opt);
-
+var _postRemarks =  function(){
     $http.post("/api/roads/addRoadRemarks",opt).success(function(){
-            toastr.success("Successfully add remark ...");
-            $scope.currentModel.currentItemReadonly = (datamodel.optionReadOnly.indexOf(opt.status) >-1);
-            $scope.currentModel.currentItem.status = opt.status;
-            
+        toastr.success("Successfully add remark ...");
+        $scope.currentModel.currentItemReadonly = (datamodel.optionReadOnly.indexOf(opt.status) >-1);
+        $scope.currentModel.currentItem.status = opt.status;        
             $http.get("/api/roads/getRoadRemarks?r_id=" + $scope.currentModel.roadID + 
             "&key_name=" + $scope.currentModel.name +
             "&attr_id="  + $scope.currentModel.currentItem._id)
@@ -447,14 +443,29 @@ $scope.onRemarksSubmit =  function(a,b){
                     $scope.currentModel.currentItem.remarks_trail = [];
                     $scope.currentModel.currentItem.remarks_trail = data;                                                       
                 }) ;                                                                                      
-       }).error(function(){
-           toastr.error("Error loading remarks");
-       });
+            }).error(function(){
+                toastr.error("Error loading remarks");
+            });
 
-    }).error(function(err){
-            console.log(err);
-            toastr.error("Error saving remarks");
-    });
+        }).error(function(err){
+                console.log(err);
+                toastr.error("Error saving remarks");
+        });
+    }
+
+
+    if(adapter.getdata().length>0){
+        var confirmDialog = DialogService.confirm('Saving Confirm','You Still have an unsaved data. Do you want to saved and continue to post remarks?');
+            confirmDialog.then(function (m) {
+                adapter.save(null,_oncomplete_save);      
+                _postRemarks();              
+            },function(){
+            });        
+    }else{
+        _postRemarks();
+    }
+
+    
 }
 
 $scope.getCurrentImageList =  function(roadItem){
