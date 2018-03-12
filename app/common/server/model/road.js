@@ -519,9 +519,9 @@ RoadsSchema.statics.generateRoadID =  function(options,cb){
 }
 
 RoadsSchema.statics.newRoad =  function(data,cb){
+
     RoadsSchema.statics.generateRoadID(data,function(rid){
         var road =  mongoose.model("Roads");
-
         var _road = new road(data);
             _road.R_ID = rid;
         _road.save(function(err){            

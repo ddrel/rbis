@@ -25,13 +25,16 @@ exports.newRoad =  (req,res)=>{
     var _roadAttr = req.body;
     var roadObjData = {};
     var errors = [];
+
     if(_roadAttr.R_NAME==""){
         errors.push({message:"Road Name Can't be Blank"});
-    }else if(!_roadAttr.ProvinceCo ||_roadAttr.ProvinceCo =="" && req.user.roles.indexOf("SUPER ADMINISTRATOR")>-1){
+    }else if((!_roadAttr.ProvinceCo ||_roadAttr.ProvinceCo =="") && req.user.roles.indexOf("SUPER ADMINISTRATOR")>-1){
         errors.push({message:"Please specify location"});
     }else if(req.user.roles.indexOf("SUPERVISOR")>-1 || req.user.roles.indexOf("ROAD BOARD")>-1){
         errors.push({message:"No Access"});
     };
+
+    
 
     if(errors.length>0){res.status(500).json(errors);return;}
     for(var k in _roadAttr){
@@ -50,8 +53,11 @@ exports.newRoad =  (req,res)=>{
                                name:req.user.name, 
     };
 
+    
+
     roadObjData.Length  = _roadAttr.Length || 0;
     roads.newRoad(roadObjData,function(err,data){
+        console.log(err);
         if(err){res.status(500).json(err);return};
         res.status(200).json(data);
         var _datalogs = {};
