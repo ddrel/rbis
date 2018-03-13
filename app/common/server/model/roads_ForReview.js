@@ -83,7 +83,7 @@ RoadsForReviewSchema.statics.saveforreview =  function(opt,cb){
         var mcode = ""
         var mname = ""
         if( loc.municity){
-          mcode = loc.municity;
+          mcode = loc.municity.Code || loc.municity;
           mname = loc.municity.Name;
         }
         _data.location.province_code = loc.province.Code;
@@ -91,6 +91,9 @@ RoadsForReviewSchema.statics.saveforreview =  function(opt,cb){
         _data.location.municity_code = mcode
         _data.location.municity_name = mname;
             
+
+        console.log(_data);
+
         new rfr(_data).save(function(err){            
           console.log(err);
           if(err){cb(err,null);return};
