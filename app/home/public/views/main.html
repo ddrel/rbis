@@ -48,7 +48,7 @@
             </div>
     </div>
 
-    <div class="portlet box blue-madison">
+    <div class="portlet box blue-madison" ng-if="(user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR')">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-flag"></i>&nbsp; Remarks/Status
@@ -232,7 +232,7 @@
 			            </div><!-- End row chart-->                                    
                 </md-content>
              </md-tab>
-             <md-tab md-on-select="ontabselected('review')" ng-if="(user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR') && modelData.review.List.length>0" label="For Review ({{ modelData.review.rowcount}})">
+             <md-tab md-on-select="ontabselected('review')" ng-if="(user.role=='ENCODER' || user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR') && modelData.review.List.length>0" label="For Review ({{ modelData.review.rowcount}})">
                 <md-content class="md-padding">                    
                 <div class="row" style="min-height:600px;">
                     <div class="col-md-12">

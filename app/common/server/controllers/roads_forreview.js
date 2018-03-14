@@ -46,7 +46,7 @@ exports.getforreview = (req,res)=>{
     opt.page = parseInt(req.query.page || 1);
     opt.limit = parseInt(req.query.limit || 10);
 
-    if(req.user.roles.indexOf("ENCODER")>-1 || req.user.roles.indexOf("ROAD BOARD")>-1 || req.user.roles.indexOf("COA")>-1){
+    if(req.user.roles.indexOf("ROAD BOARD")>-1 || req.user.roles.indexOf("COA")>-1){
         res.status(500).send("Error Access");return;
     };
 
@@ -56,7 +56,11 @@ exports.getforreview = (req,res)=>{
         }else{
             qry =  {"location.province_code":req.user.location.province,road_class:"Provincial"};               
         };
-    };   
+    }; 
+    
+    if(req.user.roles.indexOf("ENCODER")>-1){
+        qry = {"submit_by.email":req.user.email};
+    }
 
 
     mongoose.model("Roads_ForReview").getforreview(qry,opt,function(err,data){
