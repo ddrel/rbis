@@ -485,7 +485,7 @@ exports.summaryroadreport = (req,res)=>{
             opt[field] = kfieldvalue;       
              if(req.query.class!="all"){
                 opt.R_CLASS = req.query.class;
-             }
+             };
              
 
             _qry  = {'$match':opt};                   

@@ -522,6 +522,10 @@ RoadsSchema.statics.newRoad =  function(data,cb){
 
     RoadsSchema.statics.generateRoadID(data,function(rid){
         var road =  mongoose.model("Roads");
+        data.Length = isFinite(data.Length) && data.Length || 0;     
+        data.RROW_usefullife = isFinite(data.RROW_usefullife) && data.RROW_usefullife || 0;     
+        data.RROW_acq_cost = isFinite(data.RROW_acq_cost) && data.RROW_acq_cost || 0;
+
         var _road = new road(data);
             _road.R_ID = rid;
         _road.save(function(err){            
