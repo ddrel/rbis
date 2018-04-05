@@ -435,7 +435,7 @@ const RoadSideSlopes = {
     "LRPEndDisp" : Number,    
     "TypeID"     : String,
     "Position"   : String,    
-    "Angle"      : Number,    
+    "Angle"      : String,    
     "Protection"   : String,    
     "Cost"       : Number,
     "Usefullife" : Number,
