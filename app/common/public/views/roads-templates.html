@@ -1278,10 +1278,12 @@
                         <td><form-field field="LRPEndKmPo" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                         <td><form-field field="LRPEndDisp" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                     </tr>
+                    <!--
                     <tr>
                         <td>{{ currentModel.struct['TypeID'].label }}</td>
                         <td colspan="3"><form-field field="TypeID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
-                    </tr> 
+                    </tr>
+                    --> 
                     <tr>
                         <td>{{ currentModel.struct['Width'].label }}</td>
                         <td colspan="3"><form-field field="Width" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
@@ -1292,7 +1294,7 @@
                     </tr> 
                     <tr>
                         <td>{{ currentModel.struct['ConstructionDate'].label }}</td>
-                        <td colspan="3"><form-field field="ConstrunctionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
+                        <td colspan="3"><form-field field="ConstructionDate" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                       
                     </tr>
                     <tr>
                         <td>{{ currentModel.struct['Cost'].label }}</td>
@@ -1577,9 +1579,12 @@
                         <td>{{ currentModel.struct['Date'].label }}</td>
                         <td colspan="3"><form-field field="Date" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                                               
                     </tr>
+                    <!--
                    <tr>
                         <td colspan="4">Location:</td>                        
                     </tr>
+                    -->
+                
                     <tr>
                         <td>{{ currentModel.struct['From'].label }}</td>
                         <td><form-field field="From" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
@@ -1589,6 +1594,10 @@
                         <td>{{ currentModel.struct['To'].label }}</td>
                         <td><form-field field="To" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
                         <td><form-field field="ToDi" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                    </tr>
+                    <tr>
+                        <td>{{ currentModel.struct['VehicleType'].label }}</td>
+                        <td colspan="3"><form-field field="VehicleType" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
                 </table>                    
         </md-tab>        
