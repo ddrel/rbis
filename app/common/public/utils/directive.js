@@ -242,7 +242,7 @@ angular.module('RBIS')
             });
             //<font color='#ff6347'></font>
             var _defaultOptions = [{"key":"inprogress","label":"In Progress"},
-                                    {"key":"forreview","label":"For Review (This will locked the current data.)"},
+                                    {"key":"forreview","label":"For Review (The current data will be locked.)"},
                                     {"key":"pending","label":"Pending"}];
 
             scope.optionsitem = scope.options || _defaultOptions;                                         
