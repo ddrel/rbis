@@ -11,7 +11,8 @@ $scope.byselect.province = "--";
 $scope.byselect.province_text = "--";
 $scope.byselect.municity = "--";
 $scope.byselect.municity_text = "--";
-
+$scope.byselect.region = "--";
+$scope.byselect.region_text = "--"; 
 
 
 
@@ -50,9 +51,19 @@ $scope.init =  function(){
                         });//get municity
 
                 }); //end get provinbce
+
+                $http.get("/api/location/getregion").success(function(data){
+                        data.unshift({Code:"--",Name:"-- Select Region/All --"});                                                
+                        $scope.regions = data;
+                        
+                        console.log(user.location.region);
+                        $scope.byselect.region = user.location.region;
+                        
+                })
+                
         });//get user;
 
-
+        
 
        
     });//timeout
@@ -91,19 +102,31 @@ $scope.onchange_provinces =  function(){
 
 
 $scope.onaccesschange =  function(){
-        if($scope.byselect.accesstype=="SUPER ADMINISTRATOR" || $scope.byselect.accesstype=="ROAD BOARD"){
+        if($scope.byselect.accesstype=="SUPER ADMINISTRATOR" || $scope.byselect.accesstype=="VIEWER REGION"){
                 $scope.byselect.province = "--";
                 $scope.byselect.province_text = "--";
                 $scope.byselect.municity = "--";
                 $scope.byselect.municity_text = "--";
+                $scope.byselect.region = "--";
+                $scope.byselect.region_text = "--";
         }
 }
 
 $scope.updateuser =  function(){
-        var loc = _parseLocation($scope.byselect.province,$scope.byselect.municity);     
-           $scope.byselect.province_text = loc.getProvinceName();                    
-           $scope.byselect.municity_text = loc.getMunicityName();
+        
+        if($scope.byselect.accesstype=="VIEWER REGION"){
+                var idx = $scope.regions.map(function(d){return d.Code}).indexOf($scope.byselect.region);
+                var region = $scope.regions[idx];
+                $scope.byselect.region = region.Code;
+                $scope.byselect.region_text = region.Code=="--"?"--":region.Name;
+        }else{
+                var loc = _parseLocation($scope.byselect.province,$scope.byselect.municity);  
+                $scope.byselect.province_text = loc.getProvinceName();                    
+                $scope.byselect.municity_text = loc.getMunicityName();                
+        };
+
         console.log($scope.byselect);
+           
 
         $http.post("/ws/users/updateuseraccess", $scope.byselect)
           .success(function(data) {

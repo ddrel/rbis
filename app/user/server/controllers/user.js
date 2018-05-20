@@ -51,6 +51,11 @@ exports.create = (req, res)=> {
     userObj.location.municity_text = _usr.municity_text;
   };
 
+  if(_usr.region){
+    userObj.location.region = _usr.region;
+    userObj.location.region_text = _usr.region_text;
+  }
+
  
 //console.log(userObj.location);
 
@@ -321,10 +326,16 @@ exports.updateuseraccess =  (req,res)=>{
   console.log(_user);
   var usrObj = {};
       usrObj.location = {};    
-      usrObj.location.province = _user.province;
-      usrObj.location.province_text = _user.province_text;
-      usrObj.location.municity = _user.municity;
-      usrObj.location.municity_text = _user.municity_text;
+      if(_user.accesstype=="VIEWER REGION"){
+        usrObj.location.region = _user.region;
+        usrObj.location.region_text = _user.region_text;  
+      }else{
+        usrObj.location.province = _user.province;
+        usrObj.location.province_text = _user.province_text;
+        usrObj.location.municity = _user.municity;
+        usrObj.location.municity_text = _user.municity_text;
+      }
+      
       usrObj.roles = [_user.accesstype];
       usrObj.activated = _user.activated;
       

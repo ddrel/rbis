@@ -38,7 +38,8 @@
            <tr ng-repeat="user in users.docs">
                <td align="left"><a href="" ng-click="viewuserprofile(user)">{{ user.name }}</a></td>
                 <td align="left"> {{ user.email }}</td>
-                <td align="left">{{ user.location.province_text}}, {{ user.location.municity_text}}</td>
+                <td ng-if="user.roles.indexOf('VIEWER REGION')==-1" align="left">{{ user.location.province_text}}, {{ user.location.municity_text}}</td>
+                <td ng-if="user.roles.indexOf('VIEWER REGION')>-1" align="left">{{ user.location.region_text}}</td>
                 <td width="110">{{user.roles[0].substring(0,11)}}</td>
                 <td width="110">{{ user.activated }}</td>                
                 <td align="right" style="padding:2px">

@@ -232,7 +232,7 @@
 			            </div><!-- End row chart-->                                    
                 </md-content>
              </md-tab>
-             <md-tab md-on-select="ontabselected('review')" ng-if="(user.role=='ENCODER' || user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR') && modelData.review.List.length>0" label="For Review ({{ modelData.review.rowcount}})">
+             <md-tab md-on-select="ontabselected('review')" ng-if="(user.role=='ENCODER' || user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR' || user.role=='VIEWER REGION') && modelData.review.List.length>0" label="For Review ({{ modelData.review.rowcount}})">
                 <md-content class="md-padding">                    
                 <div class="row" style="min-height:600px;">
                     <div class="col-md-12">
@@ -279,7 +279,7 @@
                 </div>                                                            
                 </md-content>
              </md-tab>
-            <md-tab label="Validated ({{modelData.validated.rowcount}})" md-on-select="ontabselected('validated')" ng-if="(user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR') && modelData.validated.List.length>0">
+            <md-tab label="Validated ({{modelData.validated.rowcount}})" md-on-select="ontabselected('validated')" ng-if="(user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR' || user.role=='VIEWER REGION') && modelData.validated.List.length>0">
                 <md-content>
                 <md-content class="md-padding">                                
                     <div class="row" style="min-height:600px;">
@@ -309,7 +309,7 @@
                                         <td title="{{ fr_item.validated_by.name }}({{ fr_item.validated_by.email }})">{{ fr_item.validated_by.name }}</td>
                                         <td>{{ formatDate(fr_item.validated_dated) }}</td>
                                         <td align="center" style="padding:2px;">
-                                                <a href="" class="btn btn-primary2 " ng-click="onloaddata(fr_item,'validated')">Change Status</a>
+                                                <a href="" class="btn btn-primary2 " ng-click="onloaddata(fr_item,'validated')">Display</a>
                                         </td>
                                     </tr>
                                 </tbody>

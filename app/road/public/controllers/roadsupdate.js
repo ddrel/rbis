@@ -77,6 +77,7 @@ $scope.init =  function(){
     utilities.hidenavigation();
     adapter.user(function(user){
         $scope.user=user;
+        console.log(adapter.readonlyModel);
         $scope.currentModel.readonly = adapter.readonlyModel;
     });
 

@@ -29,7 +29,10 @@ var utilities = {
                 },getlocaccess:function(user){                    
                     if(user.roles.indexOf("SUPER ADMINISTRATOR")>-1 || user.roles.indexOf("ROAD BOARD")>-1){
                         return false;
-                    }else if(user.roles.indexOf("SUPERVISOR")>-1 || user.roles.indexOf("ENCODER")>-1){
+                    }else if(user.roles.indexOf("VIEWER REGION")>-1){
+                        return (user.location.region=="--")?false:{RegionCode:user.location.region};
+                    }
+                    else if(user.roles.indexOf("SUPERVISOR")>-1 || user.roles.indexOf("ENCODER")>-1){
                         if(user.location.municity!="--" && user.location.municity!==""){
                              return {CityMunCod:user.location.municity,R_CLASS:"City"};
                         }else{
@@ -40,7 +43,17 @@ var utilities = {
              },getlocaccesslogs:function(user){                    
                 if(user.roles.indexOf("SUPER ADMINISTRATOR")>-1 || user.roles.indexOf("ROAD BOARD")>-1){
                     return false;
-                }else if(user.roles.indexOf("SUPERVISOR")>-1 || user.roles.indexOf("ENCODER")>-1){
+                }else if(user.roles.indexOf("VIEWER REGION")>-1){
+                    if(user.location.region=="--"){
+                        return false
+                    }else{
+                        var search = user.location.region.substring(0,2),
+                        rgx = new RegExp("^"+search)
+                        console.log(rgx);
+                        return {"user.location.province":rgx};
+                    };
+                }
+                else if(user.roles.indexOf("SUPERVISOR")>-1 || user.roles.indexOf("ENCODER")>-1){
                     if(user.location.municity!="--" && user.location.municity!==""){
                          return {"user.location.municity":user.location.municity};
                     }else{

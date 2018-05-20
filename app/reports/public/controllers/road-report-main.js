@@ -138,7 +138,7 @@ $scope.loadroadprofiledialog = function(ev) {
     $scope.roadList = [];
     $scope.roadObjData = {};
     $scope.byselect = {};
-    $scope.provinces = []
+    $scope.provinces = [];
     $scope.municipalities = [];
     $scope.hide = function() {
       $mdDialog.hide();

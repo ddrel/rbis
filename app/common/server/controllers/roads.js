@@ -6,9 +6,11 @@ const mongoose = require('mongoose'),
 
 const getlocaccess = (req)=>{
        var user = req.user || {};
-       if(user.roles.indexOf("SUPER ADMINISTRATOR")>-1 || user.roles.indexOf("ROAD BOARD")>-1){
+       if(user.roles.indexOf("SUPER ADMINISTRATOR")>-1){
            return false;
-       }else if(user.roles.indexOf("SUPERVISOR")>-1 || user.roles.indexOf("ENCODER")>-1){
+       }else if(user.roles.indexOf("VIEWER REGION")>-1){
+            return (user.location.region=="--")?false:{RegionCode:user.location.region};
+        }else if(user.roles.indexOf("SUPERVISOR")>-1 || user.roles.indexOf("ENCODER")>-1){
            if(user.location.municity!="--" && user.location.municity!==""){
                 return {CityMunCod:user.location.municity,R_CLASS:"City"};
            }else{

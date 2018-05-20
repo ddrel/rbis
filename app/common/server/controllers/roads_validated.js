@@ -49,6 +49,14 @@ exports.getroadvalidated = (req,res)=>{
     };   
 
 
+    if(req.user.roles.indexOf("VIEWER REGION")>-1){
+        if(req.user.location.region!="--"){        
+            var search = req.user.location.region.substring(0,2),
+            rgx = new RegExp("^"+search)
+            qry =  {"location.province_code":rgx};
+        };
+    }
+
     mongoose.model("Roads_Validated").getroadvalidated(qry,opt,function(err,data){
         if(err){res.status(500).send(err);return;}
         res.status(200).json(data);

@@ -5,7 +5,7 @@ angular.module('RBIS').factory('datamodel', ['$window','$rootScope','utilities',
 var datamodel = {};
 
 datamodel.ROAD_FEATURE_STATUS = {"forreview":"For Review","inprogress":"In Progress","pending":"Pending","validated":"Validated","rejected":"Rejected","returned":"Returned","forupdate":"For Update"};
-datamodel.optionReadOnly = ["forreview","validated","ROAD BOARD","SUPERVISOR","COA"];
+datamodel.optionReadOnly = ["forreview","validated","ROAD BOARD","SUPERVISOR","COA","VIEWER REGION"];
 
 /*  Options */
 datamodel.options = {};

@@ -8,7 +8,7 @@ var _validateReq =  function(req){
         cb("Error Saving FOr Review",null);
     };
 
-    if(req.user.roles.indexOf("SUPERVISOR")>-1 || req.user.roles.indexOf("ROAD BOARD")>-1 || req.user.roles.indexOf("COA")>-1){
+    if(req.user.roles.indexOf("SUPERVISOR")>-1 || req.user.roles.indexOf("VIEWER REGION")>-1 || req.user.roles.indexOf("COA")>-1){
         cb("Error access",null);
     };
 
@@ -29,7 +29,7 @@ exports.saveforreview =  (req,res)=>{
 
 exports.removefromreview = (req,res)=>{
     var opt = req.body || req.query || {};
-    if(!opt.ref_id  || req.user.roles.indexOf("ENCODER")>-1 || req.user.roles.indexOf("ROAD BOARD")>-1 || req.user.roles.indexOf("COA")>-1){
+    if(!opt.ref_id  || req.user.roles.indexOf("ENCODER")>-1 || req.user.roles.indexOf("VIEWER REGION")>-1 || req.user.roles.indexOf("COA")>-1){
         res.status(500).send("Error removing for review");return;
     };
 
@@ -57,6 +57,15 @@ exports.getforreview = (req,res)=>{
             qry =  {"location.province_code":req.user.location.province,road_class:"Provincial"};               
         };
     }; 
+
+    if(req.user.roles.indexOf("VIEWER REGION")>-1){
+        if(req.user.location.region!="--"){        
+            var search = req.user.location.region.substring(0,2),
+            rgx = new RegExp("^"+search)
+            //console.log(rgx);
+            qry =  {"location.province_code":rgx};
+        };
+    }
     
     if(req.user.roles.indexOf("ENCODER")>-1){
         qry = {"submit_by.email":req.user.email};

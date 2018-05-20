@@ -2,6 +2,19 @@
 const mongoose = require('mongoose'),
     utilities = require("../utils/utilities");
 
+exports.getregion =  (req,res)=>{
+    var region = mongoose.model("Regions");        
+    region.find({}).sort({"RegionID":1}).exec(function(err,docs){
+        console.log(err);
+        if(err){            
+            res.status(500).send("Error");
+            return;
+        }else{
+            res.status(200).json(docs);
+        }
+    })
+}
+
 exports.getregionprovince =  (req,res)=>{
     var region = mongoose.model("Regions");        
         region.getregionprovince(function(err,data){

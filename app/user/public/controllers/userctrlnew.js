@@ -1,10 +1,12 @@
 angular.module('RBIS').controller("userCtrlNew", function( $scope, $http,$rootScope,$window,$timeout,utilities,$stateParams) {
 
+$scope.regions = [];
 $scope.provinces = [];
 $scope.municipalities = [];   
 $scope.registerError = [];
 $scope.byselect = {};
 $scope.byselect.accesstype = "--";
+$scope.byselect.region = "--";
 $scope.byselect.province = "--";
 $scope.byselect.province_text = "--";
 $scope.byselect.municity = "--";
@@ -26,7 +28,11 @@ $scope.init =  function(){
                 });
                 
 
-        });        
+        });     
+        
+        $http.get("/api/location/getregion").success(function(data){
+                $scope.regions = data;
+        });
     });
 }; //end init
 
@@ -55,10 +61,16 @@ var _parseLocation = function(prov,municity){
 
 $scope.createuser =  function(){
            $scope.byselect.confirmPassword = $scope.byselect.password;
-
-           var loc = _parseLocation($scope.byselect.province,$scope.byselect.municity);     
-           $scope.byselect.province_text = loc.getProvinceName();                    
-           $scope.byselect.municity_text = loc.getMunicityName();
+           if($scope.byselect.accesstype=="VIEWER REGION"){
+                var r =  $scope.byselect.region=="--"?{Code:"--",Name:"--"}: JSON.parse($scope.byselect.region);
+                $scope.byselect.region = r.Code;
+                $scope.byselect.region_text = r.Name;
+           }else{
+                var loc = _parseLocation($scope.byselect.province,$scope.byselect.municity);     
+                $scope.byselect.province_text = loc.getProvinceName();                    
+                $scope.byselect.municity_text = loc.getMunicityName();
+           }
+           
 
            //console.log($scope.byselect);
 

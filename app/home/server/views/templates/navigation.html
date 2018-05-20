@@ -16,7 +16,9 @@
                 <li ng-class="{'start active open':$state.current.url=='/list'}"><a ui-sref="road.list"><i class="fa fa-road"></i><span class="title">Roads</span><span class="arrow"></span></a></li>
                 <!--<li ng-class="{'start active open':$state.current.url=='roadmaintenance'}"><a ui-sref="home.roadmaintenance"><i class="fa fa-wrench"></i><span class="title">Maintenance</span><span class="arrow"></span></a></li> -->
                 <!--<li ng-class="{'start active open':$state.current.url=='impairment'}"><a ui-sref="home.impairment"><i class="fa fa-unlink"></i><span class="title">Impairment</span><span class="arrow"></span></a></li> -->
+                {% if users.roles.indexOf("VIEWER REGION")==-1  %}
                 <li ng-class="{'start active open':$state.current.url=='reports'}"><a ui-sref="home.reports"><i class="fa fa-bar-chart-o"></i><span class="title">Reports</span><span class="arrow "></span></a></li>
+                {% endif %}
                 <li ng-class="{'start active open':$state.current.url=='roadmaps'}"><a ui-sref="home.roadmaps"><i class="fa fa-map-marker"></i><span class="title">Road Maps</span><span class="arrow "></span></a></li>                
                 <!--<li ng-class="{'start active open':$state.current.url=='geotags'}"><a ui-sref="home.geotags"><i class="fa fa-bookmark-o"></i><span class="title">GeoTags</span><span class="arrow "></span></a></li> -->
 				<!--<li><a><i class="fa fa-cogs"></i><span class="title">Administration</span><span class="arrow "></span></a></li>-->				                

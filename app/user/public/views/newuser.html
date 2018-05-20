@@ -35,7 +35,18 @@
                                 <option value="SUPER ADMINISTRATOR">SUPER ADMINISTRATOR</option>
                                 <option value="SUPERVISOR">SUPERVISOR</option>
                                 <option value="ENCODER">ENCODER</option>
-                                <option value="ROAD BOARD">ROAD BOARD</option>            
+                                <option value="VIEWER REGION">VIEWER REGION</option>                                          
+                            <select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="byselect.accesstype =='VIEWER REGION'">
+                    <label class="col-md-3 control-label">Location</label>
+                    <div class="col-md-4">
+                        <div>
+                            <select class="form-control" ng-model="byselect.region">
+                                <option value="--" selected>-- Select Region/All --</option>
+                                <option value="{{region}}" ng-repeat="region in regions">{{ region.Name}}</option>                                            
                             <select>
                         </div>
                     </div>
