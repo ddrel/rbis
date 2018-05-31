@@ -154,7 +154,7 @@ angular.module('RBIS').controller("roadmapsCtrl", function( $scope, $http,$rootS
             ,satMutant:L.gridLayer.googleMutant({
                 maxZoom: 24,
                 type:'satellite'
-            }),
+            }), //drel.c8toc3nn
             mapbox:L.tileLayer("https://{s}.tiles.mapbox.com/v4/feelcreative.llm8dpdk/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZmVlbGNyZWF0aXZlIiwiYSI6Ik1Gak9FXzAifQ.9eB142zVCM4JMg7btDDaZQ"),
             terrainMutant: L.gridLayer.googleMutant({
                 maxZoom: 24,

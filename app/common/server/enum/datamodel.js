@@ -313,7 +313,7 @@ datamodel.RoadBridges = {
             "AbtProtect"    :{"label":"Abutment Protection","key":"MaximumFlo","type":"string","options":datamodel.options.abutmentprotect,"style":"","ctrl":"select","class":"form-control","visible":true,}, 
             "NoOfPier"      :{"label":"No. Of Pier","key":"NoOfPier","type":"integer","options":[],"style":"","ctrl":"text","class":"form-control","visible":true},       
             "NoOfSpan"      :{"label":"No. Of Span","key":"NoOfSpan","type":"integer","options":[],"style":"","ctrl":"text","class":"form-control","visible":true},       
-            "SpanLength"    :{"label":"Span Length","key":"SpanLength","type":"float","options":[],"style":"","ctrl":"text","class":"form-control","visible":true}, 
+            "SpanLength"    :{"label":"Span Length","key":"SpanLength","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":false}, 
             "From_"         :{"label":"From_","key":"From_","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true},  
             "To_"           :{"label":"To_","key":"To_","type":"string","options":[],"style":"","ctrl":"text","class":"form-control","visible":true},
             "remarks"       : {"label":"Remarks","key":"remarks","type":"string","options":[],"visible":true,"style":"border:solid 1px red;","ctrl":"textarea","class":"form-control"},
