@@ -366,6 +366,36 @@ $scope.toolbarAction = function(a,e){
                     $window.location.reload();
                 },refreshwindow:function(){
                     $window.location.reload();
+                },delete(){
+                    // Delete COmponent;
+                var confirmDialog = DialogService.confirm('Delete Confirm','Are you sure you want to remove current component?');
+                    confirmDialog.then(function (m) {
+                        var opt = "?r_id=" + $scope.currentModel.roadID +
+                                   "&attr_id=" +  $scope.currentModel.currentItem._id + 
+                                   "&key_name=" + $scope.currentModel.name;
+                        
+                        $http.delete("/api/roads/deleteroadcomponent" + opt).success(function(){
+                            console.log($scope.currentModel.list);    
+                            var idx  = $scope.currentModel.list.map(function(d){return d._id}).indexOf($scope.currentModel.currentItem._id);
+                                if(idx>-1){
+                                    currentModel.list.splice(idx,1);
+                                    
+                                }
+
+                                toastr.success("Successfully delete road component");
+                                $timeout(function(){
+                                    $window.location.reload();
+                                },100)
+                               
+                        }).error(function(err){
+                                toastr.error("Error deleting road component");
+                        });
+
+                    },function(){
+                        
+                    });
+
+
                 }
         };
 

@@ -29,6 +29,7 @@ const tableName = {
 const logsTag = {
                 "data.update":"data.update",
                 "data.new":"data.new",
+                "data.delete":"data.delete",
                 "shapes.importnew":"shapes.importnew",
                 "shapes.importupdate":"shapes.importupdate",                
                 "media.uploadimage":"media.uploadimage",
@@ -40,7 +41,7 @@ const logsTag = {
                 "status.forreview":"status.forreview",
                 "status.returned":"status.returned",
                 "status.validated":"status.validated",
-                "remarks.add":"remarks.add"
+                "remarks.add":"remarks.add",
                 };                   
 
 const roadstatus = {"forreview":"For Review","inprogress":"In Progress","pending":"Pending","validated":"Validated","rejected":"Rejected","returned":"Returned","forupdate":"For Update"};

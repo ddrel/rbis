@@ -203,15 +203,14 @@
                                     <md-button ng-click="toolbarAction('cancelAll', $event)">
                                         Cancel All
                                     </md-button>
-                                </md-menu-item>
-                                <!--
+                                </md-menu-item>                                
                                 <md-menu-divider></md-menu-divider>
-                                <md-menu-item>
+                                <md-menu-item ng-hide="currentModel.name=='road'  || currentModel.currentItem==null">
                                     <md-button ng-click="toolbarAction('delete', $event)">
                                         <i class="fa fa-times" aria-hidden="true">&nbsp;Delete</i>
                                     </md-button>
                                 </md-menu-item>
-                                -->
+                                
                                 <md-menu-divider></md-menu-divider>
                                 <md-menu-item>
                                     <md-button ng-click="toolbarAction('refreshwindow', $event)">

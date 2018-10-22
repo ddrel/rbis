@@ -397,6 +397,30 @@ RoadsSchema.statics.updateStatus =  function(opt,cb){
     });
 };
 
+
+RoadsSchema.statics.deleteRoadComponent =  function(opt,cb){
+    this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
+        if(err){cb(err,null);console.log("errrorrrr delete component<<<<<<<<<<<<<<<<<<<<<");return;};        
+        if(opt.key_name!="road"){
+            var _id = new mongoose.mongo.ObjectId(opt.attr_id);
+            let currentDoc = null;
+            
+            var fdx = doc[opt.key_name].map(function(d){return d._id.toString()}).indexOf(opt.attr_id);            
+            if(fdx>-1){
+                currentDoc = doc[opt.key_name][fdx]; 
+            }
+            
+             
+            doc[opt.key_name].pull({_id:_id})
+            
+           doc.save(function(err){
+               cb(err,doc,currentDoc);
+            });    
+        };
+                
+    });
+};
+
 RoadsSchema.statics.addRoadRemarks =  function(opt,cb){
     this.findOne({R_ID:opt.r_id}).exec(function(err,doc){
         if(err){cb(err,null);console.log("errrorrrr addRoadRemarks<<<<<<<<<<<<<<<<<<<<<");return;};                     

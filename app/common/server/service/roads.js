@@ -99,6 +99,10 @@ app.get("/api/roads/summaryroadreport",(req,res)=>{
     roads.summaryroadreport(req,res);
 });
 
+app.delete("/api/roads/deleteroadcomponent",(req,res)=>{
+    roads.deleteroadcomponent(req,res);
+});
+
 
 
 /*

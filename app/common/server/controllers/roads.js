@@ -1,7 +1,8 @@
 'use strict';
 const mongoose = require('mongoose'),
     moment = require('moment'),
-    enums = require("../enum/enumarates");
+    enums = require("../enum/enumarates"),
+    utilities = require("../utils/utilities");
 
 
 const getlocaccess = (req)=>{
@@ -304,6 +305,44 @@ exports.saveroad = (req,res)=>{
         res.status(200).json(data);
     });
 };
+
+
+exports.deleteroadcomponent = (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var opt = {};            
+        opt.r_id = req.query.r_id    
+        opt.attr_id = req.query.attr_id;
+        opt.key_name = req.query.key_name; 
+    roads.deleteRoadComponent(opt,function(err,data,component){
+        if(err){res.status(500).json(err);return;};
+        //logs
+        var logopt = {};                
+        logopt.identifier = utilities.getattribdisplay(component,opt.key_name)
+        logopt.r_id = data.R_ID;
+        logopt.road_name = data.R_NAME;
+        logopt.road_class = data.R_CLASS;
+        logopt.ref_id = opt.attr_id;
+        logopt.table = opt.key_name
+        logopt.tag = enums.logsTag["data.delete"];
+        logopt.user = {email:req.user.email,location:req.user.location,role: req.user.roles};
+        logopt.data = component;               
+
+        mongoose.model('Roads_Logs').add(logopt);  
+        //deleted data
+
+        var delOpt = {};
+        delOpt.r_id = data.R_ID;
+        delOpt.attr_type = opt.key_name;
+        delOpt.identifier =  utilities.getattribdisplay(data,opt.key_name);
+        delOpt.ref_id =  component._id;
+        delOpt.OrigData = component;
+        delOpt.user = {email:req.user.email,location:req.user.location,role: req.user.roles};
+
+        mongoose.model("Roads_Deleted_Component").save(delOpt);
+        res.status(200).json(data);
+    });
+    
+}
 
 
 

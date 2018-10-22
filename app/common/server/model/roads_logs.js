@@ -45,6 +45,7 @@ var logstextstatus  = function(b,table){
   var  _text = ""; 
   if(enumObj.logsTag[b] == "data.update"){_text=`update ${table}`}
   else if(enumObj.logsTag[b] == "data.new"){_text=`created new ${table}`}
+  else if(enumObj.logsTag[b] == "data.delete"){_text=`deleted ${table}`}
   else if(enumObj.logsTag[b] == "shapes.importnew"){_text=`import new shapes to ${table}`}
   else if(enumObj.logsTag[b] == "shapes.importupdate"){_text=`update shapes from ${table}`}
   else if(enumObj.logsTag[b] == "media.uploadimage"){_text=`upload image(s) to ${table}`}       
@@ -86,8 +87,8 @@ var builddata =  function(o){
       }
     })
   }
-  else if(["data.update","data.new"].indexOf(o.tag)>-1 &&  o.table!="road"){
-      o.data.forEach(function(d){
+  else if(["data.update","data.new"].indexOf(o.tag)>-1 &&  o.table!="road"){  
+    o.data.forEach(function(d){
         for(var k in d){          
           if(table[k]){
               var v = utilities.modelgetvalue(table[k],d);          
@@ -95,6 +96,8 @@ var builddata =  function(o){
             };
         }
       });
+  }else if(["data.delete"].indexOf(o.tag)>-1 &&  o.table!="road"){   
+    keyvalue.push({key:k,value:k})
   }
 
   return keyvalue;
