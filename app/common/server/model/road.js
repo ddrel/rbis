@@ -911,9 +911,58 @@ RoadsSchema.statics.getcarriagewaycount =  function(qry,cb){
 };
 
 RoadsSchema.statics.summaryroadreport =  function(qry,cb){
+
+    this.find(qry).exec(function(err,data){
+        var computeLengtST =  function(cw1){
+            var cw =  cw1;
+            return {
+                    get:function(type){
+                        if(cw.length==0) return 0;
+                        var t = cw.filter(function(d){return d.SurfaceTyp==type});
+                        return t.length==0?0:(t.map(function(d){return d.SegmentLen}).reduce(function(a,b){return parseFloat("0" +  a) + parseFloat("0" + b) })).toFixed(3);
+                    }
+            }
+        }
+            
+        var computeCulvert = function(c){
+            if(c.length==0) return 0;
+            var totalLength=0;
+            c.forEach(function(d){
+                totalLength+= parseFloat("0"  +d.LRPEndDisp) - parseFloat("0" + d.LRPStartDi)
+            });
+
+            return totalLength;
+        }    
+
+    
+        let _result =  data.map(function(d){
+            let getLenght  = computeLengtST(d.RoadCarriageway);
+            let _row = 
+            {
+                "R_ID": d.R_ID,
+                "R_NAME": d.R_NAME,
+                "R_CLASS": d.R_CLASS || "--",
+                "R_Importan": d.R_Importan || "--",
+                "Length": (d.Length || 0).toFixed(3),
+                "bridgecount": d.RoadBridges.length || 0,
+                "segmentcount": d.RoadCarriageway.length,
+                "Terrain": d.Terrain,
+                "Asphalt": getLenght.get("A"),
+                "Concrete": getLenght.get("C"),
+                "Gravel": getLenght.get("G"),
+                "Earth": getLenght.get("E"),
+                "Mixed": getLenght.get("M"),
+                "culvert_length": computeCulvert(d.RoadCulverts).toFixed(3)
+              }
+              return _row;            
+        });
+        cb(err,_result)
+    }); 
+    /*
     var _agg = [{$project:{_id:'$_id',R_ID:'$R_ID',R_NAME:'$R_NAME',R_CLASS:'$R_CLASS',R_Importan:'$R_Importan',Length:'$Length',Terrain:'$Terrain',RoadCarriageway:'$RoadCarriageway',bridgecount:{$size:'$RoadBridges'},segmentcount:{$size:'$RoadCarriageway'},RoadCulverts:'$RoadCulverts'}},{'$unwind':'$RoadCarriageway'},{'$group':{_id:{_id:'$_id',R_ID:'$R_ID',R_NAME:'$R_NAME',R_CLASS:'$R_CLASS',R_Importan:'$R_Importan',Length:'$Length',bridgecount:'$bridgecount',segmentcount:'$segmentcount',Terrain:'$Terrain',RoadCulverts:'$RoadCulverts'},'Asphalt':{'$sum':{'$cond':[{'$eq':['$RoadCarriageway.SurfaceTyp','A']},'$RoadCarriageway.SegmentLen',0]}},'Concrete':{'$sum':{'$cond':[{'$eq':['$RoadCarriageway.SurfaceTyp','C']},'$RoadCarriageway.SegmentLen',0]}},'Earth':{'$sum':{'$cond':[{'$eq':['$RoadCarriageway.SurfaceTyp','E']},'$RoadCarriageway.SegmentLen',0]}},'Gravel':{'$sum':{'$cond':[{'$eq':['$RoadCarriageway.SurfaceTyp','G']},'$RoadCarriageway.SegmentLen',0]}},'Mixed':{'$sum':{'$cond':[{'$eq':['$RoadCarriageway.SurfaceTyp','M']},'$RoadCarriageway.SegmentLen',0]}},'carriageway_maxwidth':{$max:'$RoadCarriageway.carriagewayWidth'}}},{$unwind:'$_id.RoadCulverts'},{'$project':{'_id':{'_id':'$_id._id','R_ID':'$_id.R_ID','R_NAME':'$_id.R_NAME','R_CLASS':'$_id.R_CLASS','R_Importan':'$_id.R_Importan','Length':'$_id.Length','bridgecount':'$_id.bridgecount','segmentcount':'$_id.segmentcount','Terrain':'$_id.Terrain','Asphalt':'$Asphalt','Concrete':'$Concrete','Gravel':'$Gravel','Earth':'$Earth','Mixed':'$Mixed'},'culvert_length':{$subtract:['$_id.RoadCulverts.LRPEndDisp','$_id.RoadCulverts.LRPStartDi']}}},{$group:{_id:'$_id',culvert_length:{$sum:'$culvert_length'}}},{$project:{'_id':'$_id._id','R_ID':'$_id.R_ID','R_NAME':'$_id.R_NAME','R_CLASS':'$_id.R_CLASS','R_Importan':'$_id.R_Importan','Length':'$_id.Length','bridgecount':'$_id.bridgecount','segmentcount':'$_id.segmentcount','Terrain':'$_id.Terrain','Asphalt':'$_id.Asphalt','Concrete':'$_id.Concrete','Gravel':'$_id.Gravel','Earth':'$_id.Earth','Mixed':'$_id.Mixed','culvert_length':'$culvert_length','_id':0}}];
     if(qry){_agg.unshift(qry)}                    
     this.aggregate(_agg,cb)
+    */
 };
 
 

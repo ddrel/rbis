@@ -516,7 +516,7 @@ exports.summaryroadreport = (req,res)=>{
     var _qry = {};
 
     var a_qry = getlocaccess(req);    
-    if(a_qry){_qry  = {'$match':a_qry};}
+    if(a_qry){_qry  =a_qry} // {'$match':
     else{
             var field = req.query.hasOwnProperty("CityMunCod")?"CityMunCod":"ProvinceCo";                     
             if(req.query.class==""){res.status(500).send("error query");return;};            
@@ -529,7 +529,8 @@ exports.summaryroadreport = (req,res)=>{
              };
              
 
-            _qry  = {'$match':opt};                   
+            //_qry  = {'$match':opt};
+            _qry  = opt;                   
     }
 
     roads.summaryroadreport(_qry,function(err,data){
