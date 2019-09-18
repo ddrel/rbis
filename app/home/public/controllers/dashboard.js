@@ -20,6 +20,20 @@ $scope.summary.chart.st.colors = [];
 $scope.summary.surfacetype = {};
 $scope.summary.surfacetypeCount= {};
 
+
+$scope.summary.chart.statusprovince = {};
+$scope.summary.chart.statusprovince.rawData = {};
+$scope.summary.chart.statusprovince.list = [];
+$scope.summary.chart.statusprovince.data = [];
+$scope.summary.chart.statusprovince.labels = [];
+
+$scope.summary.chart.statuscity = {};
+$scope.summary.chart.statuscity.rawData = {};
+$scope.summary.chart.statuscity.list = [];
+$scope.summary.chart.statuscity.data = [];
+$scope.summary.chart.statuscity.labels = [];
+
+$scope.summary.statusprovince
 $scope.colorST = function(t){
   return utilities.roads.ST[t].color;
 }
@@ -149,7 +163,46 @@ $scope.init =  function(){
     _getValidatedStatus();  
 
     $scope.getlogs(1);
+
+
+    //summary status
+    $http.get("/api/roads/getProvinceStatusSummary").success(function(d){
+        var data = d[0];
+        $scope.summary.chart.statusprovince.rawData = {validated:parseInt(data.validated),forreview:parseInt(data.forreview),inprogress:parseInt(data.inprogress),nostatus:parseInt(data.nostatus),total:data.count};
+        $scope.summary.chart.statusprovince.data = [data.validated,data.forreview,data.inprogress,data.nostatus];
+        $scope.summary.chart.statusprovince.labels = ["Validated","For Review","Inprogress","No Status"];
+    });
+
+    $http.get("/api/roads/getCityStatusSummary").success(function(d){
+      var data = d[0];
+      $scope.summary.chart.statuscity.rawData = {validated:parseInt(data.validated),forreview:parseInt(data.forreview),inprogress:parseInt(data.inprogress),nostatus:parseInt(data.nostatus),total:data.count};
+      $scope.summary.chart.statuscity.data = [data.validated,data.forreview,data.inprogress,data.nostatus];
+      $scope.summary.chart.statuscity.labels = ["Validated","For Review","Inprogress","No Status"];
+    });
+
+    $http.get("/api/roads/getProvinceStatus").success(function(d){      
+      $scope.summary.chart.statusprovince.list = d;      
+    });
+
+    $http.get("/api/roads/getCityStatus").success(function(d){      
+      $scope.summary.chart.statuscity.list = d;      
+    });
+
 };
+
+
+$scope.displayRoadStatus = function(type){
+  var user  = $scope.user;
+  if(user.role=="VIEWER REGION"  || user.role=="SUPER ADMINISTRATOR" ){
+    return true
+  }else if(type=="province" && user.location.municity=="--"){
+    return true
+  }else if(type=="city" && user.location.municity!="--"){
+    return true
+  }
+
+  return false;
+}
 
 $scope.roadlogs = {};
 $scope.roadlogs.pagination = {};

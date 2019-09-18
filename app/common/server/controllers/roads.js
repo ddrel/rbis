@@ -20,8 +20,59 @@ const getlocaccess = (req)=>{
        }; 
 
        return false;
-
 }
+
+
+
+exports.getProvinceStatus = (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var qry = getlocaccess(req);
+    if(qry){qry = {'$match':qry};}
+    if(!qry || qry.RegionCode){qry = {$match: {"R_CLASS":"Provincial"}}}
+
+    roads.getProvinceStatus(qry,function(err,docs){
+        if(err){res.status(500).json(err);return};
+        res.status(200).json(docs);
+    })
+}
+
+exports.getCityStatus = (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var qry = getlocaccess(req);
+    if(qry){qry = {'$match':qry};}
+    if(!qry || qry.RegionCode){qry = {$match: {"R_CLASS":"City"}}}
+
+    roads.getCityStatus(qry,function(err,docs){
+        if(err){res.status(500).json(err);return};
+        res.status(200).json(docs);
+    })
+}
+
+exports.getProvinceStatusSummary = (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var qry = getlocaccess(req);
+    if(qry){qry = {'$match':qry};}
+    if(!qry || qry.RegionCode){qry = {$match: {"R_CLASS":"Provincial"}}}
+
+    roads.getRoadStatusSummary(qry,function(err,docs){
+        if(err){res.status(500).json(err);return};
+        res.status(200).json(docs);
+    })
+}
+
+exports.getCityStatusSummary = (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var qry = getlocaccess(req);
+    if(qry){qry = {'$match':qry};}
+    if(!qry || qry.RegionCode){qry = {$match: {"R_CLASS":"City"}}}
+
+    roads.getRoadStatusSummary(qry,function(err,docs){
+        if(err){res.status(500).json(err);return};
+        res.status(200).json(docs);
+    })
+}
+
+
 
 exports.newRoad =  (req,res)=>{
     var roads = mongoose.model("Roads");

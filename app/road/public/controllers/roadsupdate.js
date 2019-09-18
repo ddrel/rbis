@@ -223,7 +223,33 @@ $scope.loadattrdata =  function(data,name){
     //console.log(data);
 }
 
+$scope.computeAADT = function(a){
+    return  ((parseInt("0" + a.currentItem["motor_cycle_dec"]) + parseInt("0" + a.currentItem["motor_cycle_inc"]) + 
+               parseInt("0" + a.currentItem["passenger_car_dec"]) + parseInt("0" + a.currentItem["passenger_car_inc"]) + 
+               parseInt("0" + a.currentItem["passenger_utility_dec"]) + parseInt("0" + a.currentItem["passenger_utility_inc"]) +
+               parseInt("0" + a.currentItem["goods_utility_dec"]) + parseInt("0" + a.currentItem["goods_utility_inc"]) +
+               parseInt("0" + a.currentItem["small_bus_dec"]) + parseInt("0" + a.currentItem["small_bus_inc"]) +
+               parseInt("0" + a.currentItem["large_bus_dec"]) + parseInt("0" + a.currentItem["large_bus_inc"]) +
+               parseInt("0" + a.currentItem["rigid_truck_2_axles_dec"]) + parseInt("0" + a.currentItem["rigid_truck_2_axles_inc"]) +
+               parseInt("0" + a.currentItem["rigid_truck_3_axles_dec"]) + parseInt("0" + a.currentItem["rigid_truck_3_axles_inc"]) +
+               parseInt("0" + a.currentItem["trucksemi_trailer_3_4_axles_dec"]) + parseInt("0" + a.currentItem["trucksemi_trailer_3_4_axles_inc"]) +
+               parseInt("0" + a.currentItem["trucksemi_trailer_5_axles_dec"]) + parseInt("0" + a.currentItem["trucksemi_trailer_5_axles_inc"]) +
+               parseInt("0" + a.currentItem["truck_trailer_4_axles_dec"]) + parseInt("0" + a.currentItem["truck_trailer_4_axles_inc"]) +
+               parseInt("0" + a.currentItem["truck_trailer_5_axles_dec"]) + parseInt("0" + a.currentItem["truck_trailer_5_axles_inc"])) / 365).toFixed(2);
+
+}
+
 $scope.ondatadirty =  function(a,b,c){
+    if(a.name =="RoadTraffic"){
+        a.currentItem.AADT = $scope.computeAADT(a)
+        console.log(a.currentItem.AADT);
+        adapter.processdata(a,"AADT",a.currentItem.AADT);
+    }
+    
+    console.log(a)
+    console.log(b)
+    console.log(c)
+    console.log("------------------------------");
     adapter.processdata(a,b,c);
 };
 
@@ -266,7 +292,7 @@ var _oncomplete_save =  function(d,errors){
 };
 $scope.toolbarAction = function(a,e){
     var _onnewFeatureAdded = function(data){  
-        console.log(data);      
+        //console.log(data);      
         $scope.currentModel.list = [];
         $scope.currentModel.currentItem = data;
         $scope.currentModel.currentItemReadonly =false;

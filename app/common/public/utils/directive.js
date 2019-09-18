@@ -155,6 +155,8 @@ angular.module('RBIS')
             }//----------------------------------------------------------------------------------------
             else if(scope.readonly  &&  currentmodel.struct[field].ctrl=='text'){
                 return "<label>" + _parseValue(currentmodel.currentItem[field]) +"</label>";                
+            }else if(currentmodel.struct[field].ctrl=='text-readonly'){
+                return "<input disabled filter-input  datatype='{{currentmodel.struct[field].type}}'  type='text'  ng-model='currentmodel.currentItem[field]' class='{{currentmodel.struct[field].class}}'></input>";
             }
             else if(scope.readonly  &&  currentmodel.struct[field].ctrl=='select'){
                 return "<label>" + _getoptionsvalue(currentmodel.struct[field].options, currentmodel.currentItem[field]) +"</label>";

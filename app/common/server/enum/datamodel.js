@@ -581,6 +581,7 @@ datamodel.RoadSpillways = {
 };
 
  //Traffic
+ /*
 datamodel.RoadTraffic = {
     "R_ID"         : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
     "LRPStartKm"   : {"label":"Start(Km)","key":"LRPStartKm","type":"integer","options":[],"visible":true,"style":"","ctrl":"select","class":"form-control"},
@@ -596,6 +597,35 @@ datamodel.RoadTraffic = {
     "FromDi"       : {"label":"","key":"FromDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
     "ToDi"         : {"label":"","key":"ToDi","type":"string","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"}        
 }
+*/
 
+datamodel.RoadTraffic = {
+    "R_ID"         : {"label":"Road ID","key":"R_ID","type":"string","options":[],"visible":true,"style":"","ctrl":"label","class":"form-control"},   
+    "motor_cycle_dec":{"label":"Motor Tricycle dec","key":"motor_cycle_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "motor_cycle_inc":{"label":"Motor Tricycle inc","key":"motor_cycle_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "passenger_car_dec":{"label":"Passenger Car dec","key":"passenger_car_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "passenger_car_inc":{"label":"Passenger Car inc","key":"passenger_car_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "passenger_utility_dec":{"label":"Passenger Utility dec","key":"passenger_utility_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "passenger_utility_inc":{"label":"Passenger Utility inc","key":"passenger_utility_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "goods_utility_dec":{"label":"Goods Utility dec","key":"goods_utility_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "goods_utility_inc":{"label":"Goods Utility inc","key":"goods_utility_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "small_bus_dec":{"label":"Small Bus dec","key":"small_bus_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "small_bus_inc":{"label":"Small Bus inc","key":"small_bus_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "large_bus_dec":{"label":"Large Bus dec","key":"large_bus_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "large_bus_inc":{"label":"Large Bus inc","key":"large_bus_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "rigid_truck_2_axles_dec":{"label":"Rigid Truck 2 Axles dec","key":"rigid_truck_2_axles_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "rigid_truck_2_axles_inc":{"label":"Rigid Truck 2 Axles inc","key":"rigid_truck_2_axles_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "rigid_truck_3_axles_dec":{"label":"Rigid Truck 3+ Axles dec","key":"rigid_truck_3_axles_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "rigid_truck_3_axles_inc":{"label":"Rigid Truck 3+ Axles inc","key":"rigid_truck_3_axles_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "trucksemi_trailer_3_4_axles_dec":{"label":"Truck Semi-Trailer 3 and 4 axles dec","key":"trucksemi_trailer_3_4_axles_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "trucksemi_trailer_3_4_axles_inc":{"label":"Truck Semi-Trailer 3 and 4 axles inc","key":"trucksemi_trailer_3_4_axles_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "trucksemi_trailer_5_axles_dec": {"label":"Truck Semi-Trailer 5+ axles dec","key":"trucksemi_trailer_5_axles_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "trucksemi_trailer_5_axles_inc":{"label":"Truck Semi-Trailer 5+ axles inc","key":"trucksemi_trailer_5_axles_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "truck_trailer_4_axles_dec":{"label":"Truck Trailer 4 axles dec","key":"truck_trailer_4_axles_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "truck_trailer_4_axles_inc":{"label":"Truck Trailer 4 axles inc","key":"truck_trailer_4_axles_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "truck_trailer_5_axles_dec":{"label":"Truck Trailer 5+ axles dec","key":"truck_trailer_5_axles_dec","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "truck_trailer_5_axles_inc":{"label":"Truck Trailer 5+ axles inc","key":"truck_trailer_5_axles_inc","type":"integer","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},
+    "AADT":{"label":"AADT","key":"AADT","type":"float","options":[],"visible":true,"style":"","ctrl":"text","class":"form-control"},     
+}
 
 module.exports = datamodel;

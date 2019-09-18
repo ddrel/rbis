@@ -232,6 +232,126 @@
 			            </div><!-- End row chart-->                                    
                 </md-content>
              </md-tab>
+             <md-tab label="Road Status">
+                <div class="row">
+                    <div class="col-md-6" ng-if="displayRoadStatus('province')">
+                            <div class="portlet box blue-madison">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-wrench"></i>&nbsp; Provincial Road Status Summary
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                            <table class="table-legend">
+                                                    <tr>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;Validated: <font class="percent-value">{{summary.chart.statusprovince.rawData.validated}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;For Review: <font class="percent-value">{{summary.chart.statusprovince.rawData.forreview}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;Inprogress: <font class="percent-value">{{summary.chart.statusprovince.rawData.inprogress}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;No Status: <font class="percent-value">{{summary.chart.statusprovince.rawData.nostatus}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;Total: <font class="percent-value">{{summary.chart.statusprovince.rawData.total}}</font></td>                                                        
+                                                    </tr>
+                                            </table>   
+                                            </br>                                                                                                                         
+                                            <canvas  class="chart chart-doughnut"
+                                                 chart-data="summary.chart.statusprovince.data" chart-labels="summary.chart.statusprovince.labels">
+                                            </canvas>       
+                                    </div>
+                            </div>                                    
+                    </div>
+                    <div class="col-md-6" ng-if="displayRoadStatus('city')">
+                            <div class="portlet box blue-madison">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-wrench"></i>&nbsp; City Road Status Summary
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                            <table class="table-legend">
+                                                    <tr>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;Validated: <font class="percent-value">{{summary.chart.statuscity.rawData.validated}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;For Review: <font class="percent-value">{{summary.chart.statuscity.rawData.forreview}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;Inprogress: <font class="percent-value">{{summary.chart.statuscity.rawData.inprogress}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;No Status: <font class="percent-value">{{summary.chart.statuscity.rawData.nostatus}}</font></td>                                                        
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;Total: <font class="percent-value">{{summary.chart.statuscity.rawData.total}}</font></td> 
+                                                    </tr>
+                                            </table>   
+                                            </br>     
+                                            <canvas  class="chart chart-doughnut"
+                                            chart-data="summary.chart.statuscity.data" chart-labels="summary.chart.statuscity.labels">
+                                       </canvas>
+                                    </div>
+                            </div>
+                    </div>
+                </div> 
+                <div class="row">
+                        <div class="col-md-6" ng-if="displayRoadStatus('province')">
+                            <div class="portlet box blue-madison">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-wrench"></i>&nbsp; Provincial Road Status Details
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                            <table class="table table-bordered-2 table-roadmain">            
+                                                    <thead>
+                                                        <tr class="table-head">
+                                                            <td>PSGC Code</td>
+                                                            <td>Validated</td>
+                                                            <td>For review</td>
+                                                            <td>Inprogress</td>
+                                                            <td>No Status</td>
+                                                            <td>Total</td>
+                                                        </tr>
+                                                    </thead>   
+                                                    <tbody>
+                                                        <tr ng-repeat="li in summary.chart.statusprovince.list">
+                                                            <td>{{li.ProvinceCo}}</td>
+                                                            <td>{{li.validated}}</td>
+                                                            <td>{{li.forreview}}</td>
+                                                            <td>{{li.inprogress}}</td>
+                                                            <td>{{li.nostatus}}</td>
+                                                            <td>{{li.count}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                    </div>
+                            </div>                                                                                    
+                        </div>
+                        <div class="col-md-6" ng-if="displayRoadStatus('city')">
+                                <div class="portlet box blue-madison">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-wrench"></i>&nbsp; City Road Status Details
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                                <table class="table table-bordered-2 table-roadmain">            
+                                                        <thead>
+                                                            <tr class="table-head">
+                                                                <td>PSGC Code</td>
+                                                                <td>Validated</td>
+                                                                <td>For review</td>
+                                                                <td>Inprogress</td>
+                                                                <td>No Status</td>
+                                                                <td>Total</td>
+                                                            </tr>
+                                                        </thead>   
+                                                        <tbody>
+                                                            <tr ng-repeat="li in summary.chart.statuscity.list">
+                                                                <td>{{li.CityMunCod}}</td>
+                                                                <td>{{li.validated}}</td>
+                                                                <td>{{li.forreview}}</td>
+                                                                <td>{{li.inprogress}}</td>
+                                                                <td>{{li.nostatus}}</td>
+                                                                <td>{{li.count}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                        </div>
+                                </div>                                                                                    
+                            </div>
+                </div>                                                                                        
+            </md-tab>
              <md-tab md-on-select="ontabselected('review')" ng-if="(user.role=='ENCODER' || user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR' || user.role=='VIEWER REGION') && modelData.review.List.length>0" label="For Review ({{ modelData.review.rowcount}})">
                 <md-content class="md-padding">                    
                 <div class="row" style="min-height:600px;">

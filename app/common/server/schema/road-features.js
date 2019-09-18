@@ -648,7 +648,7 @@ const RoadSpillways = {
 
 
 
-const RoadTraffic = {
+const RoadTraffic2 = {
     "R_ID"         : String,   
     "LRPStartKm"   : Number,
     "LRPStartDi"   : Number,
@@ -662,6 +662,51 @@ const RoadTraffic = {
     "To"           : Number,  
     "FromDi"       : Number,
     "ToDi"         : Number,
+    "geometry": Schema.Types.Mixed,
+    "created_by":Schema.Types.Mixed,
+    "updated_by":Schema.Types.Mixed,
+    "lastupdate_date":{
+        type:Date,
+        default:new Date()
+    },
+    "created_date":{
+                type:Date,
+                default:new Date()
+                },
+    file_attachment:[Schema.Types.Mixed], 
+    file_roadimages:[Schema.Types.Mixed],
+    remarks_trail:[Schema.Types.Mixed],
+    status:String                                   
+            
+};
+
+const RoadTraffic = {
+    "R_ID"         : String,   
+    "motor_cycle_dec":Number,
+    "motor_cycle_inc":Number,
+    "passenger_car_dec":Number,
+    "passenger_car_inc":Number,
+    "passenger_utility_dec":Number,
+    "passenger_utility_inc":Number,
+    "goods_utility_dec":Number,
+    "goods_utility_inc":Number,
+    "small_bus_dec":Number,
+    "small_bus_inc":Number,
+    "large_bus_dec":Number,
+    "large_bus_inc":Number,
+    "rigid_truck_2_axles_dec":Number,
+    "rigid_truck_2_axles_inc":Number,
+    "rigid_truck_3_axles_dec":Number,
+    "rigid_truck_3_axles_inc":Number,
+    "trucksemi_trailer_3_4_axles_dec":Number,
+    "trucksemi_trailer_3_4_axles_inc":Number,
+    "trucksemi_trailer_5_axles_dec":Number,
+    "trucksemi_trailer_5_axles_inc":Number,
+    "truck_trailer_4_axles_dec":Number,
+    "truck_trailer_4_axles_inc":Number,
+    "truck_trailer_5_axles_dec":Number,
+    "truck_trailer_5_axles_inc":Number,
+    "AADT":Number,
     "geometry": Schema.Types.Mixed,
     "created_by":Schema.Types.Mixed,
     "updated_by":Schema.Types.Mixed,

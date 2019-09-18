@@ -910,6 +910,87 @@ RoadsSchema.statics.getcarriagewaycount =  function(qry,cb){
     this.aggregate(_agg,cb)
 };
 
+RoadsSchema.statics.getProvinceStatus =  function(qry,cb){
+    var _agg = [  
+                    {$group: { 
+                        _id: {"ProvinceCo":"$ProvinceCo","R_CLASS":"$R_CLASS"}, 
+                        'validated':{'$sum':{'$cond':[{'$eq':['$status','validated']},1,0]}},
+                        'forreview':{'$sum':{'$cond':[{'$eq':['$status','forreview']},1,0]}},
+                        'inprogress':{'$sum':{'$cond':[{'$eq':['$status','inprogress']},1,0]}},
+                        'nostatus':{'$sum':{'$cond':[{'$ifNull':['$status',0]},0,1]}},
+                        count: {$sum: 1}        
+                        } 
+                    },
+                    {$project:{"ProvinceCo":"$_id.ProvinceCo",
+                                "R_CLASS":"$_id.R_CLASS",
+                                "count":"$count",
+                                'validated':'$validated',
+                                'forreview':'$forreview',
+                                'inprogress':'$inprogress',
+                                'nostatus':'$nostatus',
+                                '_id':0
+                                }},
+                   {$sort:{"ProvinceCo":1}}             
+                ]
+
+    if(qry){_agg.unshift(qry)}                    
+    this.aggregate(_agg,cb)
+};
+RoadsSchema.statics.getCityStatus =  function(qry,cb){
+    var _agg = [  
+                    {$group: { 
+                        _id: {"CityMunCod":"$CityMunCod","R_CLASS":"$R_CLASS"}, 
+                        'validated':{'$sum':{'$cond':[{'$eq':['$status','validated']},1,0]}},
+                        'forreview':{'$sum':{'$cond':[{'$eq':['$status','forreview']},1,0]}},
+                        'inprogress':{'$sum':{'$cond':[{'$eq':['$status','inprogress']},1,0]}},
+                        'nostatus':{'$sum':{'$cond':[{'$ifNull':['$status',0]},0,1]}},
+                        count: {$sum: 1}        
+                        } 
+                    },
+                    {$project:{"CityMunCod":"$_id.CityMunCod",
+                                "R_CLASS":"$_id.R_CLASS",
+                                "count":"$count",
+                                'validated':'$validated',
+                                'forreview':'$forreview',
+                                'inprogress':'$inprogress',
+                                'nostatus':'$nostatus',
+                                '_id':0
+                                }},
+                    {$sort:{"CityMunCod":1}}        
+                ]
+
+    if(qry){_agg.unshift(qry)}                    
+    this.aggregate(_agg,cb)
+};
+RoadsSchema.statics.getRoadStatusSummary =  function(qry,cb){
+    var _agg = [  
+                    {$group: { 
+                        _id: {"R_CLASS":"$R_CLASS"}, 
+                        'validated':{'$sum':{'$cond':[{'$eq':['$status','validated']},1,0]}},
+                        'forreview':{'$sum':{'$cond':[{'$eq':['$status','forreview']},1,0]}},
+                        'inprogress':{'$sum':{'$cond':[{'$eq':['$status','inprogress']},1,0]}},
+                        'nostatus':{'$sum':{'$cond':[{'$ifNull':['$status',0]},0,1]}},
+                        count: {$sum: 1}        
+                        } 
+                    },
+                    {$project:{
+                                "R_CLASS":"$_id.R_CLASS",
+                                "count":"$count",
+                                'validated':'$validated',
+                                'forreview':'$forreview',
+                                'inprogress':'$inprogress',
+                                'nostatus':'$nostatus',
+                                '_id':0
+                                }}        
+                ]
+
+    if(qry){_agg.unshift(qry)}                    
+    this.aggregate(_agg,cb)
+};
+
+
+
+
 RoadsSchema.statics.summaryroadreport =  function(qry,cb){
 
     this.find(qry).exec(function(err,data){

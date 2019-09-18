@@ -1550,7 +1550,7 @@
     
 </script>
 <!--Traffic-->
-<script type="text/ng-template" id="template_RoadTraffic">
+<script type="text/ng-template" id="template_RoadTraffic2">
     <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="Details" md-on-select="ontabselected('details')">
                 <table class="table">
@@ -1599,6 +1599,109 @@
                         <td>{{ currentModel.struct['VehicleType'].label }}</td>
                         <td colspan="3"><form-field field="VehicleType" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                        
                     </tr>
+                </table>                    
+        </md-tab>        
+        <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 
+                <file-list readonly="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.currentItem.file_attachment" ondelete="ondeleteFile(b)"></file-list> 
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Road Images" md-on-select="ontabselected('images')"> 
+                <div class="lightBoxGallery">
+                    <ui-gallery readonly ="currentModel.readonly || currentModel.currentItemReadonly" list="currentModel.roadImageList"  options="{container:'#blueimp-gallery-1'}" ondelete="ondeleteRoad(a)"></ui-gallery>                 
+                </div>                                       
+        </md-tab>
+        <md-tab ng-if="!isnewRow()" label="Remarks/Status" md-on-select="ontabselected('remarks')"> 
+            <form-remarks readonly="currentModel.readonly" list="currentModel.currentItem.remarks_trail" status="currentModel.currentItem.status" onsumbit="onRemarksSubmit(a,b)"></form-remarks>
+        </md-tab>
+     </md-tabs>   
+</script>
+
+<script type="text/ng-template" id="template_RoadTraffic">
+    <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Details" md-on-select="ontabselected('details')">
+                <table class="table">
+                    <tr>
+                        <td>{{ currentModel.struct['R_ID'].label }}</td>
+                        <td colspan="3"><form-field field="R_ID" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Decreasing KM Post</th>
+                                        <th>Increasing KM Post</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Motor Tricycle</td>
+                                        <td><form-field field="motor_cycle_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="motor_cycle_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Passenger Car</td>
+                                        <td><form-field field="passenger_car_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="passenger_car_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Passenger Utility</td>
+                                        <td><form-field field="passenger_utility_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="passenger_utility_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Goods Utility</td>
+                                        <td><form-field field="goods_utility_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="goods_utility_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Small Bus</td>
+                                        <td><form-field field="small_bus_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="small_bus_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Large Bus</td>
+                                        <td><form-field field="large_bus_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="large_bus_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rigid Truck 2 Axles</td>
+                                        <td><form-field field="rigid_truck_2_axles_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="rigid_truck_2_axles_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rigid Truck 3+ Axles</td>
+                                        <td><form-field field="rigid_truck_3_axles_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="rigid_truck_3_axles_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Truck Semi-trailer 3 and 4 Axles</td>
+                                        <td><form-field field="trucksemi_trailer_3_4_axles_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="trucksemi_trailer_3_4_axles_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Truck Semi-trailer 5+ Axles</td>
+                                        <td><form-field field="trucksemi_trailer_5_axles_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="trucksemi_trailer_5_axles_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Truck Trailers 4 Axles</td>
+                                        <td><form-field field="truck_trailer_4_axles_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="truck_trailer_4_axles_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr> 
+                                    <tr>
+                                        <td>Truck Trailers 5+ Axles</td>
+                                        <td><form-field field="truck_trailer_5_axles_dec" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                        <td><form-field field="truck_trailer_5_axles_inc" readonly = "currentModel.readonly" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>
+                                    </tr>
+                                    <tr>
+                                        <td>AADT</td>
+                                        <td colspan="2"><form-field field="AADT" readonly = "true" currentmodel="currentModel" ondatadirty="ondatadirty(a,b,c)"></form-field></td>                                        
+                                    </tr> 
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>    
                 </table>                    
         </md-tab>        
         <md-tab ng-if="!isnewRow()" label="Attachment" md-on-select="ontabselected('attachment')"> 

@@ -99,6 +99,23 @@ app.get("/api/roads/summaryroadreport",(req,res)=>{
     roads.summaryroadreport(req,res);
 });
 
+app.get("/api/roads/getProvinceStatus",(req,res)=>{
+    roads.getProvinceStatus(req,res);
+});
+
+app.get("/api/roads/getCityStatus",(req,res)=>{
+    roads.getCityStatus(req,res);
+});
+
+app.get("/api/roads/getProvinceStatusSummary",(req,res)=>{
+    roads.getProvinceStatusSummary(req,res);
+});
+
+app.get("/api/roads/getCityStatusSummary",(req,res)=>{
+    roads.getCityStatusSummary(req,res);
+});
+
+
 app.delete("/api/roads/deleteroadcomponent",(req,res)=>{
     roads.deleteroadcomponent(req,res);
 });
