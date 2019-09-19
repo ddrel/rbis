@@ -57,6 +57,14 @@ exports.getroadvalidated = (req,res)=>{
         };
     }
 
+
+    var _qry = req.query.qry || "";
+    if(_qry!="" && qry.location){
+        qry = {$or:[{"r_id":new RegExp(_qry,'i')},{"road_name":new RegExp(_qry,'i')}],$and:[qry]};
+    }else if(_qry!=""){
+        qry = {$or:[{"r_id":new RegExp(_qry,'i')},{"road_name":new RegExp(_qry,'i')}]};
+    }
+    
     mongoose.model("Roads_Validated").getroadvalidated(qry,opt,function(err,data){
         if(err){res.status(500).send(err);return;}
         res.status(200).json(data);

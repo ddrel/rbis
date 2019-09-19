@@ -400,8 +400,20 @@
                 </md-content>
              </md-tab>
             <md-tab label="Validated ({{modelData.validated.rowcount}})" md-on-select="ontabselected('validated')" ng-if="(user.role=='SUPERVISOR' || user.role=='SUPER ADMINISTRATOR' || user.role=='VIEWER REGION') && modelData.validated.List.length>0">
-                <md-content>
-                <md-content class="md-padding">                                
+                <md-content class="md-padding">  
+                <div class="page-bar" style="margin-bottom:4px;">
+                        <div class="col-sm-4" style="margin-top:10px">
+                            &nbsp;
+                        </div>
+                        <div class="col-sm-8 no-padding">
+                            <div class="input-group">
+                                <input ng-change="onSearchValidated(searchText)" ng-model="searchText" type="text" class="form-control txt-white" placeholder="Search for road name or road id" /> 
+                                <span class="input-group-btn"> 
+                                    <button class="btn btn-primary2" type="button">Search</button> 
+                                </span>
+                            </div>
+                        </div>       
+                    </div>                              
                     <div class="row" style="min-height:600px;">
                         <div class="col-md-12">
                             <table class="table table-bordered-2 table-roadmain">            

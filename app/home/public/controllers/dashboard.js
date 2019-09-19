@@ -1,9 +1,6 @@
 angular.module('RBIS').controller("dashboardCtrl", function( $scope, $http,$rootScope,$window,$timeout,utilities,adapter,datamodel,$mdSidenav) {
 
-
-
-
-
+$scope.searchText="";
 
 $scope.summary = {};
 $scope.summary.chart = {};
@@ -64,13 +61,23 @@ var _getRoadStatus =  function(page){
 
 var _getValidatedStatus =  function(page){
   var page = page || 1;
-  $http.get("/api/road_validated/getroadvalidated?page="+ page).success(function(d){
+  var qry = ($scope.searchText!="")? "?qry=" + $scope.searchText + "&page=" + page:"" + "?page=" +page;
+  console.log(qry);
+  $scope.getValidated(qry,function(d){
     $scope.modelData.validated.List = d.docs;
     $scope.modelData.validated.pagination.max=d.pages;
     $scope.modelData.validated.rowcount=d.total;
-    if($scope.modelData.validated.List.length>0){$("#roadmapdashboard").leafletMaps();}          
+    if($scope.modelData.validated.List.length>0){$("#roadmapdashboard").leafletMaps();}
+  })
+}
+
+$scope.getValidated = function(qry,cb){
+  $http.get("/api/road_validated/getroadvalidated" + qry).success(function(d){
+              cb(d)
   });
 }
+
+
 
 $scope.init =  function(){
     adapter.user(function(_user){
@@ -192,7 +199,9 @@ $scope.init =  function(){
 
 
 $scope.displayRoadStatus = function(type){
-  var user  = $scope.user;
+  var user  = $scope.user || {};
+  user.role = user.role || ""; 
+  if(user.role=="") return false;
   if(user.role=="VIEWER REGION"  || user.role=="SUPER ADMINISTRATOR" ){
     return true
   }else if(type=="province" && user.location.municity=="--"){
@@ -263,10 +272,19 @@ $scope.pageChangedReview =  function(i){
   _getRoadStatus(i); 
 }
 
+
 $scope.pageChangedValidated =  function(i){
   _getValidatedStatus(i);  
 }
-
+$scope.onSearchValidated =  function(s){ 
+  $scope.searchText = s;       
+  $scope.getValidated("?qry=" + s,function(d){
+    $scope.modelData.validated.List = d.docs;
+    $scope.modelData.validated.pagination.max=d.pages;
+    $scope.modelData.validated.rowcount=d.total;
+    if($scope.modelData.validated.List.length>0){$("#roadmapdashboard").leafletMaps();}
+          })
+}
 
 $scope.formatDate =  function(d){
   if(d){
@@ -275,6 +293,9 @@ $scope.formatDate =  function(d){
   };
   return "";
 }
+
+
+
 /******************************* FOR Review **************************/
 
 
