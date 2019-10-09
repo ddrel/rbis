@@ -27,8 +27,16 @@ const getlocaccess = (req)=>{
 exports.getProvinceStatus = (req,res)=>{
     var roads = mongoose.model("Roads");
     var qry = getlocaccess(req);
-    if(qry){qry = {'$match':qry};}
-    if(!qry || qry.RegionCode){qry = {$match: {"R_CLASS":"Provincial"}}}
+    
+
+    if(qry.RegionCode){
+        qry = {$match: {"R_CLASS":"Provincial","RegionCode":qry.RegionCode}}
+    }else if(!qry){
+        qry = {$match: {"R_CLASS":"Provincial"}}
+    }else if(qry){
+        qry = {'$match':qry};
+    } 
+
 
     roads.getProvinceStatus(qry,function(err,docs){
         if(err){res.status(500).json(err);return};
@@ -39,8 +47,15 @@ exports.getProvinceStatus = (req,res)=>{
 exports.getCityStatus = (req,res)=>{
     var roads = mongoose.model("Roads");
     var qry = getlocaccess(req);
-    if(qry){qry = {'$match':qry};}
-    if(!qry || qry.RegionCode){qry = {$match: {"R_CLASS":"City"}}}
+    
+
+    if(qry.RegionCode){
+        qry = {$match: {"R_CLASS":"City","RegionCode":qry.RegionCode}}
+    }else if(!qry){
+        qry = {$match: {"R_CLASS":"City"}}
+    }else if(qry){
+        qry = {'$match':qry};
+    } 
 
     roads.getCityStatus(qry,function(err,docs){
         if(err){res.status(500).json(err);return};
@@ -51,9 +66,16 @@ exports.getCityStatus = (req,res)=>{
 exports.getProvinceStatusSummary = (req,res)=>{
     var roads = mongoose.model("Roads");
     var qry = getlocaccess(req);
-    if(qry){qry = {'$match':qry};}
-    if(!qry || qry.RegionCode){qry = {$match: {"R_CLASS":"Provincial"}}}
-
+    
+    
+    if(qry.RegionCode){
+        qry = {$match: {"R_CLASS":"Provincial","RegionCode":qry.RegionCode}}
+    }else if(!qry){
+        qry = {$match: {"R_CLASS":"Provincial"}}
+    }else if(qry){
+        qry = {'$match':qry};
+    } 
+    
     roads.getRoadStatusSummary(qry,function(err,docs){
         if(err){res.status(500).json(err);return};
         res.status(200).json(docs);
@@ -63,8 +85,15 @@ exports.getProvinceStatusSummary = (req,res)=>{
 exports.getCityStatusSummary = (req,res)=>{
     var roads = mongoose.model("Roads");
     var qry = getlocaccess(req);
-    if(qry){qry = {'$match':qry};}
-    if(!qry || qry.RegionCode){qry = {$match: {"R_CLASS":"City"}}}
+    
+
+    if(qry.RegionCode){
+        qry = {$match: {"R_CLASS":"City","RegionCode":qry.RegionCode}}
+    }else if(!qry){
+        qry = {$match: {"R_CLASS":"City"}}
+    }else if(qry){
+        qry = {'$match':qry};
+    }  
 
     roads.getRoadStatusSummary(qry,function(err,docs){
         if(err){res.status(500).json(err);return};
