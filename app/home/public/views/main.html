@@ -247,7 +247,8 @@
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Validated: <font class="percent-value">{{summary.chart.statusprovince.rawData.validated}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;For Review: <font class="percent-value">{{summary.chart.statusprovince.rawData.forreview}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Inprogress: <font class="percent-value">{{summary.chart.statusprovince.rawData.inprogress}}</font></td>
-                                                        <td><div class="st-chart-legend" ></div>&nbsp;No Status: <font class="percent-value">{{summary.chart.statusprovince.rawData.nostatus}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;Returned: <font class="percent-value">{{summary.chart.statusprovince.rawData.returned}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;No Status: <font class="percent-value">{{summary.chart.statusprovince.rawData.nostatus}}</font></td>                                                        
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Total: <font class="percent-value">{{summary.chart.statusprovince.rawData.total}}</font></td>                                                        
                                                     </tr>
                                             </table>   
@@ -271,6 +272,7 @@
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Validated: <font class="percent-value">{{summary.chart.statuscity.rawData.validated}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;For Review: <font class="percent-value">{{summary.chart.statuscity.rawData.forreview}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Inprogress: <font class="percent-value">{{summary.chart.statuscity.rawData.inprogress}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;Returned: <font class="percent-value">{{summary.chart.statuscity.rawData.returned}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;No Status: <font class="percent-value">{{summary.chart.statuscity.rawData.nostatus}}</font></td>                                                        
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Total: <font class="percent-value">{{summary.chart.statuscity.rawData.total}}</font></td> 
                                                     </tr>
@@ -299,6 +301,7 @@
                                                             <td>Validated</td>
                                                             <td>For review</td>
                                                             <td>Inprogress</td>
+                                                            <td>Returned</td>
                                                             <td>No Status</td>
                                                             <td>Total</td>
                                                         </tr>
@@ -309,6 +312,7 @@
                                                             <td>{{li.validated}}</td>
                                                             <td>{{li.forreview}}</td>
                                                             <td>{{li.inprogress}}</td>
+                                                            <td>{{li.returned}}</td>
                                                             <td>{{li.nostatus}}</td>
                                                             <td>{{li.count}}</td>
                                                         </tr>
@@ -332,6 +336,7 @@
                                                                 <td>Validated</td>
                                                                 <td>For review</td>
                                                                 <td>Inprogress</td>
+                                                                <td>Returned</td>
                                                                 <td>No Status</td>
                                                                 <td>Total</td>
                                                             </tr>
@@ -342,6 +347,7 @@
                                                                 <td>{{li.validated}}</td>
                                                                 <td>{{li.forreview}}</td>
                                                                 <td>{{li.inprogress}}</td>
+                                                                <td>{{li.returned}}</td>
                                                                 <td>{{li.nostatus}}</td>
                                                                 <td>{{li.count}}</td>
                                                             </tr>

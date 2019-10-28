@@ -917,6 +917,7 @@ RoadsSchema.statics.getProvinceStatus =  function(qry,cb){
                         'validated':{'$sum':{'$cond':[{'$eq':['$status','validated']},1,0]}},
                         'forreview':{'$sum':{'$cond':[{'$eq':['$status','forreview']},1,0]}},
                         'inprogress':{'$sum':{'$cond':[{'$eq':['$status','inprogress']},1,0]}},
+                        'returned':{'$sum':{'$cond':[{'$eq':['$status','returned']},1,0]}},
                         'nostatus':{'$sum':{'$cond':[{'$ifNull':['$status',0]},0,1]}},
                         count: {$sum: 1}        
                         } 
@@ -928,6 +929,7 @@ RoadsSchema.statics.getProvinceStatus =  function(qry,cb){
                                 'forreview':'$forreview',
                                 'inprogress':'$inprogress',
                                 'nostatus':'$nostatus',
+                                'returned':'$returned',
                                 '_id':0
                                 }},
                    {$sort:{"ProvinceCo":1}}             
@@ -943,6 +945,7 @@ RoadsSchema.statics.getCityStatus =  function(qry,cb){
                         'validated':{'$sum':{'$cond':[{'$eq':['$status','validated']},1,0]}},
                         'forreview':{'$sum':{'$cond':[{'$eq':['$status','forreview']},1,0]}},
                         'inprogress':{'$sum':{'$cond':[{'$eq':['$status','inprogress']},1,0]}},
+                        'returned':{'$sum':{'$cond':[{'$eq':['$status','returned']},1,0]}},
                         'nostatus':{'$sum':{'$cond':[{'$ifNull':['$status',0]},0,1]}},
                         count: {$sum: 1}        
                         } 
@@ -954,6 +957,7 @@ RoadsSchema.statics.getCityStatus =  function(qry,cb){
                                 'forreview':'$forreview',
                                 'inprogress':'$inprogress',
                                 'nostatus':'$nostatus',
+                                'returned':'$returned',
                                 '_id':0
                                 }},
                     {$sort:{"CityMunCod":1}}        
@@ -969,6 +973,7 @@ RoadsSchema.statics.getRoadStatusSummary =  function(qry,cb){
                         'validated':{'$sum':{'$cond':[{'$eq':['$status','validated']},1,0]}},
                         'forreview':{'$sum':{'$cond':[{'$eq':['$status','forreview']},1,0]}},
                         'inprogress':{'$sum':{'$cond':[{'$eq':['$status','inprogress']},1,0]}},
+                        'returned':{'$sum':{'$cond':[{'$eq':['$status','returned']},1,0]}},
                         'nostatus':{'$sum':{'$cond':[{'$ifNull':['$status',0]},0,1]}},
                         count: {$sum: 1}        
                         } 
@@ -979,6 +984,7 @@ RoadsSchema.statics.getRoadStatusSummary =  function(qry,cb){
                                 'validated':'$validated',
                                 'forreview':'$forreview',
                                 'inprogress':'$inprogress',
+                                'returned':'$returned',
                                 'nostatus':'$nostatus',
                                 '_id':0
                                 }}        

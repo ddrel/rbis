@@ -175,16 +175,16 @@ $scope.init =  function(){
     //summary status
     $http.get("/api/roads/getProvinceStatusSummary").success(function(d){
         var data = d[0];
-        $scope.summary.chart.statusprovince.rawData = {validated:parseInt(data.validated),forreview:parseInt(data.forreview),inprogress:parseInt(data.inprogress),nostatus:parseInt(data.nostatus),total:data.count};
-        $scope.summary.chart.statusprovince.data = [data.validated,data.forreview,data.inprogress,data.nostatus];
-        $scope.summary.chart.statusprovince.labels = ["Validated","For Review","Inprogress","No Status"];
+        $scope.summary.chart.statusprovince.rawData = {validated:parseInt(data.validated),forreview:parseInt(data.forreview),inprogress:parseInt(data.inprogress),nostatus:parseInt(data.nostatus),returned:parseInt(data.returned),total:data.count};
+        $scope.summary.chart.statusprovince.data = [data.validated,data.forreview,data.inprogress,data.nostatus,data.returned];
+        $scope.summary.chart.statusprovince.labels = ["Validated","For Review","Inprogress","No Status","Returned"];
     });
 
     $http.get("/api/roads/getCityStatusSummary").success(function(d){
       var data = d[0];
-      $scope.summary.chart.statuscity.rawData = {validated:parseInt(data.validated),forreview:parseInt(data.forreview),inprogress:parseInt(data.inprogress),nostatus:parseInt(data.nostatus),total:data.count};
-      $scope.summary.chart.statuscity.data = [data.validated,data.forreview,data.inprogress,data.nostatus];
-      $scope.summary.chart.statuscity.labels = ["Validated","For Review","Inprogress","No Status"];
+      $scope.summary.chart.statuscity.rawData = {validated:parseInt(data.validated),forreview:parseInt(data.forreview),inprogress:parseInt(data.inprogress),nostatus:parseInt(data.nostatus),returned:parseInt(data.returned),total:data.count};
+      $scope.summary.chart.statuscity.data = [data.validated,data.forreview,data.inprogress,data.nostatus,data.returned];
+      $scope.summary.chart.statuscity.labels = ["Validated","For Review","Inprogress","No Status","Returned"];
     });
 
     $http.get("/api/roads/getProvinceStatus").success(function(d){      
