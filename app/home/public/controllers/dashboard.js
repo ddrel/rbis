@@ -276,14 +276,18 @@ $scope.pageChangedReview =  function(i){
 $scope.pageChangedValidated =  function(i){
   _getValidatedStatus(i);  
 }
+
 $scope.onSearchValidated =  function(s){ 
-  $scope.searchText = s;       
-  $scope.getValidated("?qry=" + s,function(d){
-    $scope.modelData.validated.List = d.docs;
-    $scope.modelData.validated.pagination.max=d.pages;
-    $scope.modelData.validated.rowcount=d.total;
-    if($scope.modelData.validated.List.length>0){$("#roadmapdashboard").leafletMaps();}
-          })
+  $timeout(function(){
+    $scope.searchText = s;
+    $scope.getValidated("?qry=" + s,function(d){
+      $scope.modelData.validated.List = d.docs;
+      $scope.modelData.validated.pagination.max=d.pages;
+      $scope.modelData.validated.rowcount=d.total;
+      if($scope.modelData.validated.List.length>0){$("#roadmapdashboard").leafletMaps();}
+    });
+  },500)
+  
 }
 
 $scope.formatDate =  function(d){
