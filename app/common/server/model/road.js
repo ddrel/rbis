@@ -1006,7 +1006,7 @@ RoadsSchema.statics.summaryroadreport =  function(qry,cb){
                     get:function(type){
                         if(cw.length==0) return 0;
                         var t = cw.filter(function(d){return d.SurfaceTyp==type});
-                        return t.length==0?0:(t.map(function(d){return d.SegmentLen}).reduce(function(a,b){return parseFloat("0" +  a) + parseFloat("0" + b) })).toFixed(3);
+                        return t.length==0?0:(t.map(function(d){return d.SegmentLen}).reduce(function(a,b){return parseFloat("0" +  a) + parseFloat("0" + b) }) || 0) .toFixed(3);
                     }
             }
         }
