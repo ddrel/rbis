@@ -48,12 +48,20 @@ RoadsForReviewSchema.statics.saveforreview =  function(opt,cb){
     var rfr =  mongoose.model("Roads_ForReview");
     var province = mongoose.model('Provinces');
     var municity = mongoose.model('CityMun');
+
+    
+
     var locate = utilities.parseLocation(opt.r_id);    
+
+    if(opt.r_id.indexOf("13390")>-1){
+      locate = {};
+      locate =  {province_code:"133900000",municity_code:"133901000",region_code:"130000000"};
+    }
 
     var loc_promise =  new Promise(function(res,rej){
       var _loc_data = {};
       province.findOne({Code:locate.province_code}).exec(function(err,data){        
-        _loc_data.province = data;
+        _loc_data.province = data;        
         if(err || !data){ rej("province")};
         if(_loc_data.province && (_loc_data.municity || opt.road_class!="City") && !err){res(_loc_data)}
 
