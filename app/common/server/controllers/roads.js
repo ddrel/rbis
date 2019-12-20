@@ -102,6 +102,23 @@ exports.getCityStatusSummary = (req,res)=>{
 }
 
 
+exports.getPIRStatus = (req,res)=>{
+    var roads = mongoose.model("Roads");
+    var page = req.query.page || 1;
+    var qry = getlocaccess(req);    
+    var qry2  = { "status":{$in:["inprogress","returned","pending"]}}; 
+    if(qry){
+        for(var x in qry){
+            qry2[x] = qry[x];
+        }
+    }
+
+    roads.getPIRStatus(qry2,page,function(err,docs){
+        if(err){res.status(500).json(err);return};
+        res.status(200).json(docs);
+    })
+}
+
 
 exports.newRoad =  (req,res)=>{
     var roads = mongoose.model("Roads");

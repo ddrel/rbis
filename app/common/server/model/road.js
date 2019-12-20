@@ -918,6 +918,7 @@ RoadsSchema.statics.getProvinceStatus =  function(qry,cb){
                         'forreview':{'$sum':{'$cond':[{'$eq':['$status','forreview']},1,0]}},
                         'inprogress':{'$sum':{'$cond':[{'$eq':['$status','inprogress']},1,0]}},
                         'returned':{'$sum':{'$cond':[{'$eq':['$status','returned']},1,0]}},
+                        'pending':{'$sum':{'$cond':[{'$eq':['$status','pending']},1,0]}},
                         'nostatus':{'$sum':{'$cond':[{'$ifNull':['$status',0]},0,1]}},
                         count: {$sum: 1}        
                         } 
@@ -928,6 +929,7 @@ RoadsSchema.statics.getProvinceStatus =  function(qry,cb){
                                 'validated':'$validated',
                                 'forreview':'$forreview',
                                 'inprogress':'$inprogress',
+                                'pending':'$pending',
                                 'nostatus':'$nostatus',
                                 'returned':'$returned',
                                 '_id':0
@@ -946,6 +948,7 @@ RoadsSchema.statics.getCityStatus =  function(qry,cb){
                         'forreview':{'$sum':{'$cond':[{'$eq':['$status','forreview']},1,0]}},
                         'inprogress':{'$sum':{'$cond':[{'$eq':['$status','inprogress']},1,0]}},
                         'returned':{'$sum':{'$cond':[{'$eq':['$status','returned']},1,0]}},
+                        'pending':{'$sum':{'$cond':[{'$eq':['$status','pending']},1,0]}},
                         'nostatus':{'$sum':{'$cond':[{'$ifNull':['$status',0]},0,1]}},
                         count: {$sum: 1}        
                         } 
@@ -957,6 +960,7 @@ RoadsSchema.statics.getCityStatus =  function(qry,cb){
                                 'forreview':'$forreview',
                                 'inprogress':'$inprogress',
                                 'nostatus':'$nostatus',
+                                'pending':'$pending',
                                 'returned':'$returned',
                                 '_id':0
                                 }},
@@ -974,6 +978,7 @@ RoadsSchema.statics.getRoadStatusSummary =  function(qry,cb){
                         'forreview':{'$sum':{'$cond':[{'$eq':['$status','forreview']},1,0]}},
                         'inprogress':{'$sum':{'$cond':[{'$eq':['$status','inprogress']},1,0]}},
                         'returned':{'$sum':{'$cond':[{'$eq':['$status','returned']},1,0]}},
+                        'pending':{'$sum':{'$cond':[{'$eq':['$status','pending']},1,0]}},
                         'nostatus':{'$sum':{'$cond':[{'$ifNull':['$status',0]},0,1]}},
                         count: {$sum: 1}        
                         } 
@@ -985,6 +990,7 @@ RoadsSchema.statics.getRoadStatusSummary =  function(qry,cb){
                                 'forreview':'$forreview',
                                 'inprogress':'$inprogress',
                                 'returned':'$returned',
+                                'pending':'$pending',
                                 'nostatus':'$nostatus',
                                 '_id':0
                                 }}        
@@ -995,7 +1001,27 @@ RoadsSchema.statics.getRoadStatusSummary =  function(qry,cb){
 };
 
 
-
+RoadsSchema.statics.getPIRStatus = function(qry,page,cb){
+    var aggregate = this.aggregate();
+     aggregate.match(qry);
+     aggregate.project({ 
+        'R_ID': '$R_ID',
+        'R_NAME': '$R_NAME',
+        'status': '$status',
+        'updated_by': '$updated_by' 
+    })
+    var options = { page : page, limit : 100};        
+    this.aggregatePaginate(aggregate, options, function(err, results, pageCount, count) {
+        if(err) 
+        {
+           cb({err:"error processing data"},null);
+        }
+        else
+        { 
+            cb(null,{data:results,pagecount:pageCount,count:count})
+        }
+    });
+}
 
 RoadsSchema.statics.summaryroadreport =  function(qry,cb){
 

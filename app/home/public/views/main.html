@@ -242,11 +242,12 @@
                                         </div>
                                     </div>
                                     <div class="portlet-body">
-                                            <table class="table-legend">
+                                            <table class="table-legend" style="font-size:10px;">
                                                     <tr>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Validated: <font class="percent-value">{{summary.chart.statusprovince.rawData.validated}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;For Review: <font class="percent-value">{{summary.chart.statusprovince.rawData.forreview}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Inprogress: <font class="percent-value">{{summary.chart.statusprovince.rawData.inprogress}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;Pending: <font class="percent-value">{{summary.chart.statusprovince.rawData.pending}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Returned: <font class="percent-value">{{summary.chart.statusprovince.rawData.returned}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;No Status: <font class="percent-value">{{summary.chart.statusprovince.rawData.nostatus}}</font></td>                                                        
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Total: <font class="percent-value">{{summary.chart.statusprovince.rawData.total}}</font></td>                                                        
@@ -267,11 +268,12 @@
                                         </div>
                                     </div>
                                     <div class="portlet-body">
-                                            <table class="table-legend">
+                                            <table class="table-legend" style="font-size:10px;">
                                                     <tr>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Validated: <font class="percent-value">{{summary.chart.statuscity.rawData.validated}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;For Review: <font class="percent-value">{{summary.chart.statuscity.rawData.forreview}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Inprogress: <font class="percent-value">{{summary.chart.statuscity.rawData.inprogress}}</font></td>
+                                                        <td><div class="st-chart-legend" ></div>&nbsp;Pending: <font class="percent-value">{{summary.chart.statuscity.rawData.pending}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Returned: <font class="percent-value">{{summary.chart.statuscity.rawData.returned}}</font></td>
                                                         <td><div class="st-chart-legend" ></div>&nbsp;No Status: <font class="percent-value">{{summary.chart.statuscity.rawData.nostatus}}</font></td>                                                        
                                                         <td><div class="st-chart-legend" ></div>&nbsp;Total: <font class="percent-value">{{summary.chart.statuscity.rawData.total}}</font></td> 
@@ -296,11 +298,12 @@
                                     <div class="portlet-body">
                                             <table class="table table-bordered-2 table-roadmain">            
                                                     <thead>
-                                                        <tr class="table-head">
+                                                        <tr class="table-head" style="font-size: 12px;">
                                                             <td>PSGC Code</td>
                                                             <td>Validated</td>
                                                             <td>For review</td>
                                                             <td>Inprogress</td>
+                                                            <td>Pending</td>
                                                             <td>Returned</td>
                                                             <td>No Status</td>
                                                             <td>Total</td>
@@ -312,6 +315,7 @@
                                                             <td>{{li.validated}}</td>
                                                             <td>{{li.forreview}}</td>
                                                             <td>{{li.inprogress}}</td>
+                                                            <td>{{li.pending}}</td>
                                                             <td>{{li.returned}}</td>
                                                             <td>{{li.nostatus}}</td>
                                                             <td>{{li.count}}</td>
@@ -330,12 +334,13 @@
                                         </div>
                                         <div class="portlet-body">
                                                 <table class="table table-bordered-2 table-roadmain">            
-                                                        <thead>
+                                                        <thead style="font-size: 12px;">
                                                             <tr class="table-head">
                                                                 <td>PSGC Code</td>
                                                                 <td>Validated</td>
                                                                 <td>For review</td>
                                                                 <td>Inprogress</td>
+                                                                <td>Pending</td>
                                                                 <td>Returned</td>
                                                                 <td>No Status</td>
                                                                 <td>Total</td>
@@ -347,6 +352,7 @@
                                                                 <td>{{li.validated}}</td>
                                                                 <td>{{li.forreview}}</td>
                                                                 <td>{{li.inprogress}}</td>
+                                                                <td>{{li.pending}}</td>
                                                                 <td>{{li.returned}}</td>
                                                                 <td>{{li.nostatus}}</td>
                                                                 <td>{{li.count}}</td>
@@ -456,6 +462,48 @@
                                         <td align="left" colspan="9">
                                             <!-- previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" -->
                                             <pagination  ng-show="modelData.validated.List.length>0" ng-change="pageChangedValidated(modelData.validated.pagination.CurrentPage)" rotate="false" boundary-link-numbers="false" total-items="(modelData.validated.pagination.max * 10)" ng-model="modelData.validated.pagination.CurrentPage" max-size="10" class="pagination-sm" boundary-links="true">
+                                            </pagination>
+                                        </td>    
+                                    </tr>    
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>        
+                </md-content>
+            </md-tab> 
+            <md-tab label="PIR Status ({{modelData.PIRStatus.rowcount}})" md-on-select="ontabselected('pirstatus')"><!-- && modelData.validated.List.length>0 -->
+                <md-content class="md-padding">  
+                <div class="page-bar" style="margin-bottom:4px;">
+                        <div class="col-sm-4" style="margin-top:10px">
+                            &nbsp;
+                        </div>                               
+                    </div>                              
+                    <div class="row" style="min-height:600px;">
+                        <div class="col-md-12">
+                            <table class="table table-bordered-2 table-roadmain">            
+                                <thead>
+                                    <tr class="table-head">
+                                        <td>Road ID</td>
+                                        <td>Road Name</td>
+                                        <td>Status</td>
+                                        <td>Email</td>
+                                        <td>Name</td>                                        
+                                    </tr>
+                                </thead>   
+                                <tbody>
+                                    <tr ng-repeat="fr_item in modelData.PIRStatus.List"> 
+                                        <td>{{ fr_item.R_ID }}</td>
+                                        <td>{{ fr_item.R_NAME }}</td>
+                                        <td>{{ fr_item.status }}</td>
+                                        <td>{{ fr_item.updated_by.email }}</td>
+                                        <td>{{ fr_item.updated_by.name }}</td>                                        
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td align="left" colspan="9">
+                                            <!-- previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" -->
+                                            <pagination  ng-show="modelData.PIRStatus.List.length>0" ng-change="pageChangedPIRStatus(modelData.PIRStatus.pagination.CurrentPage)" rotate="false" boundary-link-numbers="false" total-items="(modelData.PIRStatus.pagination.max * 10)" ng-model="modelData.PIRStatus.pagination.CurrentPage" max-size="100" class="pagination-sm" boundary-links="true">
                                             </pagination>
                                         </td>    
                                     </tr>    

@@ -71,6 +71,18 @@ var _getValidatedStatus =  function(page){
   })
 }
 
+
+var _getPIRStatus =  function(page){
+  var page = page || 1;
+  var qry = "?page=" + page
+  $http.get("/api/roads/getPIRStatus" + qry).success(function(d){      
+    $scope.modelData.PIRStatus.List = d.data;
+    $scope.modelData.PIRStatus.pagination.max=d.pagecount;
+    $scope.modelData.PIRStatus.rowcount=d.count;            
+  });
+
+}
+
 $scope.getValidated = function(qry,cb){
   $http.get("/api/road_validated/getroadvalidated" + qry).success(function(d){
               cb(d)
@@ -168,23 +180,23 @@ $scope.init =  function(){
     //load review and validated    
     _getRoadStatus(); 
     _getValidatedStatus();  
-
+    _getPIRStatus(); 
     $scope.getlogs(1);
 
 
     //summary status
     $http.get("/api/roads/getProvinceStatusSummary").success(function(d){
         var data = d[0];
-        $scope.summary.chart.statusprovince.rawData = {validated:parseInt(data.validated),forreview:parseInt(data.forreview),inprogress:parseInt(data.inprogress),nostatus:parseInt(data.nostatus),returned:parseInt(data.returned),total:data.count};
-        $scope.summary.chart.statusprovince.data = [data.validated,data.forreview,data.inprogress,data.nostatus,data.returned];
-        $scope.summary.chart.statusprovince.labels = ["Validated","For Review","Inprogress","No Status","Returned"];
+        $scope.summary.chart.statusprovince.rawData = {validated:parseInt(data.validated),forreview:parseInt(data.forreview),inprogress:parseInt(data.inprogress),pending:parseInt(data.pending),nostatus:parseInt(data.nostatus),returned:parseInt(data.returned),total:data.count};
+        $scope.summary.chart.statusprovince.data = [data.validated,data.forreview,data.inprogress,data.pending,data.nostatus,data.returned];
+        $scope.summary.chart.statusprovince.labels = ["Validated","For Review","Inprogress","Pending","No Status","Returned"];
     });
 
     $http.get("/api/roads/getCityStatusSummary").success(function(d){
       var data = d[0];
-      $scope.summary.chart.statuscity.rawData = {validated:parseInt(data.validated),forreview:parseInt(data.forreview),inprogress:parseInt(data.inprogress),nostatus:parseInt(data.nostatus),returned:parseInt(data.returned),total:data.count};
-      $scope.summary.chart.statuscity.data = [data.validated,data.forreview,data.inprogress,data.nostatus,data.returned];
-      $scope.summary.chart.statuscity.labels = ["Validated","For Review","Inprogress","No Status","Returned"];
+      $scope.summary.chart.statuscity.rawData = {validated:parseInt(data.validated),forreview:parseInt(data.forreview),inprogress:parseInt(data.inprogress),pending:parseInt(data.pending),nostatus:parseInt(data.nostatus),returned:parseInt(data.returned),total:data.count};
+      $scope.summary.chart.statuscity.data = [data.validated,data.forreview,data.inprogress,data.pending,data.nostatus,data.returned];
+      $scope.summary.chart.statuscity.labels = ["Validated","For Review","Inprogress","Pending","No Status","Returned"];
     });
 
     $http.get("/api/roads/getProvinceStatus").success(function(d){      
@@ -195,7 +207,13 @@ $scope.init =  function(){
       $scope.summary.chart.statuscity.list = d;      
     });
 
-};
+
+
+    
+    
+ 
+
+}//end init;
 
 
 $scope.displayRoadStatus = function(type){
@@ -268,6 +286,10 @@ $scope.modelData.review.pagination.max=1;
 $scope.modelData.validated = {};
 $scope.modelData.validated.pagination = {};
 $scope.modelData.validated.pagination.max=1;
+
+$scope.modelData.PIRStatus = {};
+$scope.modelData.PIRStatus.pagination = {};
+$scope.modelData.PIRStatus.pagination.max=1;
 $scope.pageChangedReview =  function(i){
   _getRoadStatus(i); 
 }
@@ -275,6 +297,11 @@ $scope.pageChangedReview =  function(i){
 
 $scope.pageChangedValidated =  function(i){
   _getValidatedStatus(i);  
+}
+
+
+$scope.pageChangedPIRStatus =  function(i){
+  _getPIRStatus(i);  
 }
 
 $scope.onSearchValidated =  function(s){ 

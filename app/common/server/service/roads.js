@@ -114,6 +114,9 @@ app.get("/api/roads/getProvinceStatusSummary",(req,res)=>{
 app.get("/api/roads/getCityStatusSummary",(req,res)=>{
     roads.getCityStatusSummary(req,res);
 });
+app.get("/api/roads/getPIRStatus",(req,res)=>{
+    roads.getPIRStatus(req,res);
+});
 
 
 app.delete("/api/roads/deleteroadcomponent",(req,res)=>{
